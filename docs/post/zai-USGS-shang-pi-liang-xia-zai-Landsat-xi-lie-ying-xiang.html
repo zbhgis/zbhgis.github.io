@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# 在USGS上批量下载Landsat系列影像
+
+## 前言
+
+试了一下USGS提供的批量下载的功能，整体使用体验OK。">
+<meta property="og:title" content="在USGS上批量下载Landsat系列影像">
+<meta property="og:description" content="# 在USGS上批量下载Landsat系列影像
+
+## 前言
+
+试了一下USGS提供的批量下载的功能，整体使用体验OK。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zbhgis.github.io/post/zai-USGS-shang-pi-liang-xia-zai-Landsat-xi-lie-ying-xiang.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<title>在USGS上批量下载Landsat系列影像</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">在USGS上批量下载Landsat系列影像</h1>
+<div class="title-right">
+    <a href="https://zbhgis.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/zbhgis/zbhgis.github.io/issues/3" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>在USGS上批量下载Landsat系列影像</h1>
+<h2>前言</h2>
+<p>试了一下USGS提供的批量下载的功能，整体使用体验OK。</p>
+<h2>正文</h2>
+<p>1.打开USGS网站(<a href="https://earthexplorer.usgs.gov/)%EF%BC%8C%E7%99%BB%E5%BD%95-%E6%B3%A8%E5%86%8C-%E8%AE%BE%E7%BD%AE%E6%9D%A1%E4%BB%B6-%E9%80%89%E6%8B%A9%E6%95%B0%E6%8D%AE%E9%9B%86-%E6%9F%A5%E6%89%BE%E7%AD%89%E4%B8%80%E7%B3%BB%E5%88%97%E6%AD%A5%E9%AA%A4%E5%90%8E%EF%BC%8C%E6%9D%A5%E5%88%B0%E4%BA%86%E8%BF%99%E4%B8%AA%E7%95%8C%E9%9D%A2" rel="nofollow">https://earthexplorer.usgs.gov/)，登录-注册-设置条件-选择数据集-查找等一系列步骤后，来到了这个界面</a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8f94626ea3547896dd3d90d09dd6746f29587f2ec6e39b06b58c579e5477dec0/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233313030373136333533383138322e706e67"><img src="https://camo.githubusercontent.com/8f94626ea3547896dd3d90d09dd6746f29587f2ec6e39b06b58c579e5477dec0/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233313030373136333533383138322e706e67" alt="image-20231007163538182" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20231007163538182.png" style="max-width: 100%;"></a></p>
+<p>2.在这个界面我们可以明显得看到，每个数据下面有个小菜单，我们可以通过这个菜单中的这个按钮**【Add  to Bulk Download】**，将想要批量下载的数据添加到【Item Basket】，如果这个数据添加成功，那么这个按钮就会变成绿色的（点击之后有一点延迟，过一小会就变亮了)</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5efd426a74ad7d66cd2514ee2fe1882a764d5cf77e720a777a4f12ecbbd737bb/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383232353131373131302e706e67"><img src="https://camo.githubusercontent.com/5efd426a74ad7d66cd2514ee2fe1882a764d5cf77e720a777a4f12ecbbd737bb/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383232353131373131302e706e67" alt="image-20230708225117110" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708225117110.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e24d59b4394f0ef1df15182a5abc8c7331ea82f41ad091ac3015628ffeb9e6b8/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383232353731313537352e706e67"><img src="https://camo.githubusercontent.com/e24d59b4394f0ef1df15182a5abc8c7331ea82f41ad091ac3015628ffeb9e6b8/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383232353731313537352e706e67" alt="image-20230708225711575" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708225711575.png" style="max-width: 100%;"></a></p>
+<p>3.如果选择好数据之后，那么上方菜单中的**【Item Basket】**就会右下角的数字就会变成对于所选择的数据量</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/456da0eda3795e242b244013a76effdcfe4e73bf8b9d8cf449e41b0cfcc92512/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233303032393732312e706e67"><img src="https://camo.githubusercontent.com/456da0eda3795e242b244013a76effdcfe4e73bf8b9d8cf449e41b0cfcc92512/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233303032393732312e706e67" alt="image-20230708230029721" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708230029721.png" style="max-width: 100%;"></a></p>
+<p>4.点击**【Item Basket】<strong>进入到如下界面，并点击</strong>【Start Order】**</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9a7b6df3fa7c108b484530334a3d4b8b931239f0b0c6833ebd359d83f3e8b01e/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233303135303636362e706e67"><img src="https://camo.githubusercontent.com/9a7b6df3fa7c108b484530334a3d4b8b931239f0b0c6833ebd359d83f3e8b01e/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233303135303636362e706e67" alt="image-20230708230150666" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708230150666.png" style="max-width: 100%;"></a></p>
+<p>5.加载片刻之后，会出现以下界面，点击Landsat 8-9左边的一个倒三角标，将展开所选的各个数据</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b8550e243a47455cc0f274bc825fb821e9df468b72918a9b137c561493934d3d/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233303434353932302e706e67"><img src="https://camo.githubusercontent.com/b8550e243a47455cc0f274bc825fb821e9df468b72918a9b137c561493934d3d/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233303434353932302e706e67" alt="image-20230708230445920" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708230445920.png" style="max-width: 100%;"></a></p>
+<p>在此界面，可以通过【Options】或者各个数据最右侧的按钮对数据进行操作</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/400f256d69928322120b7ac44b874d395461adc617b9ba7c61780973a4ce4e4a/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233313132353033312e706e67"><img src="https://camo.githubusercontent.com/400f256d69928322120b7ac44b874d395461adc617b9ba7c61780973a4ce4e4a/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233313132353033312e706e67" alt="image-20230708231125031" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708231125031.png" style="max-width: 100%;"></a></p>
+<p>6.通过鼠标左键，单击想要批量下载的数据，确认无误后，最后点击右下角的**【Submit Product Selections】**进行筛选（如果显示提交失败，显示一串提示“Unable。。。”，先确认自己是否选择了文件，再去排查其他问题）</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a992f32729c7707ca3d1f9785a275abc8427d7180bacb811355609dc27df9cd3/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233313535363734372e706e67"><img src="https://camo.githubusercontent.com/a992f32729c7707ca3d1f9785a275abc8427d7180bacb811355609dc27df9cd3/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233313535363734372e706e67" alt="image-20230708231556747" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708231556747.png" style="max-width: 100%;"></a></p>
+<p>7.Order创建成功之后，会返回如下界面，显示了申请到的Order名称，如果网络没问题的话，对应的邮箱也会在1-2分钟之内，收到来自usgs的邮件通知</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2cbd66f9b2023e13221b27a2e9a3a8b2c683b5905f032dcc9795afa0267cfd49/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233323035343530382e706e67"><img src="https://camo.githubusercontent.com/2cbd66f9b2023e13221b27a2e9a3a8b2c683b5905f032dcc9795afa0267cfd49/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233323035343530382e706e67" alt="image-20230708232054508" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708232054508.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3c9ce9ef18e39e4d1ac4590415934949c542b7078222f6cca4c5ca6a37dca35b/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233313835373134372e706e67"><img src="https://camo.githubusercontent.com/3c9ce9ef18e39e4d1ac4590415934949c542b7078222f6cca4c5ca6a37dca35b/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233313835373134372e706e67" alt="image-20230708231857147" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708231857147.png" style="max-width: 100%;"></a></p>
+<p>8.再点击如下界面中的超链接**【Bulk Download Web Application】**，进入批量下载界面（根据官方提醒，通过该Web应用下载不需要安装Java环境，不过需要在基于chorme的浏览器上使用或者edge上使用，本次测试使用的edge浏览器）</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/56bf1abb25900cbb8952a20dc347dbdb0599e877e6c8989a771af4c1ea8db68d/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233323234383430392e706e67"><img src="https://camo.githubusercontent.com/56bf1abb25900cbb8952a20dc347dbdb0599e877e6c8989a771af4c1ea8db68d/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233323234383430392e706e67" alt="image-20230708232248409" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708232248409.png" style="max-width: 100%;"></a></p>
+<p>9.进入到如下界面后，点击绿色按钮**【Launch Bulk Download Web Application】**</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c78b0e527eb2e9520cb6763423bd3377d45457d8328179503dba780882adfb81/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233323633363937362e706e67"><img src="https://camo.githubusercontent.com/c78b0e527eb2e9520cb6763423bd3377d45457d8328179503dba780882adfb81/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233323633363937362e706e67" alt="image-20230708232636976" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708232636976.png" style="max-width: 100%;"></a></p>
+<p>10.之后稍等片刻，即可看到如下界面（由于本次测试之前就创建过两次Order，所以共有3个Order）</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/61c78e26e404b81f12314817eeb7aaab9befb035f062bc2c6a1222203625de6d/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730393030313332333233342e706e67"><img src="https://camo.githubusercontent.com/61c78e26e404b81f12314817eeb7aaab9befb035f062bc2c6a1222203625de6d/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730393030313332333233342e706e67" alt="image-20230709001323234" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230709001323234.png" style="max-width: 100%;"></a></p>
+<p>11.进入任意一个Order后，会弹出以下窗口，可以提前新建好文件夹，这里我们选择建好的文件夹存放数据</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/13a798ef72cead824d82b7247d40c42d6319e100f5a3e912d9367ea30d9ec7af/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233333335343333312e706e67"><img src="https://camo.githubusercontent.com/13a798ef72cead824d82b7247d40c42d6319e100f5a3e912d9367ea30d9ec7af/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233333335343333312e706e67" alt="image-20230708233354331" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708233354331.png" style="max-width: 100%;"></a></p>
+<p>12.在选择好文件夹之后，会弹出以下窗口（edge浏览器），依次同意</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b1bd183d329e007c1fb851ad8ac5cc8749500081eabaa645ee8900f6b453a165/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233333435363934302e706e67"><img src="https://camo.githubusercontent.com/b1bd183d329e007c1fb851ad8ac5cc8749500081eabaa645ee8900f6b453a165/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233333435363934302e706e67" alt="image-20230708233456940" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708233456940.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/775001115c9fb2e4064588f699cca6b76fbff8ef16518a6dd8754e18018a8a6b/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233333531323836312e706e67"><img src="https://camo.githubusercontent.com/775001115c9fb2e4064588f699cca6b76fbff8ef16518a6dd8754e18018a8a6b/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233333531323836312e706e67" alt="image-20230708233512861" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708233512861.png" style="max-width: 100%;"></a></p>
+<p>13.点击其中一个Order后，可以查看到以下信息</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5098f41e17f14aa0ac2477485fa8c839c03af71bd50aae179f74163e4b8fcd72/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233343731313739332e706e67"><img src="https://camo.githubusercontent.com/5098f41e17f14aa0ac2477485fa8c839c03af71bd50aae179f74163e4b8fcd72/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233343731313739332e706e67" alt="image-20230708234711793" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708234711793.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e0eabca9cb3a73192817af978c390b4435d147d210a297fbaf25b3d714458038/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233343131313133322e706e67"><img src="https://camo.githubusercontent.com/e0eabca9cb3a73192817af978c390b4435d147d210a297fbaf25b3d714458038/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303233303730383233343131313133322e706e67" alt="image-20230708234111132" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20230708234111132.png" style="max-width: 100%;"></a></p>
+<p>14、Windows下载完成提示</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5f58221047b3dcbf42f5a6965ff1fbdaec3224a145aeb6d1e42b137bd476e5d8/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303531393232313530363930322e706e67"><img src="https://camo.githubusercontent.com/5f58221047b3dcbf42f5a6965ff1fbdaec3224a145aeb6d1e42b137bd476e5d8/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303531393232313530363930322e706e67" alt="image-20240519221506902" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240519221506902.png" style="max-width: 100%;"></a></p>
+<h2><strong>总结</strong></h2>
+<p>1.关于下载的诸多事宜，如限制、设置等，在帮助中均有所提及，这里就不啰嗦了</p>
+<p>2.还可以通过GEE代码或者生成URL等方式更加便捷地进行批量下载，由于其他网站可能没有以上的Web应用，因此在其他网站可以通过这两个思路进行下载</p>
+<p>3.由于是网络问题，部分操作会有所延迟，需要耐心等待片刻，不要频繁操作，比如在将数据添加到Item Basket时，那个小按钮很容易卡顿</p>
+<p>4.进行了个简单的小测试，发现换个浏览器登录USGS后，貌似无法记住你的Order及其中的数据集，所以推荐申请之后直接开始下载</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请注明出处</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zbhgis.github.io">zbhgis</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zbhgis/zbhgis.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+
+
+</html>
