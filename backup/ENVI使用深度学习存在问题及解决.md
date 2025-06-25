@@ -85,5 +85,4 @@ patch size 设置得太大了，调小一点
 ![image-20230719141031685](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230719141031685.png)
 
 之后在ENVI的工具文件夹【Extension】中可以找到，双击可以直接调用
-
 <!-- ##{"timestamp":1696888800}## -->
