@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Wed, 25 Jun 2025 15:21:09 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>ENVI使用深度学习存在问题及解决</title><link>https://zbhgis.github.io/post/ENVI-shi-yong-shen-du-xue-xi-cun-zai-wen-ti-ji-jie-jue.html</link><description># ENVI使用深度学习存在问题及解决
+# ENVI使用深度学习存在问题及解决
 
 ## 前言
 
@@ -87,16 +86,4 @@ patch size 设置得太大了，调小一点
 
 之后在ENVI的工具文件夹【Extension】中可以找到，双击可以直接调用
 
-&lt;!-- ##{'timestamp':1696888800}## --&gt;。</description><guid isPermaLink="true">https://zbhgis.github.io/post/ENVI-shi-yong-shen-du-xue-xi-cun-zai-wen-ti-ji-jie-jue.html</guid><pubDate>Wed, 25 Jun 2025 15:17:45 +0000</pubDate></item><item><title>在USGS上批量下载Landsat系列影像</title><link>https://zbhgis.github.io/post/zai-USGS-shang-pi-liang-xia-zai-Landsat-xi-lie-ying-xiang.html</link><description># 在USGS上批量下载Landsat系列影像
-
-## 前言
-
-试了一下USGS提供的批量下载的功能，整体使用体验OK。</description><guid isPermaLink="true">https://zbhgis.github.io/post/zai-USGS-shang-pi-liang-xia-zai-Landsat-xi-lie-ying-xiang.html</guid><pubDate>Wed, 25 Jun 2025 15:10:35 +0000</pubDate></item><item><title>Typora+picgo+gitee配置过程中存在问题</title><link>https://zbhgis.github.io/post/Typora%2Bpicgo%2Bgitee-pei-zhi-guo-cheng-zhong-cun-zai-wen-ti.html</link><description># Typora+picgo+gitee配置过程中存在问题
-
-1、刚开始是使用GitHub，但是不知道为什么一直上传不了图片，找了很多的解决方法都没能成功，考虑到可能是网络等方方面面的问题，于是放弃了GitHub，选择了Gitee；参考以下[[博客](https://blog.csdn.net/weixin_45525272/article/details/125387761)](https://blog.csdn.net/weixin_45525272/article/details/125387761)(https://blog.csdn.net/weixin_45525272/article/details/125387761)；
-2、在配置Gitee中的过程中，除了需要注册好Gitee，建立好仓库、需要保管好私人令牌外，还需要提前安装好node.js环境，直接去官网下载最新的长期支持版本即可；
-3、在线安装Gitee的picgo插件过程中，插件一直显示安装中，即一直安装不上，这个时候就需要先前往picgo文件夹下的 node_moudules先将安装失败的插件文件夹 picgo-plugin-gitee-uploader 删除，然后再通过以下[[博客](https://blog.csdn.net/Netceor/article/details/126704416)](https://blog.csdn.net/Netceor/article/details/126704416)的方法(https://blog.csdn.net/Netceor/article/details/126704416)，通过命令行的方式进行安装；
-
-![image-20231007161015722](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231007161015722.png)
-
-4、如果中间安装失败，哪一步卡住，可以先尝试重启应用然后再重新执行操作，可以避免一些不必要的问题。</description><guid isPermaLink="true">https://zbhgis.github.io/post/Typora%2Bpicgo%2Bgitee-pei-zhi-guo-cheng-zhong-cun-zai-wen-ti.html</guid><pubDate>Fri, 06 Oct 2023 22:00:00 +0000</pubDate></item></channel></rss>
+<!-- ##{"timestamp":1696888800}## -->
