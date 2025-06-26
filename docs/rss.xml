@@ -1,5 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Wed, 25 Jun 2025 15:39:28 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>哥白尼网站下载Sentinel-1/2/3/5P遥感数据（筛选、单波段/批量下载），附常见问题</title><link>https://zbhgis.github.io/post/ge-bai-ni-wang-zhan-xia-zai-Sentinel-1-2-3-5P-yao-gan-shu-ju-%EF%BC%88-shai-xuan-%E3%80%81-dan-bo-duan---pi-liang-xia-zai-%EF%BC%89%EF%BC%8C-fu-chang-jian-wen-ti.html</link><description># 哥白尼网站下载Sentinel-1/2/3/5P遥感数据（筛选、单波段/批量下载），附常见问题
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 02:39:07 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>GEE批量下载Sentinel2数据</title><link>https://zbhgis.github.io/post/GEE-pi-liang-xia-zai-Sentinel2-shu-ju.html</link><description># GEE批量下载Sentinel2数据
+
+Google Earth Enginehttps://earthengine.google.com/网站批量下载数据，需要有谷歌账号和科学上网
+
+## 界面功能
+
+![image-20230712015903828](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230712015903828.png)
+
+
+
+## 导入研究区边界
+
+1.学会导入roi的矢量文件，在【Assets】下选择【New】，导入shp文件
+
+![image-20230712012523506](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230712012523506.png)
+
+![image-20230712012700256](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230712012700256.png)
+
+2.在弹出的界面可以选择自己的文件进行上传，除了在gee上的新建的数据集文件名需要修改之外，其他保持默认即可，最后点击【Upload】上传
+
+![image-20230712013340325](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230712013340325.png)
+
+3.创建好之后就可以去copy别人的代码进行批量下载了，有两个数据可以需要自己手动导入，网上的教程有时没讲这部分，通过【Import】导入roi文件和数据集。</description><guid isPermaLink="true">https://zbhgis.github.io/post/GEE-pi-liang-xia-zai-Sentinel2-shu-ju.html</guid><pubDate>Thu, 26 Jun 2025 02:38:40 +0000</pubDate></item><item><title>哥白尼网站下载Sentinel-1/2/3/5P遥感数据（筛选、单波段/批量下载），附常见问题</title><link>https://zbhgis.github.io/post/ge-bai-ni-wang-zhan-xia-zai-Sentinel-1-2-3-5P-yao-gan-shu-ju-%EF%BC%88-shai-xuan-%E3%80%81-dan-bo-duan---pi-liang-xia-zai-%EF%BC%89%EF%BC%8C-fu-chang-jian-wen-ti.html</link><description># 哥白尼网站下载Sentinel-1/2/3/5P遥感数据（筛选、单波段/批量下载），附常见问题
 
 ## 前言
 
