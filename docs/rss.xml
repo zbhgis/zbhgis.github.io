@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 14:49:19 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 14:52:50 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
 
 主要介绍Arcpy脚本工具制作
 
@@ -411,39 +411,39 @@ Google Earth Enginehttps://earthengine.google.com/网站批量下载数据，需
 
 1.打开以下网站，[[福建省标准地图服务系统 (fjmap.net)](http://bzdt.fjmap.net/index.html)](http://bzdt.fjmap.net/index.html)
 
-![image-20231013105013626](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231013105013626.png)
+![image-20231013105013626](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262250746.png)
 
 2.选择上方菜单中的【标准地图】,进入以下界面，再通过上面的搜索栏，输入“GDB”，点击【搜索】进行搜索，出现以下界面
 
-![image-20231013105255434](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231013105255434.png)
+![image-20231013105255434](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262251754.png)
 
 3.在该模块中，可以通过点击【说明】查看数据的说明和格式标准，点击【下载】之后即可下载rar压缩包
 
-![image-20231013105343173](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231013105343173.png)
+![image-20231013105343173](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262251828.png)
 
-![image-20231013105511511](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231013105511511.png)
+![image-20231013105511511](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262251002.png)
 
 ## 使用
 
 1.压缩包解压之后其中有以下两个资源，使用ArcGIS打开文档后，需要通过【属性】设置各地理要素源
 
-![image-20231013105805620](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231013105805620.png)
+![image-20231013105805620](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262251986.png)
 
-![image-20231013110004483](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231013110004483.png)
+![image-20231013110004483](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262251459.png)
 
 2.有些数据源在GDB中并没有直接显示，如“高程”，在设置完所有数据源之后即可自动匹配
 
-![image-20231013110244775](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231013110244775.png)
+![image-20231013110244775](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262251157.png)
 
-![image-20231013110219506](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231013110219506.png)
+![image-20231013110219506](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262251538.png)
 
 3.将设置好的模板通过【导出地图】的功能，导出500dpi分辨率的地图如下
 
-![福建省地图示意图版10.0](https://gitee.com/zbhgis/pic/raw/master/blog/%E7%A6%8F%E5%BB%BA%E7%9C%81%E5%9C%B0%E5%9B%BE%E7%A4%BA%E6%84%8F%E5%9B%BE%E7%89%8810.0.jpg)
+![福建省地图示意图版10.0](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262251008.jpeg)
 
 4.其中的地理矢量数据坐标系信息如下，如果需要使用WGS84投影的需要进行通过ArcGIS的【投影】功能转换坐标信息：
 
-![image-20231013112052161](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231013112052161.png)
+![image-20231013112052161](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262251875.png)
 
 ![image-20231013112112591](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231013112112591.png)
 
