@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# Arcpy入门学习笔记（二）：脚本工具
+
+主要介绍Arcpy脚本工具制作
+
+[TOC]
+
+## Arcpy语法速查
+
+1、ArcGIS工具界面的【工具帮助】
+
+![image-20240419235458653](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235458653.png)
+
+![image-20240419235513830](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235513830.png)
+
+2、地理处理的【结果】会话窗口，右键工具提供的“【复制为Python代码片段】
+
+![image-20240419235859687](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235859687.png)
+
+![image-20240419235944587](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235944587.png)
+
+3、ArcGIS模型【导出至Python脚本文件】
+
+![image-20240420000844887](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240420000844887.png)
+
+
+
+## Arcpy脚本常用代码
+
+会经常使用到的代码或代码块
+
+### 包的导入
+
+```python
+# 导入sys模块，设置Python解释器的默认编码为UTF-8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+# 导入ArcPy模块
+import arcpy
+
+# 导入NumPy库
+import numpy as np
+
+# 导入Python标准库中的os模块，用于操作文件路径
+import os
+
+# 导入datetime类，用于处理日期和时间
+from datetime import datetime
+
+# 从ArcPy空间分析模块导入所有函数和类
+from arcpy.sa import *
+
+# 导入xlwt模块，用于创建和操作Excel文件（xls格式）
+import xlwt
+```
+
+### 获取工具箱参数
+
+```python
+# 获取参数
+layer = arcpy.GetParameter(0)
+
+# 获取参数并读取为Unicode
+out_path = arcpy.GetParameterAsText(1)
+
+# 获取参数并转为整数
+num = int(arcpy.GetParameterAsText(2)) 
+
+# 获取参数并转为字符串
+out_path = str(arcpy.GetParameterAsText(3)) 
+
+# 在参数获取方法相同时，可批量获取
+args = tuple(arcpy.GetParameterAsText(i) for i in range(arcpy.GetArgumentCount()))
+Test(*args)
+```
+
+### 环境设置
+
+```python
+#!/usr/bin/env python
+# coding=utf-8
+
+# 确认分析模块是否可用
+arcpy.CheckOutExtension('spatial')
+
+# 设置工作空间
+arcpy.env.workspace = out_path
+
+# 设置并行处理因子为0，因为有的学习版用不了这个功能
+arcpy.env.parallelProcessingFactor = '0'
+
+# 设置输出可覆盖文件
+arcpy.env.overwriteOutput = 'True'
+```
+
+### 工具箱输出
+
+```python
+# 在工具箱输出栏中打印信息
+arcpy.AddMessage('ok')
+```
+
+## 脚本工具制作
+
+本部分较为繁琐，可粗略看看
+
+### 准备好py文件
+
+比如下面这个，先在Pycharm中进行测试，可以根据指定数量生成圆的个数，每个圆的半径依次增加50m
+
+```python
+#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-21 11:41
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+import arcpy
+import os
+import math
+
+def create_shapefiles(num, out_path):
+    # 设置坐标系为WGS84_UTM_50N
+    spatial_reference = arcpy.SpatialReference(32650)  # WGS84_UTM_50N的WKID为32650
+
+    # 根据num循环创建矢量文件
+    for i in range(1, num + 1):
+        # 创建要素类名称和路径
+        circle_name = 'Circle_{}m'.format(i * 50)
+        circle_path = os.path.join(out_path, circle_name + '.shp')
+
+        # 创建圆
+        arcpy.management.CreateFeatureclass(os.path.dirname(circle_path), circle_name, 'POLYGON', spatial_reference=spatial_reference)
+        circle_cursor = arcpy.da.InsertCursor(circle_path, ['SHAPE@'])
+        circle = arcpy.Point()
+        circle_geometry = arcpy.Array()
+        for angle in range(0, 361, 10):
+            circle.X = 50 * i * math.cos(math.radians(angle))  # 半径为50*i
+            circle.Y = 50 * i * math.sin(math.radians(angle))
+            circle_geometry.add(circle)
+        circle_geometry.add(circle_geometry.getObject(0))  # 添加起始点以闭合圆
+        circle_cursor.insertRow([arcpy.Polygon(circle_geometry)])
+        del circle_cursor
+
+if __name__ == '__main__':
+    num = 2
+    out_path = r'G:\MyTestProject\arcpy2_test\data'
+
+    arcpy.CheckOutExtension('spatial')
+    arcpy.env.parallelProcessingFactor = '0'
+    arcpy.env.overwriteOutput = 'True'
+    arcpy.env.workspace = out_path
+
+    create_shapefiles(num, out_path)
+
+    arcpy.AddMessage(num)
+    arcpy.AddMessage(out_path)
+```
+
+在Pycharm中运行结果打开如下：
+
+![image-20240421130358309](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421130358309.png)
+
+测试没问题之后，将最后一段改掉，从面板获取参数，并将代码中的中文注释都删掉或者改成英文注释，不然会有一些离谱的bug，修改后准备的导入脚本的代码如下：
+
+```python
+#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-21 11:41
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+import arcpy
+import os
+import math
+
+def create_shapefiles(num, out_path):
+    spatial_reference = arcpy.SpatialReference(32650)  # WGS84_UTM_50N的WKID为32650
+
+    for i in range(1, num + 1):
+        circle_name = 'Circle_{}m'.format(i * 50)
+        circle_path = os.path.join(out_path, circle_name + '.shp')
+
+        arcpy.management.CreateFeatureclass(os.path.dirname(circle_path), circle_name, 'POLYGON', spatial_reference=spatial_reference)
+        circle_cursor = arcpy.da.InsertCursor(circle_path, ['SHAPE@'])
+        circle = arcpy.Point()
+        circle_geometry = arcpy.Array()
+        for angle in range(0, 361, 10):
+            circle.X = 50 * i * math.cos(math.radians(angle))
+            circle.Y = 50 * i * math.sin(math.radians(angle))
+            circle_geometry.add(circle)
+        circle_geometry.add(circle_geometry.getObject(0))
+        circle_cursor.insertRow([arcpy.Polygon(circle_geometry)])
+        del circle_cursor
+
+if __name__ == '__main__':
+    # num = 2
+    # out_path = r'G:\MyTestProject\arcpy2_test\data'
+    num = int(arcpy.GetParameterAsText(0))
+    out_path = str(arcpy.GetParameterAsText(1))
+
+    arcpy.CheckOutExtension('spatial')
+    arcpy.env.parallelProcessingFactor = '0'
+    arcpy.env.overwriteOutput = 'True'
+    arcpy.env.workspace = out_path
+
+    create_shapefiles(num, out_path)
+
+    arcpy.AddMessage(num)
+    arcpy.AddMessage(out_path)
+```
+
+
+
+### 创建工具
+
+创建好一个工具箱后，在其中创建工具集，并在工具集中添加脚本
+
+![image-20240421130946332](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421130946332.png)
+
+
+
+修改名称和标签，存储为相对路径（对应的地图文档属性最好也提前设置为相对路径，在【文件】【地图文档属性】【路径名】处进行勾选）
+
+![image-20240421131053202](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131053202.png)
+
+导入脚本文件所在位置
+
+![image-20240421131411366](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131411366.png)
+
+设置参数，一个为“圆的数量”，对应数据类型为长整型；一个为输出文件夹，对应数据类型为文件夹
+
+![image-20240421131900538](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131900538.png)
+
+右键打开工具
+
+![image-20240421132218453](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421132218453.png)
+
+初步使用可行
+
+![image-20240422001014508](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240422001014508.png)
+
+### 脚本工具各功能详解
+
+脚本右键功能
+
+![image-20240421133114511](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133114511.png)
+
+【属性】中的【常规】
+
+![image-20240421133327100](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133327100.png)
+
+【属性】中的【源】
+
+![image-20240421133508006](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133508006.png)
+
+【属性】中的【参数】
+
+![image-20240421134022597](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421134022597.png)
+
+【属性】中的【验证】
+
+![image-20240421134315206](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421134315206.png)
+
+### 修改默认编辑和调试
+
+在ArcGIS菜单栏中【地理处理选项】中，将【编辑器】和【调试程序】换做pycharm所在位置，之后即可在脚本右键【编辑】快速在pycharm中打开对应文件（这个根据个人需要设置）
+
+```
+D:\py\Pycharm\bin\pycharm64.exe
+```
+
+![image-20240421115026617](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421115026617.png)
+
+
+
+## 总结
+
+脚本工具先自己有个数就行，而且在Pycharm中可以正常运行的工具转为脚本工具可能会有一些奇奇怪怪的错误，最好学一些Arcpy基础之后再用，边学边用就懂了；
+
+其次就是在脚本工具中，尽量不要使用中文，包括注释
+<!-- ##{'timestamp':1713736800}## -->。">
+<meta property="og:title" content="Arcpy入门学习笔记（二）：脚本工具">
+<meta property="og:description" content="# Arcpy入门学习笔记（二）：脚本工具
+
+主要介绍Arcpy脚本工具制作
+
+[TOC]
+
+## Arcpy语法速查
+
+1、ArcGIS工具界面的【工具帮助】
+
+![image-20240419235458653](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235458653.png)
+
+![image-20240419235513830](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235513830.png)
+
+2、地理处理的【结果】会话窗口，右键工具提供的“【复制为Python代码片段】
+
+![image-20240419235859687](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235859687.png)
+
+![image-20240419235944587](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235944587.png)
+
+3、ArcGIS模型【导出至Python脚本文件】
+
+![image-20240420000844887](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240420000844887.png)
+
+
+
+## Arcpy脚本常用代码
+
+会经常使用到的代码或代码块
+
+### 包的导入
+
+```python
+# 导入sys模块，设置Python解释器的默认编码为UTF-8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+# 导入ArcPy模块
+import arcpy
+
+# 导入NumPy库
+import numpy as np
+
+# 导入Python标准库中的os模块，用于操作文件路径
+import os
+
+# 导入datetime类，用于处理日期和时间
+from datetime import datetime
+
+# 从ArcPy空间分析模块导入所有函数和类
+from arcpy.sa import *
+
+# 导入xlwt模块，用于创建和操作Excel文件（xls格式）
+import xlwt
+```
+
+### 获取工具箱参数
+
+```python
+# 获取参数
+layer = arcpy.GetParameter(0)
+
+# 获取参数并读取为Unicode
+out_path = arcpy.GetParameterAsText(1)
+
+# 获取参数并转为整数
+num = int(arcpy.GetParameterAsText(2)) 
+
+# 获取参数并转为字符串
+out_path = str(arcpy.GetParameterAsText(3)) 
+
+# 在参数获取方法相同时，可批量获取
+args = tuple(arcpy.GetParameterAsText(i) for i in range(arcpy.GetArgumentCount()))
+Test(*args)
+```
+
+### 环境设置
+
+```python
+#!/usr/bin/env python
+# coding=utf-8
+
+# 确认分析模块是否可用
+arcpy.CheckOutExtension('spatial')
+
+# 设置工作空间
+arcpy.env.workspace = out_path
+
+# 设置并行处理因子为0，因为有的学习版用不了这个功能
+arcpy.env.parallelProcessingFactor = '0'
+
+# 设置输出可覆盖文件
+arcpy.env.overwriteOutput = 'True'
+```
+
+### 工具箱输出
+
+```python
+# 在工具箱输出栏中打印信息
+arcpy.AddMessage('ok')
+```
+
+## 脚本工具制作
+
+本部分较为繁琐，可粗略看看
+
+### 准备好py文件
+
+比如下面这个，先在Pycharm中进行测试，可以根据指定数量生成圆的个数，每个圆的半径依次增加50m
+
+```python
+#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-21 11:41
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+import arcpy
+import os
+import math
+
+def create_shapefiles(num, out_path):
+    # 设置坐标系为WGS84_UTM_50N
+    spatial_reference = arcpy.SpatialReference(32650)  # WGS84_UTM_50N的WKID为32650
+
+    # 根据num循环创建矢量文件
+    for i in range(1, num + 1):
+        # 创建要素类名称和路径
+        circle_name = 'Circle_{}m'.format(i * 50)
+        circle_path = os.path.join(out_path, circle_name + '.shp')
+
+        # 创建圆
+        arcpy.management.CreateFeatureclass(os.path.dirname(circle_path), circle_name, 'POLYGON', spatial_reference=spatial_reference)
+        circle_cursor = arcpy.da.InsertCursor(circle_path, ['SHAPE@'])
+        circle = arcpy.Point()
+        circle_geometry = arcpy.Array()
+        for angle in range(0, 361, 10):
+            circle.X = 50 * i * math.cos(math.radians(angle))  # 半径为50*i
+            circle.Y = 50 * i * math.sin(math.radians(angle))
+            circle_geometry.add(circle)
+        circle_geometry.add(circle_geometry.getObject(0))  # 添加起始点以闭合圆
+        circle_cursor.insertRow([arcpy.Polygon(circle_geometry)])
+        del circle_cursor
+
+if __name__ == '__main__':
+    num = 2
+    out_path = r'G:\MyTestProject\arcpy2_test\data'
+
+    arcpy.CheckOutExtension('spatial')
+    arcpy.env.parallelProcessingFactor = '0'
+    arcpy.env.overwriteOutput = 'True'
+    arcpy.env.workspace = out_path
+
+    create_shapefiles(num, out_path)
+
+    arcpy.AddMessage(num)
+    arcpy.AddMessage(out_path)
+```
+
+在Pycharm中运行结果打开如下：
+
+![image-20240421130358309](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421130358309.png)
+
+测试没问题之后，将最后一段改掉，从面板获取参数，并将代码中的中文注释都删掉或者改成英文注释，不然会有一些离谱的bug，修改后准备的导入脚本的代码如下：
+
+```python
+#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-21 11:41
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+import arcpy
+import os
+import math
+
+def create_shapefiles(num, out_path):
+    spatial_reference = arcpy.SpatialReference(32650)  # WGS84_UTM_50N的WKID为32650
+
+    for i in range(1, num + 1):
+        circle_name = 'Circle_{}m'.format(i * 50)
+        circle_path = os.path.join(out_path, circle_name + '.shp')
+
+        arcpy.management.CreateFeatureclass(os.path.dirname(circle_path), circle_name, 'POLYGON', spatial_reference=spatial_reference)
+        circle_cursor = arcpy.da.InsertCursor(circle_path, ['SHAPE@'])
+        circle = arcpy.Point()
+        circle_geometry = arcpy.Array()
+        for angle in range(0, 361, 10):
+            circle.X = 50 * i * math.cos(math.radians(angle))
+            circle.Y = 50 * i * math.sin(math.radians(angle))
+            circle_geometry.add(circle)
+        circle_geometry.add(circle_geometry.getObject(0))
+        circle_cursor.insertRow([arcpy.Polygon(circle_geometry)])
+        del circle_cursor
+
+if __name__ == '__main__':
+    # num = 2
+    # out_path = r'G:\MyTestProject\arcpy2_test\data'
+    num = int(arcpy.GetParameterAsText(0))
+    out_path = str(arcpy.GetParameterAsText(1))
+
+    arcpy.CheckOutExtension('spatial')
+    arcpy.env.parallelProcessingFactor = '0'
+    arcpy.env.overwriteOutput = 'True'
+    arcpy.env.workspace = out_path
+
+    create_shapefiles(num, out_path)
+
+    arcpy.AddMessage(num)
+    arcpy.AddMessage(out_path)
+```
+
+
+
+### 创建工具
+
+创建好一个工具箱后，在其中创建工具集，并在工具集中添加脚本
+
+![image-20240421130946332](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421130946332.png)
+
+
+
+修改名称和标签，存储为相对路径（对应的地图文档属性最好也提前设置为相对路径，在【文件】【地图文档属性】【路径名】处进行勾选）
+
+![image-20240421131053202](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131053202.png)
+
+导入脚本文件所在位置
+
+![image-20240421131411366](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131411366.png)
+
+设置参数，一个为“圆的数量”，对应数据类型为长整型；一个为输出文件夹，对应数据类型为文件夹
+
+![image-20240421131900538](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131900538.png)
+
+右键打开工具
+
+![image-20240421132218453](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421132218453.png)
+
+初步使用可行
+
+![image-20240422001014508](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240422001014508.png)
+
+### 脚本工具各功能详解
+
+脚本右键功能
+
+![image-20240421133114511](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133114511.png)
+
+【属性】中的【常规】
+
+![image-20240421133327100](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133327100.png)
+
+【属性】中的【源】
+
+![image-20240421133508006](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133508006.png)
+
+【属性】中的【参数】
+
+![image-20240421134022597](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421134022597.png)
+
+【属性】中的【验证】
+
+![image-20240421134315206](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421134315206.png)
+
+### 修改默认编辑和调试
+
+在ArcGIS菜单栏中【地理处理选项】中，将【编辑器】和【调试程序】换做pycharm所在位置，之后即可在脚本右键【编辑】快速在pycharm中打开对应文件（这个根据个人需要设置）
+
+```
+D:\py\Pycharm\bin\pycharm64.exe
+```
+
+![image-20240421115026617](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421115026617.png)
+
+
+
+## 总结
+
+脚本工具先自己有个数就行，而且在Pycharm中可以正常运行的工具转为脚本工具可能会有一些奇奇怪怪的错误，最好学一些Arcpy基础之后再用，边学边用就懂了；
+
+其次就是在脚本工具中，尽量不要使用中文，包括注释
+<!-- ##{'timestamp':1713736800}## -->。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zbhgis.github.io/post/Arcpy-ru-men-xue-xi-bi-ji-%EF%BC%88-er-%EF%BC%89%EF%BC%9A-jiao-ben-gong-ju.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<title>Arcpy入门学习笔记（二）：脚本工具</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Arcpy入门学习笔记（二）：脚本工具</h1>
+<div class="title-right">
+    <a href="https://zbhgis.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/zbhgis/zbhgis.github.io/issues/10" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>Arcpy入门学习笔记（二）：脚本工具</h1>
+<p>主要介绍Arcpy脚本工具制作</p>
+<p>[TOC]</p>
+<h2>Arcpy语法速查</h2>
+<p>1、ArcGIS工具界面的【工具帮助】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/518596d9e29052f1f225096fffb900639965581a3768a30eb38169104a31ece0/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303431393233353435383635332e706e67"><img src="https://camo.githubusercontent.com/518596d9e29052f1f225096fffb900639965581a3768a30eb38169104a31ece0/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303431393233353435383635332e706e67" alt="image-20240419235458653" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235458653.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a7121649dfb823b0b8c5fb9cc8badf1d51aa06844a6811e6f6501cec7ca7e573/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303431393233353531333833302e706e67"><img src="https://camo.githubusercontent.com/a7121649dfb823b0b8c5fb9cc8badf1d51aa06844a6811e6f6501cec7ca7e573/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303431393233353531333833302e706e67" alt="image-20240419235513830" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235513830.png" style="max-width: 100%;"></a></p>
+<p>2、地理处理的【结果】会话窗口，右键工具提供的“【复制为Python代码片段】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e39c56df58b353a56724da2399858ed25fc89411762a56df38dce6b6112c0bd5/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303431393233353835393638372e706e67"><img src="https://camo.githubusercontent.com/e39c56df58b353a56724da2399858ed25fc89411762a56df38dce6b6112c0bd5/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303431393233353835393638372e706e67" alt="image-20240419235859687" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235859687.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/faa1929cabb77f42f1a257bb0e96c27ffb594d9ee660e1f9c71ac8e3651acddc/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303431393233353934343538372e706e67"><img src="https://camo.githubusercontent.com/faa1929cabb77f42f1a257bb0e96c27ffb594d9ee660e1f9c71ac8e3651acddc/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303431393233353934343538372e706e67" alt="image-20240419235944587" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235944587.png" style="max-width: 100%;"></a></p>
+<p>3、ArcGIS模型【导出至Python脚本文件】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fdc82c5072bd3b814b1047ad066eb6c8a295061219deae11374e71fd6eca9752/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432303030303834343838372e706e67"><img src="https://camo.githubusercontent.com/fdc82c5072bd3b814b1047ad066eb6c8a295061219deae11374e71fd6eca9752/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432303030303834343838372e706e67" alt="image-20240420000844887" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240420000844887.png" style="max-width: 100%;"></a></p>
+<h2>Arcpy脚本常用代码</h2>
+<p>会经常使用到的代码或代码块</p>
+<h3>包的导入</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 导入sys模块，设置Python解释器的默认编码为UTF-8</span>
+<span class="pl-k">import</span> <span class="pl-s1">sys</span>
+<span class="pl-en">reload</span>(<span class="pl-s1">sys</span>)
+<span class="pl-s1">sys</span>.<span class="pl-c1">setdefaultencoding</span>(<span class="pl-s">'utf8'</span>)
+
+<span class="pl-c"># 导入ArcPy模块</span>
+<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+
+<span class="pl-c"># 导入NumPy库</span>
+<span class="pl-k">import</span> <span class="pl-s1">numpy</span> <span class="pl-k">as</span> <span class="pl-s1">np</span>
+
+<span class="pl-c"># 导入Python标准库中的os模块，用于操作文件路径</span>
+<span class="pl-k">import</span> <span class="pl-s1">os</span>
+
+<span class="pl-c"># 导入datetime类，用于处理日期和时间</span>
+<span class="pl-k">from</span> <span class="pl-s1">datetime</span> <span class="pl-k">import</span> <span class="pl-s1">datetime</span>
+
+<span class="pl-c"># 从ArcPy空间分析模块导入所有函数和类</span>
+<span class="pl-k">from</span> <span class="pl-s1">arcpy</span>.<span class="pl-s1">sa</span> <span class="pl-k">import</span> <span class="pl-c1">*</span>
+
+<span class="pl-c"># 导入xlwt模块，用于创建和操作Excel文件（xls格式）</span>
+<span class="pl-k">import</span> <span class="pl-s1">xlwt</span></pre></div>
+<h3>获取工具箱参数</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 获取参数</span>
+<span class="pl-s1">layer</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameter</span>(<span class="pl-c1">0</span>)
+
+<span class="pl-c"># 获取参数并读取为Unicode</span>
+<span class="pl-s1">out_path</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-c1">1</span>)
+
+<span class="pl-c"># 获取参数并转为整数</span>
+<span class="pl-s1">num</span> <span class="pl-c1">=</span> <span class="pl-en">int</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-c1">2</span>)) 
+
+<span class="pl-c"># 获取参数并转为字符串</span>
+<span class="pl-s1">out_path</span> <span class="pl-c1">=</span> <span class="pl-en">str</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-c1">3</span>)) 
+
+<span class="pl-c"># 在参数获取方法相同时，可批量获取</span>
+<span class="pl-s1">args</span> <span class="pl-c1">=</span> <span class="pl-en">tuple</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-s1">i</span>) <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetArgumentCount</span>()))
+<span class="pl-en">Test</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>)</pre></div>
+<h3>环境设置</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
+<span class="pl-c"># coding=utf-8</span>
+
+<span class="pl-c"># 确认分析模块是否可用</span>
+<span class="pl-s1">arcpy</span>.<span class="pl-c1">CheckOutExtension</span>(<span class="pl-s">"spatial"</span>)
+
+<span class="pl-c"># 设置工作空间</span>
+<span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">workspace</span> <span class="pl-c1">=</span> <span class="pl-s1">out_path</span>
+
+<span class="pl-c"># 设置并行处理因子为0，因为有的学习版用不了这个功能</span>
+<span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">parallelProcessingFactor</span> <span class="pl-c1">=</span> <span class="pl-s">'0'</span>
+
+<span class="pl-c"># 设置输出可覆盖文件</span>
+<span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">overwriteOutput</span> <span class="pl-c1">=</span> <span class="pl-s">"True"</span></pre></div>
+<h3>工具箱输出</h3>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 在工具箱输出栏中打印信息</span>
+<span class="pl-s1">arcpy</span>.<span class="pl-c1">AddMessage</span>(<span class="pl-s">"ok"</span>)</pre></div>
+<h2>脚本工具制作</h2>
+<p>本部分较为繁琐，可粗略看看</p>
+<h3>准备好py文件</h3>
+<p>比如下面这个，先在Pycharm中进行测试，可以根据指定数量生成圆的个数，每个圆的半径依次增加50m</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
+<span class="pl-c"># coding=utf-8</span>
+<span class="pl-c"># @Time : 2024-04-21 11:41</span>
+
+<span class="pl-k">import</span> <span class="pl-s1">sys</span>
+<span class="pl-en">reload</span>(<span class="pl-s1">sys</span>)
+<span class="pl-s1">sys</span>.<span class="pl-c1">setdefaultencoding</span>(<span class="pl-s">'utf8'</span>)
+<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+<span class="pl-k">import</span> <span class="pl-s1">os</span>
+<span class="pl-k">import</span> <span class="pl-s1">math</span>
+
+<span class="pl-k">def</span> <span class="pl-en">create_shapefiles</span>(<span class="pl-s1">num</span>, <span class="pl-s1">out_path</span>):
+    <span class="pl-c"># 设置坐标系为WGS84_UTM_50N</span>
+    <span class="pl-s1">spatial_reference</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">SpatialReference</span>(<span class="pl-c1">32650</span>)  <span class="pl-c"># WGS84_UTM_50N的WKID为32650</span>
+
+    <span class="pl-c"># 根据num循环创建矢量文件</span>
+    <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">1</span>, <span class="pl-s1">num</span> <span class="pl-c1">+</span> <span class="pl-c1">1</span>):
+        <span class="pl-c"># 创建要素类名称和路径</span>
+        <span class="pl-s1">circle_name</span> <span class="pl-c1">=</span> <span class="pl-s">"Circle_{}m"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-c1">50</span>)
+        <span class="pl-s1">circle_path</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">out_path</span>, <span class="pl-s1">circle_name</span> <span class="pl-c1">+</span> <span class="pl-s">".shp"</span>)
+
+        <span class="pl-c"># 创建圆</span>
+        <span class="pl-s1">arcpy</span>.<span class="pl-c1">management</span>.<span class="pl-c1">CreateFeatureclass</span>(<span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">dirname</span>(<span class="pl-s1">circle_path</span>), <span class="pl-s1">circle_name</span>, <span class="pl-s">"POLYGON"</span>, <span class="pl-s1">spatial_reference</span><span class="pl-c1">=</span><span class="pl-s1">spatial_reference</span>)
+        <span class="pl-s1">circle_cursor</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">da</span>.<span class="pl-c1">InsertCursor</span>(<span class="pl-s1">circle_path</span>, [<span class="pl-s">"SHAPE@"</span>])
+        <span class="pl-s1">circle</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Point</span>()
+        <span class="pl-s1">circle_geometry</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Array</span>()
+        <span class="pl-k">for</span> <span class="pl-s1">angle</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">0</span>, <span class="pl-c1">361</span>, <span class="pl-c1">10</span>):
+            <span class="pl-s1">circle</span>.<span class="pl-c1">X</span> <span class="pl-c1">=</span> <span class="pl-c1">50</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-s1">math</span>.<span class="pl-c1">cos</span>(<span class="pl-s1">math</span>.<span class="pl-c1">radians</span>(<span class="pl-s1">angle</span>))  <span class="pl-c"># 半径为50*i</span>
+            <span class="pl-s1">circle</span>.<span class="pl-c1">Y</span> <span class="pl-c1">=</span> <span class="pl-c1">50</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-s1">math</span>.<span class="pl-c1">sin</span>(<span class="pl-s1">math</span>.<span class="pl-c1">radians</span>(<span class="pl-s1">angle</span>))
+            <span class="pl-s1">circle_geometry</span>.<span class="pl-c1">add</span>(<span class="pl-s1">circle</span>)
+        <span class="pl-s1">circle_geometry</span>.<span class="pl-c1">add</span>(<span class="pl-s1">circle_geometry</span>.<span class="pl-c1">getObject</span>(<span class="pl-c1">0</span>))  <span class="pl-c"># 添加起始点以闭合圆</span>
+        <span class="pl-s1">circle_cursor</span>.<span class="pl-c1">insertRow</span>([<span class="pl-s1">arcpy</span>.<span class="pl-c1">Polygon</span>(<span class="pl-s1">circle_geometry</span>)])
+        <span class="pl-k">del</span> <span class="pl-s1">circle_cursor</span>
+
+<span class="pl-k">if</span> <span class="pl-s1">__name__</span> <span class="pl-c1">==</span> <span class="pl-s">"__main__"</span>:
+    <span class="pl-s1">num</span> <span class="pl-c1">=</span> <span class="pl-c1">2</span>
+    <span class="pl-s1">out_path</span> <span class="pl-c1">=</span> <span class="pl-s">r'G:\MyTestProject\arcpy2_test\data'</span>
+
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">CheckOutExtension</span>(<span class="pl-s">"spatial"</span>)
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">parallelProcessingFactor</span> <span class="pl-c1">=</span> <span class="pl-s">'0'</span>
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">overwriteOutput</span> <span class="pl-c1">=</span> <span class="pl-s">"True"</span>
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">workspace</span> <span class="pl-c1">=</span> <span class="pl-s1">out_path</span>
+
+    <span class="pl-en">create_shapefiles</span>(<span class="pl-s1">num</span>, <span class="pl-s1">out_path</span>)
+
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">AddMessage</span>(<span class="pl-s1">num</span>)
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">AddMessage</span>(<span class="pl-s1">out_path</span>)</pre></div>
+<p>在Pycharm中运行结果打开如下：</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c3562bd913e1fced5d0dec3b502bfb26b3b29d12e82723d1074100d95ba1b9cf/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133303335383330392e706e67"><img src="https://camo.githubusercontent.com/c3562bd913e1fced5d0dec3b502bfb26b3b29d12e82723d1074100d95ba1b9cf/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133303335383330392e706e67" alt="image-20240421130358309" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421130358309.png" style="max-width: 100%;"></a></p>
+<p>测试没问题之后，将最后一段改掉，从面板获取参数，并将代码中的中文注释都删掉或者改成英文注释，不然会有一些离谱的bug，修改后准备的导入脚本的代码如下：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
+<span class="pl-c"># coding=utf-8</span>
+<span class="pl-c"># @Time : 2024-04-21 11:41</span>
+
+<span class="pl-k">import</span> <span class="pl-s1">sys</span>
+<span class="pl-en">reload</span>(<span class="pl-s1">sys</span>)
+<span class="pl-s1">sys</span>.<span class="pl-c1">setdefaultencoding</span>(<span class="pl-s">'utf8'</span>)
+<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+<span class="pl-k">import</span> <span class="pl-s1">os</span>
+<span class="pl-k">import</span> <span class="pl-s1">math</span>
+
+<span class="pl-k">def</span> <span class="pl-en">create_shapefiles</span>(<span class="pl-s1">num</span>, <span class="pl-s1">out_path</span>):
+    <span class="pl-s1">spatial_reference</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">SpatialReference</span>(<span class="pl-c1">32650</span>)  <span class="pl-c"># WGS84_UTM_50N的WKID为32650</span>
+
+    <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">1</span>, <span class="pl-s1">num</span> <span class="pl-c1">+</span> <span class="pl-c1">1</span>):
+        <span class="pl-s1">circle_name</span> <span class="pl-c1">=</span> <span class="pl-s">"Circle_{}m"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-c1">50</span>)
+        <span class="pl-s1">circle_path</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">out_path</span>, <span class="pl-s1">circle_name</span> <span class="pl-c1">+</span> <span class="pl-s">".shp"</span>)
+
+        <span class="pl-s1">arcpy</span>.<span class="pl-c1">management</span>.<span class="pl-c1">CreateFeatureclass</span>(<span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">dirname</span>(<span class="pl-s1">circle_path</span>), <span class="pl-s1">circle_name</span>, <span class="pl-s">"POLYGON"</span>, <span class="pl-s1">spatial_reference</span><span class="pl-c1">=</span><span class="pl-s1">spatial_reference</span>)
+        <span class="pl-s1">circle_cursor</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">da</span>.<span class="pl-c1">InsertCursor</span>(<span class="pl-s1">circle_path</span>, [<span class="pl-s">"SHAPE@"</span>])
+        <span class="pl-s1">circle</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Point</span>()
+        <span class="pl-s1">circle_geometry</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Array</span>()
+        <span class="pl-k">for</span> <span class="pl-s1">angle</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">0</span>, <span class="pl-c1">361</span>, <span class="pl-c1">10</span>):
+            <span class="pl-s1">circle</span>.<span class="pl-c1">X</span> <span class="pl-c1">=</span> <span class="pl-c1">50</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-s1">math</span>.<span class="pl-c1">cos</span>(<span class="pl-s1">math</span>.<span class="pl-c1">radians</span>(<span class="pl-s1">angle</span>))
+            <span class="pl-s1">circle</span>.<span class="pl-c1">Y</span> <span class="pl-c1">=</span> <span class="pl-c1">50</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-s1">math</span>.<span class="pl-c1">sin</span>(<span class="pl-s1">math</span>.<span class="pl-c1">radians</span>(<span class="pl-s1">angle</span>))
+            <span class="pl-s1">circle_geometry</span>.<span class="pl-c1">add</span>(<span class="pl-s1">circle</span>)
+        <span class="pl-s1">circle_geometry</span>.<span class="pl-c1">add</span>(<span class="pl-s1">circle_geometry</span>.<span class="pl-c1">getObject</span>(<span class="pl-c1">0</span>))
+        <span class="pl-s1">circle_cursor</span>.<span class="pl-c1">insertRow</span>([<span class="pl-s1">arcpy</span>.<span class="pl-c1">Polygon</span>(<span class="pl-s1">circle_geometry</span>)])
+        <span class="pl-k">del</span> <span class="pl-s1">circle_cursor</span>
+
+<span class="pl-k">if</span> <span class="pl-s1">__name__</span> <span class="pl-c1">==</span> <span class="pl-s">"__main__"</span>:
+    <span class="pl-c"># num = 2</span>
+    <span class="pl-c"># out_path = r'G:\MyTestProject\arcpy2_test\data'</span>
+    <span class="pl-s1">num</span> <span class="pl-c1">=</span> <span class="pl-en">int</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-c1">0</span>))
+    <span class="pl-s1">out_path</span> <span class="pl-c1">=</span> <span class="pl-en">str</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-c1">1</span>))
+
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">CheckOutExtension</span>(<span class="pl-s">"spatial"</span>)
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">parallelProcessingFactor</span> <span class="pl-c1">=</span> <span class="pl-s">'0'</span>
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">overwriteOutput</span> <span class="pl-c1">=</span> <span class="pl-s">"True"</span>
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">workspace</span> <span class="pl-c1">=</span> <span class="pl-s1">out_path</span>
+
+    <span class="pl-en">create_shapefiles</span>(<span class="pl-s1">num</span>, <span class="pl-s1">out_path</span>)
+
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">AddMessage</span>(<span class="pl-s1">num</span>)
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">AddMessage</span>(<span class="pl-s1">out_path</span>)</pre></div>
+<h3>创建工具</h3>
+<p>创建好一个工具箱后，在其中创建工具集，并在工具集中添加脚本</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d0f09e8a192bea4ef0e9448f96628cf73f50019dfa1087350b4f317f70621286/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133303934363333322e706e67"><img src="https://camo.githubusercontent.com/d0f09e8a192bea4ef0e9448f96628cf73f50019dfa1087350b4f317f70621286/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133303934363333322e706e67" alt="image-20240421130946332" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421130946332.png" style="max-width: 100%;"></a></p>
+<p>修改名称和标签，存储为相对路径（对应的地图文档属性最好也提前设置为相对路径，在【文件】【地图文档属性】【路径名】处进行勾选）</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4d08ff84351a7c9f9aa149e78e47af928f8026d88ec52b1849f5150230549bda/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133313035333230322e706e67"><img src="https://camo.githubusercontent.com/4d08ff84351a7c9f9aa149e78e47af928f8026d88ec52b1849f5150230549bda/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133313035333230322e706e67" alt="image-20240421131053202" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131053202.png" style="max-width: 100%;"></a></p>
+<p>导入脚本文件所在位置</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/42608752d81bbfa371b2947a9019b19e7bd453ee9cc0eb3f243e87eb6996706a/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133313431313336362e706e67"><img src="https://camo.githubusercontent.com/42608752d81bbfa371b2947a9019b19e7bd453ee9cc0eb3f243e87eb6996706a/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133313431313336362e706e67" alt="image-20240421131411366" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131411366.png" style="max-width: 100%;"></a></p>
+<p>设置参数，一个为“圆的数量”，对应数据类型为长整型；一个为输出文件夹，对应数据类型为文件夹</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2e9ea570e5d00282c63a5458a3ce8ef5ec03646397572254671b2e0ac7409d7b/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133313930303533382e706e67"><img src="https://camo.githubusercontent.com/2e9ea570e5d00282c63a5458a3ce8ef5ec03646397572254671b2e0ac7409d7b/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133313930303533382e706e67" alt="image-20240421131900538" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131900538.png" style="max-width: 100%;"></a></p>
+<p>右键打开工具</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d540c070dd371c65ae6c072e5fd51b0b30fe7c33ceeafa87adacdeffb26aa089/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133323231383435332e706e67"><img src="https://camo.githubusercontent.com/d540c070dd371c65ae6c072e5fd51b0b30fe7c33ceeafa87adacdeffb26aa089/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133323231383435332e706e67" alt="image-20240421132218453" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421132218453.png" style="max-width: 100%;"></a></p>
+<p>初步使用可行</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d59f502e70f1ca2017d9aea84db68a85e50eafa5866a901d94695e290e6c8026/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432323030313031343530382e706e67"><img src="https://camo.githubusercontent.com/d59f502e70f1ca2017d9aea84db68a85e50eafa5866a901d94695e290e6c8026/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432323030313031343530382e706e67" alt="image-20240422001014508" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240422001014508.png" style="max-width: 100%;"></a></p>
+<h3>脚本工具各功能详解</h3>
+<p>脚本右键功能</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/61cab72c70fb24d5af117a1c4d4d414e47b0d2a77e1e8a0cd6320f4a013d698c/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133333131343531312e706e67"><img src="https://camo.githubusercontent.com/61cab72c70fb24d5af117a1c4d4d414e47b0d2a77e1e8a0cd6320f4a013d698c/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133333131343531312e706e67" alt="image-20240421133114511" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133114511.png" style="max-width: 100%;"></a></p>
+<p>【属性】中的【常规】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d2b7f06798dbfd68d60bf8991025e9176dd8c6e2f9ee037a228fda2328e659d4/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133333332373130302e706e67"><img src="https://camo.githubusercontent.com/d2b7f06798dbfd68d60bf8991025e9176dd8c6e2f9ee037a228fda2328e659d4/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133333332373130302e706e67" alt="image-20240421133327100" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133327100.png" style="max-width: 100%;"></a></p>
+<p>【属性】中的【源】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/99524d20bec57562083762be9c59d6d59f78ecfc9cc3fcc209c166d4ad594a0d/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133333530383030362e706e67"><img src="https://camo.githubusercontent.com/99524d20bec57562083762be9c59d6d59f78ecfc9cc3fcc209c166d4ad594a0d/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133333530383030362e706e67" alt="image-20240421133508006" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133508006.png" style="max-width: 100%;"></a></p>
+<p>【属性】中的【参数】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/54aa84237318108c4856d279872da0302f7cfe2d0fb120b1229586010856fb51/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133343032323539372e706e67"><img src="https://camo.githubusercontent.com/54aa84237318108c4856d279872da0302f7cfe2d0fb120b1229586010856fb51/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133343032323539372e706e67" alt="image-20240421134022597" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421134022597.png" style="max-width: 100%;"></a></p>
+<p>【属性】中的【验证】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d8b06842449019ecd50367d3d13236dc2cbd538472755d3f6ff4149b596db82f/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133343331353230362e706e67"><img src="https://camo.githubusercontent.com/d8b06842449019ecd50367d3d13236dc2cbd538472755d3f6ff4149b596db82f/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313133343331353230362e706e67" alt="image-20240421134315206" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421134315206.png" style="max-width: 100%;"></a></p>
+<h3>修改默认编辑和调试</h3>
+<p>在ArcGIS菜单栏中【地理处理选项】中，将【编辑器】和【调试程序】换做pycharm所在位置，之后即可在脚本右键【编辑】快速在pycharm中打开对应文件（这个根据个人需要设置）</p>
+<pre class="notranslate"><code class="notranslate">D:\py\Pycharm\bin\pycharm64.exe
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5dc676cccac0788fd5d7a3955e7f63d70ae9b9039da50bcdaa75cc780ecf7e0b/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313131353032363631372e706e67"><img src="https://camo.githubusercontent.com/5dc676cccac0788fd5d7a3955e7f63d70ae9b9039da50bcdaa75cc780ecf7e0b/68747470733a2f2f67697465652e636f6d2f7a62686769732f7069632f7261772f6d61737465722f626c6f672f696d6167652d32303234303432313131353032363631372e706e67" alt="image-20240421115026617" data-canonical-src="https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421115026617.png" style="max-width: 100%;"></a></p>
+<h2>总结</h2>
+<p>脚本工具先自己有个数就行，而且在Pycharm中可以正常运行的工具转为脚本工具可能会有一些奇奇怪怪的错误，最好学一些Arcpy基础之后再用，边学边用就懂了；</p>
+<p>其次就是在脚本工具中，尽量不要使用中文，包括注释</p>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">本文为博主原创文章，未经博主允许禁止转载。如有问题，欢迎指正。</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zbhgis.github.io">zbhgis</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zbhgis/zbhgis.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+
+
+</html>
