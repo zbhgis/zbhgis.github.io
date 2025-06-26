@@ -1,5 +1,34 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:36:09 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>MATLAB 2016计算NDVI</title><link>https://zbhgis.github.io/post/11.html</link><description># MATLAB 2016计算NDVI
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:37:31 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Landsat 8/9 C2L2使用注意点（简略版）</title><link>https://zbhgis.github.io/post/12.html</link><description># Landsat 8/9 C2L2使用注意点（简略版）
+
+## 详细版（更新中）
+
+[Landsat 8/9 C2L2级别数据表面反射率产品使用注意点-CSDN博客](https://blog.csdn.net/zbh13859825167/article/details/138917519)
+
+```
+https://blog.csdn.net/zbh13859825167/article/details/138917519
+```
+
+[【免费】LSDS-1619-Landsat8-9-Collection2-Level2-Science-Product-Guide-v5资源-CSDN文库](https://download.csdn.net/download/zbh13859825167/89311768)
+
+```
+https://download.csdn.net/download/zbh13859825167/89311768
+```
+
+
+
+## 像元值转化
+
+表面反射率产品时和表面温度时，即对应的SR和ST波段的遥感数据时，需要进行像元值的转换，其转换公式与Collection1不一样（Collection1已经弃用了，但在地理空间数据云应该还可以下载），在使用时最好先进行转换
+
+| 科学产品              | 缩放因子   | 偏移量 | 填充值 | 数据类型       |   有效范围   |
+| --------------------- | ---------- | ------ | ------ | -------------- | :----------: |
+| Collection2地表反射率 | 0.0000275  | -0.2   | 0      | 无符号16位整数 | 7273 - 43636 |
+| Collection2地表温度   | 0.00341802 | 149    | 0      | 无符号16位整数 | 293 - 65535  |
+
+即在影像像元值中剔除无效像元值之后，使用Digital Number (DN) * scale_factor + offset计算，即缩放因子*像元值+偏移量
+
+表面反射率：Landsat Collection 2 表面反射率的比例因子为 0.0000275，每个像素的额外偏移为 -0.2。</description><guid isPermaLink="true">https://zbhgis.github.io/post/12.html</guid><pubDate>Thu, 26 Jun 2025 15:36:53 +0000</pubDate></item><item><title>MATLAB 2016计算NDVI</title><link>https://zbhgis.github.io/post/11.html</link><description># MATLAB 2016计算NDVI
 
 之前大二的一段MATLAB代码，突然找到，记录一下当时初学MATLAB的程序，用于读取TIFF计算归一化植被指数（NDVI）并将其保存为TIFF文件。</description><guid isPermaLink="true">https://zbhgis.github.io/post/11.html</guid><pubDate>Thu, 26 Jun 2025 15:35:38 +0000</pubDate></item><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
 
