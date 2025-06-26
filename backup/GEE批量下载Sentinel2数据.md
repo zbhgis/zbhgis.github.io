@@ -4,7 +4,7 @@ Google Earth Enginehttps://earthengine.google.com/网站批量下载数据，需
 
 ## 界面功能
 
-![image-20230712015903828](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230712015903828.png)
+![image-20230712015903828](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240185.png)
 
 
 
@@ -12,23 +12,23 @@ Google Earth Enginehttps://earthengine.google.com/网站批量下载数据，需
 
 1.学会导入roi的矢量文件，在【Assets】下选择【New】，导入shp文件
 
-![image-20230712012523506](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230712012523506.png)
+![image-20230712012523506](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240166.png)
 
-![image-20230712012700256](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230712012700256.png)
+![image-20230712012700256](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240953.png)
 
 2.在弹出的界面可以选择自己的文件进行上传，除了在gee上的新建的数据集文件名需要修改之外，其他保持默认即可，最后点击【Upload】上传
 
-![image-20230712013340325](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230712013340325.png)
+![image-20230712013340325](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240411.png)
 
 3.创建好之后就可以去copy别人的代码进行批量下载了，有两个数据可以需要自己手动导入，网上的教程有时没讲这部分，通过【Import】导入roi文件和数据集。其中，roi就是刚刚的矢量文件，在旁边的目录中有，点击之后在弹出的界面找到【Import】就可以导入了；数据集在上面的搜索栏中可以找到，比如下载Sentinel-2 L2A数据，就可以直接搜索“Sentinel”，点击搜索，之后找到对应的数据集，点击之后找到【Import】就可以导入
 
-![image-20230712013745575](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230712013745575.png)
+![image-20230712013745575](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240960.png)
 
-![image-20230712014247262](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230712014247262.png)
+![image-20230712014247262](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262241842.png)
 
 4.在导入这两个之后，就会再代码部分最上面出现如下三行（这三行不算代码，代码行数的计数从这三行之后开始），点击可以将”table”和“imageCollection”直接改名，因此在网上的一些代码中出现了未定义变量的报错，可能就是这两个错误；也可以通过在之后通过定义新变量来指代这两个，如下所示，这样名称就不用改了
 
-![image-20230712014432273](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230712014432273.png)
+![image-20230712014432273](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262241413.png)
 
 ```js
 var roi = table;
