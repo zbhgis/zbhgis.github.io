@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 16:08:48 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>pyqt5报错解决</title><link>https://zbhgis.github.io/post/20.html</link><description># pyqt5报错解决
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 16:10:04 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>pyqt5报错解决</title><link>https://zbhgis.github.io/post/20.html</link><description># pyqt5报错解决
 
 [TOC]
 
@@ -67,9 +67,9 @@ $FileName$ -o $FileNameWithoutExtension$.py
 
 ### 6.0试用版
 
-官方博客[[ENVI 6.0 自助试用许可开放申请 - ENVI-IDL技术殿堂 - 博客园 (cnblogs.com)](https://www.cnblogs.com/enviidl/p/16275745.html)](https://www.cnblogs.com/enviidl/p/16275745.html)提供的6.0版本，激活后每个月月底停止试用，根据需要得重新使用工具激活，激活天数共计180天，在试用期间也可以使用最新版本的模块功能，以及一些较为高级的影像处理分析功能，整体处理的速度也相对高一点
+官方博客[ENVI 6.0 自助试用许可开放申请 - ENVI-IDL技术殿堂 - 博客园 (cnblogs.com)](https://www.cnblogs.com/enviidl/p/16275745.html)提供的6.0版本，激活后每个月月底停止试用，根据需要得重新使用工具激活，激活天数共计180天，在试用期间也可以使用最新版本的模块功能，以及一些较为高级的影像处理分析功能，整体处理的速度也相对高一点
 
-但这个版本的功能更新相对较大，有些功能需要自己根据官方文档重新学习，比如FLAASH大气校正功能界面焕然一新，跟原来的相差较大，并且设置参数更加复杂，直到前几天官方博客才出了一篇比较通俗易懂的博文[[ENVI5.7-6.0FLAASH大气校正工具详解 - ENVI-IDL技术殿堂 - 博客园 (cnblogs.com)](https://www.cnblogs.com/enviidl/p/18159374)](https://www.cnblogs.com/enviidl/p/18159374)进行讲解
+但这个版本的功能更新相对较大，有些功能需要自己根据官方文档重新学习，比如FLAASH大气校正功能界面焕然一新，跟原来的相差较大，并且设置参数更加复杂，直到前几天官方博客才出了一篇比较通俗易懂的博文[ENVI5.7-6.0FLAASH大气校正工具详解 - ENVI-IDL技术殿堂 - 博客园 (cnblogs.com)](https://www.cnblogs.com/enviidl/p/18159374)进行讲解
 
 ![image-20240428215212005](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262348838.png)
 

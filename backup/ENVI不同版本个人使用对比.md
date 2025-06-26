@@ -26,9 +26,9 @@
 
 ### 6.0试用版
 
-官方博客[[ENVI 6.0 自助试用许可开放申请 - ENVI-IDL技术殿堂 - 博客园 (cnblogs.com)](https://www.cnblogs.com/enviidl/p/16275745.html)](https://www.cnblogs.com/enviidl/p/16275745.html)提供的6.0版本，激活后每个月月底停止试用，根据需要得重新使用工具激活，激活天数共计180天，在试用期间也可以使用最新版本的模块功能，以及一些较为高级的影像处理分析功能，整体处理的速度也相对高一点
+官方博客[ENVI 6.0 自助试用许可开放申请 - ENVI-IDL技术殿堂 - 博客园 (cnblogs.com)](https://www.cnblogs.com/enviidl/p/16275745.html)提供的6.0版本，激活后每个月月底停止试用，根据需要得重新使用工具激活，激活天数共计180天，在试用期间也可以使用最新版本的模块功能，以及一些较为高级的影像处理分析功能，整体处理的速度也相对高一点
 
-但这个版本的功能更新相对较大，有些功能需要自己根据官方文档重新学习，比如FLAASH大气校正功能界面焕然一新，跟原来的相差较大，并且设置参数更加复杂，直到前几天官方博客才出了一篇比较通俗易懂的博文[[ENVI5.7-6.0FLAASH大气校正工具详解 - ENVI-IDL技术殿堂 - 博客园 (cnblogs.com)](https://www.cnblogs.com/enviidl/p/18159374)](https://www.cnblogs.com/enviidl/p/18159374)进行讲解
+但这个版本的功能更新相对较大，有些功能需要自己根据官方文档重新学习，比如FLAASH大气校正功能界面焕然一新，跟原来的相差较大，并且设置参数更加复杂，直到前几天官方博客才出了一篇比较通俗易懂的博文[ENVI5.7-6.0FLAASH大气校正工具详解 - ENVI-IDL技术殿堂 - 博客园 (cnblogs.com)](https://www.cnblogs.com/enviidl/p/18159374)进行讲解
 
 ![image-20240428215212005](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262348838.png)
 
@@ -42,7 +42,7 @@
 
 因此个人建议自己电脑上同时装5.3学习版+6.0试用版，两者混合使用。有精力也可以三个都装；
 
-如果三个安装好之后出现其中一个（比如ENVI56）迟迟打不开的情况，参考这篇博文的方法二[[完美运行的ENVI5.6突然无法打开（已解决_envi5.6安装后打不开-CSDN博客](https://blog.csdn.net/ZoeyLu1300/article/details/119745141?spm=1001.2014.3001.5502)](https://blog.csdn.net/ZoeyLu1300/article/details/119745141?spm=1001.2014.3001.5502)
+如果三个安装好之后出现其中一个（比如ENVI56）迟迟打不开的情况，参考这篇博文的方法二[完美运行的ENVI5.6突然无法打开（已解决_envi5.6安装后打不开-CSDN博客](https://blog.csdn.net/ZoeyLu1300/article/details/119745141?spm=1001.2014.3001.5502)
 
 这个时候把软件都关掉，把下面路径中的四个文件（都移出去，最好做个备份），再重启软件即可正常打开
 
