@@ -186,4 +186,4 @@ print()
 
 ## 参考
 
-[[Matplotlib pyplot文档](https://matplotlib.org/stable/api/pyplot_summary.html)](https://matplotlib.org/stable/api/pyplot_summary.html)
+[Matplotlib pyplot文档](https://matplotlib.org/stable/api/pyplot_summary.html)
