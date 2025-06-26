@@ -71,4 +71,4 @@ geotiffwrite('G:\data-2022\result_NDVI.tif',NDVI,R,'GeoKeyDirectoryTag',info.Geo
 
 # 参考
 
-[[Matlab语法](https://www.cainiaojc.com/matlab/matlab-syntax.html)](https://www.cainiaojc.com/matlab/matlab-syntax.html)
+[Matlab语法](https://www.cainiaojc.com/matlab/matlab-syntax.html)
