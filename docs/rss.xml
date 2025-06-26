@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 14:52:50 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:00:46 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
 
 主要介绍Arcpy脚本工具制作
 
@@ -409,7 +409,7 @@ Google Earth Enginehttps://earthengine.google.com/网站批量下载数据，需
 
 ## 下载
 
-1.打开以下网站，[[福建省标准地图服务系统 (fjmap.net)](http://bzdt.fjmap.net/index.html)](http://bzdt.fjmap.net/index.html)
+1.打开以下网站，[福建省标准地图服务系统 (fjmap.net)](http://bzdt.fjmap.net/index.html)
 
 ![image-20231013105013626](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262250746.png)
 
@@ -445,7 +445,7 @@ Google Earth Enginehttps://earthengine.google.com/网站批量下载数据，需
 
 ![image-20231013112052161](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262251875.png)
 
-![image-20231013112112591](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231013112112591.png)
+![image-20231013112112591](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262258621.png)
 
 ## 对比
 
