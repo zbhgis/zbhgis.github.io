@@ -1,5 +1,45 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:55:15 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>ENVI不同版本个人使用对比</title><link>https://zbhgis.github.io/post/19.html</link><description># ENVI不同版本个人使用对比
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:56:37 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>pyqt5报错解决</title><link>https://zbhgis.github.io/post/20.html</link><description># pyqt5报错解决
+
+[TOC]
+
+
+
+## 环境
+
+Python 3.9  Pyqt5 5.15
+
+## 错误一
+
+```
+File 'try.ui', line 1
+
+  &lt;?xml version='1.0' encoding='UTF-8'?&gt;
+
+  ^
+
+syntaxError: invalid syntax
+```
+
+报这个错的，
+
+把PyUIC的Arguments参数改为： -m PyQt5.uic.pyuic \$FileName\$ -o \$FileNameWithoutExtension\$.py  
+
+参考： https://www.bilibili.com/read/cv17738858/?jump_opus=1 
+
+## 错误二
+
+```
+Error while finding module specification for 'PyQt5.uic.pyuic' (ModuleNotFoundError: No module named 'PyQt5')
+```
+
+File|Settings|Tools|External Tools|PyUIC的【Program】选择pyuic5.exe,并将【Arguments】替换成
+
+```
+$FileName$ -o $FileNameWithoutExtension$.py
+```
+
+参考：[[Pycharm-Error while finding module specification for ‘PyQt5.uic.pyuic‘ (ModuleNotFoundError: No modu_error while finding module specification for 'pyqt-CSDN博客](https://blog.csdn.net/zkw_1998/article/details/121806681)](https://blog.csdn.net/zkw_1998/article/details/121806681)。</description><guid isPermaLink="true">https://zbhgis.github.io/post/20.html</guid><pubDate>Thu, 26 Jun 2025 15:56:11 +0000</pubDate></item><item><title>ENVI不同版本个人使用对比</title><link>https://zbhgis.github.io/post/19.html</link><description># ENVI不同版本个人使用对比
 
 [TOC]
 
