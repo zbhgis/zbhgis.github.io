@@ -10,17 +10,17 @@ pycharm安装+ArcGIS 10.6提供的python2.7解释器
 
 在【Settings】中的【Project】下的【Python Interpreter】选择ArcGIS自带的Python2.7
 
-![image-20240420222738713](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240420222738713.png)
+![image-20240420222738713](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262324220.png)
 
 ## Pycharm调试功能
 
 断点：在代码行号之后的空白点击一下即可，再次点击取消
 
-![image-20240420224302787](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240420224302787.png)
+![image-20240420224302787](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262324554.png)
 
 调试：debug按钮或Shift+F9
 
-![image-20240420224418276](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240420224418276.png)
+![image-20240420224418276](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262324891.png)
 
 F8：单步，遇到断点后停止运行
 
@@ -280,7 +280,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 ```
 
-![image-20240420004523622](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240420004523622.png)
+![image-20240420004523622](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262325869.png)
 
 ## 总结
 
