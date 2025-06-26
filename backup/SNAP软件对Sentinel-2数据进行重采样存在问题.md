@@ -16,7 +16,7 @@ user.openjp2.jna=true
 
 重启SNAP后软件即可执行重采样
 
-![image-20231221194253165](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231221194253165.png)
+![image-20231221194253165](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262248789.png)
 
 
 
@@ -45,6 +45,5 @@ D:\temp\snap-用户名
 在SANP中对某一幅影像所有波段，按照B2分辨率进行重采样之后的数据在16G左右，因此重采样之前加上一个BandSelect步骤，选择需要的波段进行重采样即可加快速度，尽量不要全部重采样。
 
 ![image-20230709144114576](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262243083.png)
-
 
 <!-- ##{"timestamp":1698098400}## -->
