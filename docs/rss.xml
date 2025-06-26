@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:00:46 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:01:55 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
 
 主要介绍Arcpy脚本工具制作
 
@@ -471,53 +471,53 @@ Google Earth Enginehttps://earthengine.google.com/网站批量下载数据，需
 
 1、刚开始进行点击的是这个界面，目测功能很多，但是先登录才能使用，**点击【Login】按钮进入登录界面**，如果没有账号的话，需要注册一个，在进入这个界面之后如果没有账号，那么就可以**点击【Register】按钮进行注册**，注册的流程与USGS类似，最好使用谷歌邮箱或者163邮箱
 
-![image-20231010205321035](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010205321035.png)
+![image-20231010205321035](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262254956.png)
 
-![image-20231010210136221](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010210136221.png)
+![image-20231010210136221](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262254003.png)
 
 2.登录之后，点击上面的**【Search】按钮**来到搜索面板，按照下面的图片设置各种条件即可，其中【**Filters】和【Filter by months】可以根据自己的需要进行额外设置**，设置好条件之后可以准备设置区域了
 
-![image-20231010212431533](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010212431533.png)
+![image-20231010212431533](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262254982.png)
 
 3.在图层上添加研究边界时，可以上传文件，也可以自行绘制边界，根据需要也可以选择下面的绘制线和地标，点击绘制多边形的按钮之后，直接在地图上通过点击的方法即可完成绘制，完成绘制后就可以点击**左侧的面板最下方的【Search】按钮**，搜索
 
-![image-20231010213213795](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010213213795.png)
+![image-20231010213213795](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262254293.png)
 
-![image-20231010213519429](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010213519429.png)
+![image-20231010213519429](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262254870.png)
 
 4.搜索结果如下，**左上角的【Go to Search】按钮**可以返回搜索参数设置，重新调整条件；当鼠标在左侧影像上悬停时，右侧对应的方框也会变绿
 
-![image-20231010213737934](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010213737934.png)
+![image-20231010213737934](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255238.png)
 
 ## 单幅影像直接下载
 
 5.以下面这幅影像为例，在面板上已经显示了他的数据级别，大小，监测时间等主要信息，![image-20231010214437888](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214437888.png)【Product info】是查看具体的信息，![image-20231010214524305](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214524305.png)【Zoom to product】是在右侧图层上定位，![image-20231010214555074](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214555074.png)【Add to workspace】是添加到工作空间，![image-20231010214800076](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214800076.png)【Download product】是直接下载按钮
 
-![image-20231010214238582](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214238582.png)
+![image-20231010214238582](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255075.png)
 
 【Product info】（进一步显示**图像的具体信息**)
 
-![image-20231010214946260](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214946260.png)
+![image-20231010214946260](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255146.png)
 
 【Zoom to product】（将所选图像**定位到地图中心**）
 
-![image-20231010215012155](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010215012155.png)
+![image-20231010215012155](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255241.png)
 
 【Add to workspace】（**加入到workspace，可以用于后续批量下载，云端处理等**）
 
-![image-20231010215040600](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010215040600.png)
+![image-20231010215040600](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255066.png)
 
 【Download product】（**直接下载数据，下载速度随缘**，我下载的时候是前10%速度很慢，后面的速度可以跑满，下载700MB大概要花15分钟）
 
-![image-20231010215057891](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010215057891.png)
+![image-20231010215057891](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255873.png)
 
 ## 单波段下载
 
 这个功能需要点击![image-20231010214437888](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214437888.png)**【Product info】**按钮，找到**【Download single files】**，就可以根据需要**直接下载波段文件**
 
-![image-20231010223748786](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010223748786.png)
+![image-20231010223748786](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255198.png)
 
-![image-20231010224124453](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010224124453.png)
+![image-20231010224124453](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255817.png)
 
 
 
@@ -525,21 +525,21 @@ Google Earth Enginehttps://earthengine.google.com/网站批量下载数据，需
 
 1.![image-20231010214858191](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214858191.png)按钮可以将现有的图像加载到图层上，以上面那副影像为例，可以**默认将图像的真彩色添加至显示**，也可以根据需要切换至不同的波段组合
 
-![image-20231010224909214](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010224909214.png)
+![image-20231010224909214](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255892.png)
 
 2.这些提供的组合不满意也可以在末尾选择**【Custom】**，点击之后可以自行选择波段和指数，也可以通过**【Custom script】**自行修改完成更多的显示
 
-![image-20231010225531107](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010225531107.png)
+![image-20231010225531107](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255581.png)
 
-![image-20231010225547658](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010225547658.png)
+![image-20231010225547658](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255315.png)
 
-![image-20231010225613598](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010225613598.png)
+![image-20231010225613598](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255880.png)
 
 
 
 3.在可视化的最初面板中，每个波段组合还附带有如下功能
 
-![image-20231010230101008](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010230101008.png)
+![image-20231010230101008](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262256464.png)
 
 添加之后依次存放在各个面板中。</description><guid isPermaLink="true">https://zbhgis.github.io/post/5.html</guid><pubDate>Wed, 25 Jun 2025 15:31:16 +0000</pubDate></item><item><title>ENVI使用深度学习存在问题及解决</title><link>https://zbhgis.github.io/post/4.html</link><description># ENVI使用深度学习存在问题及解决
 
