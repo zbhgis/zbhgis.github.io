@@ -8,12 +8,6 @@
 https://blog.csdn.net/zbh13859825167/article/details/138917519
 ```
 
-[【免费】LSDS-1619-Landsat8-9-Collection2-Level2-Science-Product-Guide-v5资源-CSDN文库](https://download.csdn.net/download/zbh13859825167/89311768)
-
-```
-https://download.csdn.net/download/zbh13859825167/89311768
-```
-
 
 
 ## 像元值转化
