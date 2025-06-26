@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 14:45:09 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 14:48:07 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
 
 主要介绍Arcpy脚本工具制作
 
@@ -683,6 +683,6 @@ D:\temp\snap-用户名
 2、在配置Gitee中的过程中，除了需要注册好Gitee，建立好仓库、需要保管好私人令牌外，还需要提前安装好node.js环境，直接去官网下载最新的长期支持版本即可；
 3、在线安装Gitee的picgo插件过程中，插件一直显示安装中，即一直安装不上，这个时候就需要先前往picgo文件夹下的 node_moudules先将安装失败的插件文件夹 picgo-plugin-gitee-uploader 删除，然后再通过以下[[博客](https://blog.csdn.net/Netceor/article/details/126704416)](https://blog.csdn.net/Netceor/article/details/126704416)的方法(https://blog.csdn.net/Netceor/article/details/126704416)，通过命令行的方式进行安装；
 
-![image-20231007161015722](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231007161015722.png)
+![image-20231007161015722](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262245332.png)
 
 4、如果中间安装失败，哪一步卡住，可以先尝试重启应用然后再重新执行操作，可以避免一些不必要的问题。</description><guid isPermaLink="true">https://zbhgis.github.io/post/2.html</guid><pubDate>Fri, 06 Oct 2023 22:00:00 +0000</pubDate></item></channel></rss>

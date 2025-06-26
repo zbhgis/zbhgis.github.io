@@ -4,8 +4,7 @@
 2、在配置Gitee中的过程中，除了需要注册好Gitee，建立好仓库、需要保管好私人令牌外，还需要提前安装好node.js环境，直接去官网下载最新的长期支持版本即可；
 3、在线安装Gitee的picgo插件过程中，插件一直显示安装中，即一直安装不上，这个时候就需要先前往picgo文件夹下的 node_moudules先将安装失败的插件文件夹 picgo-plugin-gitee-uploader 删除，然后再通过以下[[博客](https://blog.csdn.net/Netceor/article/details/126704416)](https://blog.csdn.net/Netceor/article/details/126704416)的方法(https://blog.csdn.net/Netceor/article/details/126704416)，通过命令行的方式进行安装；
 
-![image-20231007161015722](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231007161015722.png)
+![image-20231007161015722](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262245332.png)
 
 4、如果中间安装失败，哪一步卡住，可以先尝试重启应用然后再重新执行操作，可以避免一些不必要的问题。
-![image](https://raw.githubusercontent.com/zbhgis/BlogImg/refs/heads/main/blog/202506262127686.png)
 <!-- ##{"timestamp":1696629600}## -->
