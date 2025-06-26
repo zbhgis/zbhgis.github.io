@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:21:32 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:22:44 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
 
 主要介绍Arcpy脚本工具制作
 
@@ -465,7 +465,7 @@ Google Earth Engine[https://earthengine.google.com/](https://earthengine.google.
 
 ## 前言
 
-之前就看到有人推送这个ESA下载Sentinel数据的新网站（https://dataspace.copernicus.eu/browser/），就自己探索了一下，有一些意料之外的功能
+之前就看到有人推送这个ESA下载Sentinel数据的新网站[https://dataspace.copernicus.eu/browser/](https://dataspace.copernicus.eu/browser/)，就自己探索了一下，有一些意料之外的功能
 
 ## 准备工作
 
