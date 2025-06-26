@@ -1,5 +1,61 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 16:10:51 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>pyqt5报错解决</title><link>https://zbhgis.github.io/post/20.html</link><description># pyqt5报错解决
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 16:15:52 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Conda环境安装的pyproj包报错</title><link>https://zbhgis.github.io/post/21.html</link><description># Conda环境安装的pyproj包报错
+
+[TOC]
+
+
+
+## 问题
+
+在conda创建的Python3.9虚拟环境中安装pyproj包3.6在运行时出现以下报错
+
+```
+UserWarning: pyproj unable to set database path. _pyproj_global_context_initialize()
+```
+
+## 解决
+
+先激活并进入创建的环境
+
+```
+conda activate sa_test
+```
+
+先尝试卸载后重装
+
+```
+conda remove --force pyproj
+```
+
+```
+conda install pyproj
+```
+
+如果不行的话，就直接通过pip重新安装
+
+```
+conda remove --force pyproj
+```
+
+```
+pip install pyproj
+```
+
+重装之后就不会报错了
+
+![image-20240503173223902](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270014947.png)
+
+
+
+## 参考
+
+[python - On fresh Conda installation of PyProj: pyproj unable to set database path. _pyproj_global_context_initialize() - Stack Overflow](https://stackoverflow.com/questions/69630630/on-fresh-conda-installation-of-pyproj-pyproj-unable-to-set-database-path-pypr)
+
+```
+https://stackoverflow.com/questions/69630630/on-fresh-conda-installation-of-pyproj-pyproj-unable-to-set-database-path-pypr
+```
+
+。</description><guid isPermaLink="true">https://zbhgis.github.io/post/21.html</guid><pubDate>Thu, 26 Jun 2025 16:15:26 +0000</pubDate></item><item><title>pyqt5报错解决</title><link>https://zbhgis.github.io/post/20.html</link><description># pyqt5报错解决
 
 [TOC]
 
