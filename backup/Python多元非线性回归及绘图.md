@@ -8,7 +8,7 @@
 
 ## 部分数据截图
 
-![image-20240425231728608](https://gitee.com/zbhgis/pic/raw/master/blog/ec9ff13ef8cb221e228b628890ed5ab3.png)
+![image-20240425231728608](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262358404.png)
 
 
 
@@ -175,12 +175,8 @@ plt.show()
 ## 部分结果
 
 ![img](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262338915.png)
-
 ## 总结
-
 由于这次实验用到的数据量较少，因此画图的效果感觉一般，趋势不明显，计算出的指标参考意义也有限，数据量大一点效果好坏会一目了然
-
 ## 参考
-
-[[Matplotlib文档](https://matplotlib.org/stable/users/index.html)](https://matplotlib.org/stable/users/index.html)
-[[Scipy Curve_fit文档](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve%5Ffit.html)](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve%5Ffit.html)
+[Matplotlib文档](https://matplotlib.org/stable/users/index.html)
+[Scipy Curve_fit文档](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve%5Ffit.html)
