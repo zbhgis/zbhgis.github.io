@@ -6,5 +6,7 @@
     "onePageListNum":15,
     "commentLabelColor":"#006b75",
     "yearColorList":["#bc4c00", "#0969da", "#1f883d", "#A333D0"],
-    "bottomText":"本文为博主原创文章，未经博主允许禁止转载。如有问题，欢迎指正。"
+    "bottomText":"本文为博主原创文章，未经博主允许禁止转载。如有问题，欢迎指正。",
+    "script":"<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'></script><script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'></script>",
+    "allHead":"<script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'></script>",
 }
