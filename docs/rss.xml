@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 11:08:17 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 14:40:17 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
 
 主要介绍Arcpy脚本工具制作
 
@@ -623,9 +623,9 @@ patch size 设置得太大了，调小一点
 
 比如随机参数训练模型，推荐在左上角生成插件，其中在脚本中的” DISPLAY_NAME=‘xxxxxxxxx’ ”意思是拓展插件的名字，可以自己改，设置好之后点击菜单中的【Create Extension】即可生成
 
-![image-20230719140931883](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230719140931883.png)
+![image-20230719140931883](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262238604.png)
 
-![image-20230719141031685](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230719141031685.png)
+![image-20230719141031685](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262238292.png)
 
 之后在ENVI的工具文件夹【Extension】中可以找到，双击可以直接调用
 

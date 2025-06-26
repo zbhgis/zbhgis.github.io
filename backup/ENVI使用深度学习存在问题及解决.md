@@ -80,9 +80,9 @@ patch size 设置得太大了，调小一点
 
 比如随机参数训练模型，推荐在左上角生成插件，其中在脚本中的” DISPLAY_NAME=‘xxxxxxxxx’ ”意思是拓展插件的名字，可以自己改，设置好之后点击菜单中的【Create Extension】即可生成
 
-![image-20230719140931883](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230719140931883.png)
+![image-20230719140931883](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262238604.png)
 
-![image-20230719141031685](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230719141031685.png)
+![image-20230719141031685](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262238292.png)
 
 之后在ENVI的工具文件夹【Extension】中可以找到，双击可以直接调用
 
