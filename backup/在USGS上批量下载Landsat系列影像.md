@@ -6,7 +6,7 @@
 
 ## 正文
 
-1.打开USGS网站（https://earthexplorer.usgs.gov/），登录-注册-设置条件-选择数据集-查找等一系列步骤后，来到了这个界面
+1.打开USGS网站[https://earthexplorer.usgs.gov/](https://earthexplorer.usgs.gov/)，登录-注册-设置条件-选择数据集-查找等一系列步骤后，来到了这个界面
 
 ![image-20231007163538182](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262301785.png)
 
