@@ -38,4 +38,4 @@ File|Settings|Tools|External Tools|PyUIC的【Program】选择pyuic5.exe,并将�
 $FileName$ -o $FileNameWithoutExtension$.py
 ```
 
-参考：[[Pycharm-Error while finding module specification for ‘PyQt5.uic.pyuic‘ (ModuleNotFoundError: No modu_error while finding module specification for 'pyqt-CSDN博客](https://blog.csdn.net/zkw_1998/article/details/121806681)](https://blog.csdn.net/zkw_1998/article/details/121806681)
+参考：[Pycharm-Error while finding module specification for ‘PyQt5.uic.pyuic‘ (ModuleNotFoundError: No modu_error while finding module specification for 'pyqt-CSDN博客](https://blog.csdn.net/zkw_1998/article/details/121806681)
