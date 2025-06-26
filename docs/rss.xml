@@ -1,5 +1,99 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 02:46:55 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>GEE批量下载Sentinel2数据</title><link>https://zbhgis.github.io/post/GEE-pi-liang-xia-zai-Sentinel2-shu-ju.html</link><description># GEE批量下载Sentinel2数据
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 02:53:14 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（一）：前期准备</title><link>https://zbhgis.github.io/post/Arcpy-ru-men-xue-xi-bi-ji-%EF%BC%88-yi-%EF%BC%89%EF%BC%9A-qian-qi-zhun-bei.html</link><description># Arcpy入门学习笔记（一）：前期准备
+
+使用Arcpy需要先安装ArcGIS或Pro，此处省略
+
+[TOC]
+
+## 环境配置
+
+pycharm安装+ArcGIS 10.6提供的python2.7解释器
+
+在【Settings】中的【Project】下的【Python Interpreter】选择ArcGIS自带的Python2.7
+
+![image-20240420222738713](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240420222738713.png)
+
+## Pycharm调试功能
+
+断点：在代码行号之后的空白点击一下即可，再次点击取消
+
+![image-20240420224302787](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240420224302787.png)
+
+调试：debug按钮或Shift+F9
+
+![image-20240420224418276](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240420224418276.png)
+
+F8：单步，遇到断点后停止运行
+
+F7：进入函数
+
+Alt+shift+F7：进入自己编写的代码
+
+shift+F8：跳出函数
+
+F9：到下一个断点或退出调试
+
+Alt+F9：移动到光标
+
+```Python
+# coding=utf-8
+# @Time : 2024-04-19 23:30
+
+# 调试用
+def print_str(num):
+    for _ in range(num):
+        print('你好')
+
+if __name__ == '__main__':
+    a = 2
+    print_str(a)
+    b = a
+    print(b)
+    b = 1
+    print_str(b)
+```
+
+## Python2基础
+
+### 数据类型
+
+**整型**：整数的表示与运算
+
+```python
+# coding=utf-8
+# @Time : 2024-04-20 23:42
+
+# 整数运算
+num1 = 100
+num2 = 200
+print '两数之和为：', num1 + num2
+print '两数之差为：', num1 - num2
+print '两数之积为：', num1 * num2
+print '两数之商为：', num1 / num2  # 在Python 2中，整数除法结果为整数（向下取整）
+print '两数之商（浮点数）为：', float(num1) / num2
+```
+
+**字符串**：文本的表示与操作
+
+```python
+# coding=utf-8
+# @Time : 2024-04-20 23:42
+
+# 字符串定义与拼接
+greeting = '你好！'
+name = '小明'
+message = greeting + '，' + name + '！'
+print message
+
+# 字符串切片与索引
+sentence = u'浩瀚地学'
+print '首字符：', sentence[0]
+print '倒数第二个字符：', sentence[-2]
+print '子串：', sentence[2:4]
+
+# 字符串格式化
+age = 999
+info = '今年{}岁。</description><guid isPermaLink="true">https://zbhgis.github.io/post/Arcpy-ru-men-xue-xi-bi-ji-%EF%BC%88-yi-%EF%BC%89%EF%BC%9A-qian-qi-zhun-bei.html</guid><pubDate>Thu, 26 Jun 2025 02:52:47 +0000</pubDate></item><item><title>GEE批量下载Sentinel2数据</title><link>https://zbhgis.github.io/post/GEE-pi-liang-xia-zai-Sentinel2-shu-ju.html</link><description># GEE批量下载Sentinel2数据
 
 Google Earth Enginehttps://earthengine.google.com/网站批量下载数据，需要有谷歌账号和科学上网
 
