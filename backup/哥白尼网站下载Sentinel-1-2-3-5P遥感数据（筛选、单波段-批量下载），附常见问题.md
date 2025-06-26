@@ -2,7 +2,7 @@
 
 ## 前言
 
-之前就看到有人推送这个ESA下载Sentinel数据的新网站https://dataspace.copernicus.eu/browser/，就自己探索了一下，有一些意料之外的功能
+之前就看到有人推送这个ESA下载Sentinel数据的新网站（https://dataspace.copernicus.eu/browser/），就自己探索了一下，有一些意料之外的功能
 
 ## 准备工作
 
@@ -28,7 +28,7 @@
 
 ## 单幅影像直接下载
 
-5.以下面这幅影像为例，在面板上已经显示了他的数据级别，大小，监测时间等主要信息，![image-20231010214437888](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214437888.png)【Product info】是查看具体的信息，![image-20231010214524305](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214524305.png)【Zoom to product】是在右侧图层上定位，![image-20231010214555074](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214555074.png)【Add to workspace】是添加到工作空间，![image-20231010214800076](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214800076.png)【Download product】是直接下载按钮
+5.以下面这幅影像为例，在面板上已经显示了他的数据级别，大小，监测时间等主要信息，![image-20231010214437888](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262311540.png)【Product info】是查看具体的信息，![image-20231010214524305](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262311969.png)【Zoom to product】是在右侧图层上定位，![image-20231010214555074](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262311541.png)【Add to workspace】是添加到工作空间，![image-20231010214800076](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262311561.png)【Download product】是直接下载按钮
 
 ![image-20231010214238582](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255075.png)
 
@@ -50,7 +50,7 @@
 
 ## 单波段下载
 
-这个功能需要点击![image-20231010214437888](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231010214437888.png)**【Product info】**按钮，找到**【Download single files】**，就可以根据需要**直接下载波段文件**
+这个功能需要点击![image-20231010214437888](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262311794.png)**【Product info】**按钮，找到**【Download single files】**，就可以根据需要**直接下载波段文件**
 
 ![image-20231010223748786](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262255198.png)
 
