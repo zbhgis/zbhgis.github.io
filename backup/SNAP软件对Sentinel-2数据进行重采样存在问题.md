@@ -28,7 +28,7 @@ user.openjp2.jna=true
 C:\Users\用户名\.snap\var\cache\s2tbx\l2a-reader
 ```
 
-![image-20231221192915397](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231221192915397.png)
+![image-20231221192915397](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262243288.png)
 
 D盘中是由于以下文件位置会有临时文件，通过电脑的清理垃圾功能会清除掉，或者在以下的D盘的temp文件中找到以下缓存文件手动清楚
 
@@ -36,7 +36,7 @@ D盘中是由于以下文件位置会有临时文件，通过电脑的清理垃�
 D:\temp\snap-用户名
 ```
 
-![image-20231221193221629](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231221193221629.png)
+![image-20231221193221629](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262243624.png)
 
 
 
@@ -44,6 +44,7 @@ D:\temp\snap-用户名
 
 在SANP中对某一幅影像所有波段，按照B2分辨率进行重采样之后的数据在16G左右，因此重采样之前加上一个BandSelect步骤，选择需要的波段进行重采样即可加快速度，尽量不要全部重采样。
 
-![image-20230709144114576](https://gitee.com/zbhgis/pic/raw/master/blog/image-20230709144114576.png)
+![image-20230709144114576](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262243083.png)
+
 
 <!-- ##{"timestamp":1698098400}## -->
