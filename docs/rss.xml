@@ -1,5 +1,62 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 16:16:48 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy批量克里金插值报错</title><link>https://zbhgis.github.io/post/22.html</link><description># Arcpy批量克里金插值报错
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 16:17:58 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Conda中Richdem包遇到问题</title><link>https://zbhgis.github.io/post/23.html</link><description># Conda中Richdem包遇到问题
+
+[TOC]
+
+
+
+## 问题一
+
+### 报错
+
+RichDEM 是一套数字高程模型 （DEM） 水文分析工具，这次打算用richdem进行地形分析，尝试在conda里面安装richdem包的时候，直接使用conda install richdem命令安装包，显示找不到该包
+
+报错PackagesNotFoundError
+
+### 解决
+
+目前国内的资料较少，去github官网上看了官方文档，按照下面的命令即可解决
+
+```
+conda install richdem -c conda-forge
+```
+
+## 问题二
+
+### 报错
+
+在使用Richdem包的时候，太心急了没看文档，看着某个教程的示例直接使用了rasterio包读取后进行dem分析，然后报错如下
+
+```
+Exception: A richdem.rdarray or numpy.ndarray is required!
+```
+
+![image-20240506232248160](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240506232248160.png)
+
+### 解决
+
+在分析之前，通过内部的函数读取为rdarray类型，然后再进行分析即可
+
+```
+dem = rd.rdarray(dem_data, no_data=-9999)
+slope_data = rd.TerrainAttribute(dem, attrib='slope_riserun')
+```
+
+## 参考
+
+[R-Barnes/Richdem：高性能地形和水文分析 (github.com)](https://github.com/r-barnes/richdem)
+
+```
+https://github.com/r-barnes/richdem
+```
+
+[Loading Data — RichDEM 0.0.03 documentation](https://richdem.readthedocs.io/en/latest/loading_data.html)
+
+```
+https://richdem.readthedocs.io/en/latest/loading_data.html
+```
+
+。</description><guid isPermaLink="true">https://zbhgis.github.io/post/23.html</guid><pubDate>Thu, 26 Jun 2025 16:17:29 +0000</pubDate></item><item><title>Arcpy批量克里金插值报错</title><link>https://zbhgis.github.io/post/22.html</link><description># Arcpy批量克里金插值报错
 
 [TOC]
 
