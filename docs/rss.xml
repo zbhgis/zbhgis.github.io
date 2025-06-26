@@ -1,5 +1,23 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 16:17:58 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Conda中Richdem包遇到问题</title><link>https://zbhgis.github.io/post/23.html</link><description># Conda中Richdem包遇到问题
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 16:19:08 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Conda安装rasterio报错</title><link>https://zbhgis.github.io/post/24.html</link><description># Conda安装rasterio报错
+
+[TOC]
+
+
+
+## 问题
+
+在conda环境中安装rasterio包之后，本来可以正常运行的，但是之后又重新安装了一个gdal，导致原来的引用rasterio的包的程序不可正常运行了
+
+```
+conda install rasterio
+conda install gdal
+```
+
+报错DLL load failed while importing _base，应该两个包冲突了
+
+```
+ImportError: DLL load failed while importing _base: 找不到指定的程序。</description><guid isPermaLink="true">https://zbhgis.github.io/post/24.html</guid><pubDate>Thu, 26 Jun 2025 16:17:59 +0000</pubDate></item><item><title>Conda中Richdem包遇到问题</title><link>https://zbhgis.github.io/post/23.html</link><description># Conda中Richdem包遇到问题
 
 [TOC]
 
