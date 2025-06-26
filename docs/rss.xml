@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:37:31 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Landsat 8/9 C2L2使用注意点（简略版）</title><link>https://zbhgis.github.io/post/12.html</link><description># Landsat 8/9 C2L2使用注意点（简略版）
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:39:04 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Python实现线性拟合及绘图</title><link>https://zbhgis.github.io/post/13.html</link><description># Python实现线性拟合及绘图
+
+[TOC]
+
+当时的数字地形实验，使用`matplotlib`库绘制了一张图表表示不同地形类别在不同分辨率下的RMSE值，并分别拟合了一条趋势线。</description><guid isPermaLink="true">https://zbhgis.github.io/post/13.html</guid><pubDate>Thu, 26 Jun 2025 15:38:29 +0000</pubDate></item><item><title>Landsat 8/9 C2L2使用注意点（简略版）</title><link>https://zbhgis.github.io/post/12.html</link><description># Landsat 8/9 C2L2使用注意点（简略版）
 
 ## 详细版（更新中）
 
