@@ -7,4 +7,5 @@
 ![image-20231007161015722](https://gitee.com/zbhgis/pic/raw/master/blog/image-20231007161015722.png)
 
 4、如果中间安装失败，哪一步卡住，可以先尝试重启应用然后再重新执行操作，可以避免一些不必要的问题。
+![image](https://github.com/zbhgis/BlogImg/blob/main/avatar.jpg)
 <!-- ##{"timestamp":1696629600}## -->
