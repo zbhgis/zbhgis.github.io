@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:26:47 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 15:30:37 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
 
 主要介绍Arcpy脚本工具制作
 
@@ -9,19 +9,19 @@
 
 1、ArcGIS工具界面的【工具帮助】
 
-![image-20240419235458653](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235458653.png)
+![image-20240419235458653](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328579.png)
 
-![image-20240419235513830](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235513830.png)
+![image-20240419235513830](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328624.png)
 
 2、地理处理的【结果】会话窗口，右键工具提供的“【复制为Python代码片段】
 
-![image-20240419235859687](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235859687.png)
+![image-20240419235859687](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328279.png)
 
-![image-20240419235944587](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240419235944587.png)
+![image-20240419235944587](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328384.png)
 
 3、ArcGIS模型【导出至Python脚本文件】
 
-![image-20240420000844887](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240420000844887.png)
+![image-20240420000844887](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328463.png)
 
 
 
@@ -162,7 +162,7 @@ if __name__ == '__main__':
 
 在Pycharm中运行结果打开如下：
 
-![image-20240421130358309](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421130358309.png)
+![image-20240421130358309](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328633.png)
 
 测试没问题之后，将最后一段改掉，从面板获取参数，并将代码中的中文注释都删掉或者改成英文注释，不然会有一些离谱的bug，修改后准备的导入脚本的代码如下：
 
@@ -220,51 +220,51 @@ if __name__ == '__main__':
 
 创建好一个工具箱后，在其中创建工具集，并在工具集中添加脚本
 
-![image-20240421130946332](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421130946332.png)
+![image-20240421130946332](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328627.png)
 
 
 
 修改名称和标签，存储为相对路径（对应的地图文档属性最好也提前设置为相对路径，在【文件】【地图文档属性】【路径名】处进行勾选）
 
-![image-20240421131053202](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131053202.png)
+![image-20240421131053202](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328631.png)
 
 导入脚本文件所在位置
 
-![image-20240421131411366](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131411366.png)
+![image-20240421131411366](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328222.png)
 
 设置参数，一个为“圆的数量”，对应数据类型为长整型；一个为输出文件夹，对应数据类型为文件夹
 
-![image-20240421131900538](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421131900538.png)
+![image-20240421131900538](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328706.png)
 
 右键打开工具
 
-![image-20240421132218453](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421132218453.png)
+![image-20240421132218453](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328281.png)
 
 初步使用可行
 
-![image-20240422001014508](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240422001014508.png)
+![image-20240422001014508](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328952.png)
 
 ### 脚本工具各功能详解
 
 脚本右键功能
 
-![image-20240421133114511](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133114511.png)
+![image-20240421133114511](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262329285.png)
 
 【属性】中的【常规】
 
-![image-20240421133327100](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133327100.png)
+![image-20240421133327100](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262329403.png)
 
 【属性】中的【源】
 
-![image-20240421133508006](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421133508006.png)
+![image-20240421133508006](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262329400.png)
 
 【属性】中的【参数】
 
-![image-20240421134022597](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421134022597.png)
+![image-20240421134022597](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262329001.png)
 
 【属性】中的【验证】
 
-![image-20240421134315206](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421134315206.png)
+![image-20240421134315206](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262329159.png)
 
 ### 修改默认编辑和调试
 
@@ -274,7 +274,7 @@ if __name__ == '__main__':
 D:\py\Pycharm\bin\pycharm64.exe
 ```
 
-![image-20240421115026617](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240421115026617.png)
+![image-20240421115026617](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262329660.png)
 
 
 
