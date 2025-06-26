@@ -86,5 +86,4 @@ patch size 设置得太大了，调小一点
 
 之后在ENVI的工具文件夹【Extension】中可以找到，双击可以直接调用
 
-![test](https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4)
 <!-- ##{"timestamp":1696888800}## -->

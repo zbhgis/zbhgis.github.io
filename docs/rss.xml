@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 05:14:45 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/Arcpy-ru-men-xue-xi-bi-ji-%EF%BC%88-er-%EF%BC%89%EF%BC%9A-jiao-ben-gong-ju.html</link><description># Arcpy入门学习笔记（二）：脚本工具
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 05:17:00 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/Arcpy-ru-men-xue-xi-bi-ji-%EF%BC%88-er-%EF%BC%89%EF%BC%9A-jiao-ben-gong-ju.html</link><description># Arcpy入门学习笔记（二）：脚本工具
 
 主要介绍Arcpy脚本工具制作
 
@@ -629,7 +629,6 @@ patch size 设置得太大了，调小一点
 
 之后在ENVI的工具文件夹【Extension】中可以找到，双击可以直接调用
 
-![test](https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4)
 &lt;!-- ##{'timestamp':1696888800}## --&gt;。</description><guid isPermaLink="true">https://zbhgis.github.io/post/ENVI-shi-yong-shen-du-xue-xi-cun-zai-wen-ti-ji-jie-jue.html</guid><pubDate>Wed, 25 Jun 2025 15:17:45 +0000</pubDate></item><item><title>在USGS上批量下载Landsat系列影像</title><link>https://zbhgis.github.io/post/zai-USGS-shang-pi-liang-xia-zai-Landsat-xi-lie-ying-xiang.html</link><description># 在USGS上批量下载Landsat系列影像
 
 ## 前言
