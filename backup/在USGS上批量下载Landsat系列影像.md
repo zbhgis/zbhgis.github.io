@@ -3,6 +3,12 @@
 ## 前言
 
 试了一下USGS提供的批量下载的功能，整体使用体验OK。
+在批量下载前的数据查询与筛选等操作见以下文章。
+[USGS网站下载Landsat 5/7/8/9数据最新详细教程（注册、筛选、单波段、批量下载等），附常见问题](https://zbhgis.blog.csdn.net//article/details/139173382)
+
+```
+https://zbhgis.blog.csdn.net//article/details/139173382
+```
 
 ## 正文
 
