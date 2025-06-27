@@ -19,7 +19,7 @@ conda install gdal
 ImportError: DLL load failed while importing _base: 找不到指定的程序。
 ```
 
-![image-20240507124015821](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240507124015821.png)
+![image-20240507124015821](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270845381.png)
 
 ## 解决
 
