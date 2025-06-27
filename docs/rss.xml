@@ -1,5 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Fri, 27 Jun 2025 00:54:05 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>ENVI拓展工具资源去哪里找？</title><link>https://zbhgis.github.io/post/26.html</link><description># ENVI拓展工具资源去哪里找？
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Fri, 27 Jun 2025 00:56:32 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Landsat 8/9 C2L2级别数据表面反射率产品使用注意点</title><link>https://zbhgis.github.io/post/27.html</link><description># Landsat 8/9 C2L2级别数据表面反射率产品使用注意点
+
+[TOC]
+
+## 前言
+
+这篇主要介绍Landsat 8/9 C2L2级别的地表反射率产品（SR）。</description><guid isPermaLink="true">https://zbhgis.github.io/post/27.html</guid><pubDate>Fri, 27 Jun 2025 00:55:57 +0000</pubDate></item><item><title>ENVI拓展工具资源去哪里找？</title><link>https://zbhgis.github.io/post/26.html</link><description># ENVI拓展工具资源去哪里找？
 
 [TOC]
 

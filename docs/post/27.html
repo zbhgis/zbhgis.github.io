@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="github-light" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<meta name="description" content="# Landsat 8/9 C2L2级别数据表面反射率产品使用注意点
+
+[TOC]
+
+## 前言
+
+这篇主要介绍Landsat 8/9 C2L2级别的地表反射率产品（SR）。">
+<meta property="og:title" content="Landsat 8/9 C2L2级别数据表面反射率产品使用注意点">
+<meta property="og:description" content="# Landsat 8/9 C2L2级别数据表面反射率产品使用注意点
+
+[TOC]
+
+## 前言
+
+这篇主要介绍Landsat 8/9 C2L2级别的地表反射率产品（SR）。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zbhgis.github.io/post/27.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<title>Landsat 8/9 C2L2级别数据表面反射率产品使用注意点</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Landsat 8/9 C2L2级别数据表面反射率产品使用注意点</h1>
+<div class="title-right">
+    <a href="https://zbhgis.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/zbhgis/zbhgis.github.io/issues/27" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题"style="display:none;">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>Landsat 8/9 C2L2级别数据表面反射率产品使用注意点</h1>
+<p>[TOC]</p>
+<h2>前言</h2>
+<p>这篇主要介绍Landsat 8/9 C2L2级别的地表反射率产品（SR）。使用Landsat 8/9 C2L2级别的产品由于不需要再自行大气校正，使用起来方便，但也存在很多需要注意的地方，也有很多坑。更详细的说明需要到官方网站查看，以下是我结合了官方说明的个人使用经验和需要格外注意的事项，如有错误和不足，欢迎指正和补充！</p>
+<h2>数据简介</h2>
+<p>地表反射率（SR）源自Landsat 8/9 Collection 2 Level 1 operational Land Imager (OLl)数据，在此产品中共提供了7个波段</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>SR产品</th>
+<th>波段类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SR_B1</td>
+<td>Coastal</td>
+</tr>
+<tr>
+<td>SR_B2</td>
+<td>Blue</td>
+</tr>
+<tr>
+<td>SR_B3</td>
+<td>Green</td>
+</tr>
+<tr>
+<td>SR_B4</td>
+<td>Red</td>
+</tr>
+<tr>
+<td>SR_B5</td>
+<td>NIR</td>
+</tr>
+<tr>
+<td>SR_B6</td>
+<td>SWIR 1</td>
+</tr>
+<tr>
+<td>SR_B7</td>
+<td>SWIR 2</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h2>常见问题</h2>
+<p>（1）该产品在全球范围内生产并且总体上表现符合预期，但是对于关注局部地区的，自行大气校正效果一般来说会更好。</p>
+<p>（2）由于算法的问题，在明亮的雪/冰和云像素及其周围可能会反演失败，导致其值异常。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/dfe96fa900c14b3fd189ac222d904eb833bec6deec630ca7a0a16fac806d3653/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835343834342e706e67"><img src="https://camo.githubusercontent.com/dfe96fa900c14b3fd189ac222d904eb833bec6deec630ca7a0a16fac806d3653/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835343834342e706e67" alt="image-20240515103811905" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270854844.png" style="max-width: 100%;"></a></p>
+<p>（3）由于问题（2）,在按照官方给出的公式进行像元值转换之后，反射率会出现&gt;1.0或&lt;0.0的情况。</p>
+<p>反射率&gt;1.0的像素几乎都在QA_PIXEL图层中被标记为云或雪/冰，用户可以通过QA_PIXEL找到这些像素。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fc40d4ce64ae964d74be0550ab6b9fdc7e7524ce2c3484bfa7d555a65c16293b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835343339342e706e67"><img src="https://camo.githubusercontent.com/fc40d4ce64ae964d74be0550ab6b9fdc7e7524ce2c3484bfa7d555a65c16293b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835343339342e706e67" alt="image-20240515180856250" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270854394.png" style="max-width: 100%;"></a></p>
+<p>有时候，Landsat 8 影像的右下角留下一条深色轨迹（伪影），导致该部分反射率值较低；同样的，在阴影水面上，气溶胶过度校正通常会导致表面反射率 &lt;0.0。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/89fae8d2ae9f672d2ac64cd0d8beb9e3ef70c40f26366ddcbef8ee15677195b1/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835343731322e706e67"><img src="https://camo.githubusercontent.com/89fae8d2ae9f672d2ac64cd0d8beb9e3ef70c40f26366ddcbef8ee15677195b1/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835343731322e706e67" alt="image-20240515104323899" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270854712.png" style="max-width: 100%;"></a></p>
+<p>（4）有时候在影像中也会出现“Nodata”像素，这是因为在用官方的算法之后，在影像中有的值会小于-0.2（-0.2是该算法计算出的地表反射率有效范围下界），因此官方统一把小于-0.2的像素归类到0.2中，再通过官方提供的公式转换之后，此类像素的值就变成0，也就是“Nodata”值。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1f14773437df344694d14c807564b89c7f48ec472532f09b1e37fb9fb23ba3d5/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835353339382e706e67"><img src="https://camo.githubusercontent.com/1f14773437df344694d14c807564b89c7f48ec472532f09b1e37fb9fb23ba3d5/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835353339382e706e67" alt="image-20240515104356886" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270855398.png" style="max-width: 100%;"></a></p>
+<p>（5）不同传感器的不同级别数据处理方式各不相同，不要弄混</p>
+<h2>注意事项</h2>
+<p>（1）该产品不包括全色波段。</p>
+<p>（2）该产品不包括太阳天顶角大于76°的图像。</p>
+<p>（3）该产品在高纬度地区(&gt;65°）虽然提供部分产品，但是具有较大不确定性。（谨慎使用）</p>
+<p>（4）来自Landsat 8/9 OLI的波段1和2，分别为海岸气溶胶和蓝色波段，其校正值不应用于分析。因为这两个波段已经在算法中用于进行气溶胶反演测试，这可能导致其不可靠。（尽量不要用该产品的这两个波段进行分析，可能有误）</p>
+<p>（5）不要使用QA_PIXEL中标记为高气溶胶含量的像素。</p>
+<p>（6）被LaSRC（官方的校正算法）标记为水的像素，使用了单独的程序处理。</p>
+<p>（7）Landsat8/9 SR数据提取的不利条件包括：极度干旱或积雪覆盖的地区、低太阳角度条件、陆地面积相对于相邻水域较小的沿海地区以及存在广泛云污染的地区（即在这些地区，该产品的校正值可能有一定问题）</p>
+<h2>数据下载</h2>
+<p>数据可以在USGS网站进行下载</p>
+<p><a href="https://earthexplorer.usgs.gov/" rel="nofollow">EarthExplorer (usgs.gov)</a></p>
+<pre class="notranslate"><code class="notranslate">https://earthexplorer.usgs.gov/
+</code></pre>
+<h2>文件</h2>
+<p>产品（压缩包）命名格式</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4c5b645fe6b42b42a22e3fa76aaaf44f8a880632f9f9887d19c1bc6575b63f56/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835353034392e706e67"><img src="https://camo.githubusercontent.com/4c5b645fe6b42b42a22e3fa76aaaf44f8a880632f9f9887d19c1bc6575b63f56/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835353034392e706e67" alt="image-20240515112441063" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270855049.png" style="max-width: 100%;"></a></p>
+<p>以下为产品中的数据说明（包括了SR、ST、QA)，需要注意B1到B7的像元值的转换公式</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ecc845201852392d5ef6db27200bd80962775f18f32be0caf1da771ddd2f759c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835353536382e706e67"><img src="https://camo.githubusercontent.com/ecc845201852392d5ef6db27200bd80962775f18f32be0caf1da771ddd2f759c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835353536382e706e67" alt="image-20240515165952344" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270855568.png" style="max-width: 100%;"></a></p>
+<h2>引用</h2>
+<p>使用该级别的产品可以引用以下论文</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c946b85e0a819deb88c2b4ff82207868fd2e95413f4add073fb5b63c9ca8b9f8/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835353731392e706e67"><img src="https://camo.githubusercontent.com/c946b85e0a819deb88c2b4ff82207868fd2e95413f4add073fb5b63c9ca8b9f8/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303835353731392e706e67" alt="image-20240515114907753" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270855719.png" style="max-width: 100%;"></a></p>
+<h2>参考</h2>
+<p><a href="https://www.usgs.gov/landsat-missions/landsat-collection-2-known-issues#SR" rel="nofollow">Landsat Collection 2 Known Issues | U.S. Geological Survey (usgs.gov)</a></p>
+<pre class="notranslate"><code class="notranslate">https://www.usgs.gov/landsat-missions/landsat-collection-2-known-issues#SR
+</code></pre>
+<p><a href="https://www.usgs.gov/media/files/landsat-8-9-collection-2-level-2-science-product-guide" rel="nofollow">Landsat 8-9 Collection 2 Level 2 Science Product Guide | U.S. Geological Survey (usgs.gov)</a></p>
+<pre class="notranslate"><code class="notranslate">https://www.usgs.gov/media/files/landsat-8-9-collection-2-level-2-science-product-guide
+</code></pre></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请标明出处，谢谢！</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zbhgis.github.io">zbhgis</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("06/25/2025"!=""){
+    var startSite=new Date("06/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zbhgis/zbhgis.github.io");
+    script.setAttribute("issue-term","title");
+    
+    script.setAttribute("theme","github-light");
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekArticleTOC.js'><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekLightbox.js'></script><script>document.querySelectorAll('a').forEach(anchor => {const img = anchor.querySelector('img');if (img && img.hasAttribute('data-canonical-src')) {const canonicalSrc = img.getAttribute('data-canonical-src');anchor.setAttribute('href', canonicalSrc);img.setAttribute('src', canonicalSrc);img.removeAttribute('data-canonical-src');}});</script>
+
+</html>
