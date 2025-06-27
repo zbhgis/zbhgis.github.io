@@ -1,5 +1,44 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Fri, 27 Jun 2025 01:02:36 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Mysql命令行客户端常用命令</title><link>https://zbhgis.github.io/post/31.html</link><description># Mysql命令行客户端常用命令
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Fri, 27 Jun 2025 01:03:23 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Flask调试模式（debug mode）开启不了，显示Debug mode: off</title><link>https://zbhgis.github.io/post/32.html</link><description># Flask调试模式（debug mode）开启不了，显示Debug mode: off
+
+## 环境
+
+Python 3.9 
+
+Flask 2.2.3
+
+Pycharm 2022
+
+## 问题
+
+在run中加上了`debug=True`之后（如下）
+
+```python
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+但在实际运行的时候调试模式（debug mode）仍然没有生效，在控制台显示以下信息
+
+```
+ * Debug mode: off
+```
+
+![image-20240519161419066](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902013.png)
+
+## 解决
+
+在项目配置处的三角标，点击打开【编辑配置】
+
+![image-20240519161739671](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902719.png)
+
+找到FLASK_DEBUG，点击勾选，之后点击【确定】即可
+
+![image-20240519161816279](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902480.png)
+
+重启项目调试模式即可生效，在控制台显示如下信息
+
+![image-20240519162033698](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902628.png)。</description><guid isPermaLink="true">https://zbhgis.github.io/post/32.html</guid><pubDate>Fri, 27 Jun 2025 01:02:52 +0000</pubDate></item><item><title>Mysql命令行客户端常用命令</title><link>https://zbhgis.github.io/post/31.html</link><description># Mysql命令行客户端常用命令
 
 ## 注意点
 
