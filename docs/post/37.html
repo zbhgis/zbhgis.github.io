@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="github-light" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<meta name="description" content="# ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题
+
+[TOC]
+
+
+
+## 前言
+
+如标题所示，这个只是试用版，180天的期限，仅适用于个人学习。">
+<meta property="og:title" content="ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题">
+<meta property="og:description" content="# ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题
+
+[TOC]
+
+
+
+## 前言
+
+如标题所示，这个只是试用版，180天的期限，仅适用于个人学习。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zbhgis.github.io/post/37.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<title>ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题</h1>
+<div class="title-right">
+    <a href="https://zbhgis.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/zbhgis/zbhgis.github.io/issues/37" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题"style="display:none;">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题</h1>
+<p>[TOC]</p>
+<h2>前言</h2>
+<p>如标题所示，这个只是试用版，180天的期限，仅适用于个人学习。下面是我帮朋友安装过程的简单记录，因为之前就有使用过ENVI5.6.3版本，下载流程跟这次的类似，这次安装特地记录一下以及自己遇见的奇葩问题。当然这个版本的相关提供链接可能随时更新，需要及时关注官方博客，不过以下的安装教程和一些常见问题可以提供参考。</p>
+<h2>环境</h2>
+<p>联想轻薄本+Win11</p>
+<h2>来源</h2>
+<p>软件来源于ENVI技术殿堂提供的ENVI6.0版本，具体见以下官方文章和官方提供的链接（截止2424.05.23仍可用）</p>
+<p>官方博客：<a href="https://www.cnblogs.com/enviidl/p/16275745.html" rel="nofollow">ENVI 6.0 自助试用许可开放申请 - ENVI-IDL技术殿堂 - 博客园 (cnblogs.com)</a></p>
+<p>官方提供的网盘链接：<a href="https://pan.baidu.com/s/1bW3TY4jo4GjHLFNuMJoCVg?pwd=envi" rel="nofollow">https://pan.baidu.com/s/1bW3TY4jo4GjHLFNuMJoCVg?pwd=envi</a></p>
+<h2>安装</h2>
+<p>1、打开网盘链接，找到exe和sav文件进行下载</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/158685f9c6bf869d66389d97f593823310bb255c2dc6688710204eb45e881eb7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031313937322e706e67"><img src="https://camo.githubusercontent.com/158685f9c6bf869d66389d97f593823310bb255c2dc6688710204eb45e881eb7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031313937322e706e67" alt="image-20240523215232120" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271011972.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9b17ca593a60b4e4972e702a6352d9e2df3c7e0dc13d0337039e6571023f99c5/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031313731312e706e67"><img src="https://camo.githubusercontent.com/9b17ca593a60b4e4972e702a6352d9e2df3c7e0dc13d0337039e6571023f99c5/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031313731312e706e67" alt="image-20240523215238247" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271011711.png" style="max-width: 100%;"></a></p>
+<p>2、下载好之后，双击下载好的exe文件，进入以下界面，点击【Next】继续</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f8baded361f12435cba79b7ed0f3e4ceb29eafe76460841975c546605f1305b0/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031313133322e706e67"><img src="https://camo.githubusercontent.com/f8baded361f12435cba79b7ed0f3e4ceb29eafe76460841975c546605f1305b0/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031313133322e706e67" alt="image-20240523215500933" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271011132.png" style="max-width: 100%;"></a></p>
+<p>3、点击【I accept the agreement】按钮，之后点击【Next】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/59122cb52b9c0d3c6297735599d7da11086b15c6937ad3697d0b013658525634/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031313336352e706e67"><img src="https://camo.githubusercontent.com/59122cb52b9c0d3c6297735599d7da11086b15c6937ad3697d0b013658525634/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031313336352e706e67" alt="image-20240523215545961" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271011365.png" style="max-width: 100%;"></a></p>
+<p>4、选择安装目录之后，点击【Next】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5d2c3c8138cd7d0366f1f2a1a579b17b215e04037fa9ea432b51cac9b40696d7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031313837362e706e67"><img src="https://camo.githubusercontent.com/5d2c3c8138cd7d0366f1f2a1a579b17b215e04037fa9ea432b51cac9b40696d7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031313837362e706e67" alt="image-20240523215619376" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271011876.png" style="max-width: 100%;"></a></p>
+<p>5、安装内容保持默认，点击【Next】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/46f89ddc0c4b2841428c2af59d08d5695c3ed642fe1a53f7f4818ca74e9b0b52/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323238312e706e67"><img src="https://camo.githubusercontent.com/46f89ddc0c4b2841428c2af59d08d5695c3ed642fe1a53f7f4818ca74e9b0b52/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323238312e706e67" alt="image-20240523215709513" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012281.png" style="max-width: 100%;"></a></p>
+<p>6、安装信息确认好之后，点击【Install】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7e08f6a66883705f08a36af8898a92a70e51f5d1943e490b56ec524331a049d9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323833342e706e67"><img src="https://camo.githubusercontent.com/7e08f6a66883705f08a36af8898a92a70e51f5d1943e490b56ec524331a049d9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323833342e706e67" alt="image-20240523215734443" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012834.png" style="max-width: 100%;"></a></p>
+<p>7、等待5分钟左右</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/61052f3522513fd069c41842ffdebbb96259b7a40afaa3dac96b6e741c30a4fa/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323033352e706e67"><img src="https://camo.githubusercontent.com/61052f3522513fd069c41842ffdebbb96259b7a40afaa3dac96b6e741c30a4fa/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323033352e706e67" alt="image-20240523215857058" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012035.png" style="max-width: 100%;"></a></p>
+<p>8、这个时候，根据需要选择是否重启电脑，如果接受直接重启的话，就选择【Yes，...】,反之选【No，...】，自己之后自行重启</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c14ce470f9dacaf6099a50448eb5df82e36721d87f502e42f6d09ea4f95d9612/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323134352e706e67"><img src="https://camo.githubusercontent.com/c14ce470f9dacaf6099a50448eb5df82e36721d87f502e42f6d09ea4f95d9612/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323134352e706e67" alt="image-20240523215901883" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012145.png" style="max-width: 100%;"></a></p>
+<p>9、点击【是】，启动许可管理中心</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8e088d4b70459e02f87c0407519fe43b4b548c1adb5978d18fae0dfad76e208d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323039322e706e67"><img src="https://camo.githubusercontent.com/8e088d4b70459e02f87c0407519fe43b4b548c1adb5978d18fae0dfad76e208d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323039322e706e67" alt="image-20240523220035917" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012092.png" style="max-width: 100%;"></a></p>
+<p>10、找到刚刚设置的安装目录，右键打开【属性】，找到【安全】下的【编辑】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8fbef5d552b189a255c3d90353ab0eff1c41f0fbfa0dad3d83c666564ad34c11/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323635382e706e67"><img src="https://camo.githubusercontent.com/8fbef5d552b189a255c3d90353ab0eff1c41f0fbfa0dad3d83c666564ad34c11/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323635382e706e67" alt="image-20240523221553129" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012658.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3278ef8b80c518f83ff1880d0d01ead358d869e143093a13e1fc15377aaab715/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323433372e706e67"><img src="https://camo.githubusercontent.com/3278ef8b80c518f83ff1880d0d01ead358d869e143093a13e1fc15377aaab715/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323433372e706e67" alt="image-20240523221540466" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012437.png" style="max-width: 100%;"></a></p>
+<p>11、选择User后将权限改为【完全控制】，点击【确定】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4b100dcfba09c5e9072dacad252da140a1e9a48c422ba10531a3b559d44e5e31/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323731382e706e67"><img src="https://camo.githubusercontent.com/4b100dcfba09c5e9072dacad252da140a1e9a48c422ba10531a3b559d44e5e31/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323731382e706e67" alt="image-20240523221709832" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012718.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fc2d533dbd348e65e84b8ae66e1fa42daf63cf2acd27fb2f4f07d574a6144b15/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323831392e706e67"><img src="https://camo.githubusercontent.com/fc2d533dbd348e65e84b8ae66e1fa42daf63cf2acd27fb2f4f07d574a6144b15/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323831392e706e67" alt="image-20240523221748319" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012819.png" style="max-width: 100%;"></a></p>
+<p>12、将电脑重启后，打开ENVI 6.0，ENVI6.0的快捷方式可以在通过【win】键调出程序目录，找到ENVI 6.0</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/034f0b784bf6b10812b100a85537bc79969a8963d4a2f87a64f16da6c6f907c9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323734372e706e67"><img src="https://camo.githubusercontent.com/034f0b784bf6b10812b100a85537bc79969a8963d4a2f87a64f16da6c6f907c9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323734372e706e67" alt="image-20240523220302324" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012747.png" style="max-width: 100%;"></a></p>
+<p>13、双击打开，此时可以看到还没有激活，会报错</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d2cc2d889e43227de8c87c6e6f599279afb91115be198fd5226e39c11165f8be/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323932382e706e67"><img src="https://camo.githubusercontent.com/d2cc2d889e43227de8c87c6e6f599279afb91115be198fd5226e39c11165f8be/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323932382e706e67" alt="image-20240523220420666" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012928.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/620bdb905bc5a6a71fb7ce655c5888e363bd7917ca86e07e1f2ef75ff38fffe1/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323537382e706e67"><img src="https://camo.githubusercontent.com/620bdb905bc5a6a71fb7ce655c5888e363bd7917ca86e07e1f2ef75ff38fffe1/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031323537382e706e67" alt="image-20240523220424710" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271012578.png" style="max-width: 100%;"></a></p>
+<h2>激活</h2>
+<p>1、打开下载的sav文件</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4a73c069f2c509b9219318a5b76e06be57a2555f85391d43047a56cab8fa4501/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333433372e706e67"><img src="https://camo.githubusercontent.com/4a73c069f2c509b9219318a5b76e06be57a2555f85391d43047a56cab8fa4501/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333433372e706e67" alt="image-20240523221837426" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013437.png" style="max-width: 100%;"></a></p>
+<p>2、点击【Click to continue】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/362a70d6a90033067bc260c7b05feb7e88d0edd8081a36bebaa9a015fd89deee/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333431362e706e67"><img src="https://camo.githubusercontent.com/362a70d6a90033067bc260c7b05feb7e88d0edd8081a36bebaa9a015fd89deee/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333431362e706e67" alt="image-20240523221846858" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013416.png" style="max-width: 100%;"></a></p>
+<p>3、一般情况下，这个时候会出现异常，可以按照提示允许应用通过防火墙，或者切换为个人热点。如果没有以下提示，可以直接跳转到以下的第12步</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/488dc0e752076c290a7ba597b4b35549afa58afaacd70e180c51ff8d83105f63/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333631342e706e67"><img src="https://camo.githubusercontent.com/488dc0e752076c290a7ba597b4b35549afa58afaacd70e180c51ff8d83105f63/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333631342e706e67" alt="image-20240523221912628" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013614.png" style="max-width: 100%;"></a></p>
+<p>4、找到【设置】中的【隐私和安全性】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e3dbef091a3f0ec1bf14d0b22d749d1b326cfafc1cc503836889f1ff9dccc370/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333036322e706e67"><img src="https://camo.githubusercontent.com/e3dbef091a3f0ec1bf14d0b22d749d1b326cfafc1cc503836889f1ff9dccc370/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333036322e706e67" alt="image-20240523222026052" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013062.png" style="max-width: 100%;"></a></p>
+<p>5、点击【Windows 安全中心】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c14e74f532d1f52f8c9649b52d8b4f51867784071ec39e80f65abb47e431abd8/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333538372e706e67"><img src="https://camo.githubusercontent.com/c14e74f532d1f52f8c9649b52d8b4f51867784071ec39e80f65abb47e431abd8/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333538372e706e67" alt="image-20240523222034551" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013587.png" style="max-width: 100%;"></a></p>
+<p>6、点击【防火墙和网络保护】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a126f9a579cef95a099a1039599d1e30d3eea9bf6f48b4f8971a153ed08dd2bb/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333132362e706e67"><img src="https://camo.githubusercontent.com/a126f9a579cef95a099a1039599d1e30d3eea9bf6f48b4f8971a153ed08dd2bb/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333132362e706e67" alt="image-20240523222043302" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013126.png" style="max-width: 100%;"></a></p>
+<p>7、点击【允许应用通过防火墙】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/6f9a1255a847fd56e3286bfe0e8e8aaf4f836cefdc53e84ca86eef8336598587/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333435312e706e67"><img src="https://camo.githubusercontent.com/6f9a1255a847fd56e3286bfe0e8e8aaf4f836cefdc53e84ca86eef8336598587/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333435312e706e67" alt="image-20240523222050990" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013451.png" style="max-width: 100%;"></a></p>
+<p>8、点击【更改设置】后，再点击【允许其他应用】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d81c9650581257db7eb32b1ddc79e643d45a1ca2c5bba6bce70399573e031720/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333639382e706e67"><img src="https://camo.githubusercontent.com/d81c9650581257db7eb32b1ddc79e643d45a1ca2c5bba6bce70399573e031720/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333639382e706e67" alt="image-20240523222107871" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013698.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/180d92777392cbbd8ad8fd420fed96ba927c2e0fa2dd707cfcc0e0e5a28439b3/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333332372e706e67"><img src="https://camo.githubusercontent.com/180d92777392cbbd8ad8fd420fed96ba927c2e0fa2dd707cfcc0e0e5a28439b3/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333332372e706e67" alt="image-20240523222129935" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013327.png" style="max-width: 100%;"></a></p>
+<p>9、点击【添加】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/353ff0ead1015871df3b00e1303cbd1370b141691e7dfc32218a97e44910720e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333639342e706e67"><img src="https://camo.githubusercontent.com/353ff0ead1015871df3b00e1303cbd1370b141691e7dfc32218a97e44910720e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333639342e706e67" alt="image-20240523222139376" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013694.png" style="max-width: 100%;"></a></p>
+<p>10、在安装位置（如D:\Program Files\NV5\ENVI60\IDL90\bin\bin.x86_64）中，找到以下文件后，点击【添加】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/10e0fbe6dc2620466eb6606cb9d11b5db7cfe43d42b4497b384972fe84392aa9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333735372e706e67"><img src="https://camo.githubusercontent.com/10e0fbe6dc2620466eb6606cb9d11b5db7cfe43d42b4497b384972fe84392aa9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333735372e706e67" alt="image-20240523222146931" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013757.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/06171bc585bd018eacc731b482b968256e1f516406b03f1c6695995f8fd524d2/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333330312e706e67"><img src="https://camo.githubusercontent.com/06171bc585bd018eacc731b482b968256e1f516406b03f1c6695995f8fd524d2/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333330312e706e67" alt="image-20240523222154621" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013301.png" style="max-width: 100%;"></a></p>
+<p>11、再在该界面选择勾选【专用】和【公用】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d60182f9e9effe9449bddb4358737dec5d610fddeef9445493b6bef6ba725b3c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333939302e706e67"><img src="https://camo.githubusercontent.com/d60182f9e9effe9449bddb4358737dec5d610fddeef9445493b6bef6ba725b3c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333939302e706e67" alt="image-20240523222205904" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013990.png" style="max-width: 100%;"></a></p>
+<p>12、这个时候重新打开sav文件，就可以进入以下界面，填写个人信息后，点击【确定】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/cf61b694c33c57a4685306c2762a6dd068e4441e972fbe53489ea713051675cb/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333331392e706e67"><img src="https://camo.githubusercontent.com/cf61b694c33c57a4685306c2762a6dd068e4441e972fbe53489ea713051675cb/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333331392e706e67" alt="image-20240523222217607" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013319.png" style="max-width: 100%;"></a></p>
+<p>13、点击如下的【激活适用许可】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a5ce5a4d9904125118476874ba51426b83c5b2c483208a9362481ce28b7d9960/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333637312e706e67"><img src="https://camo.githubusercontent.com/a5ce5a4d9904125118476874ba51426b83c5b2c483208a9362481ce28b7d9960/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031333637312e706e67" alt="image-20240523222225438" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271013671.png" style="max-width: 100%;"></a></p>
+<p>14、成功激活之后会显示有效日期和剩余天数，每个月可以重新申请，每次激活会消耗总天数</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/98a5386d94550f8a2bc84dd33e08281097a8b773510f6d5c7b6412145540220c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343930362e706e67"><img src="https://camo.githubusercontent.com/98a5386d94550f8a2bc84dd33e08281097a8b773510f6d5c7b6412145540220c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343930362e706e67" alt="image-20240523222236234" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271014906.png" style="max-width: 100%;"></a></p>
+<p>15、这个时候再打开ENVI6.0的快捷方式，即可正常打开</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/25abc6f5bc242590cdfb303db0e42d0a84854e8cbcbc212de688b64e4b499968/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343838342e706e67"><img src="https://camo.githubusercontent.com/25abc6f5bc242590cdfb303db0e42d0a84854e8cbcbc212de688b64e4b499968/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343838342e706e67" alt="image-20240523222852055" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271014884.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/bda139ca35d6058c6c83a9c7c46f08e3b40cff31e07b8f8c54adb12d0f58aa63/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343230322e706e67"><img src="https://camo.githubusercontent.com/bda139ca35d6058c6c83a9c7c46f08e3b40cff31e07b8f8c54adb12d0f58aa63/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343230322e706e67" alt="image-20240523222844450" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271014202.png" style="max-width: 100%;"></a></p>
+<h2>问题</h2>
+<p>1、sav文件（许可申请工具）打不开，如下所示。</p>
+<p>主要是比较常见的防火墙问题，在上述激活步骤中已经演示过了；或者也有可能是网络问题，在激活之前把网络切换为手机热点（激活完记得切换回来）</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9f46864eeb2d304c26888acbdabe0c017257fc3c2fe4d0229bde31b292289f83/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343631312e706e67"><img src="https://camo.githubusercontent.com/9f46864eeb2d304c26888acbdabe0c017257fc3c2fe4d0229bde31b292289f83/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343631312e706e67" alt="image-20240523221912628" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271014611.png" style="max-width: 100%;"></a></p>
+<p>2、sav文件在安装完其他软件之后，不是用IDL激活工具打开，如下所示。</p>
+<p>比如说当电脑在装完ENVI 6.0之后，又安装了SPSS软件，而SPSS软件也会识别sav格式的文件并默认使用其打开sav。此时右键该sav文件，打开【属性】，之后选择打开方式为【IDL Runtime to run an IDL Program】（如D:\Program Files\NV5\ENVI60\IDL90\bin\bin.x86_64）后，点击确定即可</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f94b0f9686154bd43036ad16c838805939eb88a266f7e925ad042e0b85e58130/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343131332e706e67"><img src="https://camo.githubusercontent.com/f94b0f9686154bd43036ad16c838805939eb88a266f7e925ad042e0b85e58130/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343131332e706e67" alt="image-20240523223838077" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271014113.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5704d55768489510a89aa8b468654bed9a203072a2f8cbb650ba927b639d2f42/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343633362e706e67"><img src="https://camo.githubusercontent.com/5704d55768489510a89aa8b468654bed9a203072a2f8cbb650ba927b639d2f42/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343633362e706e67" alt="image-20240523223959394" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271014636.png" style="max-width: 100%;"></a></p>
+<p>3、ENVI有时候可能会突然打不开，等了好久一直停留在加载界面。</p>
+<p>这个问题的一个解决方法，我之前这篇文章的文末提及了，这里就略过了</p>
+<p><a href="https://blog.csdn.net/zbh13859825167/article/details/138293186" rel="nofollow">ENVI不同版本个人使用对比_-CSDN博客</a></p>
+<pre class="notranslate"><code class="notranslate">https://blog.csdn.net/zbh13859825167/article/details/138293186
+</code></pre>
+<p>4、深度学习等拓展模块怎么没有。</p>
+<p>拓展模块需要自己在网盘链接中再去下载并安装，安装流程类似。</p>
+<p>5、无法识别机器码，如下所示。</p>
+<p>这个的解决方式官方也提供了，具体的目录需要根据自己安装路径决定。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b841100956afa34b0e87d4201cc1c3038728267c5ee02e13fc789c017ba5c674/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343138352e706e67"><img src="https://camo.githubusercontent.com/b841100956afa34b0e87d4201cc1c3038728267c5ee02e13fc789c017ba5c674/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031343138352e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271014185.png" style="max-width: 100%;"></a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请标明出处，谢谢！</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zbhgis.github.io">zbhgis</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("06/25/2025"!=""){
+    var startSite=new Date("06/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zbhgis/zbhgis.github.io");
+    script.setAttribute("issue-term","title");
+    
+    script.setAttribute("theme","github-light");
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekArticleTOC.js'><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekLightbox.js'></script><script>document.querySelectorAll('a').forEach(anchor => {const img = anchor.querySelector('img');if (img && img.hasAttribute('data-canonical-src')) {const canonicalSrc = img.getAttribute('data-canonical-src');anchor.setAttribute('href', canonicalSrc);img.setAttribute('src', canonicalSrc);img.removeAttribute('data-canonical-src');}});</script>
+
+</html>
