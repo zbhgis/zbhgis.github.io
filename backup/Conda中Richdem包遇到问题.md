@@ -30,7 +30,7 @@ conda install richdem -c conda-forge
 Exception: A richdem.rdarray or numpy.ndarray is required!
 ```
 
-![image-20240506232248160](https://gitee.com/zbhgis/pic/raw/master/blog/image-20240506232248160.png)
+![image-20240506232248160](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270850380.png)
 
 ### 解决
 
