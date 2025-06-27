@@ -4,9 +4,9 @@
 ## 前言
 
 本文主要介绍了在USGS网站上下载Landsat系列影像的过程，发现了很多坑，特此记录一下。下载之后的影像预处理过程介绍可以参考以下文章。
-[ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）](https://blog.csdn.net/zbh13859825167/article/details/145453793)
+[ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）](https://zbhgis.blog.csdn.net/article/details/145453793)
 ```
-https://blog.csdn.net/zbh13859825167/article/details/145453793
+https://zbhgis.blog.csdn.net/article/details/145453793
 ```
 
 ## 环境
@@ -212,10 +212,10 @@ USGS支持单波段和添加至Bulk中批量下载，确定好需要的影像之
 
 一般就是将所要的数据添加至Bulk后，再进行批量下载，以下总结可以直接添加至待批量下载列表的方法（红框选项），根据需要选择即可。具体的批量下载方法我之前已经总结过了，见以下文章。
 
-[在USGS上批量下载Landsat系列影像（最新）-CSDN博客](https://blog.csdn.net/zbh13859825167/article/details/133661780)
+[在USGS上批量下载Landsat系列影像（最新）-CSDN博客](https://zbhgis.blog.csdn.net/article/details/133661780)
 
 ```
-https://blog.csdn.net/zbh13859825167/article/details/133661780
+https://zbhgis.blog.csdn.net/article/details/133661780
 ```
 
 ![image-20240524134727249](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270916918.png)
