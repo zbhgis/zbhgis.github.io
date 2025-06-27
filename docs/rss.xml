@@ -1,14 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Fri, 27 Jun 2025 03:32:39 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>SNAP软件的下载、安装、更新、卸载与遇到的一些问题</title><link>https://zbhgis.github.io/post/39.html</link><description># SNAP软件的下载、安装、更新、卸载与遇到的一些问题
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Fri, 27 Jun 2025 03:37:46 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>SNAP软件的下载、安装、更新、卸载与遇到的一些问题</title><link>https://zbhgis.github.io/post/39.html</link><description># SNAP软件的下载、安装、更新、卸载与遇到的一些问题
 
 ## 前言
 
-SNAP（Sentinel Application Platform）是欧洲空间局（ESA）开发的一款软件，主要用于处理和分析遥感数据，特别是来自其Sentinel卫星系列的数据。</description><guid isPermaLink="true">https://zbhgis.github.io/post/39.html</guid><pubDate>Fri, 27 Jun 2025 02:30:12 +0000</pubDate></item><item><title>ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）</title><link>https://zbhgis.github.io/post/38.html</link><description># USGS网站下载Landsat 5/7/8/9数据最新详细教程（注册、筛选、单波段、批量下载等），附常见问题
+SNAP（Sentinel Application Platform）是欧洲空间局（ESA）开发的一款软件，主要用于处理和分析遥感数据，特别是来自其Sentinel卫星系列的数据。</description><guid isPermaLink="true">https://zbhgis.github.io/post/39.html</guid><pubDate>Fri, 27 Jun 2025 02:30:12 +0000</pubDate></item><item><title>ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）</title><link>https://zbhgis.github.io/post/38.html</link><description># ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）
 
 @[toc]
-## 前言
+## 前言（必读）
 
-本文主要介绍了在USGS网站上下载Landsat系列影像的过程，发现了很多坑，特此记录一下。</description><guid isPermaLink="true">https://zbhgis.github.io/post/38.html</guid><pubDate>Fri, 27 Jun 2025 02:21:44 +0000</pubDate></item><item><title>ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题</title><link>https://zbhgis.github.io/post/37.html</link><description># ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题
+不同的下载方式以及不同级别的数据产品在ENVI的不同版本中有不同的处理方式，以本文为例，演示在USGS网站下载Landsat 8/9 C2L2级别的地表反射率（SR）产品在ENVI 5.3版本中的预处理流程
+
+！！！建议所有数据在进行以下操作之前进行备份，避免操作失误等问题需要去网站上重新下载数据！！！
+
+在进行预处理之前，最好对这个级别的数据有一定的了解。</description><guid isPermaLink="true">https://zbhgis.github.io/post/38.html</guid><pubDate>Fri, 27 Jun 2025 02:21:44 +0000</pubDate></item><item><title>ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题</title><link>https://zbhgis.github.io/post/37.html</link><description># ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题
 
 [TOC]
 
