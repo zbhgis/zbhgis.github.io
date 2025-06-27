@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="github-light" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<meta name="description" content="# SNAP软件的下载、安装、更新、卸载与遇到的一些问题
+
+## 前言
+
+SNAP（Sentinel Application Platform）是欧洲空间局（ESA）开发的一款软件，主要用于处理和分析遥感数据，特别是来自其Sentinel卫星系列的数据。">
+<meta property="og:title" content="SNAP软件的下载、安装、更新、卸载与遇到的一些问题">
+<meta property="og:description" content="# SNAP软件的下载、安装、更新、卸载与遇到的一些问题
+
+## 前言
+
+SNAP（Sentinel Application Platform）是欧洲空间局（ESA）开发的一款软件，主要用于处理和分析遥感数据，特别是来自其Sentinel卫星系列的数据。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zbhgis.github.io/post/39.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<title>SNAP软件的下载、安装、更新、卸载与遇到的一些问题</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">SNAP软件的下载、安装、更新、卸载与遇到的一些问题</h1>
+<div class="title-right">
+    <a href="https://zbhgis.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/zbhgis/zbhgis.github.io/issues/39" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题"style="display:none;">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>SNAP软件的下载、安装、更新、卸载与遇到的一些问题</h1>
+<h2>前言</h2>
+<p>SNAP（Sentinel Application Platform）是欧洲空间局（ESA）开发的一款软件，主要用于处理和分析遥感数据，特别是来自其Sentinel卫星系列的数据。SNAP提供了多种工具和功能，支持用户进行数据的预处理、可视化、分析和产品生成。</p>
+<p>本文主要介绍SNAP软件的下砸、安装、更新与卸载步骤，软件来自于欧空局官网，文中使用的是Sentinel Toolbox V10.0版本，包含了esa-snap_sentinel_windows-10.0.0.exe，在Windows操作系统进行操作。</p>
+<h2>环境</h2>
+<p>Win 10</p>
+<h2>下载</h2>
+<p>可以直接在官网进行下载，建议使用最新版，因为SNAP旧版本对于部分数据产品的支持不是很友好。截止241031，最新版的是10.0版，我下载的是其中的Windows</p>
+<p><a href="https://step.esa.int/main/download/snap-download/" rel="nofollow">SNAP Download – STEP</a></p>
+<pre class="notranslate"><code class="notranslate">https://step.esa.int/main/download/snap-download/
+</code></pre>
+<p>进入以下网站，找到下载界面，根据自己的操作系统选择对应的版本。我下载的是Windows 对应的Sentinel Toolboxes 10.0版本。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/40bb946f191c4b27bf9059f3001993d4fa1c31d1a22c95c6587b3c32e1f41c02/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032353836372e706e67"><img src="https://camo.githubusercontent.com/40bb946f191c4b27bf9059f3001993d4fa1c31d1a22c95c6587b3c32e1f41c02/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032353836372e706e67" alt="image-20241021121451331" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271025867.png" style="max-width: 100%;"></a></p>
+<h2>安装</h2>
+<p>在安装之前建议完全卸载旧版本。卸载步骤见文末。</p>
+<p>双击下载好的exe应用程序</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/cc503d8f83320fa4d9d3d774602e4989399210485cf66743de887cd551b1c1a1/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032353434382e706e67"><img src="https://camo.githubusercontent.com/cc503d8f83320fa4d9d3d774602e4989399210485cf66743de887cd551b1c1a1/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032353434382e706e67" alt="image-20241021110610334" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271025448.png" style="max-width: 100%;"></a></p>
+<p>点击【Next】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f017d999a7cde5e6841ce7d0b5f5a41448ac70d98ba50a6327b346467a3185dc/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363635372e706e67"><img src="https://camo.githubusercontent.com/f017d999a7cde5e6841ce7d0b5f5a41448ac70d98ba50a6327b346467a3185dc/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363635372e706e67" alt="image-20241021110646623" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026657.png" style="max-width: 100%;"></a></p>
+<p>此处为许可条款，默认即可。点击【Next】。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/be96acd6436f49876c6ab68bea211b0960ab4c9a0adf9b02f344322eeea746fe/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363737312e706e67"><img src="https://camo.githubusercontent.com/be96acd6436f49876c6ab68bea211b0960ab4c9a0adf9b02f344322eeea746fe/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363737312e706e67" alt="image-20241021110756233" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026771.png" style="max-width: 100%;"></a></p>
+<p>此处为之前的安装残留，选择【Deleting all SNAP user data】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/994e46cb302427bd87d20145db0009e0c10aa96639225721a99f18a2f028b586/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363838302e706e67"><img src="https://camo.githubusercontent.com/994e46cb302427bd87d20145db0009e0c10aa96639225721a99f18a2f028b586/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363838302e706e67" alt="image-20241021110815086" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026880.png" style="max-width: 100%;"></a></p>
+<p>此处为文件安装路径，选择路径之后，点击【Next】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e60ca888b9bcf68761e79ebc9f25a2ee1308e432ced6a83687189dbfbbfe5fb9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363837352e706e67"><img src="https://camo.githubusercontent.com/e60ca888b9bcf68761e79ebc9f25a2ee1308e432ced6a83687189dbfbbfe5fb9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363837352e706e67" alt="image-20241021110839407" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026875.png" style="max-width: 100%;"></a></p>
+<p>此处为组件选择，默认即可，点击【Next】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e2cb345b8540380a53194cf89c7a4889270080612a4bea81de9d79c4fc407eb5/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363233372e706e67"><img src="https://camo.githubusercontent.com/e2cb345b8540380a53194cf89c7a4889270080612a4bea81de9d79c4fc407eb5/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363233372e706e67" alt="image-20241021110907228" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026237.png" style="max-width: 100%;"></a></p>
+<p>此处为是否创建开始菜单文件夹，默认即可，点击【Next】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/040d4c0c08cac90e6184463ab226904d933a9511e34902eb25883ab7acb4fc29/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363531372e706e67"><img src="https://camo.githubusercontent.com/040d4c0c08cac90e6184463ab226904d933a9511e34902eb25883ab7acb4fc29/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363531372e706e67" alt="image-20241021110929821" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026517.png" style="max-width: 100%;"></a></p>
+<p>此处为是否需要配置Python解释器，如果有需要进行二次开发的可以选择，否则默认即可。点击【Next】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/61b75cba31506eca8821a2f25e8d39886baae755188f131cfb30c7b676e878a3/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363535302e706e67"><img src="https://camo.githubusercontent.com/61b75cba31506eca8821a2f25e8d39886baae755188f131cfb30c7b676e878a3/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363535302e706e67" alt="image-20241021111211880" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026550.png" style="max-width: 100%;"></a></p>
+<p>经过一段时间的安装之后，弹出以下界面，进行文件关联，默认即可。点击【Next】。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e77caf4e081734e1932bfcd3299e048e6fd23819247b0aa6196261b168bf5a22/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363633312e706e67"><img src="https://camo.githubusercontent.com/e77caf4e081734e1932bfcd3299e048e6fd23819247b0aa6196261b168bf5a22/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363633312e706e67" alt="image-20241021111521555" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026631.png" style="max-width: 100%;"></a></p>
+<p>取消勾选【Run SNAP Desktop】，点击【Finish】。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/216b46f7252523ee4a5fae77ad978537d558115b51c874d7d71ddcc0c5d49a58/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363930372e706e67"><img src="https://camo.githubusercontent.com/216b46f7252523ee4a5fae77ad978537d558115b51c874d7d71ddcc0c5d49a58/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363930372e706e67" alt="image-20241021111617750" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026907.png" style="max-width: 100%;"></a></p>
+<h2>更新</h2>
+<p>在桌面找到SNAP的快捷方式，点击打开。在以下的弹出界面中选择【Yes】。或者也可以在菜单栏中的【Help】选择【Update】检查更新。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f6d273c98430a175a20d8303ff7f16e79a1c8aa7af391330de31fe94eaf5838f/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363736342e706e67"><img src="https://camo.githubusercontent.com/f6d273c98430a175a20d8303ff7f16e79a1c8aa7af391330de31fe94eaf5838f/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363736342e706e67" alt="image-20241021112106345" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026764.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1d4a549d00a06e18b03562d4beb19df3794d0b9bd6908bab24bcd5a0ea61867a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363233302e706e67"><img src="https://camo.githubusercontent.com/1d4a549d00a06e18b03562d4beb19df3794d0b9bd6908bab24bcd5a0ea61867a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363233302e706e67" alt="image-20241021112132077" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026230.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3de6ea4772780d4ce90cd5d08a18c05f29b316aeaa80dfd414693b23639457a8/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363134392e706e67"><img src="https://camo.githubusercontent.com/3de6ea4772780d4ce90cd5d08a18c05f29b316aeaa80dfd414693b23639457a8/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363134392e706e67" alt="image-20241021112156519" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026149.png" style="max-width: 100%;"></a></p>
+<p>勾选之后，点击【Update】。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/46a411a823280c21d7c5830d2172bfff8eafccd8763f32c9eae393b746625745/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363133372e706e67"><img src="https://camo.githubusercontent.com/46a411a823280c21d7c5830d2172bfff8eafccd8763f32c9eae393b746625745/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363133372e706e67" alt="" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026137.png" style="max-width: 100%;"></a></p>
+<p>在软件左下角会显示进度，下载速度较慢，需要耐心等待。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ca17a850c2e70051bf32963f521bce01552f1735004a3defa9fe7e966d9ef461/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363338372e706e67"><img src="https://camo.githubusercontent.com/ca17a850c2e70051bf32963f521bce01552f1735004a3defa9fe7e966d9ef461/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363338372e706e67" alt="image-20241021112427584" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026387.png" style="max-width: 100%;"></a></p>
+<h2>卸载</h2>
+<p>一般来说，如果电脑上已经有旧版本的SNAP了的话，那么就需要进行卸载。</p>
+<p>先将软件关闭，右击桌面快捷方式图标，打开【属性】，在属性中点击【打开文件所在位置】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/0dfda8bd60eebbcaca92f0c83cf0fd67976aba0e339f2f25ccb8b111480e2ecb/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363830332e706e67"><img src="https://camo.githubusercontent.com/0dfda8bd60eebbcaca92f0c83cf0fd67976aba0e339f2f25ccb8b111480e2ecb/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032363830332e706e67" alt="image-20241021115323091" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271026803.png" style="max-width: 100%;"></a></p>
+<p>双击打开其中的‘Uninstall.exe”。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b7317055763482e972237053c4063b5565ea07b1f90e18b2677f2d200b3ed9ca/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032373739322e706e67"><img src="https://camo.githubusercontent.com/b7317055763482e972237053c4063b5565ea07b1f90e18b2677f2d200b3ed9ca/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032373739322e706e67" alt="image-20241021121127864" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271027792.png" style="max-width: 100%;"></a></p>
+<h2>注意点</h2>
+<p>1、在安装新版本之前建议完全卸载SNAP，以及根据提示清除对应的配置数据。</p>
+<p>2、在安装SNAP之前，查看自己的电脑用户名是否为中文，如果为中文则安装SNAP之后可能无法正常打开哨兵等数据</p>
+<p>3、在使用SNAP过程中，如果出现其他问题，可以在以下官方论坛寻找解决方案或者提问</p>
+<p><a href="https://forum.step.esa.int/" rel="nofollow">STEP Forum</a></p>
+<pre class="notranslate"><code class="notranslate">https://forum.step.esa.int/
+</code></pre></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请标明出处，谢谢！</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zbhgis.github.io">zbhgis</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("06/25/2025"!=""){
+    var startSite=new Date("06/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zbhgis/zbhgis.github.io");
+    script.setAttribute("issue-term","title");
+    
+    script.setAttribute("theme","github-light");
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekArticleTOC.js'><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekLightbox.js'></script><script>document.querySelectorAll('a').forEach(anchor => {const img = anchor.querySelector('img');if (img && img.hasAttribute('data-canonical-src')) {const canonicalSrc = img.getAttribute('data-canonical-src');anchor.setAttribute('href', canonicalSrc);img.setAttribute('src', canonicalSrc);img.removeAttribute('data-canonical-src');}});</script>
+
+</html>
