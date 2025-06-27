@@ -2,10 +2,10 @@
 
 ## 详细版（更新中）
 
-[Landsat 8/9 C2L2级别数据表面反射率产品使用注意点-CSDN博客](https://blog.csdn.net/zbh13859825167/article/details/138917519)
+[Landsat 8/9 C2L2级别数据表面反射率产品使用注意点-CSDN博客](https://zbhgis.blog.csdn.net/article/details/139023038)
 
 ```
-https://blog.csdn.net/zbh13859825167/article/details/138917519
+https://zbhgis.blog.csdn.net/article/details/139023038
 ```
 
 
