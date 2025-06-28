@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Fri, 27 Jun 2025 16:19:44 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Landsat 8/9 C2L2级别数据下载、使用、处理的个人经验以及注意事项汇总（查找用）</title><link>https://zbhgis.github.io/post/40.html</link><description># Landsat 8/9 C2L2级别数据下载、使用、处理的个人经验以及注意事项汇总（查找用）
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Sat, 28 Jun 2025 03:26:59 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>Landsat 8/9 C2L2级别数据下载、使用、处理的个人经验以及注意事项汇总（查找用）</title><link>https://zbhgis.github.io/post/40.html</link><description># Landsat 8/9 C2L2级别数据下载、使用、处理的个人经验以及注意事项汇总（查找用）
 
 @[toc]
 ## 前言
@@ -1280,4 +1280,15 @@ D:\temp\snap-用户名
 
 ![image-20231007161015722](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262245332.png)
 
-4、如果中间安装失败，哪一步卡住，可以先尝试重启应用然后再重新执行操作，可以避免一些不必要的问题。</description><guid isPermaLink="true">https://zbhgis.github.io/post/2.html</guid><pubDate>Fri, 06 Oct 2023 22:00:00 +0000</pubDate></item><item><title>关于我</title><link>https://zbhgis.github.io/about.html</link><description>关于我。</description><guid isPermaLink="true">https://zbhgis.github.io/about.html</guid><pubDate>Fri, 27 Jun 2025 04:29:07 +0000</pubDate></item><item><title>链接</title><link>https://zbhgis.github.io/link.html</link><description>链接。</description><guid isPermaLink="true">https://zbhgis.github.io/link.html</guid><pubDate>Fri, 27 Jun 2025 04:30:12 +0000</pubDate></item></channel></rss>
+4、如果中间安装失败，哪一步卡住，可以先尝试重启应用然后再重新执行操作，可以避免一些不必要的问题。</description><guid isPermaLink="true">https://zbhgis.github.io/post/2.html</guid><pubDate>Fri, 06 Oct 2023 22:00:00 +0000</pubDate></item><item><title>关于我</title><link>https://zbhgis.github.io/about.html</link><description>## 🌍 zbhgis （Focus on GIS, RS, Ecology）
+
+&lt;p align='center'&gt;
+  &lt;img src='https://img.shields.io/badge/-GIS-1573B3?style=flat&amp;logo=arcgis&amp;logoColor=white'/&gt;
+  &lt;img src='https://img.shields.io/badge/-Remote%20Sensing-3BA138?style=flat&amp;logo=googleearth&amp;logoColor=white'/&gt;
+  &lt;img src='https://img.shields.io/badge/-Ecological%20Modeling-8FBC8F?style=flat&amp;logo=leaflet&amp;logoColor=white'/&gt;
+&lt;/p&gt;
+
+
+### 🌐 Tools
+- **Software**: ArcGIS/ArcGIS Pro, QGIS, ENVI, Google Earth Engine
+- **Languages**: Python (NumPy, Pandas, Scikit-learn, Matplotlib, Seaborn, Folium, Plotly)。</description><guid isPermaLink="true">https://zbhgis.github.io/about.html</guid><pubDate>Fri, 27 Jun 2025 04:29:07 +0000</pubDate></item><item><title>链接</title><link>https://zbhgis.github.io/link.html</link><description>链接。</description><guid isPermaLink="true">https://zbhgis.github.io/link.html</guid><pubDate>Fri, 27 Jun 2025 04:30:12 +0000</pubDate></item></channel></rss>
