@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="github-light" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<meta name="description" content="
+# 结果对比
+
+本文复现的这张图是今年7月4号发表在Nature Climate Change中的一张热力图。">
+<meta property="og:title" content="【图表复现】顶刊NCC热力图复现（Python）">
+<meta property="og:description" content="
+# 结果对比
+
+本文复现的这张图是今年7月4号发表在Nature Climate Change中的一张热力图。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zbhgis.github.io/post/43.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<title>【图表复现】顶刊NCC热力图复现（Python）</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">【图表复现】顶刊NCC热力图复现（Python）</h1>
+<div class="title-right">
+    <a href="https://zbhgis.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/zbhgis/zbhgis.github.io/issues/43" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题"style="display:none;">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>结果对比</h1>
+<p>本文复现的这张图是今年7月4号发表在Nature Climate Change中的一张热力图。完整代码获取方法在文末。</p>
+<p>废话不说，先上原图。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/65e9c4ecf7dee9ba1af500e0c1541e5a7483271ae2a6a87ef7e501b2c4345ef0/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323033323131383335342e706e67"><img src="https://camo.githubusercontent.com/65e9c4ecf7dee9ba1af500e0c1541e5a7483271ae2a6a87ef7e501b2c4345ef0/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323033323131383335342e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202512032118354.png" style="max-width: 100%;"></a></p>
+<p>复现结果如下。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a1e5a37e6ed9b0f91cc91300939335c747544d74a1094a419659374f0bc9b20d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323033323131383034372e706e67"><img src="https://camo.githubusercontent.com/a1e5a37e6ed9b0f91cc91300939335c747544d74a1094a419659374f0bc9b20d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323033323131383034372e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202512032118047.png" style="max-width: 100%;"></a></p>
+<p>除了颜色的深浅对不上（因为不知道原色带的名称）以及数据分布对不上（因为数据使用的是模拟数据），其他细节都差不多。</p>
+<h1>绘制思路</h1>
+<p>这个图的基本类型是热力图，直接丢给大模型能画出个大概；画完基本热力图后，关键在于怎么调整好设置好单元格之间的间隔以及单元格的形状。目前通过Python的Matplotlib包直接绘制正方形单元格热力图比较麻烦（R语言有第三包好像可以直接实现）。所以换一个思路，直接在单元格之间添加白线，将这个热力图分割成一个个正方形。其他的横线，文字旋转，刻度线这些细节就比较简单了，花点时间微调一下就可以了。</p>
+<p>主要代码如下：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s">"""</span>
+<span class="pl-s">Author: https://github.com/zbhgis</span>
+<span class="pl-s">Paper source: https://www.nature.com/articles/s41558-025-02363-5</span>
+<span class="pl-s">Paper Figure source: https://www.nature.com/articles/s41558-025-02363-5/figures/3</span>
+<span class="pl-s">Last Modified: 2025-12-03</span>
+<span class="pl-s">Data: The data used in the code is generated randomly</span>
+<span class="pl-s">"""</span>
+
+<span class="pl-k">import</span> <span class="pl-s1">numpy</span> <span class="pl-k">as</span> <span class="pl-s1">np</span>
+<span class="pl-k">import</span> <span class="pl-s1">matplotlib</span>.<span class="pl-s1">pyplot</span> <span class="pl-k">as</span> <span class="pl-s1">plt</span>
+<span class="pl-k">import</span> <span class="pl-s1">utils</span>
+
+<span class="pl-k">def</span> <span class="pl-en">create_heatmap</span>(
+    <span class="pl-s1">ax</span>,
+    <span class="pl-s1">vmin</span>,
+    <span class="pl-s1">vmax</span>,
+    <span class="pl-s1">heatmap_data</span>,
+    <span class="pl-s1">heatmap_cmap</span>,
+    <span class="pl-s1">x_tick_labels</span>,
+    <span class="pl-s1">y_tick_labels</span>,
+    <span class="pl-s1">x_tick_labels_tag</span><span class="pl-c1">=</span><span class="pl-c1">True</span>,
+    <span class="pl-s1">x_tick_length</span><span class="pl-c1">=</span><span class="pl-c1">0.026</span>,
+):
+    <span class="pl-c"># 绘制热力图</span>
+    <span class="pl-s1">im</span> <span class="pl-c1">=</span> <span class="pl-s1">ax</span>.<span class="pl-c1">imshow</span>(<span class="pl-s1">heatmap_data</span>, <span class="pl-s1">cmap</span><span class="pl-c1">=</span><span class="pl-s1">heatmap_cmap</span>, <span class="pl-s1">vmin</span><span class="pl-c1">=</span><span class="pl-s1">vmin</span>, <span class="pl-s1">vmax</span><span class="pl-c1">=</span><span class="pl-s1">vmax</span>)
+
+    <span class="pl-c"># 长宽比设置,调整单元格大小</span>
+    <span class="pl-s1">ax</span>.<span class="pl-c1">set_aspect</span>(<span class="pl-s1">aspect</span><span class="pl-c1">=</span><span class="pl-c1">1.2</span>)
+
+    <span class="pl-c"># 添加白色间隔线</span>
+    <span class="pl-c"># 横线设置宽一些，用于分割不同类型</span>
+    <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-en">len</span>(<span class="pl-s1">y_tick_labels</span>) <span class="pl-c1">+</span> <span class="pl-c1">1</span>):
+        <span class="pl-s1">ax</span>.<span class="pl-c1">axhline</span>(<span class="pl-s1">i</span> <span class="pl-c1">-</span> <span class="pl-c1">0.5</span>, <span class="pl-s1">color</span><span class="pl-c1">=</span><span class="pl-s">"white"</span>, <span class="pl-s1">lw</span><span class="pl-c1">=</span><span class="pl-c1">10</span>)
+    <span class="pl-c"># 竖线设置窄一些</span>
+    <span class="pl-k">for</span> <span class="pl-s1">j</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-en">len</span>(<span class="pl-s1">x_tick_labels</span>) <span class="pl-c1">+</span> <span class="pl-c1">1</span>):
+        <span class="pl-s1">ax</span>.<span class="pl-c1">axvline</span>(<span class="pl-s1">j</span> <span class="pl-c1">-</span> <span class="pl-c1">0.5</span>, <span class="pl-s1">color</span><span class="pl-c1">=</span><span class="pl-s">"white"</span>, <span class="pl-s1">lw</span><span class="pl-c1">=</span><span class="pl-c1">2</span>)
+
+    <span class="pl-c"># 设置x轴</span>
+    <span class="pl-s1">ax</span>.<span class="pl-c1">set_xticks</span>(<span class="pl-s1">np</span>.<span class="pl-c1">arange</span>(<span class="pl-en">len</span>(<span class="pl-s1">x_tick_labels</span>)))
+    <span class="pl-c"># 如果需要绘制x轴时间刻度标签</span>
+    <span class="pl-k">if</span> <span class="pl-s1">x_tick_labels_tag</span>:
+        <span class="pl-s1">ax</span>.<span class="pl-c1">set_xticklabels</span>(
+            <span class="pl-s1">labels</span><span class="pl-c1">=</span><span class="pl-s1">x_tick_labels</span>,
+            <span class="pl-s1">rotation</span><span class="pl-c1">=</span><span class="pl-c1">45</span>,
+            <span class="pl-s1">horizontalalignment</span><span class="pl-c1">=</span><span class="pl-s">"right"</span>,
+            <span class="pl-s1">rotation_mode</span><span class="pl-c1">=</span><span class="pl-s">"anchor"</span>,
+        )
+    <span class="pl-k">else</span>:
+        <span class="pl-s1">ax</span>.<span class="pl-c1">set_xticklabels</span>(<span class="pl-s1">labels</span><span class="pl-c1">=</span><span class="pl-s">""</span>)
+    <span class="pl-c"># 添加新的x轴刻度线</span>
+    <span class="pl-s1">utils</span>.<span class="pl-c1">add_ticks</span>(
+        <span class="pl-s1">ax</span>,
+        <span class="pl-s1">axis</span><span class="pl-c1">=</span><span class="pl-s">"x"</span>,
+        <span class="pl-s1">positions</span><span class="pl-c1">=</span><span class="pl-s1">ax</span>.<span class="pl-c1">get_xticks</span>(),
+        <span class="pl-s1">ymin</span><span class="pl-c1">=</span><span class="pl-c1">0.002</span>,
+        <span class="pl-s1">ymax</span><span class="pl-c1">=</span><span class="pl-s1">x_tick_length</span>,
+    )
+
+    <span class="pl-c"># 设置y轴</span>
+    <span class="pl-s1">ax</span>.<span class="pl-c1">set_yticks</span>(<span class="pl-s1">np</span>.<span class="pl-c1">arange</span>(<span class="pl-en">len</span>(<span class="pl-s1">y_tick_labels</span>)))
+    <span class="pl-s1">ax</span>.<span class="pl-c1">set_yticklabels</span>(<span class="pl-s1">y_tick_labels</span>)
+    <span class="pl-s1">ax</span>.<span class="pl-c1">tick_params</span>(<span class="pl-s1">axis</span><span class="pl-c1">=</span><span class="pl-s">"y"</span>, <span class="pl-s1">which</span><span class="pl-c1">=</span><span class="pl-s">"both"</span>, <span class="pl-s1">length</span><span class="pl-c1">=</span><span class="pl-c1">0</span>)
+
+    <span class="pl-c"># 移除之前的网格线</span>
+    <span class="pl-s1">ax</span>.<span class="pl-c1">grid</span>(<span class="pl-c1">False</span>)
+
+    <span class="pl-k">return</span> <span class="pl-s1">im</span>
+
+<span class="pl-k">if</span> <span class="pl-s1">__name__</span> <span class="pl-c1">==</span> <span class="pl-s">"__main__"</span>:
+    <span class="pl-c"># 统一绘图样式</span>
+    <span class="pl-s1">plt</span>.<span class="pl-c1">rcdefaults</span>()
+    <span class="pl-s1">plt</span>.<span class="pl-c1">rcParams</span>.<span class="pl-c1">update</span>(
+        {
+            <span class="pl-s">"font.family"</span>: <span class="pl-s">"Arial"</span>,  <span class="pl-c"># 字体</span>
+            <span class="pl-s">"axes.titlesize"</span>: <span class="pl-c1">16</span>,  <span class="pl-c"># 子图标题大小</span>
+            <span class="pl-s">"axes.labelsize"</span>: <span class="pl-c1">16</span>,  <span class="pl-c"># 坐标轴标签大小</span>
+            <span class="pl-s">"xtick.labelsize"</span>: <span class="pl-c1">16</span>,  <span class="pl-c"># x轴刻度标签大小</span>
+            <span class="pl-s">"ytick.labelsize"</span>: <span class="pl-c1">16</span>,  <span class="pl-c"># y轴刻度标签大小</span>
+            <span class="pl-s">"legend.fontsize"</span>: <span class="pl-c1">12</span>,  <span class="pl-c"># 图例字体大小</span>
+            <span class="pl-s">"axes.linewidth"</span>: <span class="pl-c1">1</span>,  <span class="pl-c"># 坐标轴线宽</span>
+            <span class="pl-s">"lines.linewidth"</span>: <span class="pl-c1">1</span>,  <span class="pl-c"># 线宽</span>
+            <span class="pl-s">"legend.handlelength"</span>: <span class="pl-c1">0.6</span>,  <span class="pl-c"># 图例长度</span>
+            <span class="pl-s">"legend.handleheight"</span>: <span class="pl-c1">0.6</span>,  <span class="pl-c"># 图例高度</span>
+            <span class="pl-s">"legend.handletextpad"</span>: <span class="pl-c1">0.3</span>,  <span class="pl-c"># 图例与图例文字距离</span>
+        }
+    )
+
+    <span class="pl-c"># 生成模拟数据</span>
+    <span class="pl-s1">x_tick_labels</span> <span class="pl-c1">=</span> []
+    <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">15</span>):
+        <span class="pl-s1">category</span> <span class="pl-c1">=</span> <span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-c1">2006</span> <span class="pl-c1">+</span> <span class="pl-s1">i</span><span class="pl-kos">}</span></span>/<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-en">str</span>(<span class="pl-c1">2006</span> <span class="pl-c1">+</span> <span class="pl-s1">i</span> <span class="pl-c1">+</span> <span class="pl-c1">1</span>)[<span class="pl-c1">-</span><span class="pl-c1">2</span>:]<span class="pl-kos">}</span></span>"</span>
+        <span class="pl-k">if</span> <span class="pl-s1">i</span> <span class="pl-c1">==</span> <span class="pl-c1">12</span>:
+            <span class="pl-s1">category</span> <span class="pl-c1">+=</span> <span class="pl-s">"*"</span>
+        <span class="pl-s1">x_tick_labels</span>.<span class="pl-c1">append</span>(<span class="pl-s1">category</span>)
+    <span class="pl-s1">y_tick_labels_list</span> <span class="pl-c1">=</span> [
+        [<span class="pl-s">"EAIS total"</span>],
+        [<span class="pl-s">"Rennick"</span>, <span class="pl-s">"Shackleton"</span>, <span class="pl-s">"Amery"</span>, <span class="pl-s">"Baudouin"</span>, <span class="pl-s">"Nivlisen"</span>],
+        [<span class="pl-s">"AP total"</span>],
+        [<span class="pl-s">"Wilkins"</span>, <span class="pl-s">"Bach"</span>, <span class="pl-s">"George VI"</span>],
+        [<span class="pl-s">"WAIS total"</span>],
+    ]
+    <span class="pl-s1">heatmap_data_list</span> <span class="pl-c1">=</span> []
+    <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-en">len</span>(<span class="pl-s1">y_tick_labels_list</span>)):
+        <span class="pl-s1">np</span>.<span class="pl-c1">random</span>.<span class="pl-c1">seed</span>(<span class="pl-c1">13</span> <span class="pl-c1">+</span> <span class="pl-s1">i</span>)
+        <span class="pl-s1">heatmap_data</span> <span class="pl-c1">=</span> <span class="pl-s1">np</span>.<span class="pl-c1">random</span>.<span class="pl-c1">uniform</span>(
+            <span class="pl-s1">low</span><span class="pl-c1">=</span><span class="pl-c1">-</span><span class="pl-c1">3</span>, <span class="pl-s1">high</span><span class="pl-c1">=</span><span class="pl-c1">3</span>, <span class="pl-s1">size</span><span class="pl-c1">=</span>(<span class="pl-en">len</span>(<span class="pl-s1">y_tick_labels_list</span>[<span class="pl-s1">i</span>]), <span class="pl-en">len</span>(<span class="pl-s1">x_tick_labels</span>))
+        )
+        <span class="pl-s1">heatmap_data_list</span>.<span class="pl-c1">append</span>(<span class="pl-s1">heatmap_data</span>)
+
+    <span class="pl-c"># 设置色带</span>
+    <span class="pl-s1">cmap</span> <span class="pl-c1">=</span> <span class="pl-s">"RdBu_r"</span>
+
+    <span class="pl-c"># 因为刻度线长度是按照比例的，所以设置不同的刻度线长度</span>
+    <span class="pl-s1">x_tick_length</span> <span class="pl-c1">=</span> [<span class="pl-c1">0.1</span>, <span class="pl-c1">0.026</span>, <span class="pl-c1">0.1</span>, <span class="pl-c1">0.05</span>, <span class="pl-c1">0.1</span>]
+
+    <span class="pl-c"># 绘制子图</span>
+    <span class="pl-s1">fig</span>, <span class="pl-s1">ax_list</span> <span class="pl-c1">=</span> <span class="pl-s1">utils</span>.<span class="pl-c1">add_subplots</span>(
+        <span class="pl-s1">tw</span><span class="pl-c1">=</span><span class="pl-c1">10</span>,
+        <span class="pl-s1">th</span><span class="pl-c1">=</span><span class="pl-c1">14</span>,
+        <span class="pl-s1">nrows</span><span class="pl-c1">=</span><span class="pl-c1">12</span>,
+        <span class="pl-s1">ncols</span><span class="pl-c1">=</span><span class="pl-c1">1</span>,
+        <span class="pl-s1">gs_loc</span><span class="pl-c1">=</span>[[<span class="pl-c1">0</span>, <span class="pl-c1">0</span>], [(<span class="pl-c1">1</span>, <span class="pl-c1">6</span>), <span class="pl-c1">0</span>], [<span class="pl-c1">6</span>, <span class="pl-c1">0</span>], [(<span class="pl-c1">7</span>, <span class="pl-c1">10</span>), <span class="pl-c1">0</span>], [(<span class="pl-c1">10</span>, <span class="pl-c1">12</span>), <span class="pl-c1">0</span>]],
+        <span class="pl-s1">ax_offsets</span><span class="pl-c1">=</span>[[<span class="pl-c1">0</span>, <span class="pl-c1">-</span><span class="pl-c1">0.05</span>], [<span class="pl-c1">0</span>, <span class="pl-c1">0</span>], [<span class="pl-c1">0</span>, <span class="pl-c1">-</span><span class="pl-c1">0.03</span>], [<span class="pl-c1">0</span>, <span class="pl-c1">0</span>], [<span class="pl-c1">0</span>, <span class="pl-c1">0</span>]],
+        <span class="pl-s1">hspace</span><span class="pl-c1">=</span><span class="pl-c1">0.3</span>,
+        <span class="pl-s1">text_type</span><span class="pl-c1">=</span><span class="pl-s">"a"</span>,
+        <span class="pl-s1">text_step</span><span class="pl-c1">=</span><span class="pl-c1">2</span>,
+        <span class="pl-s1">text_offsets</span><span class="pl-c1">=</span>[[<span class="pl-c1">-</span><span class="pl-c1">0.06</span>, <span class="pl-c1">1</span>], [<span class="pl-c1">0</span>, <span class="pl-c1">1</span>], [<span class="pl-c1">-</span><span class="pl-c1">0.06</span>, <span class="pl-c1">1</span>], [<span class="pl-c1">0</span>, <span class="pl-c1">1</span>], [<span class="pl-c1">-</span><span class="pl-c1">0.06</span>, <span class="pl-c1">1</span>]],
+    )
+
+    <span class="pl-c"># 第一幅和第三幅子图不绘制x轴刻度标签</span>
+    <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-en">len</span>(<span class="pl-s1">ax_list</span>)):
+        <span class="pl-k">if</span> <span class="pl-s1">i</span> <span class="pl-c1">==</span> <span class="pl-c1">0</span> <span class="pl-c1">or</span> <span class="pl-s1">i</span> <span class="pl-c1">==</span> <span class="pl-c1">2</span>:
+            <span class="pl-s1">tag</span> <span class="pl-c1">=</span> <span class="pl-c1">False</span>
+        <span class="pl-k">else</span>:
+            <span class="pl-s1">tag</span> <span class="pl-c1">=</span> <span class="pl-c1">True</span>
+        <span class="pl-s1">im</span> <span class="pl-c1">=</span> <span class="pl-en">create_heatmap</span>(
+            <span class="pl-s1">ax_list</span>[<span class="pl-s1">i</span>],
+            <span class="pl-s1">vmin</span><span class="pl-c1">=</span><span class="pl-c1">-</span><span class="pl-c1">3</span>,
+            <span class="pl-s1">vmax</span><span class="pl-c1">=</span><span class="pl-c1">3</span>,
+            <span class="pl-s1">heatmap_data</span><span class="pl-c1">=</span><span class="pl-s1">heatmap_data_list</span>[<span class="pl-s1">i</span>],
+            <span class="pl-s1">heatmap_cmap</span><span class="pl-c1">=</span><span class="pl-s1">cmap</span>,
+            <span class="pl-s1">x_tick_labels</span><span class="pl-c1">=</span><span class="pl-s1">x_tick_labels</span>,
+            <span class="pl-s1">y_tick_labels</span><span class="pl-c1">=</span><span class="pl-s1">y_tick_labels_list</span>[<span class="pl-s1">i</span>],
+            <span class="pl-s1">x_tick_labels_tag</span><span class="pl-c1">=</span><span class="pl-s1">tag</span>,
+            <span class="pl-s1">x_tick_length</span><span class="pl-c1">=</span><span class="pl-s1">x_tick_length</span>[<span class="pl-s1">i</span>],
+        )
+        <span class="pl-c"># 第五幅子图添加最下方的x轴标签和横线</span>
+        <span class="pl-k">if</span> <span class="pl-s1">i</span> <span class="pl-c1">==</span> <span class="pl-c1">4</span>:
+            <span class="pl-s1">ax_list</span>[<span class="pl-s1">i</span>].<span class="pl-c1">text</span>(
+                <span class="pl-c1">0.45</span>,
+                <span class="pl-c1">-</span><span class="pl-c1">1.65</span>,
+                <span class="pl-s">"Years"</span>,
+                <span class="pl-s1">ha</span><span class="pl-c1">=</span><span class="pl-s">"center"</span>,
+                <span class="pl-s1">va</span><span class="pl-c1">=</span><span class="pl-s">"center"</span>,
+                <span class="pl-s1">transform</span><span class="pl-c1">=</span><span class="pl-s1">ax_list</span>[<span class="pl-s1">i</span>].<span class="pl-c1">transAxes</span>,
+                <span class="pl-s1">fontsize</span><span class="pl-c1">=</span><span class="pl-c1">16</span>,
+            )
+            <span class="pl-s1">ax_pos</span> <span class="pl-c1">=</span> <span class="pl-s1">ax_list</span>[<span class="pl-s1">i</span>].<span class="pl-c1">get_position</span>()
+            <span class="pl-s1">utils</span>.<span class="pl-c1">add_line</span>(
+                <span class="pl-s1">ax</span><span class="pl-c1">=</span><span class="pl-s1">ax_list</span>[<span class="pl-s1">i</span>],
+                <span class="pl-s1">x</span><span class="pl-c1">=</span>[<span class="pl-s1">ax_pos</span>.<span class="pl-c1">x0</span> <span class="pl-c1">-</span> <span class="pl-c1">0.06</span>, <span class="pl-s1">ax_pos</span>.<span class="pl-c1">x0</span> <span class="pl-c1">+</span> <span class="pl-s1">ax_pos</span>.<span class="pl-c1">width</span>],
+                <span class="pl-s1">y</span><span class="pl-c1">=</span>[<span class="pl-s1">ax_pos</span>.<span class="pl-c1">y0</span> <span class="pl-c1">-</span> <span class="pl-c1">0.06</span>, <span class="pl-s1">ax_pos</span>.<span class="pl-c1">y0</span> <span class="pl-c1">-</span> <span class="pl-c1">0.06</span>],
+                <span class="pl-s1">transform</span><span class="pl-c1">=</span><span class="pl-s">"figure"</span>,
+                <span class="pl-s1">clip_on</span><span class="pl-c1">=</span><span class="pl-c1">False</span>,
+            )
+        <span class="pl-c"># 添加子图外部上方横线</span>
+        <span class="pl-k">if</span> <span class="pl-s1">i</span> <span class="pl-c1">%</span> <span class="pl-c1">2</span> <span class="pl-c1">==</span> <span class="pl-c1">0</span>:
+            <span class="pl-s1">ax_pos</span> <span class="pl-c1">=</span> <span class="pl-s1">ax_list</span>[<span class="pl-s1">i</span>].<span class="pl-c1">get_position</span>()
+            <span class="pl-s1">utils</span>.<span class="pl-c1">add_line</span>(
+                <span class="pl-s1">ax</span><span class="pl-c1">=</span><span class="pl-s1">ax_list</span>[<span class="pl-s1">i</span>],
+                <span class="pl-s1">x</span><span class="pl-c1">=</span>[<span class="pl-s1">ax_pos</span>.<span class="pl-c1">x0</span> <span class="pl-c1">-</span> <span class="pl-c1">0.06</span>, <span class="pl-s1">ax_pos</span>.<span class="pl-c1">x0</span> <span class="pl-c1">+</span> <span class="pl-s1">ax_pos</span>.<span class="pl-c1">width</span>],
+                <span class="pl-s1">y</span><span class="pl-c1">=</span>[<span class="pl-s1">ax_pos</span>.<span class="pl-c1">y1</span> <span class="pl-c1">+</span> <span class="pl-c1">0.02</span>, <span class="pl-s1">ax_pos</span>.<span class="pl-c1">y1</span> <span class="pl-c1">+</span> <span class="pl-c1">0.02</span>],
+                <span class="pl-s1">transform</span><span class="pl-c1">=</span><span class="pl-s">"figure"</span>,
+                <span class="pl-s1">clip_on</span><span class="pl-c1">=</span><span class="pl-c1">False</span>,
+            )
+
+    <span class="pl-c"># 添加colorbar，并添加标签</span>
+    <span class="pl-s1">cax</span> <span class="pl-c1">=</span> <span class="pl-s1">fig</span>.<span class="pl-c1">add_axes</span>([<span class="pl-c1">0.92</span>, <span class="pl-c1">0.09</span>, <span class="pl-c1">0.04</span>, <span class="pl-c1">0.75</span>])  <span class="pl-c"># [left, bottom, width, height]</span>
+    <span class="pl-s1">cbar</span> <span class="pl-c1">=</span> <span class="pl-s1">fig</span>.<span class="pl-c1">colorbar</span>(<span class="pl-s1">im</span>, <span class="pl-s1">cax</span><span class="pl-c1">=</span><span class="pl-s1">cax</span>, <span class="pl-s1">label</span><span class="pl-c1">=</span><span class="pl-s">"Total meltwater area Z-score"</span>)
+    <span class="pl-s1">cbar</span>.<span class="pl-c1">set_label</span>(
+        <span class="pl-s">"Total meltwater area Z-score"</span>, <span class="pl-s1">rotation</span><span class="pl-c1">=</span><span class="pl-c1">-</span><span class="pl-c1">90</span>, <span class="pl-s1">labelpad</span><span class="pl-c1">=</span><span class="pl-c1">20</span>, <span class="pl-s1">fontsize</span><span class="pl-c1">=</span><span class="pl-c1">18</span>
+    )
+    <span class="pl-s1">cbar</span>.<span class="pl-c1">ax</span>.<span class="pl-c1">tick_params</span>(<span class="pl-s1">direction</span><span class="pl-c1">=</span><span class="pl-s">"in"</span>, <span class="pl-s1">which</span><span class="pl-c1">=</span><span class="pl-s">"both"</span>)
+    <span class="pl-c"># 添加colorbar内部说明文字</span>
+    <span class="pl-s1">cbar</span>.<span class="pl-c1">ax</span>.<span class="pl-c1">text</span>(
+        <span class="pl-c1">0.5</span>,
+        <span class="pl-c1">0.35</span>,
+        <span class="pl-s">"<span class="pl-cce">\n</span>"</span>.<span class="pl-c1">join</span>(<span class="pl-s">"BELOW AVERAGE"</span>),
+        <span class="pl-s1">transform</span><span class="pl-c1">=</span><span class="pl-s1">cbar</span>.<span class="pl-c1">ax</span>.<span class="pl-c1">transAxes</span>,
+        <span class="pl-s1">ha</span><span class="pl-c1">=</span><span class="pl-s">"center"</span>,
+        <span class="pl-s1">va</span><span class="pl-c1">=</span><span class="pl-s">"top"</span>,
+        <span class="pl-s1">color</span><span class="pl-c1">=</span><span class="pl-s">"white"</span>,
+        <span class="pl-s1">fontsize</span><span class="pl-c1">=</span><span class="pl-c1">18</span>,
+    )
+    <span class="pl-s1">cbar</span>.<span class="pl-c1">ax</span>.<span class="pl-c1">text</span>(
+        <span class="pl-c1">0.5</span>,
+        <span class="pl-c1">0.98</span>,
+        <span class="pl-s">"<span class="pl-cce">\n</span>"</span>.<span class="pl-c1">join</span>(<span class="pl-s">"ABOVE AVERAGE"</span>),
+        <span class="pl-s1">transform</span><span class="pl-c1">=</span><span class="pl-s1">cbar</span>.<span class="pl-c1">ax</span>.<span class="pl-c1">transAxes</span>,
+        <span class="pl-s1">ha</span><span class="pl-c1">=</span><span class="pl-s">"center"</span>,
+        <span class="pl-s1">va</span><span class="pl-c1">=</span><span class="pl-s">"top"</span>,
+        <span class="pl-s1">color</span><span class="pl-c1">=</span><span class="pl-s">"white"</span>,
+        <span class="pl-s1">fontsize</span><span class="pl-c1">=</span><span class="pl-c1">18</span>,
+    )
+
+    <span class="pl-s1">utils</span>.<span class="pl-c1">export_fig</span>()
+    <span class="pl-c"># 直接用plt.show()会导致比例失常，所以得看最终导出的图。</span>
+    <span class="pl-c"># plt.show()</span></pre></div>
+<p>过程中有涉及到较多细节，使用了一些封装的自定义函数，方便后续其他绘图工作调用。</p>
+<p>在github上或者网盘中可以获取，直接将Plot整个项目拷贝到本地文件夹，再通过编辑器打开即可。</p>
+<h1>完整代码</h1>
+<p>github仓库链接</p>
+<pre lang="Plain" class="notranslate"><code class="notranslate">https://github.com/zbhgis/QuickPlot
+</code></pre>
+<p>或者公众号后台回复 251203</p>
+<p>在plot文件夹的heatmap文件夹中</p>
+<h1>参考</h1>
+<p><a href="https://www.nature.com/articles/s41558-025-02363-5/figures/3" rel="nofollow">https://www.nature.com/articles/s41558-025-02363-5/figures/3</a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请标明出处，谢谢！</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zbhgis.github.io">zbhgis</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("06/25/2025"!=""){
+    var startSite=new Date("06/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zbhgis/zbhgis.github.io");
+    script.setAttribute("issue-term","title");
+    
+    script.setAttribute("theme","github-light");
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekArticleTOC.js'><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekLightbox.js'></script><script>document.querySelectorAll('a').forEach(anchor => {const img = anchor.querySelector('img');if (img && img.hasAttribute('data-canonical-src')) {const canonicalSrc = img.getAttribute('data-canonical-src');anchor.setAttribute('href', canonicalSrc);img.setAttribute('src', canonicalSrc);img.removeAttribute('data-canonical-src');}});</script>
+
+</html>
