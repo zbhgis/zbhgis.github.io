@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="github-light" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<meta name="description" content="
+# 前言
+
+1.之前学过，因此本文是个人复习笔记，为视频的总结以及个人思考，可能不是很详细。">
+<meta property="og:title" content="【Java】数组">
+<meta property="og:description" content="
+# 前言
+
+1.之前学过，因此本文是个人复习笔记，为视频的总结以及个人思考，可能不是很详细。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zbhgis.github.io/post/45.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<title>【Java】数组</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">【Java】数组</h1>
+<div class="title-right">
+    <a href="https://zbhgis.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/zbhgis/zbhgis.github.io/issues/45" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题"style="display:none;">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>前言</h1>
+<p>1.之前学过，因此本文是个人复习笔记，为视频的总结以及个人思考，可能不是很详细。</p>
+<p>2.教程是b站黑马程序员的JAVASE基础课程，笔记中的大部分图片来自于视频中的PPT截图。</p>
+<p>3.Java环境为Java SE 17.0.3.1，IntelliJ IDEA版本为2025.2</p>
+<p><a href="https://www.bilibili.com/video/BV1Cv411372m/?vd_source=3b69b85b41f42a9e26b3a8a195228a36" rel="nofollow">https://www.bilibili.com/video/BV1Cv411372m/?vd_source=3b69b85b41f42a9e26b3a8a195228a36</a></p>
+<h1>内容概览</h1>
+<p>1.本文内容主要包括数组的基本使用与操作</p>
+<p>2.笔记对应视频46-53节</p>
+<h1>更新记录</h1>
+<p>无</p>
+<h1>数组的创建</h1>
+<p>数组是一个容器，用来存储一批同种类型的数据。数组是对象，其变量名中存储的数组在内存中的地址，因此数组是一种引用数据类型。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/255679cec0e2e3423465e972d3affc6fa8289388f6b236005092ddfee0d1be61/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323034323135383735372e706e67"><img src="https://camo.githubusercontent.com/255679cec0e2e3423465e972d3affc6fa8289388f6b236005092ddfee0d1be61/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323034323135383735372e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202512042158757.png" style="max-width: 100%;"></a></p>
+<h2>1.静态数组</h2>
+<p>数据类型[] 数组名 = new 数据类型[]{元素1, 元素2, 元素3}</p>
+<p>数据类型[] 数据名 = {元素1, 元素2, 元素3}</p>
+<p>数据类型 数组名[] = {元素1, 元素2, 元素3}</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">array</span>;
+
+<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">sql</span>.<span class="pl-s1">SQLOutput</span>;
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ArrayDemo1</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-smi">int</span>[] <span class="pl-s1">ages</span> = <span class="pl-k">new</span> <span class="pl-smi">int</span>[]{<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">4</span>};
+        <span class="pl-smi">int</span>[] <span class="pl-s1">ages2</span> = {<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">4</span>};
+        <span class="pl-smi">int</span> <span class="pl-s1">ages3</span>[] = {<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">4</span>};
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">ages</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">ages</span>[<span class="pl-s1">i</span>] + <span class="pl-s">" "</span>);
+        }
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>();
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">ages2</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">ages2</span>[<span class="pl-s1">i</span>] + <span class="pl-s">" "</span>);
+        }
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>();
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">ages3</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">ages3</span>[<span class="pl-s1">i</span>] + <span class="pl-s">" "</span>);
+        }
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>();
+    }
+}</pre></div>
+<p>打印结果</p>
+<pre lang="Plain" class="notranslate"><code class="notranslate">1 2 4 
+1 2 4 
+1 2 4 
+</code></pre>
+<h2>2.动态数组</h2>
+<p>数据类型[] 数组名 = new 数据类型[3]</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">array</span>;
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ArrayDemo2</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-smi">int</span>[] <span class="pl-s1">ages</span> = <span class="pl-k">new</span> <span class="pl-smi">int</span>[<span class="pl-c1">3</span>];
+        <span class="pl-s1">ages</span>[<span class="pl-c1">0</span>] = <span class="pl-c1">1</span>;
+        <span class="pl-s1">ages</span>[<span class="pl-c1">1</span>] = <span class="pl-c1">10</span>;
+        <span class="pl-s1">ages</span>[<span class="pl-c1">2</span>] = <span class="pl-c1">100</span>;
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">ages</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">ages</span>[<span class="pl-s1">i</span>] + <span class="pl-s">" "</span>);
+        }
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>();
+    }
+}</pre></div>
+<p>打印结果</p>
+<pre lang="Plain" class="notranslate"><code class="notranslate">1 10 100 
+</code></pre>
+<p>动态初始化数组的默认值</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/35b6f98b0256f835544fe166d0211b0ef178e395625aabdcdc6151b4ed03eaa3/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323034323135383432322e706e67"><img src="https://camo.githubusercontent.com/35b6f98b0256f835544fe166d0211b0ef178e395625aabdcdc6151b4ed03eaa3/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323034323135383432322e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202512042158422.png" style="max-width: 100%;"></a></p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">array</span>;
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ArrayDemo3</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-smi">byte</span>[] <span class="pl-s1">arr1</span> = <span class="pl-k">new</span> <span class="pl-smi">byte</span>[<span class="pl-c1">3</span>];
+        <span class="pl-smi">short</span>[] <span class="pl-s1">arr2</span> = <span class="pl-k">new</span> <span class="pl-smi">short</span>[<span class="pl-c1">3</span>];
+        <span class="pl-smi">char</span>[] <span class="pl-s1">arr3</span> = <span class="pl-k">new</span> <span class="pl-smi">char</span>[<span class="pl-c1">3</span>];
+        <span class="pl-smi">int</span>[] <span class="pl-s1">arr4</span> = <span class="pl-k">new</span> <span class="pl-smi">int</span>[<span class="pl-c1">3</span>];
+        <span class="pl-smi">long</span>[] <span class="pl-s1">arr5</span> = <span class="pl-k">new</span> <span class="pl-smi">long</span>[<span class="pl-c1">3</span>];
+        <span class="pl-smi">float</span>[] <span class="pl-s1">arr6</span> = <span class="pl-k">new</span> <span class="pl-smi">float</span>[<span class="pl-c1">3</span>];
+        <span class="pl-smi">double</span>[] <span class="pl-s1">arr7</span> = <span class="pl-k">new</span> <span class="pl-smi">double</span>[<span class="pl-c1">3</span>];
+        <span class="pl-smi">boolean</span>[] <span class="pl-s1">arr8</span> = <span class="pl-k">new</span> <span class="pl-smi">boolean</span>[<span class="pl-c1">3</span>];
+        <span class="pl-smi">int</span>[][] <span class="pl-s1">arr9</span> = <span class="pl-k">new</span> <span class="pl-smi">int</span>[<span class="pl-c1">3</span>][];
+        <span class="pl-smi">String</span>[] <span class="pl-s1">arr10</span> = <span class="pl-k">new</span> <span class="pl-smi">String</span>[<span class="pl-c1">3</span>];
+
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-c1">3</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">arr1</span>[<span class="pl-c1">0</span>] + <span class="pl-s">" "</span>);
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">arr2</span>[<span class="pl-c1">0</span>] + <span class="pl-s">" "</span>);
+            <span class="pl-c">// 转为int类型可在控制台正常显示</span>
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>((<span class="pl-smi">int</span>) <span class="pl-s1">arr3</span>[<span class="pl-c1">0</span>] + <span class="pl-s">" "</span>);
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">arr4</span>[<span class="pl-c1">0</span>] + <span class="pl-s">" "</span>);
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">arr5</span>[<span class="pl-c1">0</span>] + <span class="pl-s">" "</span>);
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">arr6</span>[<span class="pl-c1">0</span>] + <span class="pl-s">" "</span>);
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">arr7</span>[<span class="pl-c1">0</span>] + <span class="pl-s">" "</span>);
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">arr8</span>[<span class="pl-c1">0</span>] + <span class="pl-s">" "</span>);
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">arr9</span>[<span class="pl-c1">0</span>] + <span class="pl-s">" "</span>);
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">arr10</span>[<span class="pl-c1">0</span>] + <span class="pl-s">" "</span>);
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>();
+        }
+    }
+}</pre></div>
+<p>打印结果</p>
+<pre lang="Plain" class="notranslate"><code class="notranslate">0 0 0 0 0 0.0 0.0 false null null 
+0 0 0 0 0 0.0 0.0 false null null 
+0 0 0 0 0 0.0 0.0 false null null 
+</code></pre>
+<h1>数组的访问与修改</h1>
+<p>1.遍历查询</p>
+<p>2.获取数组的长度，array.length</p>
+<p>3.修改数组的元素，array[i]=  ;</p>
+<h1>数组本身的特点</h1>
+<h2>1.直接打印数组，结果是其地址</h2>
+<p>ArrayDemo.class文件先加载到方法区，其中的main方法运行时进入栈内存，存储a和arr变量，但是由于arr是被赋值为new出来的数组，因此需要先将数组存储到堆内存中，并且将其在堆内存中的地址传递给arr变量，因此arr变量中存储的是数组在堆内存中的地址。此时即使改变arr变量中数组的元素，其地址不变。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/6a5ec2fc6335bcc5c1d9f3a69fc59688e3661bea22f788747e46790c01a1c4f8/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323034323135383935322e706e67"><img src="https://camo.githubusercontent.com/6a5ec2fc6335bcc5c1d9f3a69fc59688e3661bea22f788747e46790c01a1c4f8/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323034323135383935322e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202512042158952.png" style="max-width: 100%;"></a></p>
+<div class="highlight highlight-source-go"><pre class="notranslate"><span class="pl-k">package</span> com.<span class="pl-s1">zbhgis</span>.<span class="pl-c1">array</span>;
+
+<span class="pl-s1">public</span> <span class="pl-s1">class</span> <span class="pl-s1">ArrayDemo4</span> {
+    <span class="pl-s1">public</span> <span class="pl-s1">static</span> <span class="pl-s1">void</span> <span class="pl-s1">main</span>(<span class="pl-s1">String</span>[] <span class="pl-smi">args</span>) {
+        <span class="pl-s1">int</span> <span class="pl-s1">a</span> <span class="pl-c1">=</span> <span class="pl-c1">10</span>;
+        System.<span class="pl-smi">out</span>.<span class="pl-c1">println</span>(<span class="pl-s1">a</span>);
+
+        <span class="pl-smi">int</span>[] <span class="pl-smi">arr</span> <span class="pl-c1">=</span> {<span class="pl-c1">11</span>, <span class="pl-c1">22</span>, <span class="pl-c1">33</span>};
+        <span class="pl-c">// 打印地址</span>
+        <span class="pl-s1">System</span>.<span class="pl-c1">out</span>.<span class="pl-c1">println</span>(<span class="pl-s1">arr</span>);
+        <span class="pl-c">// 打印第一个元素</span>
+        <span class="pl-s1">System</span>.<span class="pl-c1">out</span>.<span class="pl-c1">println</span>(<span class="pl-s1">arr</span>[<span class="pl-c1">1</span>]);
+
+        <span class="pl-s1">arr</span>[<span class="pl-c1">0</span>] <span class="pl-c1">=</span> <span class="pl-c1">44</span>;
+        <span class="pl-s1">arr</span>[<span class="pl-c1">1</span>] <span class="pl-c1">=</span> <span class="pl-c1">55</span>;
+        <span class="pl-s1">arr</span>[<span class="pl-c1">2</span>] <span class="pl-c1">=</span> <span class="pl-c1">66</span>;
+
+        <span class="pl-s1">System</span>.<span class="pl-c1">out</span>.<span class="pl-c1">println</span>(<span class="pl-s1">arr</span>[<span class="pl-c1">0</span>]);
+        <span class="pl-s1">System</span>.<span class="pl-c1">out</span>.<span class="pl-c1">println</span>(<span class="pl-s1">arr</span>[<span class="pl-c1">1</span>]);
+        <span class="pl-s1">System</span>.<span class="pl-c1">out</span>.<span class="pl-c1">println</span>(<span class="pl-s1">arr</span>[<span class="pl-c1">2</span>]);
+        <span class="pl-c">// 地址仍不变</span>
+        <span class="pl-s1">System</span>.<span class="pl-c1">out</span>.<span class="pl-c1">println</span>(<span class="pl-s1">arr</span>);
+    }
+}</pre></div>
+<p>打印结果</p>
+<pre lang="Plain" class="notranslate"><code class="notranslate">10
+[I@776ec8df
+22
+44
+55
+66
+[I@776ec8df
+</code></pre>
+<h2>2.多个变量指向同一数组，其内容保持同步</h2>
+<p>ArrayDemo2.class文件先加载到方法区，其中的main方法运行时进入栈内存，存储arr1和arr2变量，但是由于arr1是被赋值为new出来的数组，因此arr1变量中存储的是数组在堆内存中的地址。接着将arr1中的地址赋值给arr2变量，arr2变量通过地址就可以获取堆内存中的数组，因此修改arr2中的元素是在修改堆内存中数组的元素，即arr2与arr1修改的是同一数组元素。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a06909abeb7b6b416dcde37a44badfe5924761d513c2682a81284d1e51eb652c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323034323135393638322e706e67"><img src="https://camo.githubusercontent.com/a06909abeb7b6b416dcde37a44badfe5924761d513c2682a81284d1e51eb652c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323034323135393638322e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202512042159682.png" style="max-width: 100%;"></a></p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">array</span>;
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ArrayDemo5</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-smi">int</span>[] <span class="pl-s1">arr1</span> = {<span class="pl-c1">11</span>, <span class="pl-c1">22</span>, <span class="pl-c1">33</span>};
+        <span class="pl-c">// arr2被赋值为数组的地址</span>
+        <span class="pl-smi">int</span>[] <span class="pl-s1">arr2</span> = <span class="pl-s1">arr1</span>;
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">arr1</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">arr2</span>);
+
+        <span class="pl-c">// 修改的是共享数组的元素</span>
+        <span class="pl-s1">arr2</span>[<span class="pl-c1">1</span>] = <span class="pl-c1">99</span>;
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">arr1</span>[<span class="pl-c1">1</span>]);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">arr2</span>[<span class="pl-c1">1</span>]);
+    }
+}</pre></div>
+<p>打印结果</p>
+<pre lang="Plain" class="notranslate"><code class="notranslate">[I@776ec8df
+[I@776ec8df
+99
+99
+</code></pre>
+<h2>3.数组为null时，不可访问数组的元素和长度</h2>
+<p>如果数组变量存储的地址是null，那该变量不再指向任何数组对象。因此此时访问数据的某个元素或长度时，编译结果会报空指针异常。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2dfed4f61c38da08e5a365d805b52f29d578e912253e23ff2794001a97c84962/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323034323135383032382e706e67"><img src="https://camo.githubusercontent.com/2dfed4f61c38da08e5a365d805b52f29d578e912253e23ff2794001a97c84962/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323034323135383032382e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202512042158028.png" style="max-width: 100%;"></a></p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">array</span>;
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ArrayDemo6</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-smi">int</span>[] <span class="pl-s1">arr1</span> = {<span class="pl-c1">11</span>, <span class="pl-c1">22</span>, <span class="pl-c1">33</span>};
+        <span class="pl-smi">int</span>[] <span class="pl-s1">arr2</span> = <span class="pl-c1">null</span>;
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">arr2</span>);
+
+        <span class="pl-c">// 以下会报错</span>
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">arr2</span>[<span class="pl-c1">0</span>]);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">arr2</span>.<span class="pl-s1">length</span>);
+    }
+}</pre></div>
+<p>打印结果</p>
+<pre lang="Plain" class="notranslate"><code class="notranslate">null
+Exception in thread "main" java.lang.NullPointerException: Cannot load from int array because "arr2" is null
+        at com.zbhgis.array.ArrayDemo6.main(ArrayDemo6.java:10)
+</code></pre>
+<h1>数组的其他常见操作</h1>
+<h2>1.求极值、累计值、总数</h2>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">array</span>;
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ArrayDemo7</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-smi">int</span>[] <span class="pl-s1">scores</span> = {<span class="pl-c1">1</span>, <span class="pl-c1">10</span>, <span class="pl-c1">3</span>, -<span class="pl-c1">6</span>, <span class="pl-c1">3</span>, -<span class="pl-c1">1</span>, <span class="pl-c1">10</span>, -<span class="pl-c1">3</span>, <span class="pl-c1">10</span>};
+        <span class="pl-smi">int</span> <span class="pl-s1">max</span> = <span class="pl-s1">scores</span>[<span class="pl-c1">0</span>];
+        <span class="pl-smi">int</span> <span class="pl-s1">min</span> = <span class="pl-s1">scores</span>[<span class="pl-c1">0</span>];
+        <span class="pl-smi">int</span> <span class="pl-s1">sum</span> = <span class="pl-c1">0</span>;
+        <span class="pl-smi">int</span> <span class="pl-s1">product</span> = <span class="pl-c1">1</span>;
+        <span class="pl-smi">int</span> <span class="pl-s1">count</span> = <span class="pl-c1">1</span>;
+
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">scores</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-k">if</span>(<span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] &gt; <span class="pl-s1">max</span>) <span class="pl-s1">max</span> = <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>];
+            <span class="pl-k">if</span>(<span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] &lt; <span class="pl-s1">min</span>) <span class="pl-s1">min</span> = <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>];
+            <span class="pl-s1">sum</span> += <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>];
+            <span class="pl-s1">product</span> *= <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>];
+            <span class="pl-s1">count</span> ++;
+        }
+
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"max: "</span>+ <span class="pl-s1">max</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"min: "</span> + <span class="pl-s1">min</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"sum: "</span> + <span class="pl-s1">sum</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"product: "</span> + <span class="pl-s1">product</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"count: "</span> + <span class="pl-s1">count</span>);
+    }
+}</pre></div>
+<p>打印结果</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-s1">max</span>: <span class="pl-c1">10</span>
+<span class="pl-s1">min</span>: -<span class="pl-c1">6</span>
+<span class="pl-s1">sum</span>: <span class="pl-c1">27</span>
+<span class="pl-s1">product</span>: -<span class="pl-c1">162000</span>
+<span class="pl-s1">count</span>: <span class="pl-c1">10</span></pre></div>
+<h2>2.求极值及其索引</h2>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">array</span>;
+
+<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">ArrayList</span>;
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ArrayDemo8</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-smi">int</span>[] <span class="pl-s1">scores</span> = {<span class="pl-c1">1</span>, <span class="pl-c1">10</span>, <span class="pl-c1">3</span>, -<span class="pl-c1">6</span>, <span class="pl-c1">3</span>, -<span class="pl-c1">1</span>, <span class="pl-c1">10</span>, -<span class="pl-c1">3</span>, <span class="pl-c1">10</span>};
+        <span class="pl-smi">int</span> <span class="pl-s1">max</span> = <span class="pl-s1">scores</span>[<span class="pl-c1">0</span>];
+        <span class="pl-smi">int</span> <span class="pl-s1">maxIndexFisrt</span> = <span class="pl-c1">0</span>;
+        <span class="pl-smi">int</span> <span class="pl-s1">maxIndexLast</span> = <span class="pl-c1">0</span>;
+        <span class="pl-smi">int</span> <span class="pl-s1">maxCount</span> = <span class="pl-c1">1</span>;
+        <span class="pl-smi">ArrayList</span>&lt;<span class="pl-smi">Integer</span>&gt; <span class="pl-s1">maxIndices</span> = <span class="pl-k">new</span> <span class="pl-smi">ArrayList</span>&lt;&gt;();
+
+        <span class="pl-smi">int</span> <span class="pl-s1">min</span> = <span class="pl-s1">scores</span>[<span class="pl-c1">0</span>];
+        <span class="pl-smi">int</span> <span class="pl-s1">minIndexFirst</span> = <span class="pl-c1">0</span>;
+        <span class="pl-smi">int</span> <span class="pl-s1">minIndexLast</span> = <span class="pl-c1">0</span>;
+        <span class="pl-smi">int</span> <span class="pl-s1">minCount</span> = <span class="pl-c1">1</span>;
+        <span class="pl-smi">ArrayList</span>&lt;<span class="pl-smi">Integer</span>&gt; <span class="pl-s1">minIndices</span> = <span class="pl-k">new</span> <span class="pl-smi">ArrayList</span>&lt;&gt;();
+
+        <span class="pl-smi">int</span> <span class="pl-s1">sum</span> = <span class="pl-c1">0</span>;
+        <span class="pl-smi">int</span> <span class="pl-s1">product</span> = <span class="pl-c1">1</span>;
+        <span class="pl-smi">int</span> <span class="pl-s1">count</span> = <span class="pl-c1">1</span>;
+
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">scores</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-k">if</span> (<span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] &gt; <span class="pl-s1">max</span>) {
+                <span class="pl-s1">max</span> = <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>];
+                <span class="pl-s1">maxIndexFisrt</span> = <span class="pl-s1">i</span>;
+                <span class="pl-s1">maxIndexLast</span> = <span class="pl-s1">i</span>;
+                <span class="pl-s1">maxCount</span> = <span class="pl-c1">1</span>;
+                <span class="pl-s1">maxIndices</span>.<span class="pl-en">clear</span>();
+                <span class="pl-s1">maxIndices</span>.<span class="pl-en">add</span>(<span class="pl-s1">i</span>);
+            } <span class="pl-k">else</span> <span class="pl-k">if</span> (<span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] == <span class="pl-s1">max</span>) {
+                <span class="pl-s1">maxIndexLast</span> = <span class="pl-s1">i</span>;
+                <span class="pl-s1">maxCount</span>++;
+                <span class="pl-s1">maxIndices</span>.<span class="pl-en">add</span>(<span class="pl-s1">i</span>);
+            }
+
+            <span class="pl-k">if</span> (<span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] &lt; <span class="pl-s1">min</span>) {
+                <span class="pl-s1">min</span> = <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>];
+                <span class="pl-s1">minIndexFirst</span> = <span class="pl-s1">i</span>;
+                <span class="pl-s1">minIndexLast</span> = <span class="pl-s1">i</span>;
+                <span class="pl-s1">minCount</span> = <span class="pl-c1">1</span>;
+                <span class="pl-s1">minIndices</span>.<span class="pl-en">clear</span>();
+                <span class="pl-s1">minIndices</span>.<span class="pl-en">add</span>(<span class="pl-s1">i</span>);
+            } <span class="pl-k">else</span> <span class="pl-k">if</span> (<span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] == <span class="pl-s1">min</span>) {
+                <span class="pl-s1">minIndexLast</span> = <span class="pl-s1">i</span>;
+                <span class="pl-s1">minCount</span>++;
+                <span class="pl-s1">minIndices</span>.<span class="pl-en">add</span>(<span class="pl-s1">i</span>);
+            }
+            <span class="pl-s1">sum</span> += <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>];
+            <span class="pl-s1">product</span> *= <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>];
+            <span class="pl-s1">count</span>++;
+        }
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"max: "</span> + <span class="pl-s1">max</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"maxIndexFirst: "</span> + <span class="pl-s1">maxIndexFisrt</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"maxIndexLast: "</span> + <span class="pl-s1">maxIndexLast</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"maxCount: "</span> + <span class="pl-s1">maxCount</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"maxIndices: "</span> + <span class="pl-s1">maxIndices</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>();
+
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"min: "</span> + <span class="pl-s1">min</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"minIndexFirst: "</span> + <span class="pl-s1">minIndexFirst</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"minIndexLast: "</span> + <span class="pl-s1">minIndexLast</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"minCount: "</span> + <span class="pl-s1">minCount</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"minIndices: "</span> + <span class="pl-s1">minIndices</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>();
+
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"sum: "</span> + <span class="pl-s1">sum</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"product: "</span> + <span class="pl-s1">product</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"count: "</span> + <span class="pl-s1">count</span>);
+    }
+}</pre></div>
+<p>打印结果</p>
+<pre lang="Plain" class="notranslate"><code class="notranslate">max: 10
+maxIndexFirst: 1
+maxIndexLast: 8
+maxCount: 3
+maxIndices: [1, 6, 8]
+
+min: -6
+minIndexFirst: 3
+minIndexLast: 3
+minCount: 1
+minIndices: [3]
+
+sum: 27
+product: -162000
+count: 10
+</code></pre>
+<h2>3.求数组反转</h2>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">array</span>;
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ArrayDemo9</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-smi">int</span>[] <span class="pl-s1">scores</span> = {<span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-c1">6</span>};
+        <span class="pl-smi">int</span> <span class="pl-s1">finalIndex</span> = <span class="pl-s1">scores</span>.<span class="pl-s1">length</span> - <span class="pl-c1">1</span>;
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">scores</span>.<span class="pl-s1">length</span> / <span class="pl-c1">2</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">int</span> <span class="pl-s1">temp</span> = <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>];
+            <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] = <span class="pl-s1">scores</span>[<span class="pl-s1">finalIndex</span> - <span class="pl-s1">i</span>];
+            <span class="pl-s1">scores</span>[<span class="pl-s1">finalIndex</span> - <span class="pl-s1">i</span>] = <span class="pl-s1">temp</span>;
+        }
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s">"["</span>);
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">scores</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">i</span> == <span class="pl-s1">finalIndex</span> ? <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] + <span class="pl-s">"]"</span> : <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] + <span class="pl-s">", "</span>);
+        }
+
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>();
+
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>, <span class="pl-s1">j</span> = <span class="pl-s1">finalIndex</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">j</span>; <span class="pl-s1">i</span>++, <span class="pl-s1">j</span>--) {
+            <span class="pl-smi">int</span> <span class="pl-s1">temp</span> = <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>];
+            <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] = <span class="pl-s1">scores</span>[<span class="pl-s1">j</span>];
+            <span class="pl-s1">scores</span>[<span class="pl-s1">j</span>] = <span class="pl-s1">temp</span>;
+        }
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s">"["</span>);
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">scores</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s1">i</span> == <span class="pl-s1">finalIndex</span> ? <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] + <span class="pl-s">"]"</span> : <span class="pl-s1">scores</span>[<span class="pl-s1">i</span>] + <span class="pl-s">", "</span>);
+        }
+    }
+}</pre></div>
+<p>打印结果</p>
+<pre lang="Plain" class="notranslate"><code class="notranslate">[6, 5, 4, 3, 2, 1]
+[1, 2, 3, 4, 5, 6]
+</code></pre>
+<h2>4.数组打乱顺序</h2>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">array</span>;
+
+<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">Random</span>;
+
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ArrayDemo10</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-smi">int</span>[] <span class="pl-s1">nums</span> = {<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">4</span>,<span class="pl-c1">5</span>};
+        <span class="pl-smi">Random</span> <span class="pl-s1">r</span> = <span class="pl-k">new</span> <span class="pl-smi">Random</span>();
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">nums</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">int</span> <span class="pl-s1">index</span> = <span class="pl-s1">r</span>.<span class="pl-en">nextInt</span>(<span class="pl-s1">nums</span>.<span class="pl-s1">length</span>);
+            <span class="pl-smi">int</span> <span class="pl-s1">temp</span> = <span class="pl-s1">nums</span>[<span class="pl-s1">index</span>];
+            <span class="pl-s1">nums</span>[<span class="pl-s1">index</span>] = <span class="pl-s1">nums</span>[<span class="pl-s1">i</span>];
+            <span class="pl-s1">nums</span>[<span class="pl-s1">i</span>] = <span class="pl-s1">temp</span>;
+        }
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">nums</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">nums</span>[<span class="pl-s1">i</span>]);
+        }
+    }
+}</pre></div>
+<p>打印结果</p>
+<pre lang="Plain" class="notranslate"><code class="notranslate">1
+3
+5
+2
+4
+</code></pre>
+<h1>总结</h1>
+<p>1.数组变量中存储的是数组在堆内存中的地址，通过索引可以访问某个元素。</p>
+<p>2.当多个变量指向同一数组对象时，存储的是相同的地址，因此访问和修改的也是同一数组对象。</p>
+<p>3.当数据变量存储的是null时，此时没有指向某个数组对象，因此访问和修改会报空指针异常。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请标明出处，谢谢！</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zbhgis.github.io">zbhgis</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("06/25/2025"!=""){
+    var startSite=new Date("06/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zbhgis/zbhgis.github.io");
+    script.setAttribute("issue-term","title");
+    
+    script.setAttribute("theme","github-light");
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekArticleTOC.js'><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekLightbox.js'></script><script>document.querySelectorAll('a').forEach(anchor => {const img = anchor.querySelector('img');if (img && img.hasAttribute('data-canonical-src')) {const canonicalSrc = img.getAttribute('data-canonical-src');anchor.setAttribute('href', canonicalSrc);img.setAttribute('src', canonicalSrc);img.removeAttribute('data-canonical-src');}});</script>
+
+</html>
