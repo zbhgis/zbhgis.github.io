@@ -1,7 +1,7 @@
 
 # 结果对比
 
-本文复现的这张图是今年7月4号发表在Nature Climate Change中的一张热力图。完整代码获取方法在文末。
+本文复现的这张图是今年7月4号发表在Nature Climate Change中的一张多子图热力图。完整代码获取方法在文末。
 
 废话不说，先上原图。
 
@@ -244,7 +244,7 @@ https://github.com/zbhgis/QuickPlot
 
 或者公众号后台回复 251203
 
-在plot文件夹的heatmap文件夹中
+在QuickPLot仓库plot文件夹的heatmap文件夹中
 
 # 参考
 
