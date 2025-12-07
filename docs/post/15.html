@@ -7,13 +7,13 @@
     <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
-<meta name="description" content="
+<meta name="description" content="[TOC]
 
 官方说明：
 
 **Describe** 函数返回的 Describe 对象包含多个属性，如数据类型、字段、索引以及许多其他属性。">
 <meta property="og:title" content="【Arcpy】入门学习笔记（三）-数据属性的获取">
-<meta property="og:description" content="
+<meta property="og:description" content="[TOC]
 
 官方说明：
 
@@ -88,7 +88,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p>官方说明：</p>
+<div class="markdown-body" id="postBody"><p>[TOC]</p>
+<p>官方说明：</p>
 <p><strong>Describe</strong> 函数返回的 Describe 对象包含多个属性，如数据类型、字段、索引以及许多其他属性。该对象的属性是动态的，这意味着根据所描述的数据类型，会有不同的描述属性可供使用。</p>
 <p>Describe 属性被组织成一系列属性组。任何特定数据集都将获取其中至少一个组的属性。例如，如果要描述一个地理数据库要素类，您可访问 <a href="https://desktop.arcgis.com/zh-cn/arcmap/10.3/analyze/arcpy-functions/gdb-featureclass-properties.htm" rel="nofollow">GDB 要素类</a>、<a href="https://desktop.arcgis.com/zh-cn/arcmap/10.3/analyze/arcpy-functions/featureclass-properties.htm" rel="nofollow">要素类</a>、<a href="https://desktop.arcgis.com/zh-cn/arcmap/10.3/analyze/arcpy-functions/table-properties.htm" rel="nofollow">表</a>和<a href="https://desktop.arcgis.com/zh-cn/arcmap/10.3/analyze/arcpy-functions/dataset-properties.htm" rel="nofollow">数据集</a>属性组中的属性。所有数据，不管是哪种数据类型，总会获取通用 <a href="https://desktop.arcgis.com/zh-cn/arcmap/10.3/analyze/arcpy-functions/describe-object-properties.htm" rel="nofollow">Describe 对象</a>属性。</p>
 <h2>常用的属性</h2>
