@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Sun, 07 Dec 2025 07:02:56 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>【Java】面向对象基础</title><link>https://zbhgis.github.io/post/48.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>zbhgis</title><link>https://zbhgis.github.io</link><description>Focus on GIS, RS, Ecology</description><copyright>zbhgis</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/116264372?s=400&amp;u=0c4073b50ae732450cd91f380769ba6710d6ce53&amp;v=4</url><title>avatar</title><link>https://zbhgis.github.io</link></image><lastBuildDate>Sun, 07 Dec 2025 07:03:34 +0000</lastBuildDate><managingEditor>zbhgis</managingEditor><ttl>60</ttl><webMaster>zbhgis</webMaster><item><title>【Java】面向对象基础</title><link>https://zbhgis.github.io/post/48.html</link><description>
 # 前言
 
 1.之前学过，因此本文是个人复习笔记，为视频的总结以及个人思考，可能不是很详细。</description><guid isPermaLink="true">https://zbhgis.github.io/post/48.html</guid><pubDate>Sun, 07 Dec 2025 06:46:16 +0000</pubDate></item><item><title>【Java】String</title><link>https://zbhgis.github.io/post/47.html</link><description>
@@ -617,7 +617,7 @@ https://zbhgis.blog.csdn.net/article/details/139023038
 
 表面反射率：Landsat Collection 2 表面反射率的比例因子为 0.0000275，每个像素的额外偏移为 -0.2。</description><guid isPermaLink="true">https://zbhgis.github.io/post/12.html</guid><pubDate>Thu, 26 Jun 2025 15:36:53 +0000</pubDate></item><item><title>MATLAB 2016计算NDVI</title><link>https://zbhgis.github.io/post/11.html</link><description># MATLAB 2016计算NDVI
 
-之前大二的一段MATLAB代码，突然找到，记录一下当时初学MATLAB的程序，用于读取TIFF计算归一化植被指数（NDVI）并将其保存为TIFF文件。</description><guid isPermaLink="true">https://zbhgis.github.io/post/11.html</guid><pubDate>Thu, 26 Jun 2025 15:35:38 +0000</pubDate></item><item><title>Arcpy入门学习笔记（二）：脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description># Arcpy入门学习笔记（二）：脚本工具
+之前大二的一段MATLAB代码，突然找到，记录一下当时初学MATLAB的程序，用于读取TIFF计算归一化植被指数（NDVI）并将其保存为TIFF文件。</description><guid isPermaLink="true">https://zbhgis.github.io/post/11.html</guid><pubDate>Thu, 26 Jun 2025 15:35:38 +0000</pubDate></item><item><title>【Arcpy】入门学习笔记（二）-脚本工具</title><link>https://zbhgis.github.io/post/10.html</link><description>
 
 主要介绍Arcpy脚本工具制作
 
