@@ -20,7 +20,7 @@
 <meta property="og:url" content="https://zbhgis.github.io/post/47.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
 <title>【Java】String</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -44,17 +44,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     body {padding: 8px;}
     .postTitle{font-size:24px;}
 }
-.copy-feedback {
-    display: none;
-    position: absolute;
-    top: 10px;
-    right: 50px;
-    color: var(--color-fg-on-emphasis);
-    background-color: var(--color-fg-muted);
-    border-radius: 3px;
-    padding: 5px 8px;
-    font-size: 12px;
-}
+
 </style>
 
 
@@ -102,30 +92,31 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>2.String方法</h2>
 <p>通过new String类来创建字符串对象，并调用构造器初始化字符串。第一种和第二种不常用。</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3b391c98c51d0b490b5d3063d243a54251000d0997fcdd51c6089204a8c2ed3f/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323035323133323434332e706e67"><img src="https://camo.githubusercontent.com/3b391c98c51d0b490b5d3063d243a54251000d0997fcdd51c6089204a8c2ed3f/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323035323133323434332e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202512052132443.png" style="max-width: 100%;"></a></p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">string</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.string;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">StringDemo0</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-c">// 直接创建</span>
-        <span class="pl-smi">String</span> <span class="pl-s1">name</span> = <span class="pl-s">"test1"</span>;
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">name</span>);
+public class StringDemo0 {
+    public static void main(String[] args) {
+        // 直接创建
+        String name = "test1";
+        System.out.println(name);
 
-        <span class="pl-c">// new String类创建，四种</span>
-        <span class="pl-smi">String</span> <span class="pl-s1">rs1</span> = <span class="pl-k">new</span> <span class="pl-smi">String</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">rs1</span>);
+        // new String类创建，四种
+        String rs1 = new String();
+        System.out.println(rs1);
 
-        <span class="pl-smi">String</span> <span class="pl-s1">rs2</span> = <span class="pl-k">new</span> <span class="pl-smi">String</span>(<span class="pl-s">"test123"</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">rs2</span>);
+        String rs2 = new String("test123");
+        System.out.println(rs2);
 
-        <span class="pl-smi">char</span>[] <span class="pl-s1">chars</span> = {<span class="pl-s">'t'</span>, <span class="pl-s">'e'</span>, <span class="pl-s">'1'</span>, <span class="pl-s">'2'</span>};
-        <span class="pl-smi">String</span> <span class="pl-s1">rs3</span> = <span class="pl-k">new</span> <span class="pl-smi">String</span>(<span class="pl-s1">chars</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">rs3</span>);
+        char[] chars = {'t', 'e', '1', '2'};
+        String rs3 = new String(chars);
+        System.out.println(rs3);
 
-        <span class="pl-smi">byte</span>[] <span class="pl-s1">bytes</span> = {<span class="pl-c1">1</span>, <span class="pl-c1">127</span>, <span class="pl-c1">66</span>};
-        <span class="pl-smi">String</span> <span class="pl-s1">rs4</span> = <span class="pl-k">new</span> <span class="pl-smi">String</span>(<span class="pl-s1">bytes</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">rs4</span>);
+        byte[] bytes = {1, 127, 66};
+        String rs4 = new String(bytes);
+        System.out.println(rs4);
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">test1
 
@@ -144,40 +135,41 @@ ABC
 <p>4.String中的substring()方法包前不包后；</p>
 <p>5.String中的equalsIgnoreCase()方法，使用在含有中文的字符串也可以。</p>
 <p>6.打印字符串长度，中文一个汉字算一个字符长度</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">string</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.string;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">Arrays</span>;
+import java.util.Arrays;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">StringDemo1</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">String</span> <span class="pl-s1">s1</span> = <span class="pl-s">"编程语言Java"</span>;
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>.<span class="pl-en">length</span>());
+public class StringDemo1 {
+    public static void main(String[] args) {
+        String s1 = "编程语言Java";
+        System.out.println(s1.length());
         
-        <span class="pl-smi">char</span> <span class="pl-s1">c</span> = <span class="pl-s1">s1</span>.<span class="pl-en">charAt</span>(<span class="pl-c1">1</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">c</span>);
+        char c = s1.charAt(1);
+        System.out.println(c);
 
-        <span class="pl-smi">char</span>[] <span class="pl-s1">chars</span> = <span class="pl-s1">s1</span>.<span class="pl-en">toCharArray</span>();
-        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">chars</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
-            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">chars</span>[<span class="pl-s1">i</span>]);
+        char[] chars = s1.toCharArray();
+        for (int i = 0; i &lt; chars.length; i++) {
+            System.out.println(chars[i]);
         }
 
-        <span class="pl-smi">String</span> <span class="pl-s1">s2</span> = <span class="pl-s">"编程语言java"</span>;
-        <span class="pl-smi">String</span> <span class="pl-s1">s3</span> = <span class="pl-k">new</span> <span class="pl-smi">String</span>(<span class="pl-s">"编程语言Java"</span>);
+        String s2 = "编程语言java";
+        String s3 = new String("编程语言Java");
 
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span> == <span class="pl-s">"编程语言Java"</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span> == <span class="pl-s1">s3</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>.<span class="pl-en">equals</span>(<span class="pl-s1">s2</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>.<span class="pl-en">equalsIgnoreCase</span>(<span class="pl-s1">s2</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>.<span class="pl-en">substring</span>(<span class="pl-c1">0</span>, <span class="pl-c1">2</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>.<span class="pl-en">substring</span>(<span class="pl-c1">1</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>.<span class="pl-en">replace</span>(<span class="pl-s">"编程语言"</span>, <span class="pl-s">"C++"</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>.<span class="pl-en">contains</span>(<span class="pl-s">"编程语言"</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>.<span class="pl-en">contains</span>(<span class="pl-s">"java"</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>.<span class="pl-en">startsWith</span>(<span class="pl-s">"编程语言"</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>.<span class="pl-en">startsWith</span>(<span class="pl-s">"Java"</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Arrays</span>.<span class="pl-en">toString</span>(<span class="pl-s1">s1</span>.<span class="pl-en">split</span>(<span class="pl-s">"语言"</span>)));
+        System.out.println(s1 == "编程语言Java");
+        System.out.println(s1 == s3);
+        System.out.println(s1.equals(s2));
+        System.out.println(s1.equalsIgnoreCase(s2));
+        System.out.println(s1.substring(0, 2));
+        System.out.println(s1.substring(1));
+        System.out.println(s1.replace("编程语言", "C++"));
+        System.out.println(s1.contains("编程语言"));
+        System.out.println(s1.contains("java"));
+        System.out.println(s1.startsWith("编程语言"));
+        System.out.println(s1.startsWith("Java"));
+        System.out.println(Arrays.toString(s1.split("语言")));
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">8
 程
@@ -211,30 +203,31 @@ false
 <h2>3.new String创建的字符串对象存储在堆内存中，内容相同但地址不同</h2>
 <p>通过new String创建的字符串对象，每new一次都会产生一个新的对象放在堆内存中。即new String创建的对象每次即使内容相同，但是由于开辟了新的内存，因此其地址不同。</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/56a744c22911163780bd9a5eb3aaa5643db8db0263b294603bcff523eb6e47ca/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323035323133323833352e706e67"><img src="https://camo.githubusercontent.com/56a744c22911163780bd9a5eb3aaa5643db8db0263b294603bcff523eb6e47ca/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323035323133323833352e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202512052132835.png" style="max-width: 100%;"></a></p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">string</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.string;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">StringDemo2</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-c">// 1.String的对象是不可变字符串对象</span>
-        <span class="pl-smi">String</span> <span class="pl-s1">s1</span> = <span class="pl-s">"test"</span>;
-        <span class="pl-smi">String</span> <span class="pl-s1">res1</span> = <span class="pl-s1">s1</span> + <span class="pl-s">"123"</span>;
-        <span class="pl-smi">String</span> <span class="pl-s1">res2</span> = <span class="pl-s1">res1</span> + <span class="pl-s">"!"</span>;
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">res1</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">res2</span>);
+public class StringDemo2 {
+    public static void main(String[] args) {
+        // 1.String的对象是不可变字符串对象
+        String s1 = "test";
+        String res1 = s1 + "123";
+        String res2 = res1 + "!";
+        System.out.println(s1);
+        System.out.println(res1);
+        System.out.println(res2);
 
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>();
+        System.out.println();
         
-        <span class="pl-c">// 2.双引号创建的字符串对象存储在常量池中，且内容相同只能存储一份</span>
-        <span class="pl-c">// 3.new String创建的字符串对象存储在堆内存中，内容相同但地址不同</span>
-        <span class="pl-smi">String</span> <span class="pl-s1">s2</span> = <span class="pl-s">"test"</span>;
-        <span class="pl-smi">String</span> <span class="pl-s1">s3</span> = <span class="pl-k">new</span> <span class="pl-smi">String</span>(<span class="pl-s">"test"</span>);
-        <span class="pl-smi">String</span> <span class="pl-s1">s4</span> = <span class="pl-k">new</span> <span class="pl-smi">String</span>(<span class="pl-s">"test"</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span> == <span class="pl-s1">s2</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span> == <span class="pl-s1">s3</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span> == <span class="pl-s1">s4</span>);
+        // 2.双引号创建的字符串对象存储在常量池中，且内容相同只能存储一份
+        // 3.new String创建的字符串对象存储在堆内存中，内容相同但地址不同
+        String s2 = "test";
+        String s3 = new String("test");
+        String s4 = new String("test");
+        System.out.println(s1 == s2);
+        System.out.println(s1 == s3);
+        System.out.println(s1 == s4);
     }
-}</pre></div>
+}
+</code></pre>
 <h2>思考</h2>
 <h3>创建对象的个数</h3>
 <p>s2先创建了一个常量存储到堆内存的常量池中，然后new String方法又创建了一个内容相同但地址不同的字符串对象到堆内存中。之后的s1通过双引号生产字符串对象相当于从堆内存的常量池中直接获取到“abc”对象，因此没有创建新的字符串对象。</p>
@@ -243,26 +236,27 @@ false
 <p>在Test3中，s3是通过s2与“c”进行运算得到，结果开辟在新的堆内存中，而s1通过双引号创建存储在常量池中，因此s3与s1地址不同。</p>
 <p>在Test4中，s2是通过“a” “b” “c”三者相加得到，但是由于三者都是字面量（常量），因此java程序在编译性，识别到运算的三者都是常量，会直接转为"abc"，提高程序性能，因此相当于s2 = "abc"，相当于只创建了一个字符串变量在堆内存的常量池中。而上面的s1执行后已经存储了一份"abc"在常量池，依次s2直接从常量池中获取到"abc"。因此s2与s1地址相同。</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e0ef9af030c6e821da05b49c927b88b7c8e9970fe0e5a634b6b27ca19fef9e05/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323035323133343733392e706e67"><img src="https://camo.githubusercontent.com/e0ef9af030c6e821da05b49c927b88b7c8e9970fe0e5a634b6b27ca19fef9e05/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323531323035323133343733392e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202512052134739.png" style="max-width: 100%;"></a></p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">string</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.string;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">StringDemo3</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">String</span> <span class="pl-s1">s1</span> = <span class="pl-s">"abc"</span>;
-        <span class="pl-smi">String</span> <span class="pl-s1">s2</span> = <span class="pl-s">"a"</span> + <span class="pl-s">"b"</span> + <span class="pl-s">"c"</span>;
-        <span class="pl-smi">String</span> <span class="pl-s1">s3</span> = <span class="pl-s1">s2</span>;
-        <span class="pl-c">// 涉及到运算，结果需要开辟新内存</span>
-        <span class="pl-smi">String</span> <span class="pl-s1">s4</span> = <span class="pl-s1">s2</span> + <span class="pl-s">""</span>;
+public class StringDemo3 {
+    public static void main(String[] args) {
+        String s1 = "abc";
+        String s2 = "a" + "b" + "c";
+        String s3 = s2;
+        // 涉及到运算，结果需要开辟新内存
+        String s4 = s2 + "";
 
-        <span class="pl-c">// 内容相同，地址也相同</span>
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span> == <span class="pl-s1">s2</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span> == <span class="pl-s1">s3</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s2</span> == <span class="pl-s1">s3</span>);
+        // 内容相同，地址也相同
+        System.out.println(s1 == s2);
+        System.out.println(s1 == s3);
+        System.out.println(s2 == s3);
 
-        <span class="pl-c">// 内容相同，地址不同</span>
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span> == <span class="pl-s1">s4</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">s1</span>.<span class="pl-en">equals</span>(<span class="pl-s1">s4</span>));
+        // 内容相同，地址不同
+        System.out.println(s1 == s4);
+        System.out.println(s1.equals(s4));
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">true
 true
@@ -272,41 +266,42 @@ true
 </code></pre>
 <h1>String的应用案例</h1>
 <p>设计一个系统模拟登录界面，检查用户提供的账户与密码是否相同。</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">string</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.string;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">Scanner</span>;
+import java.util.Scanner;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">StringDemo4</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-c1">3</span>; <span class="pl-s1">i</span>++) {
-            <span class="pl-smi">Scanner</span> <span class="pl-s1">sc</span> = <span class="pl-k">new</span> <span class="pl-smi">Scanner</span>(<span class="pl-smi">System</span>.<span class="pl-s1">in</span>);
-            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"请您输入登录名称"</span>);
-            <span class="pl-smi">String</span> <span class="pl-s1">loginName</span> = <span class="pl-s1">sc</span>.<span class="pl-en">next</span>();
-            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"请您输入登录密码"</span>);
-            <span class="pl-smi">String</span> <span class="pl-s1">passWord</span> = <span class="pl-s1">sc</span>.<span class="pl-en">next</span>();
+public class StringDemo4 {
+    public static void main(String[] args) {
+        for (int i = 0; i &lt; 3; i++) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("请您输入登录名称");
+            String loginName = sc.next();
+            System.out.println("请您输入登录密码");
+            String passWord = sc.next();
 
-            <span class="pl-smi">boolean</span> <span class="pl-s1">res</span> = <span class="pl-en">login</span>(<span class="pl-s1">loginName</span>, <span class="pl-s1">passWord</span>);
-            <span class="pl-k">if</span> (<span class="pl-s1">res</span>) {
-                <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"恭喜您，欢迎进入系统"</span>);
-            } <span class="pl-k">else</span> {
-                <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"登录名或密码错误，请确认"</span>);
+            boolean res = login(loginName, passWord);
+            if (res) {
+                System.out.println("恭喜您，欢迎进入系统");
+            } else {
+                System.out.println("登录名或密码错误，请确认");
             }
         }
 
     }
 
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">boolean</span> <span class="pl-en">login</span>(<span class="pl-smi">String</span> <span class="pl-s1">loginName</span>, <span class="pl-smi">String</span> <span class="pl-s1">passWord</span>) {
-        <span class="pl-smi">String</span> <span class="pl-s1">okLoginName</span> = <span class="pl-s">"test"</span>;
-        <span class="pl-smi">String</span> <span class="pl-s1">okPassWord</span> = <span class="pl-s">"123456"</span>;
-        <span class="pl-k">if</span> (<span class="pl-s1">okLoginName</span>.<span class="pl-en">equals</span>(<span class="pl-s1">loginName</span>) &amp;&amp; <span class="pl-s1">okPassWord</span>.<span class="pl-en">equals</span>(<span class="pl-s1">passWord</span>)) {
-            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"账户密码正确"</span>);
-            <span class="pl-k">return</span> <span class="pl-c1">true</span>;
-        } <span class="pl-k">else</span> {
-            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"账户或密码错误"</span>);
-            <span class="pl-k">return</span> <span class="pl-c1">false</span>;
+    public static boolean login(String loginName, String passWord) {
+        String okLoginName = "test";
+        String okPassWord = "123456";
+        if (okLoginName.equals(loginName) &amp;&amp; okPassWord.equals(passWord)) {
+            System.out.println("账户密码正确");
+            return true;
+        } else {
+            System.out.println("账户或密码错误");
+            return false;
         }
     }
-}</pre></div>
+}
+</code></pre>
 <h1>总结</h1>
 <p>1.String常用api需要熟悉；</p>
 <p>2.String本身是对象，进行比较时候是比较地址。==比较的是地址；equals()比较的是内容。</p>
@@ -335,7 +330,7 @@ if("06/25/2025"!=""){
 </script></div>
 </body>
 <script>
-var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
 var utterancesLoad=0;
 
 console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
@@ -381,70 +376,7 @@ function iFrameLoading(){
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const createClipboardHTML = (codeContent, additionalClasses = '') => `
-        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
-        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
-            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
-                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
-                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
-            </clipboard-copy>
-            <div class="copy-feedback">Copied!</div>
-        </div>
-    `;
 
-    const handleCodeElements = (selector = '') => {
-        document.querySelectorAll(selector).forEach(codeElement => {
-            const codeContent = codeElement.innerHTML;
-            const newStructure = document.createElement('div');
-            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
-            newStructure.innerHTML = createClipboardHTML(codeContent);
-
-            const parentElement = codeElement.parentElement;
-            if (selector.includes('highlight')) {
-                parentElement.insertBefore(newStructure, codeElement.nextSibling);
-                parentElement.removeChild(codeElement);
-            } else {
-                parentElement.parentElement.replaceChild(newStructure, parentElement);
-            }
-        });
-    };
-
-    handleCodeElements('pre.notranslate > code.notranslate');
-    handleCodeElements('div.highlight > pre.notranslate');
-
-    let currentFeedback = null;
-    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
-        copyButton.addEventListener('click', () => {
-            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
-            const tempTextArea = document.createElement('textarea');
-            tempTextArea.value = codeContent;
-            document.body.appendChild(tempTextArea);
-            tempTextArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempTextArea);
-
-            const copyIcon = copyButton.querySelector('.octicon-copy');
-            const checkIcon = copyButton.querySelector('.octicon-check');
-            const copyFeedback = copyButton.nextElementSibling;
-
-            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
-            currentFeedback = copyFeedback;
-
-            copyIcon.classList.add('d-none');
-            checkIcon.classList.remove('d-none');
-            copyFeedback.style.display = 'block';
-            copyButton.style.borderColor = 'var(--color-success-fg)';
-
-            setTimeout(() => {
-                copyIcon.classList.remove('d-none');
-                checkIcon.classList.add('d-none');
-                copyFeedback.style.display = 'none';
-                copyButton.style.borderColor = '';
-            }, 2000);
-        });
-    });
-});
 
 </script>
 <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekArticleTOC.js'><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekLightbox.js'></script><script>document.querySelectorAll('a').forEach(anchor => {const img = anchor.querySelector('img');if (img && img.hasAttribute('data-canonical-src')) {const canonicalSrc = img.getAttribute('data-canonical-src');anchor.setAttribute('href', canonicalSrc);img.setAttribute('src', canonicalSrc);img.removeAttribute('data-canonical-src');}});</script>
