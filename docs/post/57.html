@@ -30,7 +30,7 @@
 <meta property="og:url" content="https://zbhgis.github.io/post/57.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
 <title>【Java】面向对象进阶-接口</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 
 </head>
@@ -54,7 +54,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     body {padding: 8px;}
     .postTitle{font-size:24px;}
 }
-
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
 </style>
 
 
@@ -108,232 +118,221 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>}</p>
 <p>一个类可以实现多个接口，实现类实现多个接口必须重写所有接口的所有抽象方法，否则实现类需要定义为抽象类</p>
 <p>Object6Demo1.java</p>
-<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.object6;
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">object6</span>;
 
-public class Object6Demo1 {
-    public static void main(String[] args) {
-        System.out.println(A.STUDENT_NAME);
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Object6Demo1</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">A</span>.<span class="pl-c1">STUDENT_NAME</span>);
 
-        // A a = new A(); // 不可行
-        D d = new D();
+        <span class="pl-c">// A a = new A(); // 不可行</span>
+        <span class="pl-smi">D</span> <span class="pl-s1">d</span> = <span class="pl-k">new</span> <span class="pl-smi">D</span>();
     }
 
-}
-</code></pre>
+}</pre></div>
 <p>A.java</p>
-<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.object6;
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">object6</span>;
 
-public interface A {
-    // 成员变量
-    String STUDENT_NAME = "明";
-    // 成员方法（抽象方法）
-    void test();
-}
-</code></pre>
+<span class="pl-k">public</span> <span class="pl-k">interface</span> <span class="pl-smi">A</span> {
+    <span class="pl-c">// 成员变量</span>
+    <span class="pl-smi">String</span> <span class="pl-c1">STUDENT_NAME</span> = <span class="pl-s">"明"</span>;
+    <span class="pl-c">// 成员方法（抽象方法）</span>
+    <span class="pl-smi">void</span> <span class="pl-en">test</span>();
+}</pre></div>
 <p>B.java</p>
-<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.object6;
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">object6</span>;
 
-public interface B {
-    void testb1();
+<span class="pl-k">public</span> <span class="pl-k">interface</span> <span class="pl-smi">B</span> {
+    <span class="pl-smi">void</span> <span class="pl-en">testb1</span>();
 
-    void testb2();
-}
-</code></pre>
+    <span class="pl-smi">void</span> <span class="pl-en">testb2</span>();
+}</pre></div>
 <p>C.java</p>
-<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.object6;
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">object6</span>;
 
-public interface C {
-    void testc1();
+<span class="pl-k">public</span> <span class="pl-k">interface</span> <span class="pl-smi">C</span> {
+    <span class="pl-smi">void</span> <span class="pl-en">testc1</span>();
 
-    void testc2();
-}
-</code></pre>
+    <span class="pl-smi">void</span> <span class="pl-en">testc2</span>();
+}</pre></div>
 <p>D.java</p>
-<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.object6;
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">object6</span>;
 
-public class D implements B, C{
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">D</span> <span class="pl-k">implements</span> <span class="pl-smi">B</span>, <span class="pl-smi">C</span>{
 
 
-    @Override
-    public void testb1() {
-
-    }
-
-    @Override
-    public void testb2() {
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">testb1</span>() {
 
     }
 
-    @Override
-    public void testc1() {
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">testb2</span>() {
 
     }
 
-    @Override
-    public void testc2() {
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">testc1</span>() {
 
     }
-}
-</code></pre>
+
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">testc2</span>() {
+
+    }
+}</pre></div>
 <h1>接口的好处</h1>
 <p>弥补单继承的不足</p>
 <p>解耦合，编程更加灵活</p>
 <p>案例：通过接口实现两套方法，打印不同的学生信息和学生分数</p>
 <p>Student.java</p>
-<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.object6;
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">object6</span>;
 
-public class Student {
-    private String name;
-    private char sex;
-    private double score;
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Student</span> {
+    <span class="pl-k">private</span> <span class="pl-smi">String</span> <span class="pl-s1">name</span>;
+    <span class="pl-k">private</span> <span class="pl-smi">char</span> <span class="pl-s1">sex</span>;
+    <span class="pl-k">private</span> <span class="pl-smi">double</span> <span class="pl-s1">score</span>;
 
-    public Student() {
+    <span class="pl-k">public</span> <span class="pl-smi">Student</span>() {
     }
 
-    public Student(String name, char sex, double score) {
-        this.name = name;
-        this.sex = sex;
-        this.score = score;
+    <span class="pl-k">public</span> <span class="pl-smi">Student</span>(<span class="pl-smi">String</span> <span class="pl-s1">name</span>, <span class="pl-smi">char</span> <span class="pl-s1">sex</span>, <span class="pl-smi">double</span> <span class="pl-s1">score</span>) {
+        <span class="pl-smi">this</span>.<span class="pl-s1">name</span> = <span class="pl-s1">name</span>;
+        <span class="pl-smi">this</span>.<span class="pl-s1">sex</span> = <span class="pl-s1">sex</span>;
+        <span class="pl-smi">this</span>.<span class="pl-s1">score</span> = <span class="pl-s1">score</span>;
     }
 
-    public String getName() {
-        return name;
+    <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">getName</span>() {
+        <span class="pl-k">return</span> <span class="pl-s1">name</span>;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">setName</span>(<span class="pl-smi">String</span> <span class="pl-s1">name</span>) {
+        <span class="pl-smi">this</span>.<span class="pl-s1">name</span> = <span class="pl-s1">name</span>;
     }
 
-    public char getSex() {
-        return sex;
+    <span class="pl-k">public</span> <span class="pl-smi">char</span> <span class="pl-en">getSex</span>() {
+        <span class="pl-k">return</span> <span class="pl-s1">sex</span>;
     }
 
-    public void setSex(char sex) {
-        this.sex = sex;
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">setSex</span>(<span class="pl-smi">char</span> <span class="pl-s1">sex</span>) {
+        <span class="pl-smi">this</span>.<span class="pl-s1">sex</span> = <span class="pl-s1">sex</span>;
     }
 
-    public double getScore() {
-        return score;
+    <span class="pl-k">public</span> <span class="pl-smi">double</span> <span class="pl-en">getScore</span>() {
+        <span class="pl-k">return</span> <span class="pl-s1">score</span>;
     }
 
-    public void setScore(double score) {
-        this.score = score;
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">setScore</span>(<span class="pl-smi">double</span> <span class="pl-s1">score</span>) {
+        <span class="pl-smi">this</span>.<span class="pl-s1">score</span> = <span class="pl-s1">score</span>;
     }
-}
-</code></pre>
+}</pre></div>
 <p>ClassManager.java</p>
-<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.object6;
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">object6</span>;
 
-import java.util.ArrayList;
+<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">ArrayList</span>;
 
-public class ClassManager {
-    private ArrayList&lt;Student&gt; students = new ArrayList&lt;&gt;();
-    private StudentOperator studentOperator = new StudentOperatorImpl1();
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">ClassManager</span> {
+    <span class="pl-k">private</span> <span class="pl-smi">ArrayList</span>&lt;<span class="pl-smi">Student</span>&gt; <span class="pl-s1">students</span> = <span class="pl-k">new</span> <span class="pl-smi">ArrayList</span>&lt;&gt;();
+    <span class="pl-k">private</span> <span class="pl-smi">StudentOperator</span> <span class="pl-s1">studentOperator</span> = <span class="pl-k">new</span> <span class="pl-smi">StudentOperatorImpl1</span>();
 
-    public ClassManager() {
-        students.add(new Student("明", '女', 66));
-        students.add(new Student("山", '男', 33));
-        students.add(new Student("水", '男', 99));
+    <span class="pl-k">public</span> <span class="pl-smi">ClassManager</span>() {
+        <span class="pl-s1">students</span>.<span class="pl-en">add</span>(<span class="pl-k">new</span> <span class="pl-smi">Student</span>(<span class="pl-s">"明"</span>, <span class="pl-s">'女'</span>, <span class="pl-c1">66</span>));
+        <span class="pl-s1">students</span>.<span class="pl-en">add</span>(<span class="pl-k">new</span> <span class="pl-smi">Student</span>(<span class="pl-s">"山"</span>, <span class="pl-s">'男'</span>, <span class="pl-c1">33</span>));
+        <span class="pl-s1">students</span>.<span class="pl-en">add</span>(<span class="pl-k">new</span> <span class="pl-smi">Student</span>(<span class="pl-s">"水"</span>, <span class="pl-s">'男'</span>, <span class="pl-c1">99</span>));
     }
 
-    public void printInfo() {
-        studentOperator.printAllInfo(students);
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">printInfo</span>() {
+        <span class="pl-s1">studentOperator</span>.<span class="pl-en">printAllInfo</span>(<span class="pl-s1">students</span>);
     }
 
-    public void printScore() {
-        studentOperator.printAverageScore(students);
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">printScore</span>() {
+        <span class="pl-s1">studentOperator</span>.<span class="pl-en">printAverageScore</span>(<span class="pl-s1">students</span>);
     }
-}
-</code></pre>
+}</pre></div>
 <p>StudentOperator.java</p>
-<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.object6;
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">object6</span>;
 
-import java.util.ArrayList;
+<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">ArrayList</span>;
 
-public interface StudentOperator {
-    void printAllInfo(ArrayList&lt;Student&gt; students);
+<span class="pl-k">public</span> <span class="pl-k">interface</span> <span class="pl-smi">StudentOperator</span> {
+    <span class="pl-smi">void</span> <span class="pl-en">printAllInfo</span>(<span class="pl-smi">ArrayList</span>&lt;<span class="pl-smi">Student</span>&gt; <span class="pl-s1">students</span>);
 
-    void printAverageScore(ArrayList&lt;Student&gt; students);
-}
-</code></pre>
+    <span class="pl-smi">void</span> <span class="pl-en">printAverageScore</span>(<span class="pl-smi">ArrayList</span>&lt;<span class="pl-smi">Student</span>&gt; <span class="pl-s1">students</span>);
+}</pre></div>
 <p>StudentOperatorImpl1.java</p>
-<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.object6;
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">object6</span>;
 
-import java.util.ArrayList;
+<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">ArrayList</span>;
 
-public class StudentOperatorImpl1 implements StudentOperator {
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">StudentOperatorImpl1</span> <span class="pl-k">implements</span> <span class="pl-smi">StudentOperator</span> {
 
-    @Override
-    public void printAllInfo(ArrayList&lt;Student&gt; students) {
-        System.out.println("-------------------");
-        for (int i = 0; i &lt; students.size(); i++) {
-            Student s = students.get(i);
-            System.out.println("姓名：" + s.getName() + "性别：" + s.getSex() + "成绩：" + s.getScore());
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">printAllInfo</span>(<span class="pl-smi">ArrayList</span>&lt;<span class="pl-smi">Student</span>&gt; <span class="pl-s1">students</span>) {
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"-------------------"</span>);
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">students</span>.<span class="pl-en">size</span>(); <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">Student</span> <span class="pl-s1">s</span> = <span class="pl-s1">students</span>.<span class="pl-en">get</span>(<span class="pl-s1">i</span>);
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"姓名："</span> + <span class="pl-s1">s</span>.<span class="pl-en">getName</span>() + <span class="pl-s">"性别："</span> + <span class="pl-s1">s</span>.<span class="pl-en">getSex</span>() + <span class="pl-s">"成绩："</span> + <span class="pl-s1">s</span>.<span class="pl-en">getScore</span>());
         }
-        System.out.println("--------------------");
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"--------------------"</span>);
     }
 
-    @Override
-    public void printAverageScore(ArrayList&lt;Student&gt; students) {
-        double allScore = 0.0;
-        for (int i = 0; i &lt; students.size(); i++) {
-            Student s = students.get(i);
-            allScore += s.getScore();
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">printAverageScore</span>(<span class="pl-smi">ArrayList</span>&lt;<span class="pl-smi">Student</span>&gt; <span class="pl-s1">students</span>) {
+        <span class="pl-smi">double</span> <span class="pl-s1">allScore</span> = <span class="pl-c1">0.0</span>;
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">students</span>.<span class="pl-en">size</span>(); <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">Student</span> <span class="pl-s1">s</span> = <span class="pl-s1">students</span>.<span class="pl-en">get</span>(<span class="pl-s1">i</span>);
+            <span class="pl-s1">allScore</span> += <span class="pl-s1">s</span>.<span class="pl-en">getScore</span>();
         }
-        System.out.println("平均分：" + allScore / students.size());
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"平均分："</span> + <span class="pl-s1">allScore</span> / <span class="pl-s1">students</span>.<span class="pl-en">size</span>());
     }
-}
-</code></pre>
+}</pre></div>
 <p>StudentOperatorImpl2.java</p>
-<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.object6;
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">object6</span>;
 
-import java.util.ArrayList;
+<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">ArrayList</span>;
 
-public class StudentOperatorImpl2 implements StudentOperator {
-    @Override
-    public void printAllInfo(ArrayList&lt;Student&gt; students) {
-        System.out.println("-------------------");
-        int count1 = 0;
-        int count2 = 0;
-        for (int i = 0; i &lt; students.size(); i++) {
-            Student s = students.get(i);
-            System.out.println("姓名：" + s.getName() + "性别：" + s.getSex() + "成绩：" + s.getScore());
-            if (s.getSex() == '男') count1++;
-            else count2++;
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">StudentOperatorImpl2</span> <span class="pl-k">implements</span> <span class="pl-smi">StudentOperator</span> {
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">printAllInfo</span>(<span class="pl-smi">ArrayList</span>&lt;<span class="pl-smi">Student</span>&gt; <span class="pl-s1">students</span>) {
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"-------------------"</span>);
+        <span class="pl-smi">int</span> <span class="pl-s1">count1</span> = <span class="pl-c1">0</span>;
+        <span class="pl-smi">int</span> <span class="pl-s1">count2</span> = <span class="pl-c1">0</span>;
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">students</span>.<span class="pl-en">size</span>(); <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">Student</span> <span class="pl-s1">s</span> = <span class="pl-s1">students</span>.<span class="pl-en">get</span>(<span class="pl-s1">i</span>);
+            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"姓名："</span> + <span class="pl-s1">s</span>.<span class="pl-en">getName</span>() + <span class="pl-s">"性别："</span> + <span class="pl-s1">s</span>.<span class="pl-en">getSex</span>() + <span class="pl-s">"成绩："</span> + <span class="pl-s1">s</span>.<span class="pl-en">getScore</span>());
+            <span class="pl-k">if</span> (<span class="pl-s1">s</span>.<span class="pl-en">getSex</span>() == <span class="pl-s">'男'</span>) <span class="pl-s1">count1</span>++;
+            <span class="pl-k">else</span> <span class="pl-s1">count2</span>++;
         }
-        System.out.println("男生人数：" + count1);
-        System.out.println("女生人数：" + count2);
-        System.out.println("--------------------");
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"男生人数："</span> + <span class="pl-s1">count1</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"女生人数："</span> + <span class="pl-s1">count2</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"--------------------"</span>);
     }
 
-    @Override
-    public void printAverageScore(ArrayList&lt;Student&gt; students) {
-        double allScore = 0.0;
-        double maxScore = students.get(0).getScore();
-        double minScore = students.get(0).getScore();
-        for (int i = 0; i &lt; students.size(); i++) {
-            Student s = students.get(i);
-            allScore += s.getScore();
-            if (s.getScore() &gt; maxScore) maxScore = s.getScore();
-            if (s.getScore() &lt; minScore) minScore = s.getScore();
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">printAverageScore</span>(<span class="pl-smi">ArrayList</span>&lt;<span class="pl-smi">Student</span>&gt; <span class="pl-s1">students</span>) {
+        <span class="pl-smi">double</span> <span class="pl-s1">allScore</span> = <span class="pl-c1">0.0</span>;
+        <span class="pl-smi">double</span> <span class="pl-s1">maxScore</span> = <span class="pl-s1">students</span>.<span class="pl-en">get</span>(<span class="pl-c1">0</span>).<span class="pl-en">getScore</span>();
+        <span class="pl-smi">double</span> <span class="pl-s1">minScore</span> = <span class="pl-s1">students</span>.<span class="pl-en">get</span>(<span class="pl-c1">0</span>).<span class="pl-en">getScore</span>();
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">students</span>.<span class="pl-en">size</span>(); <span class="pl-s1">i</span>++) {
+            <span class="pl-smi">Student</span> <span class="pl-s1">s</span> = <span class="pl-s1">students</span>.<span class="pl-en">get</span>(<span class="pl-s1">i</span>);
+            <span class="pl-s1">allScore</span> += <span class="pl-s1">s</span>.<span class="pl-en">getScore</span>();
+            <span class="pl-k">if</span> (<span class="pl-s1">s</span>.<span class="pl-en">getScore</span>() &gt; <span class="pl-s1">maxScore</span>) <span class="pl-s1">maxScore</span> = <span class="pl-s1">s</span>.<span class="pl-en">getScore</span>();
+            <span class="pl-k">if</span> (<span class="pl-s1">s</span>.<span class="pl-en">getScore</span>() &lt; <span class="pl-s1">minScore</span>) <span class="pl-s1">minScore</span> = <span class="pl-s1">s</span>.<span class="pl-en">getScore</span>();
         }
-        System.out.println("最高分：" + maxScore);
-        System.out.println("最低分：" + minScore);
-        System.out.println("平均分：" + allScore / students.size());
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"最高分："</span> + <span class="pl-s1">maxScore</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"最低分："</span> + <span class="pl-s1">minScore</span>);
+        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"平均分："</span> + <span class="pl-s1">allScore</span> / <span class="pl-s1">students</span>.<span class="pl-en">size</span>());
     }
-}
-</code></pre>
+}</pre></div>
 <p>Object6Demo2.java</p>
-<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.object6;
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">object6</span>;
 
-public class Object6Demo2 {
-    public static void main(String[] args) {
-        ClassManager clazz = new ClassManager();
-        clazz.printInfo();
-        clazz.printScore();
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Object6Demo2</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
+        <span class="pl-smi">ClassManager</span> <span class="pl-s1">clazz</span> = <span class="pl-k">new</span> <span class="pl-smi">ClassManager</span>();
+        <span class="pl-s1">clazz</span>.<span class="pl-en">printInfo</span>();
+        <span class="pl-s1">clazz</span>.<span class="pl-en">printScore</span>();
     }
-}
-</code></pre>
+}</pre></div>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">-------------------
 姓名：明性别：女成绩：66.0
@@ -383,7 +382,7 @@ if("06/25/2025"!=""){
 </script></div>
 </body>
 <script>
-var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
 var utterancesLoad=0;
 
 console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
@@ -430,7 +429,70 @@ function iFrameLoading(){
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
 
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
 
 </script>
 <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekArticleTOC.js'><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekLightbox.js'></script><script>document.querySelectorAll('a').forEach(anchor => {const img = anchor.querySelector('img');if (img && img.hasAttribute('data-canonical-src')) {const canonicalSrc = img.getAttribute('data-canonical-src');anchor.setAttribute('href', canonicalSrc);img.setAttribute('src', canonicalSrc);img.removeAttribute('data-canonical-src');}});</script>
