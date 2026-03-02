@@ -30,7 +30,7 @@
 <meta property="og:url" content="https://zbhgis.github.io/post/61.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
 <title>【Java】常用API（二）</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -54,17 +54,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     body {padding: 8px;}
     .postTitle{font-size:24px;}
 }
-.copy-feedback {
-    display: none;
-    position: absolute;
-    top: 10px;
-    right: 50px;
-    color: var(--color-fg-on-emphasis);
-    background-color: var(--color-fg-muted);
-    border-radius: 3px;
-    padding: 5px 8px;
-    font-size: 12px;
-}
+
 </style>
 
 
@@ -111,23 +101,24 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>工具类，存储对数据进行操作的一些静态方法</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f56a9870a59abe5fcdb46d0147ad1b8a842d676b16e603425185389eb0181cfc/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333138302e706e67"><img src="https://camo.githubusercontent.com/f56a9870a59abe5fcdb46d0147ad1b8a842d676b16e603425185389eb0181cfc/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333138302e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080753180.png" style="max-width: 100%;"></a></p>
 <p>Apis6.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis6</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Math</span>.<span class="pl-en">abs</span>(-<span class="pl-c1">12</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Math</span>.<span class="pl-en">abs</span>(-<span class="pl-c1">453</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Math</span>.<span class="pl-en">ceil</span>(<span class="pl-c1">1.000001</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Math</span>.<span class="pl-en">ceil</span>(<span class="pl-c1">1.0</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Math</span>.<span class="pl-en">floor</span>(<span class="pl-c1">3.9999999</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Math</span>.<span class="pl-en">floor</span>(<span class="pl-c1">4.0</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Math</span>.<span class="pl-en">max</span>(<span class="pl-c1">2</span>, <span class="pl-c1">4.1</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Math</span>.<span class="pl-en">min</span>(-<span class="pl-c1">3</span>, <span class="pl-c1">3.10</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Math</span>.<span class="pl-en">pow</span>(<span class="pl-c1">2</span>,<span class="pl-c1">3</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Math</span>.<span class="pl-en">pow</span>(<span class="pl-c1">4</span>,<span class="pl-c1">0.5</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">Math</span>.<span class="pl-en">random</span>());
+public class Apis6 {
+    public static void main(String[] args) {
+        System.out.println(Math.abs(-12));
+        System.out.println(Math.abs(-453));
+        System.out.println(Math.ceil(1.000001));
+        System.out.println(Math.ceil(1.0));
+        System.out.println(Math.floor(3.9999999));
+        System.out.println(Math.floor(4.0));
+        System.out.println(Math.max(2, 4.1));
+        System.out.println(Math.min(-3, 3.10));
+        System.out.println(Math.pow(2,3));
+        System.out.println(Math.pow(4,0.5));
+        System.out.println(Math.random());
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">12
 453
@@ -145,19 +136,20 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>代表程序所在的系统，也是一个工具类</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a456ee0737e5088f21802b68df60e8dbd21ef6db8e01d4c5b307263a4fa1bf1d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333730342e706e67"><img src="https://camo.githubusercontent.com/a456ee0737e5088f21802b68df60e8dbd21ef6db8e01d4c5b307263a4fa1bf1d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333730342e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080753704.png" style="max-width: 100%;"></a></p>
 <p>Apis7.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis7</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-c">// System.exit(0);</span>
-        <span class="pl-smi">long</span> <span class="pl-s1">time</span> = <span class="pl-smi">System</span>.<span class="pl-en">currentTimeMillis</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">time</span>);
-        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-c1">10000</span>; <span class="pl-s1">i</span>++) {
-            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s">""</span>);
+public class Apis7 {
+    public static void main(String[] args) {
+        // System.exit(0);
+        long time = System.currentTimeMillis();
+        System.out.println(time);
+        for (int i = 0; i &lt; 10000; i++) {
+            System.out.print("");
         }
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">System</span>.<span class="pl-en">currentTimeMillis</span>()-<span class="pl-s1">time</span>);
+        System.out.println(System.currentTimeMillis()-time);
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">1767277605560
 2
@@ -166,24 +158,25 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>代表程序所在的运行环境，是一个单例类</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fa074f35209ac7891b732d5dcfbf5b2c023ab1f6f26515ccdb86fa46456575fc/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333035372e706e67"><img src="https://camo.githubusercontent.com/fa074f35209ac7891b732d5dcfbf5b2c023ab1f6f26515ccdb86fa46456575fc/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333035372e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080753057.png" style="max-width: 100%;"></a></p>
 <p>Apis8.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">io</span>.<span class="pl-s1">IOException</span>;
+import java.io.IOException;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis8</span> {
-    <span class="pl-c">// 添加异常检测</span>
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) <span class="pl-k">throws</span> <span class="pl-smi">IOException</span>, <span class="pl-smi">InterruptedException</span> {
-        <span class="pl-smi">Runtime</span> <span class="pl-s1">r</span> = <span class="pl-smi">Runtime</span>.<span class="pl-en">getRuntime</span>();
-        <span class="pl-c">// r.exit(0);</span>
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">r</span>.<span class="pl-en">availableProcessors</span>());
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">r</span>.<span class="pl-en">totalMemory</span>()/<span class="pl-c1">1024</span>/<span class="pl-c1">1024</span>+<span class="pl-s">"MB"</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">r</span>.<span class="pl-en">freeMemory</span>());
+public class Apis8 {
+    // 添加异常检测
+    public static void main(String[] args) throws IOException, InterruptedException {
+        Runtime r = Runtime.getRuntime();
+        // r.exit(0);
+        System.out.println(r.availableProcessors());
+        System.out.println(r.totalMemory()/1024/1024+"MB");
+        System.out.println(r.freeMemory());
 
-        <span class="pl-smi">Process</span> <span class="pl-s1">p</span> = <span class="pl-s1">r</span>.<span class="pl-en">exec</span>(<span class="pl-s">"D:<span class="pl-cce">\\</span>Program Files<span class="pl-cce">\\</span>Tencent<span class="pl-cce">\\</span>QQNT<span class="pl-cce">\\</span>QQ.exe"</span>);
-        <span class="pl-smi">Thread</span>.<span class="pl-en">sleep</span>(<span class="pl-c1">5000</span>);
-        <span class="pl-s1">p</span>.<span class="pl-en">destroy</span>();
+        Process p = r.exec("D:\\Program Files\\Tencent\\QQNT\\QQ.exe");
+        Thread.sleep(5000);
+        p.destroy();
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">20
 508MB
@@ -193,28 +186,29 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>用于解决浮点型运算时，结果失真的问题</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/eacab58a9cec8aac6a48fb9dae72d73fa341032672553583b8fdd269b0de7c1a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333137362e706e67"><img src="https://camo.githubusercontent.com/eacab58a9cec8aac6a48fb9dae72d73fa341032672553583b8fdd269b0de7c1a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333137362e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080753176.png" style="max-width: 100%;"></a></p>
 <p>Apis9.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">math</span>.<span class="pl-s1">BigDecimal</span>;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">math</span>.<span class="pl-s1">RoundingMode</span>;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis9</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">double</span> <span class="pl-s1">a</span> = <span class="pl-c1">0.1</span>;
-        <span class="pl-smi">double</span> <span class="pl-s1">b</span> = <span class="pl-c1">0.3</span>;
-        <span class="pl-smi">BigDecimal</span> <span class="pl-s1">a1</span> = <span class="pl-smi">BigDecimal</span>.<span class="pl-en">valueOf</span>(<span class="pl-s1">a</span>);
-        <span class="pl-smi">BigDecimal</span> <span class="pl-s1">b1</span> = <span class="pl-smi">BigDecimal</span>.<span class="pl-en">valueOf</span>(<span class="pl-s1">b</span>);
-        <span class="pl-smi">BigDecimal</span> <span class="pl-s1">c1</span> = <span class="pl-s1">a1</span>.<span class="pl-en">add</span>(<span class="pl-s1">b1</span>);
-        <span class="pl-smi">BigDecimal</span> <span class="pl-s1">c2</span> = <span class="pl-s1">a1</span>.<span class="pl-en">subtract</span>(<span class="pl-s1">b1</span>);
-        <span class="pl-smi">BigDecimal</span> <span class="pl-s1">c3</span> = <span class="pl-s1">a1</span>.<span class="pl-en">multiply</span>(<span class="pl-s1">b1</span>);
-        <span class="pl-smi">BigDecimal</span> <span class="pl-s1">c4</span> = <span class="pl-s1">a1</span>.<span class="pl-en">divide</span>(<span class="pl-s1">b1</span>, <span class="pl-c1">2</span>, <span class="pl-smi">RoundingMode</span>.<span class="pl-c1">HALF_UP</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">c1</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">c2</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">c3</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">c4</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">c1</span>.<span class="pl-en">doubleValue</span>());
+public class Apis9 {
+    public static void main(String[] args) {
+        double a = 0.1;
+        double b = 0.3;
+        BigDecimal a1 = BigDecimal.valueOf(a);
+        BigDecimal b1 = BigDecimal.valueOf(b);
+        BigDecimal c1 = a1.add(b1);
+        BigDecimal c2 = a1.subtract(b1);
+        BigDecimal c3 = a1.multiply(b1);
+        BigDecimal c4 = a1.divide(b1, 2, RoundingMode.HALF_UP);
+        System.out.println(c1);
+        System.out.println(c2);
+        System.out.println(c3);
+        System.out.println(c4);
+        System.out.println(c1.doubleValue());
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">0.4
 -0.2
@@ -225,27 +219,28 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>代表日期和时间</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c02a532b894a12e303855b732a33dd9ec1ccc382454e5ee48d50ab59a0cec332/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323536322e706e67"><img src="https://camo.githubusercontent.com/c02a532b894a12e303855b732a33dd9ec1ccc382454e5ee48d50ab59a0cec332/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323536322e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080752562.png" style="max-width: 100%;"></a></p>
 <p>Apis10.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">Date</span>;
+import java.util.Date;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis10</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">Date</span> <span class="pl-s1">d</span> = <span class="pl-k">new</span> <span class="pl-smi">Date</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">d</span>);
+public class Apis10 {
+    public static void main(String[] args) {
+        Date d = new Date();
+        System.out.println(d);
 
-        <span class="pl-smi">long</span> <span class="pl-s1">time</span> = <span class="pl-s1">d</span>.<span class="pl-en">getTime</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">time</span>);
+        long time = d.getTime();
+        System.out.println(time);
 
-        <span class="pl-s1">time</span> += <span class="pl-c1">2</span> * <span class="pl-c1">1000</span>;
-        <span class="pl-smi">Date</span> <span class="pl-s1">d2</span> = <span class="pl-k">new</span> <span class="pl-smi">Date</span>(<span class="pl-s1">time</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">d2</span>);
+        time += 2 * 1000;
+        Date d2 = new Date(time);
+        System.out.println(d2);
 
-        <span class="pl-smi">Date</span> <span class="pl-s1">d3</span> = <span class="pl-k">new</span> <span class="pl-smi">Date</span>();
-        <span class="pl-s1">d3</span>.<span class="pl-en">setTime</span>(<span class="pl-s1">time</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">d3</span>);
+        Date d3 = new Date();
+        d3.setTime(time);
+        System.out.println(d3);
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">Fri Jan 02 10:30:14 CST 2026
 1767321014896
@@ -259,34 +254,35 @@ Fri Jan 02 10:30:16 CST 2026
 <p>时间格式的常见符号</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5c9d2b5cb8b3e0e2e8835dafce90151b037bf8ec66c161d3e563cf1aa69e18f3/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735353630342e706e67"><img src="https://camo.githubusercontent.com/5c9d2b5cb8b3e0e2e8835dafce90151b037bf8ec66c161d3e563cf1aa69e18f3/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735353630342e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080755604.png" style="max-width: 100%;"></a></p>
 <p>Apis11.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">text</span>.<span class="pl-s1">ParseException</span>;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">text</span>.<span class="pl-s1">SimpleDateFormat</span>;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">Date</span>;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis11</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) <span class="pl-k">throws</span> <span class="pl-smi">ParseException</span> {
-        <span class="pl-smi">Date</span> <span class="pl-s1">d</span> = <span class="pl-k">new</span> <span class="pl-smi">Date</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">d</span>);
+public class Apis11 {
+    public static void main(String[] args) throws ParseException {
+        Date d = new Date();
+        System.out.println(d);
 
-        <span class="pl-smi">long</span> <span class="pl-s1">time</span> = <span class="pl-s1">d</span>.<span class="pl-en">getTime</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">time</span>);
+        long time = d.getTime();
+        System.out.println(time);
 
-        <span class="pl-smi">SimpleDateFormat</span> <span class="pl-s1">sdf</span> = <span class="pl-k">new</span> <span class="pl-smi">SimpleDateFormat</span>(<span class="pl-s">"yyyy年MM月dd日 HH:mm:ss EEE a"</span>);
-        <span class="pl-smi">String</span> <span class="pl-s1">rs</span> = <span class="pl-s1">sdf</span>.<span class="pl-en">format</span>(<span class="pl-s1">d</span>);
-        <span class="pl-smi">String</span> <span class="pl-s1">rs2</span> = <span class="pl-s1">sdf</span>.<span class="pl-en">format</span>(<span class="pl-s1">time</span>);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss EEE a");
+        String rs = sdf.format(d);
+        String rs2 = sdf.format(time);
 
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">rs</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">rs2</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>();
+        System.out.println(rs);
+        System.out.println(rs2);
+        System.out.println();
 
-        <span class="pl-smi">String</span> <span class="pl-s1">dateStr</span> = <span class="pl-s">"2022-12-12 12:12:11"</span>;
-        <span class="pl-smi">SimpleDateFormat</span> <span class="pl-s1">sdf2</span> = <span class="pl-k">new</span> <span class="pl-smi">SimpleDateFormat</span>(<span class="pl-s">"yyyy-MM-dd HH:mm:ss"</span>);
-        <span class="pl-smi">Date</span> <span class="pl-s1">d2</span> = <span class="pl-s1">sdf2</span>.<span class="pl-en">parse</span>(<span class="pl-s1">dateStr</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">d2</span>);
+        String dateStr = "2022-12-12 12:12:11";
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date d2 = sdf2.parse(dateStr);
+        System.out.println(d2);
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">Fri Jan 02 11:07:23 CST 2026
 1767323243516
@@ -299,35 +295,36 @@ Mon Dec 12 12:12:11 CST 2022
 <p>代表的是系统此刻时间对应的日历，通过它可以单独获取和修改时间中的年月日时分秒</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d4e035ba097c8fe9754a8b0ab4ab22d252330d7f479af7c98c5e3f76f96704cc/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333133352e706e67"><img src="https://camo.githubusercontent.com/d4e035ba097c8fe9754a8b0ab4ab22d252330d7f479af7c98c5e3f76f96704cc/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333133352e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080753135.png" style="max-width: 100%;"></a></p>
 <p>Apis12.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">Calendar</span>;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">Date</span>;
+import java.util.Calendar;
+import java.util.Date;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis12</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">Calendar</span> <span class="pl-s1">now</span> = <span class="pl-smi">Calendar</span>.<span class="pl-en">getInstance</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">now</span>);
+public class Apis12 {
+    public static void main(String[] args) {
+        Calendar now = Calendar.getInstance();
+        System.out.println(now);
 
-        <span class="pl-smi">int</span> <span class="pl-s1">year</span> = <span class="pl-s1">now</span>.<span class="pl-en">get</span>(<span class="pl-smi">Calendar</span>.<span class="pl-c1">YEAR</span>);
-        <span class="pl-smi">int</span> <span class="pl-s1">week</span> = <span class="pl-s1">now</span>.<span class="pl-en">get</span>(<span class="pl-smi">Calendar</span>.<span class="pl-c1">WEEK_OF_YEAR</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">year</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">week</span>);
+        int year = now.get(Calendar.YEAR);
+        int week = now.get(Calendar.WEEK_OF_YEAR);
+        System.out.println(year);
+        System.out.println(week);
 
-        <span class="pl-smi">Date</span> <span class="pl-s1">d</span> = <span class="pl-s1">now</span>.<span class="pl-en">getTime</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">d</span>);
+        Date d = now.getTime();
+        System.out.println(d);
 
-        <span class="pl-smi">long</span> <span class="pl-s1">time</span> = <span class="pl-s1">now</span>.<span class="pl-en">getTimeInMillis</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">time</span>);
+        long time = now.getTimeInMillis();
+        System.out.println(time);
 
-        <span class="pl-s1">now</span>.<span class="pl-en">set</span>(<span class="pl-smi">Calendar</span>.<span class="pl-c1">MONTH</span>, <span class="pl-c1">9</span>);
-        <span class="pl-s1">now</span>.<span class="pl-en">set</span>(<span class="pl-smi">Calendar</span>.<span class="pl-c1">HOUR</span>, <span class="pl-c1">1</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">now</span>);
+        now.set(Calendar.MONTH, 9);
+        now.set(Calendar.HOUR, 1);
+        System.out.println(now);
 
-        <span class="pl-s1">now</span>.<span class="pl-en">add</span>(<span class="pl-smi">Calendar</span>.<span class="pl-c1">HOUR</span>, -<span class="pl-c1">20</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">now</span>.<span class="pl-en">getTime</span>());
+        now.add(Calendar.HOUR, -20);
+        System.out.println(now.getTime());
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="OpenGL" class="notranslate"><code class="notranslate">java.util.GregorianCalendar[time=1767324440273,areFieldsSet=true,areAllFieldsSet=true,lenient=true,zone=sun.util.calendar.ZoneInfo[id="Asia/Shanghai",offset=28800000,dstSavings=0,useDaylight=false,transitions=31,lastRule=null],firstDayOfWeek=1,minimalDaysInFirstWeek=1,ERA=1,YEAR=2026,MONTH=0,WEEK_OF_YEAR=1,WEEK_OF_MONTH=1,DAY_OF_MONTH=2,DAY_OF_YEAR=2,DAY_OF_WEEK=6,DAY_OF_WEEK_IN_MONTH=1,AM_PM=0,HOUR=11,HOUR_OF_DAY=11,MINUTE=27,SECOND=20,MILLISECOND=273,ZONE_OFFSET=28800000,DST_OFFSET=0]
 2026
@@ -341,51 +338,52 @@ Thu Oct 01 05:27:20 CST 2026
 <p>jdk8之后的新的时间类</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/955be1887ed4745ffc5a0f36611116e3777536f41bc6f7b5ed8f4cefb8931324/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333531362e706e67"><img src="https://camo.githubusercontent.com/955be1887ed4745ffc5a0f36611116e3777536f41bc6f7b5ed8f4cefb8931324/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735333531362e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080753516.png" style="max-width: 100%;"></a></p>
 <p>Apis13.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">LocalDateTime</span>;
+import java.time.LocalDateTime;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis13</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">ldt</span> = <span class="pl-smi">LocalDateTime</span>.<span class="pl-en">now</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt</span>);
+public class Apis13 {
+    public static void main(String[] args) {
+        LocalDateTime ldt = LocalDateTime.now();
+        System.out.println(ldt);
 
-        <span class="pl-smi">int</span> <span class="pl-s1">year</span> = <span class="pl-s1">ldt</span>.<span class="pl-en">getYear</span>();
-        <span class="pl-smi">int</span> <span class="pl-s1">month</span> = <span class="pl-s1">ldt</span>.<span class="pl-en">getMonthValue</span>();
-        <span class="pl-smi">int</span> <span class="pl-s1">day</span> = <span class="pl-s1">ldt</span>.<span class="pl-en">getDayOfMonth</span>();
-        <span class="pl-smi">int</span> <span class="pl-s1">doy</span> = <span class="pl-s1">ldt</span>.<span class="pl-en">getDayOfYear</span>();
-        <span class="pl-smi">int</span> <span class="pl-s1">dow</span> = <span class="pl-s1">ldt</span>.<span class="pl-en">getDayOfWeek</span>().<span class="pl-en">getValue</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">year</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">day</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">dow</span>);
+        int year = ldt.getYear();
+        int month = ldt.getMonthValue();
+        int day = ldt.getDayOfMonth();
+        int doy = ldt.getDayOfYear();
+        int dow = ldt.getDayOfWeek().getValue();
+        System.out.println(year);
+        System.out.println(day);
+        System.out.println(dow);
 
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">ldt2</span> = <span class="pl-s1">ldt</span>.<span class="pl-en">withYear</span>(<span class="pl-c1">2099</span>);
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">ldt3</span> = <span class="pl-s1">ldt</span>.<span class="pl-en">withMonth</span>(<span class="pl-c1">12</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt2</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt3</span>);
+        LocalDateTime ldt2 = ldt.withYear(2099);
+        LocalDateTime ldt3 = ldt.withMonth(12);
+        System.out.println(ldt2);
+        System.out.println(ldt3);
 
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">ldt4</span> = <span class="pl-s1">ldt</span>.<span class="pl-en">plusYears</span>(<span class="pl-c1">2</span>);
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">ldt5</span> = <span class="pl-s1">ldt</span>.<span class="pl-en">plusMonths</span>(<span class="pl-c1">2</span>);
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">ldt6</span> = <span class="pl-s1">ldt</span>.<span class="pl-en">minusYears</span>(<span class="pl-c1">4</span>);
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">ldt7</span> = <span class="pl-s1">ldt</span>.<span class="pl-en">minusDays</span>(<span class="pl-c1">400</span>);
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">ldt8</span> = <span class="pl-smi">LocalDateTime</span>.<span class="pl-en">of</span>(<span class="pl-c1">2099</span>, <span class="pl-c1">12</span>,<span class="pl-c1">11</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">5</span>);
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">ldt9</span> = <span class="pl-smi">LocalDateTime</span>.<span class="pl-en">of</span>(<span class="pl-c1">2099</span>, <span class="pl-c1">11</span>,<span class="pl-c1">11</span>,<span class="pl-c1">4</span>,<span class="pl-c1">3</span>,<span class="pl-c1">2</span>);;
+        LocalDateTime ldt4 = ldt.plusYears(2);
+        LocalDateTime ldt5 = ldt.plusMonths(2);
+        LocalDateTime ldt6 = ldt.minusYears(4);
+        LocalDateTime ldt7 = ldt.minusDays(400);
+        LocalDateTime ldt8 = LocalDateTime.of(2099, 12,11,2,3,5);
+        LocalDateTime ldt9 = LocalDateTime.of(2099, 11,11,4,3,2);;
 
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt4</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt5</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt6</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt7</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt8</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt9</span>);
+        System.out.println(ldt4);
+        System.out.println(ldt5);
+        System.out.println(ldt6);
+        System.out.println(ldt7);
+        System.out.println(ldt8);
+        System.out.println(ldt9);
 
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt8</span>.<span class="pl-en">equals</span>(<span class="pl-s1">ldt9</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt9</span>.<span class="pl-en">isAfter</span>(<span class="pl-s1">ldt8</span>));
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt9</span>.<span class="pl-en">isBefore</span>(<span class="pl-s1">ldt8</span>));
+        System.out.println(ldt8.equals(ldt9));
+        System.out.println(ldt9.isAfter(ldt8));
+        System.out.println(ldt9.isBefore(ldt8));
 
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">ldt10</span> = <span class="pl-smi">LocalDateTime</span>.<span class="pl-en">of</span>(<span class="pl-s1">ldt</span>.<span class="pl-en">toLocalDate</span>(), <span class="pl-s1">ldt</span>.<span class="pl-en">toLocalTime</span>());
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">ldt10</span>);
+        LocalDateTime ldt10 = LocalDateTime.of(ldt.toLocalDate(), ldt.toLocalTime());
+        System.out.println(ldt10);
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">2026-01-02T21:20:21.760051200
 2026
@@ -409,30 +407,31 @@ true
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7d18777777b81a7eb4c1e899ce97df79930424351cf42d0055e71cd8af2910e4/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323431362e706e67"><img src="https://camo.githubusercontent.com/7d18777777b81a7eb4c1e899ce97df79930424351cf42d0055e71cd8af2910e4/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323431362e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080752416.png" style="max-width: 100%;"></a></p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f3c10d322d20640b55f3ba6cf44ee6d5dc91c04b916f3532f456271fcc649d44/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735343633302e706e67"><img src="https://camo.githubusercontent.com/f3c10d322d20640b55f3ba6cf44ee6d5dc91c04b916f3532f456271fcc649d44/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735343633302e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080754630.png" style="max-width: 100%;"></a></p>
 <p>Apis14.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">Clock</span>;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">ZoneId</span>;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">ZonedDateTime</span>;
+import java.time.Clock;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis14</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">ZoneId</span> <span class="pl-s1">zoneId</span> = <span class="pl-smi">ZoneId</span>.<span class="pl-en">systemDefault</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">zoneId</span>.<span class="pl-en">getId</span>());
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">zoneId</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-smi">ZoneId</span>.<span class="pl-en">getAvailableZoneIds</span>());
+public class Apis14 {
+    public static void main(String[] args) {
+        ZoneId zoneId = ZoneId.systemDefault();
+        System.out.println(zoneId.getId());
+        System.out.println(zoneId);
+        System.out.println(ZoneId.getAvailableZoneIds());
 
-        <span class="pl-smi">ZoneId</span> <span class="pl-s1">zoneId1</span> = <span class="pl-smi">ZoneId</span>.<span class="pl-en">of</span>(<span class="pl-s">"America/New_York"</span>);
-        <span class="pl-smi">ZonedDateTime</span> <span class="pl-s1">now</span> = <span class="pl-smi">ZonedDateTime</span>.<span class="pl-en">now</span>(<span class="pl-s1">zoneId1</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">now</span>);
+        ZoneId zoneId1 = ZoneId.of("America/New_York");
+        ZonedDateTime now = ZonedDateTime.now(zoneId1);
+        System.out.println(now);
 
-        <span class="pl-smi">ZonedDateTime</span> <span class="pl-s1">now1</span> = <span class="pl-smi">ZonedDateTime</span>.<span class="pl-en">now</span>(<span class="pl-smi">Clock</span>.<span class="pl-en">systemUTC</span>());
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">now1</span>);
+        ZonedDateTime now1 = ZonedDateTime.now(Clock.systemUTC());
+        System.out.println(now1);
 
-        <span class="pl-smi">ZonedDateTime</span> <span class="pl-s1">now2</span> = <span class="pl-smi">ZonedDateTime</span>.<span class="pl-en">now</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">now2</span>);
+        ZonedDateTime now2 = ZonedDateTime.now();
+        System.out.println(now2);
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">Asia/Shanghai
 Asia/Shanghai
@@ -445,35 +444,36 @@ Asia/Shanghai
 <p>获取时间线上的某个时刻或时间戳</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2e2a0e04ec1c655d3c2ba6e91d9af079456c4b8698d2bede3545ea261d4d8721/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323637372e706e67"><img src="https://camo.githubusercontent.com/2e2a0e04ec1c655d3c2ba6e91d9af079456c4b8698d2bede3545ea261d4d8721/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323637372e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080752677.png" style="max-width: 100%;"></a></p>
 <p>Apis15.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">Instant</span>;
+import java.time.Instant;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis15</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">Instant</span> <span class="pl-s1">now</span> = <span class="pl-smi">Instant</span>.<span class="pl-en">now</span>();
+public class Apis15 {
+    public static void main(String[] args) {
+        Instant now = Instant.now();
 
-        <span class="pl-smi">long</span> <span class="pl-s1">second</span> = <span class="pl-s1">now</span>.<span class="pl-en">getEpochSecond</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">second</span>);
+        long second = now.getEpochSecond();
+        System.out.println(second);
 
-        <span class="pl-smi">int</span> <span class="pl-s1">nano</span> = <span class="pl-s1">now</span>.<span class="pl-en">getNano</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">nano</span>);
+        int nano = now.getNano();
+        System.out.println(nano);
 
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">now</span>);
+        System.out.println(now);
 
-        <span class="pl-smi">Instant</span> <span class="pl-s1">instant</span> = <span class="pl-s1">now</span>.<span class="pl-en">plusNanos</span>(<span class="pl-c1">111</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">now</span>);
+        Instant instant = now.plusNanos(111);
+        System.out.println(now);
         
-        <span class="pl-c">// 可用于性能分析</span>
-        <span class="pl-smi">Instant</span> <span class="pl-s1">now1</span> = <span class="pl-smi">Instant</span>.<span class="pl-en">now</span>();
-        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-c1">10000</span>; <span class="pl-s1">i</span>++) {
-            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">print</span>(<span class="pl-s">""</span>);
+        // 可用于性能分析
+        Instant now1 = Instant.now();
+        for (int i = 0; i &lt; 10000; i++) {
+            System.out.print("");
         }
-        <span class="pl-smi">Instant</span> <span class="pl-s1">now2</span> = <span class="pl-smi">Instant</span>.<span class="pl-en">now</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">now1</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">now2</span>);
+        Instant now2 = Instant.now();
+        System.out.println(now1);
+        System.out.println(now2);
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">1767423410
 663485300
@@ -487,25 +487,26 @@ Asia/Shanghai
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/23d22face309cdad0d27a8cbf28a9080a38be85fd4053fd022f8e69a079cf97c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735343039322e706e67"><img src="https://camo.githubusercontent.com/23d22face309cdad0d27a8cbf28a9080a38be85fd4053fd022f8e69a079cf97c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735343039322e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080754092.png" style="max-width: 100%;"></a></p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fd9da8b710f4665e7f29fc92c15cfbc8d4b66793b7e22f511747706e2f0c88e0/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323934322e706e67"><img src="https://camo.githubusercontent.com/fd9da8b710f4665e7f29fc92c15cfbc8d4b66793b7e22f511747706e2f0c88e0/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323934322e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080752942.png" style="max-width: 100%;"></a></p>
 <p>Apis16.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">LocalDateTime</span>;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">format</span>.<span class="pl-s1">DateTimeFormatter</span>;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis16</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">DateTimeFormatter</span> <span class="pl-s1">formatter</span> = <span class="pl-smi">DateTimeFormatter</span>.<span class="pl-en">ofPattern</span>(<span class="pl-s">"yyyy年MM月dd日 HH:mm:ss"</span>);
+public class Apis16 {
+    public static void main(String[] args) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH:mm:ss");
 
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">now</span> = <span class="pl-smi">LocalDateTime</span>.<span class="pl-en">now</span>();
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">now</span>);
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
 
-        <span class="pl-smi">String</span> <span class="pl-s1">rs</span> = <span class="pl-s1">formatter</span>.<span class="pl-en">format</span>(<span class="pl-s1">now</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">rs</span>);
+        String rs = formatter.format(now);
+        System.out.println(rs);
 
-        <span class="pl-smi">String</span> <span class="pl-s1">rs2</span> = <span class="pl-s1">now</span>.<span class="pl-en">format</span>(<span class="pl-s1">formatter</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">rs2</span>);
+        String rs2 = now.format(formatter);
+        System.out.println(rs2);
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">2026-01-03T15:03:28.173527500
 2026年01月03日 15:03:28
@@ -515,25 +516,26 @@ Asia/Shanghai
 <p>计算两个LocalDate对象相差的年数，月数，天数</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f6c6866329354b2de21092d947b4af70b98f221a2c566f615b27027805b83587/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323233362e706e67"><img src="https://camo.githubusercontent.com/f6c6866329354b2de21092d947b4af70b98f221a2c566f615b27027805b83587/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323233362e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080752236.png" style="max-width: 100%;"></a></p>
 <p>Apis17.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">LocalDate</span>;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">LocalDateTime</span>;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">Period</span>;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis17</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">LocalDate</span> <span class="pl-s1">start</span> = <span class="pl-smi">LocalDate</span>.<span class="pl-en">of</span>(<span class="pl-c1">2029</span>, <span class="pl-c1">8</span>, <span class="pl-c1">10</span>);
-        <span class="pl-smi">LocalDate</span> <span class="pl-s1">end</span> = <span class="pl-smi">LocalDate</span>.<span class="pl-en">of</span>(<span class="pl-c1">2029</span>, <span class="pl-c1">12</span>, <span class="pl-c1">15</span>);
+public class Apis17 {
+    public static void main(String[] args) {
+        LocalDate start = LocalDate.of(2029, 8, 10);
+        LocalDate end = LocalDate.of(2029, 12, 15);
 
-        <span class="pl-smi">Period</span> <span class="pl-s1">period</span> = <span class="pl-smi">Period</span>.<span class="pl-en">between</span>(<span class="pl-s1">start</span>, <span class="pl-s1">end</span>);
+        Period period = Period.between(start, end);
 
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">period</span>.<span class="pl-en">getYears</span>());
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">period</span>.<span class="pl-en">getMonths</span>());
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">period</span>.<span class="pl-en">getDays</span>());
+        System.out.println(period.getYears());
+        System.out.println(period.getMonths());
+        System.out.println(period.getDays());
 
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">0
 4
@@ -543,27 +545,28 @@ Asia/Shanghai
 <p>可以用于计算两个时间对象相差的天数、小时数、分数、秒数、纳秒数；支持LocalTime、LocalDateTime、Instant等时间。</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e82b746f87798bc8d7417a851f0779bc9d2a71cf7463dd65f14481bd576037d1/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323038372e706e67"><img src="https://camo.githubusercontent.com/e82b746f87798bc8d7417a851f0779bc9d2a71cf7463dd65f14481bd576037d1/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323630313038303735323038372e706e67" alt="img" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202601080752087.png" style="max-width: 100%;"></a></p>
 <p>Apis18.java</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">package</span> <span class="pl-s1">com</span>.<span class="pl-s1">zbhgis</span>.<span class="pl-s1">apis</span>;
+<pre lang="Java" class="notranslate"><code class="notranslate">package com.zbhgis.apis;
 
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">Duration</span>;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">time</span>.<span class="pl-s1">LocalDateTime</span>;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Apis18</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) {
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">start</span> = <span class="pl-smi">LocalDateTime</span>.<span class="pl-en">of</span>(<span class="pl-c1">2025</span>, <span class="pl-c1">11</span>, <span class="pl-c1">11</span>, <span class="pl-c1">10</span>, <span class="pl-c1">10</span>, <span class="pl-c1">7</span>);
-        <span class="pl-smi">LocalDateTime</span> <span class="pl-s1">end</span> = <span class="pl-smi">LocalDateTime</span>.<span class="pl-en">of</span>(<span class="pl-c1">2025</span>, <span class="pl-c1">11</span>, <span class="pl-c1">12</span>, <span class="pl-c1">10</span>, <span class="pl-c1">0</span>, <span class="pl-c1">7</span>);
+public class Apis18 {
+    public static void main(String[] args) {
+        LocalDateTime start = LocalDateTime.of(2025, 11, 11, 10, 10, 7);
+        LocalDateTime end = LocalDateTime.of(2025, 11, 12, 10, 0, 7);
 
-        <span class="pl-smi">Duration</span> <span class="pl-s1">duration</span> = <span class="pl-smi">Duration</span>.<span class="pl-en">between</span>(<span class="pl-s1">start</span>, <span class="pl-s1">end</span>);
+        Duration duration = Duration.between(start, end);
 
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">duration</span>.<span class="pl-en">toDays</span>());
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">duration</span>.<span class="pl-en">toHours</span>());
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">duration</span>.<span class="pl-en">toMinutes</span>());
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">duration</span>.<span class="pl-en">toSeconds</span>());
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">duration</span>.<span class="pl-en">toMillis</span>());
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">duration</span>.<span class="pl-en">toNanos</span>());
+        System.out.println(duration.toDays());
+        System.out.println(duration.toHours());
+        System.out.println(duration.toMinutes());
+        System.out.println(duration.toSeconds());
+        System.out.println(duration.toMillis());
+        System.out.println(duration.toNanos());
     }
 
-}</pre></div>
+}
+</code></pre>
 <p>打印结果</p>
 <pre lang="Plain" class="notranslate"><code class="notranslate">0
 23
@@ -598,7 +601,7 @@ if("06/25/2025"!=""){
 </script></div>
 </body>
 <script>
-var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
 var utterancesLoad=0;
 
 console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
@@ -645,70 +648,7 @@ function iFrameLoading(){
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const createClipboardHTML = (codeContent, additionalClasses = '') => `
-        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
-        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
-            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
-                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
-                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
-            </clipboard-copy>
-            <div class="copy-feedback">Copied!</div>
-        </div>
-    `;
 
-    const handleCodeElements = (selector = '') => {
-        document.querySelectorAll(selector).forEach(codeElement => {
-            const codeContent = codeElement.innerHTML;
-            const newStructure = document.createElement('div');
-            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
-            newStructure.innerHTML = createClipboardHTML(codeContent);
-
-            const parentElement = codeElement.parentElement;
-            if (selector.includes('highlight')) {
-                parentElement.insertBefore(newStructure, codeElement.nextSibling);
-                parentElement.removeChild(codeElement);
-            } else {
-                parentElement.parentElement.replaceChild(newStructure, parentElement);
-            }
-        });
-    };
-
-    handleCodeElements('pre.notranslate > code.notranslate');
-    handleCodeElements('div.highlight > pre.notranslate');
-
-    let currentFeedback = null;
-    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
-        copyButton.addEventListener('click', () => {
-            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
-            const tempTextArea = document.createElement('textarea');
-            tempTextArea.value = codeContent;
-            document.body.appendChild(tempTextArea);
-            tempTextArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempTextArea);
-
-            const copyIcon = copyButton.querySelector('.octicon-copy');
-            const checkIcon = copyButton.querySelector('.octicon-check');
-            const copyFeedback = copyButton.nextElementSibling;
-
-            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
-            currentFeedback = copyFeedback;
-
-            copyIcon.classList.add('d-none');
-            checkIcon.classList.remove('d-none');
-            copyFeedback.style.display = 'block';
-            copyButton.style.borderColor = 'var(--color-success-fg)';
-
-            setTimeout(() => {
-                copyIcon.classList.remove('d-none');
-                checkIcon.classList.add('d-none');
-                copyFeedback.style.display = 'none';
-                copyButton.style.borderColor = '';
-            }, 2000);
-        });
-    });
-});
 
 </script>
 <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekArticleTOC.js'><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekLightbox.js'></script><script>document.querySelectorAll('a').forEach(anchor => {const img = anchor.querySelector('img');if (img && img.hasAttribute('data-canonical-src')) {const canonicalSrc = img.getAttribute('data-canonical-src');anchor.setAttribute('href', canonicalSrc);img.setAttribute('src', canonicalSrc);img.removeAttribute('data-canonical-src');}});</script>
