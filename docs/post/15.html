@@ -22,7 +22,7 @@
 <meta property="og:url" content="https://zbhgis.github.io/post/15.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
 <title>【Arcpy】入门学习笔记（三）-数据属性的获取</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -157,25 +157,26 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </table></markdown-accessiblity-table>
 <p>测试</p>
 <p>通过<code class="notranslate">hasattr</code>获取对应属性名是否存在，通过<code class="notranslate">getattr</code>获取对应属性名的属性值</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
-<span class="pl-c"># coding=utf-8</span>
-<span class="pl-c"># @Time : 2024-04-26 2:47</span>
-<span class="pl-c"># @Author : zbh</span>
+<pre lang="python" class="notranslate"><code class="notranslate">#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-26 2:47
+# @Author : zbh
 
-<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+import arcpy
 
-<span class="pl-s1">file_path2</span> <span class="pl-c1">=</span> <span class="pl-s">r"G:\MyTestProject\arcpy2_test\Note3\data\Start.shp"</span>
-<span class="pl-k">if</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Exists</span>(<span class="pl-s1">file_path2</span>):
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path2 Found!"</span>)
-    <span class="pl-s1">desc</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Describe</span>(<span class="pl-s1">file_path2</span>)
-    <span class="pl-s1">prop_to_print</span> <span class="pl-c1">=</span> [<span class="pl-s">'name'</span>, <span class="pl-s">'extension'</span>, <span class="pl-s">'path'</span>, <span class="pl-s">'catalogPath'</span>, <span class="pl-s">'bandCount'</span>]
-    <span class="pl-k">for</span> <span class="pl-s1">prop_name</span> <span class="pl-c1">in</span> <span class="pl-s1">prop_to_print</span>:
-        <span class="pl-k">if</span> <span class="pl-en">hasattr</span>(<span class="pl-s1">desc</span>, <span class="pl-s1">prop_name</span>):
-            <span class="pl-en">print</span>(<span class="pl-s">"{}: {}"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">prop_name</span>, <span class="pl-en">getattr</span>(<span class="pl-s1">desc</span>, <span class="pl-s1">prop_name</span>)))
-        <span class="pl-k">else</span>:
-            <span class="pl-en">print</span>(<span class="pl-s">u"Property '{}' not found"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">prop_name</span>))
-<span class="pl-k">else</span>:
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path2 Not Found!"</span>)</pre></div>
+file_path2 = r"G:\MyTestProject\arcpy2_test\Note3\data\Start.shp"
+if arcpy.Exists(file_path2):
+    print("file_path2 Found!")
+    desc = arcpy.Describe(file_path2)
+    prop_to_print = ['name', 'extension', 'path', 'catalogPath', 'bandCount']
+    for prop_name in prop_to_print:
+        if hasattr(desc, prop_name):
+            print("{}: {}".format(prop_name, getattr(desc, prop_name)))
+        else:
+            print(u"Property '{}' not found".format(prop_name))
+else:
+    print("file_path2 Not Found!")
+</code></pre>
 <p>输出</p>
 <p>由于是矢量数据，所以没有<code class="notranslate">bandCount</code>属性</p>
 <pre class="notranslate"><code class="notranslate">file_path2 Found!
@@ -229,33 +230,36 @@ Property 'bandCount' not found
 </table></markdown-accessiblity-table>
 <p>测试</p>
 <p>逻辑同上</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
-<span class="pl-c"># coding=utf-8</span>
-<span class="pl-c"># @Time : 2024-04-26 12:10</span>
-<span class="pl-c"># @Author : zbh</span>
+<pre lang="python" class="notranslate"><code class="notranslate">#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-26 12:10
+# @Author : zbh
 
-<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+import arcpy
 
-<span class="pl-s1">file_path</span> <span class="pl-c1">=</span> <span class="pl-s">r"..\Note3\data\GeoData.gdb\MyShpfiles"</span>
-<span class="pl-k">if</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Exists</span>(<span class="pl-s1">file_path</span>):
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Found!"</span>)
-    <span class="pl-s1">desc</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Describe</span>(<span class="pl-s1">file_path</span>)
-    <span class="pl-s1">prop_to_print</span> <span class="pl-c1">=</span> [<span class="pl-s">'name'</span>, <span class="pl-s">'datasetType'</span>, <span class="pl-s">'extent'</span>, <span class="pl-s">'catalogPath'</span>, <span class="pl-s">'bandCount'</span>]
-    <span class="pl-k">for</span> <span class="pl-s1">prop_name</span> <span class="pl-c1">in</span> <span class="pl-s1">prop_to_print</span>:
-        <span class="pl-k">if</span> <span class="pl-en">hasattr</span>(<span class="pl-s1">desc</span>, <span class="pl-s1">prop_name</span>):
-            <span class="pl-en">print</span>(<span class="pl-s">"{}: {}"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">prop_name</span>, <span class="pl-en">getattr</span>(<span class="pl-s1">desc</span>, <span class="pl-s1">prop_name</span>)))
-        <span class="pl-k">else</span>:
-            <span class="pl-en">print</span>(<span class="pl-s">u"Property '{}' not found"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">prop_name</span>))
-<span class="pl-k">else</span>:
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Not Found!"</span>)</pre></div>
+file_path = r"..\Note3\data\GeoData.gdb\MyShpfiles"
+if arcpy.Exists(file_path):
+    print("file_path Found!")
+    desc = arcpy.Describe(file_path)
+    prop_to_print = ['name', 'datasetType', 'extent', 'catalogPath', 'bandCount']
+    for prop_name in prop_to_print:
+        if hasattr(desc, prop_name):
+            print("{}: {}".format(prop_name, getattr(desc, prop_name)))
+        else:
+            print(u"Property '{}' not found".format(prop_name))
+else:
+    print("file_path Not Found!")
+
+</code></pre>
 <p>输出</p>
 <p>也是没有<code class="notranslate">bandCount</code>属性</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">file_path</span> <span class="pl-v">Found</span>!
-<span class="pl-s1">name</span>: <span class="pl-smi">MyShpfiles</span>
-<span class="pl-s1">datasetType</span>: <span class="pl-smi">FeatureDataset</span>
-<span class="pl-s1">extent</span>: <span class="pl-c1">756856.1147</span> <span class="pl-c1">2969639.1121</span> <span class="pl-c1">764981.2868</span> <span class="pl-c1">2978678.4795</span> <span class="pl-v">NaN</span> <span class="pl-v">NaN</span> <span class="pl-v">NaN</span> <span class="pl-smi">NaN</span>
-<span class="pl-s1">catalogPath</span>: ..\<span class="pl-v">Note3</span>\<span class="pl-s1">data</span>\<span class="pl-v">GeoData</span>.<span class="pl-c1">gdb</span>\<span class="pl-smi">MyShpfiles</span>
-<span class="pl-v">Property</span> <span class="pl-s">'bandCount'</span> <span class="pl-c1">not</span> <span class="pl-s1">found</span></pre></div>
+<pre lang="python" class="notranslate"><code class="notranslate">file_path Found!
+name: MyShpfiles
+datasetType: FeatureDataset
+extent: 756856.1147 2969639.1121 764981.2868 2978678.4795 NaN NaN NaN NaN
+catalogPath: ..\Note3\data\GeoData.gdb\MyShpfiles
+Property 'bandCount' not found
+</code></pre>
 <h3>表属性（部分）</h3>
 <markdown-accessiblity-table><table role="table">
 <thead>
@@ -290,28 +294,29 @@ Property 'bandCount' not found
 </table></markdown-accessiblity-table>
 <p>测试</p>
 <p>因为<code class="notranslate">fields</code>本身是ArcGIS指定的一种对象类型，需要使用对象或列表的方式处理，这里直接使用了官网的代码样例读取字段</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
-<span class="pl-c"># coding=utf-8</span>
-<span class="pl-c"># @Time : 2024-04-26 12:22</span>
-<span class="pl-c"># @Author : zbh</span>
+<pre lang="python" class="notranslate"><code class="notranslate">#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-26 12:22
+# @Author : zbh
 
-<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+import arcpy
 
-<span class="pl-s1">file_path</span> <span class="pl-c1">=</span> <span class="pl-s">r"..\Note3\data\GeoData.gdb\MyShpfiles\Area"</span>
-<span class="pl-k">if</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Exists</span>(<span class="pl-s1">file_path</span>):
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Found!"</span>)
-    <span class="pl-s1">desc</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Describe</span>(<span class="pl-s1">file_path</span>)
-    <span class="pl-s1">prop_to_print</span> <span class="pl-c1">=</span> [<span class="pl-s">'name'</span>, <span class="pl-s">'OIDFieldName'</span>, <span class="pl-s">'bandCount'</span>]
-    <span class="pl-k">for</span> <span class="pl-s1">prop_name</span> <span class="pl-c1">in</span> <span class="pl-s1">prop_to_print</span>:
-        <span class="pl-k">if</span> <span class="pl-en">hasattr</span>(<span class="pl-s1">desc</span>, <span class="pl-s1">prop_name</span>):
-            <span class="pl-en">print</span>(<span class="pl-s">"{}: {}"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">prop_name</span>, <span class="pl-en">getattr</span>(<span class="pl-s1">desc</span>, <span class="pl-s1">prop_name</span>)))
-        <span class="pl-k">else</span>:
-            <span class="pl-en">print</span>(<span class="pl-s">u"Property '{}' not found"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">prop_name</span>))
-    <span class="pl-en">print</span>(<span class="pl-s">"--------------------"</span>)
-    <span class="pl-k">for</span> <span class="pl-s1">field</span> <span class="pl-c1">in</span> <span class="pl-s1">desc</span>.<span class="pl-c1">fields</span>:
-        <span class="pl-k">print</span> <span class="pl-s">"%-22s %s %s"</span> <span class="pl-c1">%</span> (<span class="pl-s1">field</span>.<span class="pl-c1">name</span>, <span class="pl-s">":"</span>, <span class="pl-s1">field</span>.<span class="pl-c1">type</span>)
-<span class="pl-k">else</span>:
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Not Found!"</span>)</pre></div>
+file_path = r"..\Note3\data\GeoData.gdb\MyShpfiles\Area"
+if arcpy.Exists(file_path):
+    print("file_path Found!")
+    desc = arcpy.Describe(file_path)
+    prop_to_print = ['name', 'OIDFieldName', 'bandCount']
+    for prop_name in prop_to_print:
+        if hasattr(desc, prop_name):
+            print("{}: {}".format(prop_name, getattr(desc, prop_name)))
+        else:
+            print(u"Property '{}' not found".format(prop_name))
+    print("--------------------")
+    for field in desc.fields:
+        print "%-22s %s %s" % (field.name, ":", field.type)
+else:
+    print("file_path Not Found!")
+</code></pre>
 <p>输出</p>
 <pre class="notranslate"><code class="notranslate">file_path Found!
 name: Area
@@ -367,32 +372,34 @@ Shape_Area             : Double
 </table></markdown-accessiblity-table>
 <p>测试</p>
 <p>逻辑同上</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
-<span class="pl-c"># coding=utf-8</span>
-<span class="pl-c"># @Time : 2024-04-26 13:13</span>
-<span class="pl-c"># @Author : zbh</span>
+<pre lang="python" class="notranslate"><code class="notranslate">#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-26 13:13
+# @Author : zbh
 
-<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+import arcpy
 
-<span class="pl-s1">file_path</span> <span class="pl-c1">=</span> <span class="pl-s">r"..\Note3\data\GeoData.gdb\MyShpfiles\Area"</span>
-<span class="pl-k">if</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Exists</span>(<span class="pl-s1">file_path</span>):
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Found!"</span>)
-    <span class="pl-s1">desc</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Describe</span>(<span class="pl-s1">file_path</span>)
-    <span class="pl-s1">prop_to_print</span> <span class="pl-c1">=</span> [<span class="pl-s">'name'</span>, <span class="pl-s">'featureType'</span>, <span class="pl-s">'shapeType'</span>, <span class="pl-s">'catalogPath'</span>, <span class="pl-s">'hasSpatialIndex'</span>]
-    <span class="pl-k">for</span> <span class="pl-s1">prop_name</span> <span class="pl-c1">in</span> <span class="pl-s1">prop_to_print</span>:
-        <span class="pl-k">if</span> <span class="pl-en">hasattr</span>(<span class="pl-s1">desc</span>, <span class="pl-s1">prop_name</span>):
-            <span class="pl-en">print</span>(<span class="pl-s">"{}: {}"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">prop_name</span>, <span class="pl-en">getattr</span>(<span class="pl-s1">desc</span>, <span class="pl-s1">prop_name</span>)))
-        <span class="pl-k">else</span>:
-            <span class="pl-en">print</span>(<span class="pl-s">u"Property '{}' not found"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">prop_name</span>))
-<span class="pl-k">else</span>:
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Not Found!"</span>)</pre></div>
+file_path = r"..\Note3\data\GeoData.gdb\MyShpfiles\Area"
+if arcpy.Exists(file_path):
+    print("file_path Found!")
+    desc = arcpy.Describe(file_path)
+    prop_to_print = ['name', 'featureType', 'shapeType', 'catalogPath', 'hasSpatialIndex']
+    for prop_name in prop_to_print:
+        if hasattr(desc, prop_name):
+            print("{}: {}".format(prop_name, getattr(desc, prop_name)))
+        else:
+            print(u"Property '{}' not found".format(prop_name))
+else:
+    print("file_path Not Found!")
+</code></pre>
 <p>输出</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">file_path</span> <span class="pl-v">Found</span>!
-<span class="pl-s1">name</span>: <span class="pl-smi">Area</span>
-<span class="pl-s1">featureType</span>: <span class="pl-smi">Simple</span>
-<span class="pl-s1">shapeType</span>: <span class="pl-smi">Polygon</span>
-<span class="pl-s1">catalogPath</span>: ..\<span class="pl-v">Note3</span>\<span class="pl-s1">data</span>\<span class="pl-v">GeoData</span>.<span class="pl-c1">gdb</span>\<span class="pl-v">MyShpfiles</span>\<span class="pl-smi">Area</span>
-<span class="pl-s1">hasSpatialIndex</span>: <span class="pl-c1">True</span></pre></div>
+<pre lang="python" class="notranslate"><code class="notranslate">file_path Found!
+name: Area
+featureType: Simple
+shapeType: Polygon
+catalogPath: ..\Note3\data\GeoData.gdb\MyShpfiles\Area
+hasSpatialIndex: True
+</code></pre>
 <h3>图层属性（部分）</h3>
 <markdown-accessiblity-table><table role="table">
 <thead>
@@ -447,25 +454,26 @@ Shape_Area             : Double
 </table></markdown-accessiblity-table>
 <p>测试</p>
 <p>这个的whereClause属性是指自己在属性窗口定义的查询语句，这里也是直接使用官网的代码样例</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
-<span class="pl-c"># coding=utf-8</span>
-<span class="pl-c"># @Time : 2024-04-26 13:13</span>
-<span class="pl-c"># @Author : zbh</span>
+<pre lang="python" class="notranslate"><code class="notranslate">#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-26 13:13
+# @Author : zbh
 
-<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+import arcpy
 
-<span class="pl-s1">file_path</span> <span class="pl-c1">=</span> <span class="pl-s">r"..\Note3\data\Area.lyr"</span>
-<span class="pl-k">if</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Exists</span>(<span class="pl-s1">file_path</span>):
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Found!"</span>)
-    <span class="pl-s1">desc</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Describe</span>(<span class="pl-s1">file_path</span>)
-    <span class="pl-k">print</span> <span class="pl-s">"Name String:        "</span> <span class="pl-c1">+</span> <span class="pl-s1">desc</span>.<span class="pl-c1">nameString</span>
-    <span class="pl-k">print</span> <span class="pl-s">"Where Clause:       "</span> <span class="pl-c1">+</span> <span class="pl-s1">desc</span>.<span class="pl-c1">whereClause</span>
+file_path = r"..\Note3\data\Area.lyr"
+if arcpy.Exists(file_path):
+    print("file_path Found!")
+    desc = arcpy.Describe(file_path)
+    print "Name String:        " + desc.nameString
+    print "Where Clause:       " + desc.whereClause
 
-    <span class="pl-k">if</span> <span class="pl-s1">desc</span>.<span class="pl-c1">dataElement</span>.<span class="pl-c1">dataType</span> <span class="pl-c1">==</span> <span class="pl-s">"FeatureClass"</span>:
-        <span class="pl-k">print</span> <span class="pl-s">"Feature class:      "</span> <span class="pl-c1">+</span> <span class="pl-s1">desc</span>.<span class="pl-c1">dataElement</span>.<span class="pl-c1">catalogPath</span>
-        <span class="pl-k">print</span> <span class="pl-s">"Feature class Type: "</span> <span class="pl-c1">+</span> <span class="pl-s1">desc</span>.<span class="pl-c1">featureClass</span>.<span class="pl-c1">featureType</span>
-<span class="pl-k">else</span>:
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Not Found!"</span>)</pre></div>
+    if desc.dataElement.dataType == "FeatureClass":
+        print "Feature class:      " + desc.dataElement.catalogPath
+        print "Feature class Type: " + desc.featureClass.featureType
+else:
+    print("file_path Not Found!")
+</code></pre>
 <p>输出</p>
 <pre class="notranslate"><code class="notranslate">file_path Found!
 Name String:        Area
@@ -512,22 +520,23 @@ Feature class Type: Simple
 </table></markdown-accessiblity-table>
 <p>测试</p>
 <p>直接使用的官网的代码样例修改</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
-<span class="pl-c"># coding=utf-8</span>
-<span class="pl-c"># @Time : 2024-04-26 14:01</span>
-<span class="pl-c"># @Author : zbh</span>
+<pre lang="Python" class="notranslate"><code class="notranslate">#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-26 14:01
+# @Author : zbh
 
-<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+import arcpy
 
-<span class="pl-s1">file_path</span> <span class="pl-c1">=</span> <span class="pl-s">r"..\Note3\data\Raster1.tif"</span>
-<span class="pl-k">if</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Exists</span>(<span class="pl-s1">file_path</span>):
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Found!"</span>)
-    <span class="pl-s1">desc</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Describe</span>(<span class="pl-s1">file_path</span>)
-    <span class="pl-k">print</span> <span class="pl-s">"Band Count:       %d"</span> <span class="pl-c1">%</span> <span class="pl-s1">desc</span>.<span class="pl-c1">bandCount</span>
-    <span class="pl-k">print</span> <span class="pl-s">"Compression Type: %s"</span> <span class="pl-c1">%</span> <span class="pl-s1">desc</span>.<span class="pl-c1">compressionType</span>
-    <span class="pl-k">print</span> <span class="pl-s">"Raster Format:    %s"</span> <span class="pl-c1">%</span> <span class="pl-s1">desc</span>.<span class="pl-c1">format</span>
-<span class="pl-k">else</span>:
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Not Found!"</span>)</pre></div>
+file_path = r"..\Note3\data\Raster1.tif"
+if arcpy.Exists(file_path):
+    print("file_path Found!")
+    desc = arcpy.Describe(file_path)
+    print "Band Count:       %d" % desc.bandCount
+    print "Compression Type: %s" % desc.compressionType
+    print "Raster Format:    %s" % desc.format
+else:
+    print("file_path Not Found!")
+</code></pre>
 <p>输出</p>
 <pre class="notranslate"><code class="notranslate">file_path Found!
 Band Count:       1
@@ -568,25 +577,26 @@ Raster Format:    TIFF
 </table></markdown-accessiblity-table>
 <p>测试</p>
 <p>空间参考属性需要写成<code class="notranslate">sr = arcpy.Describe(file_path).spatialReference</code>更方便后面的读取</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
-<span class="pl-c"># coding=utf-8</span>
-<span class="pl-c"># @Time : 2024-04-26 14:16</span>
-<span class="pl-c"># @Author : zbh</span>
+<pre lang="python" class="notranslate"><code class="notranslate">#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-26 14:16
+# @Author : zbh
 
-<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+import arcpy
 
-<span class="pl-s1">file_path</span> <span class="pl-c1">=</span> <span class="pl-s">r"..\Note3\data\Raster1.tif"</span>
-<span class="pl-k">if</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Exists</span>(<span class="pl-s1">file_path</span>):
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Found!"</span>)
-    <span class="pl-s1">sr</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Describe</span>(<span class="pl-s1">file_path</span>).<span class="pl-c1">spatialReference</span>
-    <span class="pl-s1">prop_to_print</span> <span class="pl-c1">=</span> [<span class="pl-s">'factoryCode'</span>, <span class="pl-s">'projectionName'</span>, <span class="pl-s">'GCSName'</span>, <span class="pl-s">'type'</span>]
-    <span class="pl-k">for</span> <span class="pl-s1">prop_name</span> <span class="pl-c1">in</span> <span class="pl-s1">prop_to_print</span>:
-        <span class="pl-k">if</span> <span class="pl-en">hasattr</span>(<span class="pl-s1">sr</span>, <span class="pl-s1">prop_name</span>):
-            <span class="pl-en">print</span>(<span class="pl-s">"{}: {}"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">prop_name</span>, <span class="pl-en">getattr</span>(<span class="pl-s1">sr</span>, <span class="pl-s1">prop_name</span>)))
-        <span class="pl-k">else</span>:
-            <span class="pl-en">print</span>(<span class="pl-s">u"Property '{}' not found"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">prop_name</span>))
-<span class="pl-k">else</span>:
-    <span class="pl-en">print</span>(<span class="pl-s">"file_path Not Found!"</span>)</pre></div>
+file_path = r"..\Note3\data\Raster1.tif"
+if arcpy.Exists(file_path):
+    print("file_path Found!")
+    sr = arcpy.Describe(file_path).spatialReference
+    prop_to_print = ['factoryCode', 'projectionName', 'GCSName', 'type']
+    for prop_name in prop_to_print:
+        if hasattr(sr, prop_name):
+            print("{}: {}".format(prop_name, getattr(sr, prop_name)))
+        else:
+            print(u"Property '{}' not found".format(prop_name))
+else:
+    print("file_path Not Found!")
+</code></pre>
 <p>结果</p>
 <pre class="notranslate"><code class="notranslate">file_path Found!
 factoryCode: 4326
@@ -602,29 +612,32 @@ type: Geographic
 G:\test\test.gdb\data\data1
 </code></pre>
 <p>前者可以通过OS模块读取，后者只能通过Arcpy读取</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
-<span class="pl-c"># coding=utf-8</span>
-<span class="pl-c"># @Time : 2024-04-26 1:20</span>
-<span class="pl-c"># @Author : zbh</span>
+<pre lang="python" class="notranslate"><code class="notranslate">#!/usr/bin/env python
+# coding=utf-8
+# @Time : 2024-04-26 1:20
+# @Author : zbh
 
-<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
-<span class="pl-k">import</span> <span class="pl-s1">os</span>
+import arcpy
+import os
 
-<span class="pl-s1">file_path1</span> <span class="pl-c1">=</span> <span class="pl-s">r"G:\MyTestProject\arcpy2_test\Note3\data\GeoData.gdb\Raster1"</span>
-<span class="pl-k">if</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">Exists</span>(<span class="pl-s1">file_path1</span>)):
-    <span class="pl-en">print</span>(<span class="pl-s">"arcpy.Exists Found!"</span>)
-<span class="pl-k">else</span>:
-    <span class="pl-en">print</span>(<span class="pl-s">"arcpy.Exists Not Found"</span>)
-<span class="pl-k">if</span>(<span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">exists</span>(<span class="pl-s1">file_path1</span>)):
-    <span class="pl-en">print</span>(<span class="pl-s">"os.path.exists Found!"</span>)
-<span class="pl-k">else</span>:
-    <span class="pl-en">print</span>(<span class="pl-s">"os.path.exists Not Found"</span>)</pre></div>
+file_path1 = r"G:\MyTestProject\arcpy2_test\Note3\data\GeoData.gdb\Raster1"
+if(arcpy.Exists(file_path1)):
+    print("arcpy.Exists Found!")
+else:
+    print("arcpy.Exists Not Found")
+if(os.path.exists(file_path1)):
+    print("os.path.exists Found!")
+else:
+    print("os.path.exists Not Found")
+</code></pre>
 <p>输出结果</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">arcpy</span>.<span class="pl-c1">Exists</span> <span class="pl-v">Found</span>!
-<span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">exists</span> <span class="pl-v">Not</span> <span class="pl-v">Found</span></pre></div>
+<pre lang="python" class="notranslate"><code class="notranslate">arcpy.Exists Found!
+os.path.exists Not Found
+</code></pre>
 <h3>字符串</h3>
 <p>Python2中输出有汉字尽量加上u，格式化输出用format</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-en">print</span>(<span class="pl-s">u"name: '{}' "</span>.<span class="pl-c1">format</span>(<span class="pl-s1">name</span>))</pre></div>
+<pre lang="python" class="notranslate"><code class="notranslate">print(u"name: '{}' ".format(name))
+</code></pre>
 <h3>属性的说明</h3>
 <p>Describe属性是基本属性，大多数的数据都有。</p>
 <p>Shapefile 支持<a href="https://desktop.arcgis.com/zh-cn/arcmap/10.3/analyze/arcpy-functions/featureclass-properties.htm" rel="nofollow">要素类属性</a>、<a href="https://desktop.arcgis.com/zh-cn/arcmap/10.3/analyze/arcpy-functions/table-properties.htm" rel="nofollow">表属性</a>和<a href="https://desktop.arcgis.com/zh-cn/arcmap/10.3/analyze/arcpy-functions/dataset-properties.htm" rel="nofollow">数据集属性</a>。</p>
