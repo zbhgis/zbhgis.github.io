@@ -92,7 +92,7 @@ if __name__ == '__main__':
 <meta property="og:url" content="https://zbhgis.github.io/post/32.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
 <title>Flask调试模式（debug mode）开启不了，显示Debug mode: off</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -165,8 +165,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>Pycharm 2022</p>
 <h2>问题</h2>
 <p>在run中加上了<code class="notranslate">debug=True</code>之后（如下）</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-k">if</span> <span class="pl-s1">__name__</span> <span class="pl-c1">==</span> <span class="pl-s">'__main__'</span>:
-    <span class="pl-s1">app</span>.<span class="pl-c1">run</span>(<span class="pl-s1">debug</span><span class="pl-c1">=</span><span class="pl-c1">True</span>)</pre></div>
+<pre lang="python" class="notranslate"><code class="notranslate">if __name__ == '__main__':
+    app.run(debug=True)
+</code></pre>
 <p>但在实际运行的时候调试模式（debug mode）仍然没有生效，在控制台显示以下信息</p>
 <pre class="notranslate"><code class="notranslate"> * Debug mode: off
 </code></pre>
