@@ -582,7 +582,7 @@ D:\py\Pycharm\bin\pycharm64.exe
 <meta property="og:url" content="https://zbhgis.github.io/post/10.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
 <title>【Arcpy】入门学习笔记（二）-脚本工具</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 
 </head>
@@ -662,167 +662,161 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>Arcpy脚本常用代码</h2>
 <p>会经常使用到的代码或代码块</p>
 <h3>包的导入</h3>
-<pre lang="python" class="notranslate"><code class="notranslate"># 导入sys模块，设置Python解释器的默认编码为UTF-8
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 导入sys模块，设置Python解释器的默认编码为UTF-8</span>
+<span class="pl-k">import</span> <span class="pl-s1">sys</span>
+<span class="pl-en">reload</span>(<span class="pl-s1">sys</span>)
+<span class="pl-s1">sys</span>.<span class="pl-c1">setdefaultencoding</span>(<span class="pl-s">'utf8'</span>)
 
-# 导入ArcPy模块
-import arcpy
+<span class="pl-c"># 导入ArcPy模块</span>
+<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
 
-# 导入NumPy库
-import numpy as np
+<span class="pl-c"># 导入NumPy库</span>
+<span class="pl-k">import</span> <span class="pl-s1">numpy</span> <span class="pl-k">as</span> <span class="pl-s1">np</span>
 
-# 导入Python标准库中的os模块，用于操作文件路径
-import os
+<span class="pl-c"># 导入Python标准库中的os模块，用于操作文件路径</span>
+<span class="pl-k">import</span> <span class="pl-s1">os</span>
 
-# 导入datetime类，用于处理日期和时间
-from datetime import datetime
+<span class="pl-c"># 导入datetime类，用于处理日期和时间</span>
+<span class="pl-k">from</span> <span class="pl-s1">datetime</span> <span class="pl-k">import</span> <span class="pl-s1">datetime</span>
 
-# 从ArcPy空间分析模块导入所有函数和类
-from arcpy.sa import *
+<span class="pl-c"># 从ArcPy空间分析模块导入所有函数和类</span>
+<span class="pl-k">from</span> <span class="pl-s1">arcpy</span>.<span class="pl-s1">sa</span> <span class="pl-k">import</span> <span class="pl-c1">*</span>
 
-# 导入xlwt模块，用于创建和操作Excel文件（xls格式）
-import xlwt
-</code></pre>
+<span class="pl-c"># 导入xlwt模块，用于创建和操作Excel文件（xls格式）</span>
+<span class="pl-k">import</span> <span class="pl-s1">xlwt</span></pre></div>
 <h3>获取工具箱参数</h3>
-<pre lang="python" class="notranslate"><code class="notranslate"># 获取参数
-layer = arcpy.GetParameter(0)
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 获取参数</span>
+<span class="pl-s1">layer</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameter</span>(<span class="pl-c1">0</span>)
 
-# 获取参数并读取为Unicode
-out_path = arcpy.GetParameterAsText(1)
+<span class="pl-c"># 获取参数并读取为Unicode</span>
+<span class="pl-s1">out_path</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-c1">1</span>)
 
-# 获取参数并转为整数
-num = int(arcpy.GetParameterAsText(2)) 
+<span class="pl-c"># 获取参数并转为整数</span>
+<span class="pl-s1">num</span> <span class="pl-c1">=</span> <span class="pl-en">int</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-c1">2</span>)) 
 
-# 获取参数并转为字符串
-out_path = str(arcpy.GetParameterAsText(3)) 
+<span class="pl-c"># 获取参数并转为字符串</span>
+<span class="pl-s1">out_path</span> <span class="pl-c1">=</span> <span class="pl-en">str</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-c1">3</span>)) 
 
-# 在参数获取方法相同时，可批量获取
-args = tuple(arcpy.GetParameterAsText(i) for i in range(arcpy.GetArgumentCount()))
-Test(*args)
-</code></pre>
+<span class="pl-c"># 在参数获取方法相同时，可批量获取</span>
+<span class="pl-s1">args</span> <span class="pl-c1">=</span> <span class="pl-en">tuple</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-s1">i</span>) <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetArgumentCount</span>()))
+<span class="pl-en">Test</span>(<span class="pl-c1">*</span><span class="pl-s1">args</span>)</pre></div>
 <h3>环境设置</h3>
-<pre lang="python" class="notranslate"><code class="notranslate">#!/usr/bin/env python
-# coding=utf-8
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
+<span class="pl-c"># coding=utf-8</span>
 
-# 确认分析模块是否可用
-arcpy.CheckOutExtension("spatial")
+<span class="pl-c"># 确认分析模块是否可用</span>
+<span class="pl-s1">arcpy</span>.<span class="pl-c1">CheckOutExtension</span>(<span class="pl-s">"spatial"</span>)
 
-# 设置工作空间
-arcpy.env.workspace = out_path
+<span class="pl-c"># 设置工作空间</span>
+<span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">workspace</span> <span class="pl-c1">=</span> <span class="pl-s1">out_path</span>
 
-# 设置并行处理因子为0，因为有的学习版用不了这个功能
-arcpy.env.parallelProcessingFactor = '0'
+<span class="pl-c"># 设置并行处理因子为0，因为有的学习版用不了这个功能</span>
+<span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">parallelProcessingFactor</span> <span class="pl-c1">=</span> <span class="pl-s">'0'</span>
 
-# 设置输出可覆盖文件
-arcpy.env.overwriteOutput = "True"
-</code></pre>
+<span class="pl-c"># 设置输出可覆盖文件</span>
+<span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">overwriteOutput</span> <span class="pl-c1">=</span> <span class="pl-s">"True"</span></pre></div>
 <h3>工具箱输出</h3>
-<pre lang="python" class="notranslate"><code class="notranslate"># 在工具箱输出栏中打印信息
-arcpy.AddMessage("ok")
-</code></pre>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 在工具箱输出栏中打印信息</span>
+<span class="pl-s1">arcpy</span>.<span class="pl-c1">AddMessage</span>(<span class="pl-s">"ok"</span>)</pre></div>
 <h2>脚本工具制作</h2>
 <p>本部分较为繁琐，可粗略看看</p>
 <h3>准备好py文件</h3>
 <p>比如下面这个，先在Pycharm中进行测试，可以根据指定数量生成圆的个数，每个圆的半径依次增加50m</p>
-<pre lang="python" class="notranslate"><code class="notranslate">#!/usr/bin/env python
-# coding=utf-8
-# @Time : 2024-04-21 11:41
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
+<span class="pl-c"># coding=utf-8</span>
+<span class="pl-c"># @Time : 2024-04-21 11:41</span>
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
-import arcpy
-import os
-import math
+<span class="pl-k">import</span> <span class="pl-s1">sys</span>
+<span class="pl-en">reload</span>(<span class="pl-s1">sys</span>)
+<span class="pl-s1">sys</span>.<span class="pl-c1">setdefaultencoding</span>(<span class="pl-s">'utf8'</span>)
+<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+<span class="pl-k">import</span> <span class="pl-s1">os</span>
+<span class="pl-k">import</span> <span class="pl-s1">math</span>
 
-def create_shapefiles(num, out_path):
-    # 设置坐标系为WGS84_UTM_50N
-    spatial_reference = arcpy.SpatialReference(32650)  # WGS84_UTM_50N的WKID为32650
+<span class="pl-k">def</span> <span class="pl-en">create_shapefiles</span>(<span class="pl-s1">num</span>, <span class="pl-s1">out_path</span>):
+    <span class="pl-c"># 设置坐标系为WGS84_UTM_50N</span>
+    <span class="pl-s1">spatial_reference</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">SpatialReference</span>(<span class="pl-c1">32650</span>)  <span class="pl-c"># WGS84_UTM_50N的WKID为32650</span>
 
-    # 根据num循环创建矢量文件
-    for i in range(1, num + 1):
-        # 创建要素类名称和路径
-        circle_name = "Circle_{}m".format(i * 50)
-        circle_path = os.path.join(out_path, circle_name + ".shp")
+    <span class="pl-c"># 根据num循环创建矢量文件</span>
+    <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">1</span>, <span class="pl-s1">num</span> <span class="pl-c1">+</span> <span class="pl-c1">1</span>):
+        <span class="pl-c"># 创建要素类名称和路径</span>
+        <span class="pl-s1">circle_name</span> <span class="pl-c1">=</span> <span class="pl-s">"Circle_{}m"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-c1">50</span>)
+        <span class="pl-s1">circle_path</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">out_path</span>, <span class="pl-s1">circle_name</span> <span class="pl-c1">+</span> <span class="pl-s">".shp"</span>)
 
-        # 创建圆
-        arcpy.management.CreateFeatureclass(os.path.dirname(circle_path), circle_name, "POLYGON", spatial_reference=spatial_reference)
-        circle_cursor = arcpy.da.InsertCursor(circle_path, ["SHAPE@"])
-        circle = arcpy.Point()
-        circle_geometry = arcpy.Array()
-        for angle in range(0, 361, 10):
-            circle.X = 50 * i * math.cos(math.radians(angle))  # 半径为50*i
-            circle.Y = 50 * i * math.sin(math.radians(angle))
-            circle_geometry.add(circle)
-        circle_geometry.add(circle_geometry.getObject(0))  # 添加起始点以闭合圆
-        circle_cursor.insertRow([arcpy.Polygon(circle_geometry)])
-        del circle_cursor
+        <span class="pl-c"># 创建圆</span>
+        <span class="pl-s1">arcpy</span>.<span class="pl-c1">management</span>.<span class="pl-c1">CreateFeatureclass</span>(<span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">dirname</span>(<span class="pl-s1">circle_path</span>), <span class="pl-s1">circle_name</span>, <span class="pl-s">"POLYGON"</span>, <span class="pl-s1">spatial_reference</span><span class="pl-c1">=</span><span class="pl-s1">spatial_reference</span>)
+        <span class="pl-s1">circle_cursor</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">da</span>.<span class="pl-c1">InsertCursor</span>(<span class="pl-s1">circle_path</span>, [<span class="pl-s">"SHAPE@"</span>])
+        <span class="pl-s1">circle</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Point</span>()
+        <span class="pl-s1">circle_geometry</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Array</span>()
+        <span class="pl-k">for</span> <span class="pl-s1">angle</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">0</span>, <span class="pl-c1">361</span>, <span class="pl-c1">10</span>):
+            <span class="pl-s1">circle</span>.<span class="pl-c1">X</span> <span class="pl-c1">=</span> <span class="pl-c1">50</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-s1">math</span>.<span class="pl-c1">cos</span>(<span class="pl-s1">math</span>.<span class="pl-c1">radians</span>(<span class="pl-s1">angle</span>))  <span class="pl-c"># 半径为50*i</span>
+            <span class="pl-s1">circle</span>.<span class="pl-c1">Y</span> <span class="pl-c1">=</span> <span class="pl-c1">50</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-s1">math</span>.<span class="pl-c1">sin</span>(<span class="pl-s1">math</span>.<span class="pl-c1">radians</span>(<span class="pl-s1">angle</span>))
+            <span class="pl-s1">circle_geometry</span>.<span class="pl-c1">add</span>(<span class="pl-s1">circle</span>)
+        <span class="pl-s1">circle_geometry</span>.<span class="pl-c1">add</span>(<span class="pl-s1">circle_geometry</span>.<span class="pl-c1">getObject</span>(<span class="pl-c1">0</span>))  <span class="pl-c"># 添加起始点以闭合圆</span>
+        <span class="pl-s1">circle_cursor</span>.<span class="pl-c1">insertRow</span>([<span class="pl-s1">arcpy</span>.<span class="pl-c1">Polygon</span>(<span class="pl-s1">circle_geometry</span>)])
+        <span class="pl-k">del</span> <span class="pl-s1">circle_cursor</span>
 
-if __name__ == "__main__":
-    num = 2
-    out_path = r'G:\MyTestProject\arcpy2_test\data'
+<span class="pl-k">if</span> <span class="pl-s1">__name__</span> <span class="pl-c1">==</span> <span class="pl-s">"__main__"</span>:
+    <span class="pl-s1">num</span> <span class="pl-c1">=</span> <span class="pl-c1">2</span>
+    <span class="pl-s1">out_path</span> <span class="pl-c1">=</span> <span class="pl-s">r'G:\MyTestProject\arcpy2_test\data'</span>
 
-    arcpy.CheckOutExtension("spatial")
-    arcpy.env.parallelProcessingFactor = '0'
-    arcpy.env.overwriteOutput = "True"
-    arcpy.env.workspace = out_path
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">CheckOutExtension</span>(<span class="pl-s">"spatial"</span>)
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">parallelProcessingFactor</span> <span class="pl-c1">=</span> <span class="pl-s">'0'</span>
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">overwriteOutput</span> <span class="pl-c1">=</span> <span class="pl-s">"True"</span>
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">workspace</span> <span class="pl-c1">=</span> <span class="pl-s1">out_path</span>
 
-    create_shapefiles(num, out_path)
+    <span class="pl-en">create_shapefiles</span>(<span class="pl-s1">num</span>, <span class="pl-s1">out_path</span>)
 
-    arcpy.AddMessage(num)
-    arcpy.AddMessage(out_path)
-</code></pre>
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">AddMessage</span>(<span class="pl-s1">num</span>)
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">AddMessage</span>(<span class="pl-s1">out_path</span>)</pre></div>
 <p>在Pycharm中运行结果打开如下：</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/261e3e7cb48776c5692fe2df9ef51b0656d2327af84e938459c80987ddaa1e82/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363236323332383633332e706e67"><img src="https://camo.githubusercontent.com/261e3e7cb48776c5692fe2df9ef51b0656d2327af84e938459c80987ddaa1e82/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363236323332383633332e706e67" alt="image-20240421130358309" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328633.png" style="max-width: 100%;"></a></p>
 <p>测试没问题之后，将最后一段改掉，从面板获取参数，并将代码中的中文注释都删掉或者改成英文注释，不然会有一些离谱的bug，修改后准备的导入脚本的代码如下：</p>
-<pre lang="python" class="notranslate"><code class="notranslate">#!/usr/bin/env python
-# coding=utf-8
-# @Time : 2024-04-21 11:41
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c">#!/usr/bin/env python</span>
+<span class="pl-c"># coding=utf-8</span>
+<span class="pl-c"># @Time : 2024-04-21 11:41</span>
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
-import arcpy
-import os
-import math
+<span class="pl-k">import</span> <span class="pl-s1">sys</span>
+<span class="pl-en">reload</span>(<span class="pl-s1">sys</span>)
+<span class="pl-s1">sys</span>.<span class="pl-c1">setdefaultencoding</span>(<span class="pl-s">'utf8'</span>)
+<span class="pl-k">import</span> <span class="pl-s1">arcpy</span>
+<span class="pl-k">import</span> <span class="pl-s1">os</span>
+<span class="pl-k">import</span> <span class="pl-s1">math</span>
 
-def create_shapefiles(num, out_path):
-    spatial_reference = arcpy.SpatialReference(32650)  # WGS84_UTM_50N的WKID为32650
+<span class="pl-k">def</span> <span class="pl-en">create_shapefiles</span>(<span class="pl-s1">num</span>, <span class="pl-s1">out_path</span>):
+    <span class="pl-s1">spatial_reference</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">SpatialReference</span>(<span class="pl-c1">32650</span>)  <span class="pl-c"># WGS84_UTM_50N的WKID为32650</span>
 
-    for i in range(1, num + 1):
-        circle_name = "Circle_{}m".format(i * 50)
-        circle_path = os.path.join(out_path, circle_name + ".shp")
+    <span class="pl-k">for</span> <span class="pl-s1">i</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">1</span>, <span class="pl-s1">num</span> <span class="pl-c1">+</span> <span class="pl-c1">1</span>):
+        <span class="pl-s1">circle_name</span> <span class="pl-c1">=</span> <span class="pl-s">"Circle_{}m"</span>.<span class="pl-c1">format</span>(<span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-c1">50</span>)
+        <span class="pl-s1">circle_path</span> <span class="pl-c1">=</span> <span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">join</span>(<span class="pl-s1">out_path</span>, <span class="pl-s1">circle_name</span> <span class="pl-c1">+</span> <span class="pl-s">".shp"</span>)
 
-        arcpy.management.CreateFeatureclass(os.path.dirname(circle_path), circle_name, "POLYGON", spatial_reference=spatial_reference)
-        circle_cursor = arcpy.da.InsertCursor(circle_path, ["SHAPE@"])
-        circle = arcpy.Point()
-        circle_geometry = arcpy.Array()
-        for angle in range(0, 361, 10):
-            circle.X = 50 * i * math.cos(math.radians(angle))
-            circle.Y = 50 * i * math.sin(math.radians(angle))
-            circle_geometry.add(circle)
-        circle_geometry.add(circle_geometry.getObject(0))
-        circle_cursor.insertRow([arcpy.Polygon(circle_geometry)])
-        del circle_cursor
+        <span class="pl-s1">arcpy</span>.<span class="pl-c1">management</span>.<span class="pl-c1">CreateFeatureclass</span>(<span class="pl-s1">os</span>.<span class="pl-c1">path</span>.<span class="pl-c1">dirname</span>(<span class="pl-s1">circle_path</span>), <span class="pl-s1">circle_name</span>, <span class="pl-s">"POLYGON"</span>, <span class="pl-s1">spatial_reference</span><span class="pl-c1">=</span><span class="pl-s1">spatial_reference</span>)
+        <span class="pl-s1">circle_cursor</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">da</span>.<span class="pl-c1">InsertCursor</span>(<span class="pl-s1">circle_path</span>, [<span class="pl-s">"SHAPE@"</span>])
+        <span class="pl-s1">circle</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Point</span>()
+        <span class="pl-s1">circle_geometry</span> <span class="pl-c1">=</span> <span class="pl-s1">arcpy</span>.<span class="pl-c1">Array</span>()
+        <span class="pl-k">for</span> <span class="pl-s1">angle</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-c1">0</span>, <span class="pl-c1">361</span>, <span class="pl-c1">10</span>):
+            <span class="pl-s1">circle</span>.<span class="pl-c1">X</span> <span class="pl-c1">=</span> <span class="pl-c1">50</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-s1">math</span>.<span class="pl-c1">cos</span>(<span class="pl-s1">math</span>.<span class="pl-c1">radians</span>(<span class="pl-s1">angle</span>))
+            <span class="pl-s1">circle</span>.<span class="pl-c1">Y</span> <span class="pl-c1">=</span> <span class="pl-c1">50</span> <span class="pl-c1">*</span> <span class="pl-s1">i</span> <span class="pl-c1">*</span> <span class="pl-s1">math</span>.<span class="pl-c1">sin</span>(<span class="pl-s1">math</span>.<span class="pl-c1">radians</span>(<span class="pl-s1">angle</span>))
+            <span class="pl-s1">circle_geometry</span>.<span class="pl-c1">add</span>(<span class="pl-s1">circle</span>)
+        <span class="pl-s1">circle_geometry</span>.<span class="pl-c1">add</span>(<span class="pl-s1">circle_geometry</span>.<span class="pl-c1">getObject</span>(<span class="pl-c1">0</span>))
+        <span class="pl-s1">circle_cursor</span>.<span class="pl-c1">insertRow</span>([<span class="pl-s1">arcpy</span>.<span class="pl-c1">Polygon</span>(<span class="pl-s1">circle_geometry</span>)])
+        <span class="pl-k">del</span> <span class="pl-s1">circle_cursor</span>
 
-if __name__ == "__main__":
-    # num = 2
-    # out_path = r'G:\MyTestProject\arcpy2_test\data'
-    num = int(arcpy.GetParameterAsText(0))
-    out_path = str(arcpy.GetParameterAsText(1))
+<span class="pl-k">if</span> <span class="pl-s1">__name__</span> <span class="pl-c1">==</span> <span class="pl-s">"__main__"</span>:
+    <span class="pl-c"># num = 2</span>
+    <span class="pl-c"># out_path = r'G:\MyTestProject\arcpy2_test\data'</span>
+    <span class="pl-s1">num</span> <span class="pl-c1">=</span> <span class="pl-en">int</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-c1">0</span>))
+    <span class="pl-s1">out_path</span> <span class="pl-c1">=</span> <span class="pl-en">str</span>(<span class="pl-s1">arcpy</span>.<span class="pl-c1">GetParameterAsText</span>(<span class="pl-c1">1</span>))
 
-    arcpy.CheckOutExtension("spatial")
-    arcpy.env.parallelProcessingFactor = '0'
-    arcpy.env.overwriteOutput = "True"
-    arcpy.env.workspace = out_path
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">CheckOutExtension</span>(<span class="pl-s">"spatial"</span>)
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">parallelProcessingFactor</span> <span class="pl-c1">=</span> <span class="pl-s">'0'</span>
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">overwriteOutput</span> <span class="pl-c1">=</span> <span class="pl-s">"True"</span>
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">env</span>.<span class="pl-c1">workspace</span> <span class="pl-c1">=</span> <span class="pl-s1">out_path</span>
 
-    create_shapefiles(num, out_path)
+    <span class="pl-en">create_shapefiles</span>(<span class="pl-s1">num</span>, <span class="pl-s1">out_path</span>)
 
-    arcpy.AddMessage(num)
-    arcpy.AddMessage(out_path)
-</code></pre>
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">AddMessage</span>(<span class="pl-s1">num</span>)
+    <span class="pl-s1">arcpy</span>.<span class="pl-c1">AddMessage</span>(<span class="pl-s1">out_path</span>)</pre></div>
 <h3>创建工具</h3>
 <p>创建好一个工具箱后，在其中创建工具集，并在工具集中添加脚本</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8c9ed15594bd36bd35793fb38f7d9187d4f720fac2f77b5bea769df824d9974b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363236323332383632372e706e67"><img src="https://camo.githubusercontent.com/8c9ed15594bd36bd35793fb38f7d9187d4f720fac2f77b5bea769df824d9974b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363236323332383632372e706e67" alt="image-20240421130946332" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262328627.png" style="max-width: 100%;"></a></p>
