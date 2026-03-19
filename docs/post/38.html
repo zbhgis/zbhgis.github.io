@@ -32,7 +32,7 @@
 <meta property="og:url" content="https://zbhgis.github.io/post/38.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
 <title>ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 
 </head>
@@ -117,9 +117,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <pre class="notranslate"><code class="notranslate">https://zbhgis.blog.csdn.net/article/details/139173382
 </code></pre>
 <p>影像ID：</p>
-<pre lang="python" class="notranslate"><code class="notranslate">LC09_L2SP_118042_20220915_20230329_02_T1
-LC09_L2SP_119042_20220821_20230402_02_T1
-</code></pre>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-v">LC09_L2SP_118042_20220915_20230329_02_T1</span>
+<span class="pl-v">LC09_L2SP_119042_20220821_20230402_02_T1</span></pre></div>
 <h2>数据处理</h2>
 <p>数据下载好之后就可以直接开始处理了。</p>
 <p>由于ENVI 5.3并不支持直接识别Landsat 8/9的C2L2级别的数据产品，因此本文介绍两种方法来打开数据并在ENVI中进行预处理。</p>
@@ -182,8 +181,7 @@ LC09_L2SP_119042_20220821_20230402_02_T1
 </code></pre>
 <p>安装好之后，重启ENVI软件。在右侧工具箱中的【Extension】|【Raster Processing Batch Tool】中找到【Band Math Batch】，选择裁剪后的影像，【Variable Type】选择【File】，【Expression】填入以下表达式，并选择输出路径。点击【OK】。</p>
 <p>该表达式的含义是将设置影像的背景值为-1（建议设置为整数），非背景值设置按照公式进行转换为反射率，其中大于1的部分设置为1，小于0的部分设置为0。</p>
-<pre lang="python" class="notranslate"><code class="notranslate">((b1 ne 0)*(b1*0.0000275-0.2))&gt;0&lt;1+(b1 eq 0)*(-1)
-</code></pre>
+<div class="highlight highlight-source-python"><pre class="notranslate">((<span class="pl-s1">b1</span> <span class="pl-s1">ne</span> <span class="pl-c1">0</span>)<span class="pl-c1">*</span>(<span class="pl-s1">b1</span><span class="pl-c1">*</span><span class="pl-c1">0.0000275</span><span class="pl-c1">-</span><span class="pl-c1">0.2</span>))<span class="pl-c1">&gt;</span><span class="pl-c1">0</span><span class="pl-c1">&lt;</span><span class="pl-c1">1</span><span class="pl-c1">+</span>(<span class="pl-s1">b1</span> <span class="pl-s1">eq</span> <span class="pl-c1">0</span>)<span class="pl-c1">*</span>(<span class="pl-c1">-</span><span class="pl-c1">1</span>)</pre></div>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/aebd53a0705715417c3192992f12df8e065deccf2bb0343dfd03ce5115acaf3d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393137332e706e67"><img src="https://camo.githubusercontent.com/aebd53a0705715417c3192992f12df8e065deccf2bb0343dfd03ce5115acaf3d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393137332e706e67" alt="image-20241018104521339" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019173.png" style="max-width: 100%;"></a></p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a1b6c39bd943c8bfeb0bbf2952dd0743f5eb62326e1d8ee6acec641b04891395/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393537382e706e67"><img src="https://camo.githubusercontent.com/a1b6c39bd943c8bfeb0bbf2952dd0743f5eb62326e1d8ee6acec641b04891395/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393537382e706e67" alt="image-20241017145509802" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019578.png" style="max-width: 100%;"></a></p>
 <p>再进一步右键图层，选择【View Metadata】中的【Edit Metadata】</p>
