@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="github-light" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<meta name="description" content="# ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）
+
+@[toc]
+## 前言（必读）
+
+不同的下载方式以及不同级别的数据产品在ENVI的不同版本中有不同的处理方式，以本文为例，演示在USGS网站下载Landsat 8/9 C2L2级别的地表反射率（SR）产品在ENVI 5.3版本中的预处理流程
+
+！！！建议所有数据在进行以下操作之前进行备份，避免操作失误等问题需要去网站上重新下载数据！！！
+
+在进行预处理之前，最好对这个级别的数据有一定的了解。">
+<meta property="og:title" content="ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）">
+<meta property="og:description" content="# ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）
+
+@[toc]
+## 前言（必读）
+
+不同的下载方式以及不同级别的数据产品在ENVI的不同版本中有不同的处理方式，以本文为例，演示在USGS网站下载Landsat 8/9 C2L2级别的地表反射率（SR）产品在ENVI 5.3版本中的预处理流程
+
+！！！建议所有数据在进行以下操作之前进行备份，避免操作失误等问题需要去网站上重新下载数据！！！
+
+在进行预处理之前，最好对这个级别的数据有一定的了解。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zbhgis.github.io/post/38.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<title>ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）</h1>
+<div class="title-right">
+    <a href="https://zbhgis.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/zbhgis/zbhgis.github.io/issues/38" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题"style="display:none;">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）</h1>
+<p>@[toc]</p>
+<h2>前言（必读）</h2>
+<p>不同的下载方式以及不同级别的数据产品在ENVI的不同版本中有不同的处理方式，以本文为例，演示在USGS网站下载Landsat 8/9 C2L2级别的地表反射率（SR）产品在ENVI 5.3版本中的预处理流程</p>
+<p>！！！建议所有数据在进行以下操作之前进行备份，避免操作失误等问题需要去网站上重新下载数据！！！</p>
+<p>在进行预处理之前，最好对这个级别的数据有一定的了解。</p>
+<p><a href="https://zbhgis.blog.csdn.net/article/details/139023038" rel="nofollow">Landsat 8/9 C2L2级别数据下载、使用、处理的个人经验以及注意事项汇总（查找用）_landsat8l2sp数据怎么处理可用-CSDN博客</a></p>
+<pre class="notranslate"><code class="notranslate">https://zbhgis.blog.csdn.net/article/details/139023038
+</code></pre>
+<h2>软件准备</h2>
+<p>本次使用的软件是：ENVI 5.3，需提前安装好（其他版本软件处理流程类似），ENVI高版本支持的批处理工具更多会方便一些。</p>
+<h2>目标</h2>
+<p>现有在USGS网站上下载好的某个区域的Landsat8/9 C2L2级别的地表反射率数据产品若干幅，在ENVI 5.3中进行预处理，选择蓝、绿、红、近红外4个波段，得到研究区范围的波段合成好的TIF格式数据。</p>
+<h2>数据下载</h2>
+<p>详细步骤见以下文章：</p>
+<p><a href="https://zbhgis.blog.csdn.net/article/details/139173382" rel="nofollow">USGS网站下载Landsat 5/7/8/9数据最新详细教程（注册、筛选、单波段、批量下载等），附常见问题_usgs注册账号-CSDN博客</a></p>
+<pre class="notranslate"><code class="notranslate">https://zbhgis.blog.csdn.net/article/details/139173382
+</code></pre>
+<p>影像ID：</p>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-v">LC09_L2SP_118042_20220915_20230329_02_T1</span>
+<span class="pl-v">LC09_L2SP_119042_20220821_20230402_02_T1</span></pre></div>
+<h2>数据处理</h2>
+<p>数据下载好之后就可以直接开始处理了。</p>
+<p>由于ENVI 5.3并不支持直接识别Landsat 8/9的C2L2级别的数据产品，因此本文介绍两种方法来打开数据并在ENVI中进行预处理。</p>
+<h3>打开数据</h3>
+<p><strong>方法一（通过Metadata打开，打开后进行波段裁剪并导出dat格式）：</strong></p>
+<p>通过Metadata打开数据的方法见以下文章：</p>
+<p><a href="https://zbhgis.blog.csdn.net/article/details/139309431" rel="nofollow">ENVI 5.3/6.0打开Landsat 8/9 C2L2级别数据（带有Metadata），附常见问题_envi打开landsat8-CSDN博客</a></p>
+<p>以其中的一幅影像为例，将其Metadata文件修改好后，通过【File】|【Open】打开如下所示：</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c409a4f16d97549ed3e371076191bee965fd20da23dc59fdea12dfc8c4ffe61c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383138382e706e67"><img src="https://camo.githubusercontent.com/c409a4f16d97549ed3e371076191bee965fd20da23dc59fdea12dfc8c4ffe61c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383138382e706e67" alt="image-20250101115858725" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271018188.png" style="max-width: 100%;"></a></p>
+<p>在菜单栏中选择【File】|【Save As】|【Save As ...】，选择【Spectral Subset】<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/db89661abb01e6b7bdfb6bd71e0aa919e6138113196da4b823fde3937cdaef5e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383031342e706e67"><img src="https://camo.githubusercontent.com/db89661abb01e6b7bdfb6bd71e0aa919e6138113196da4b823fde3937cdaef5e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383031342e706e67" alt="image-20250101120302432" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271018014.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3981b745c5572144871146d6ba8000f92bc07b93866d9d6ae940ebe310c5bf1a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383530392e706e67"><img src="https://camo.githubusercontent.com/3981b745c5572144871146d6ba8000f92bc07b93866d9d6ae940ebe310c5bf1a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383530392e706e67" alt="image-20250101130416309" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271018509.png" style="max-width: 100%;"></a></p>
+<p>按住Ctrl键后选择需要的波段，本文选择其中的蓝、绿、红、近红四个波段进行导出，点击【OK】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7e40b21afb6b8c5d9922b5d8bfcdf343c1486eafb0314abe3903c142224663c2/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383732352e706e67"><img src="https://camo.githubusercontent.com/7e40b21afb6b8c5d9922b5d8bfcdf343c1486eafb0314abe3903c142224663c2/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383732352e706e67" alt="image-20250101132658053" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271018725.png" style="max-width: 100%;"></a></p>
+<p>导出格式选择【ENVI】，文件命名为”L9_119042_220821.dat“</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d5c645f8ace8b3f56363af6fbfacf7d0db833970e59c8c2cdc23bf01cceb93c7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383732362e706e67"><img src="https://camo.githubusercontent.com/d5c645f8ace8b3f56363af6fbfacf7d0db833970e59c8c2cdc23bf01cceb93c7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383732362e706e67" alt="image-20250101145139884" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271018726.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/907da3ae6255468bd77f8258c37568d3f58b28934340c216462826b9c813de8a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383537332e706e67"><img src="https://camo.githubusercontent.com/907da3ae6255468bd77f8258c37568d3f58b28934340c216462826b9c813de8a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383537332e706e67" alt="image-20250101145733571" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271018573.png" style="max-width: 100%;"></a></p>
+<p>其他影像同理。打开之后进行图像裁剪。</p>
+<p><strong>方法二（直接打开tif文件，打开后进行波段合成）：</strong></p>
+<p>以普通的TIF格式文件打开，则需要自行完成波段合成：</p>
+<p>以其中的一幅影像为例，将下载完成的蓝、绿、红、近红外这4个波段拷贝在一个文件夹中，在ENVI中通过【File】|【Open】打开下载的4个波段文件。（如果需要其他操作，比如计算一些指数的话，就选择一并选择其他的波段）</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7b0e5b14d9f91d699d165d1b469f7616deaea374458c1b4e453d619595c1cd34/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383932352e706e67"><img src="https://camo.githubusercontent.com/7b0e5b14d9f91d699d165d1b469f7616deaea374458c1b4e453d619595c1cd34/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383932352e706e67" alt="image-20240923171742219" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271018925.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/499c324a8122262d727c40194938b9c85644639fae13780f703845634d4c5873/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383139332e706e67"><img src="https://camo.githubusercontent.com/499c324a8122262d727c40194938b9c85644639fae13780f703845634d4c5873/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383139332e706e67" alt="image-20240923175415606" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271018193.png" style="max-width: 100%;"></a></p>
+<p>之后对这些导入的波段进行波段合成，方便后续操作。在右侧工具箱中的【Raster Management】|【Layer Stacking】中，选择刚刚导入的波段，然后选择输出路径，文件命名为”L9_119042_220915.dat“，点击【OK】。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/cf6c243197aca534115073bd7f3839b1339a9b4b641da80eeceb004cabe71361/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383637312e706e67"><img src="https://camo.githubusercontent.com/cf6c243197aca534115073bd7f3839b1339a9b4b641da80eeceb004cabe71361/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383637312e706e67" alt="image-20250101145309239" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271018671.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/dde70909215357c627e2465dc972146f7753b8cf5c67040dced1a5ec4e7b2e03/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383730342e706e67"><img src="https://camo.githubusercontent.com/dde70909215357c627e2465dc972146f7753b8cf5c67040dced1a5ec4e7b2e03/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031383730342e706e67" alt="image-20250101145452269" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271018704.png" style="max-width: 100%;"></a></p>
+<p>其他影像同理。打开之后进行图像裁剪。</p>
+<h3>图像裁剪</h3>
+<p>为了减少后续镶嵌花费的时间，以及减少地物降低色差，就先进行图像裁剪。</p>
+<p>这里需要使用一个官方提供的插件，插件需要在APP Store中下载，或者手动安装。</p>
+<p><a href="https://www.cnblogs.com/enviidl/p/16334286.html" rel="nofollow">ENVI扩展工具：栅格图像批处理工具包（适用于低版本） - ENVI-IDL技术殿堂 - 博客园 (cnblogs.com)</a></p>
+<pre class="notranslate"><code class="notranslate">https://www.cnblogs.com/enviidl/p/16334286.html
+</code></pre>
+<p>安装好之后，重启ENVI软件。首先通过【File】|【Open】在ENVI中打开矢量边界数据。其中，两幅影像分别为50度带和51度带的坐标系，矢量数据为50度带的坐标系。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1e5528564cdb5c623d392eb9632ad4250b12e528be08041d3c289f32089b06c2/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393038362e706e67"><img src="https://camo.githubusercontent.com/1e5528564cdb5c623d392eb9632ad4250b12e528be08041d3c289f32089b06c2/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393038362e706e67" alt="image-20241017095315982" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019086.png" style="max-width: 100%;"></a></p>
+<p>在右侧工具箱中的【Extension】|【Raster Processing Batch Tool】中找到【Subset Data from Shapefile Batch】，选择波段合成后的影像，【Input Vector】选择准备好的矢量文件，并选择后缀名和输出路径。点击【OK】。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/202dbb398edcc3c96644493566620e5f4dfe3861bbd8725c63915591e295ba74/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393030322e706e67"><img src="https://camo.githubusercontent.com/202dbb398edcc3c96644493566620e5f4dfe3861bbd8725c63915591e295ba74/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393030322e706e67" alt="image-20250101151026904" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019002.png" style="max-width: 100%;"></a></p>
+<p>通过这个方式裁剪之后的输出结果还是各自保持为原来的投影坐标系，结果如下所示。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/22b8b8be0929a97ba7964adceea07c7f42819af52c7f5ed2e513c5ff26c49e07/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393230312e706e67"><img src="https://camo.githubusercontent.com/22b8b8be0929a97ba7964adceea07c7f42819af52c7f5ed2e513c5ff26c49e07/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393230312e706e67" alt="image-20241017095022302" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019201.png" style="max-width: 100%;"></a></p>
+<h3>图像镶嵌</h3>
+<p>在右侧工具箱中的【Mosaicking】|【Seamless Mosaic】，点击如图所示的“+”，通过【Open File】打开波段合成之后的两幅影像。并勾选右上角的【Show Preview】，能够实时预览。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3da67a17623f84b7188ea0cfd79763b6ac4fba38fdf4c281e5dc8e323b65c4c9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393538332e706e67"><img src="https://camo.githubusercontent.com/3da67a17623f84b7188ea0cfd79763b6ac4fba38fdf4c281e5dc8e323b65c4c9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393538332e706e67" alt="image-20240924085226327" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019583.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/82241e8dfd6766aa0e12ec24f32758f95db9574eefd04f1fd0037f35334c8c4b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393733372e706e67"><img src="https://camo.githubusercontent.com/82241e8dfd6766aa0e12ec24f32758f95db9574eefd04f1fd0037f35334c8c4b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393733372e706e67" alt="image-20240924093755207" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019737.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3c53b2cd8b8b2655bbc44eac145e42589cc98c5aee3ecf183bd7e87076f7b901/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393930372e706e67"><img src="https://camo.githubusercontent.com/3c53b2cd8b8b2655bbc44eac145e42589cc98c5aee3ecf183bd7e87076f7b901/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393930372e706e67" alt="image-20240924085520648" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019907.png" style="max-width: 100%;"></a></p>
+<p>在【Main】配置中，将【Ignore Value】改为0，【Color Matching Action】选择“L9_119042_220821_subset.dat”为【Reference】，即基准影像，其他的为【Adjust】，即待校正影像。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3261554708d45985a50b4901dc84298372fa7b5fdf957cbdc4bd9e96e2bd235b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393235382e706e67"><img src="https://camo.githubusercontent.com/3261554708d45985a50b4901dc84298372fa7b5fdf957cbdc4bd9e96e2bd235b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393235382e706e67" alt="image-20250101151252580" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019258.png" style="max-width: 100%;"></a></p>
+<p>在【Color Correction】配置中，勾选【Histogram Matching】，并选择【Overlap Area Only】，</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e57a6884cf9ae45d24a8e7d52064eb99531e7a9aeae7184cd7e4da786e96b018/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393634382e706e67"><img src="https://camo.githubusercontent.com/e57a6884cf9ae45d24a8e7d52064eb99531e7a9aeae7184cd7e4da786e96b018/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393634382e706e67" alt="image-20240924090954806" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019648.png" style="max-width: 100%;"></a></p>
+<p>在【Seamlines】选项中，选择【Auto Generate Seamlines】。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/42427dbfdc243f46309434ae7a48851d76ca63ad81908774bde81f060442d5f7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393133372e706e67"><img src="https://camo.githubusercontent.com/42427dbfdc243f46309434ae7a48851d76ca63ad81908774bde81f060442d5f7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393133372e706e67" alt="image-20240924091112191" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019137.png" style="max-width: 100%;"></a></p>
+<p>在【Seamlines/Feathering】中，保持默认选择。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d2c0bd43874acfb264926fbca858e02267bc4a4f31172f787efb438df7f8825e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393037382e706e67"><img src="https://camo.githubusercontent.com/d2c0bd43874acfb264926fbca858e02267bc4a4f31172f787efb438df7f8825e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393037382e706e67" alt="image-20240924091342828" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019078.png" style="max-width: 100%;"></a></p>
+<p>在【Export】中，选择输出格式为【ENVI】，并选择输出路径，将【Output Background Value】设置为0，其余保持默认选择。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/661a2139bfe560767915f2a05c57afcc71f4be8f0a28a5979753ec72698403ba/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393931372e706e67"><img src="https://camo.githubusercontent.com/661a2139bfe560767915f2a05c57afcc71f4be8f0a28a5979753ec72698403ba/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393931372e706e67" alt="image-20250101151521817" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019917.png" style="max-width: 100%;"></a></p>
+<p>点击下方的【Finish】，等待时间之后即可完成镶嵌。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/340f52ba6faa28449b02a53d0dd6186890e3897d3e992563a40d7282f90c562b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393532362e706e67"><img src="https://camo.githubusercontent.com/340f52ba6faa28449b02a53d0dd6186890e3897d3e992563a40d7282f90c562b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393532362e706e67" alt="image-20241017101057895" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019526.png" style="max-width: 100%;"></a></p>
+<h3>定标/像元值转换</h3>
+<p>这一步即将波段从DN值定标为反射率，这里需要使用一个官方提供的插件，插件需要在APP Store中下载，或者手动安装。</p>
+<p><a href="https://www.cnblogs.com/enviidl/p/16334286.html" rel="nofollow">ENVI扩展工具：栅格图像批处理工具包（适用于低版本） - ENVI-IDL技术殿堂 - 博客园 (cnblogs.com)</a></p>
+<pre class="notranslate"><code class="notranslate">https://www.cnblogs.com/enviidl/p/16334286.html
+</code></pre>
+<p>安装好之后，重启ENVI软件。在右侧工具箱中的【Extension】|【Raster Processing Batch Tool】中找到【Band Math Batch】，选择裁剪后的影像，【Variable Type】选择【File】，【Expression】填入以下表达式，并选择输出路径。点击【OK】。</p>
+<p>该表达式的含义是将设置影像的背景值为-1（建议设置为整数），非背景值设置按照公式进行转换为反射率，其中大于1的部分设置为1，小于0的部分设置为0。</p>
+<div class="highlight highlight-source-python"><pre class="notranslate">((<span class="pl-s1">b1</span> <span class="pl-s1">ne</span> <span class="pl-c1">0</span>)<span class="pl-c1">*</span>(<span class="pl-s1">b1</span><span class="pl-c1">*</span><span class="pl-c1">0.0000275</span><span class="pl-c1">-</span><span class="pl-c1">0.2</span>))<span class="pl-c1">&gt;</span><span class="pl-c1">0</span><span class="pl-c1">&lt;</span><span class="pl-c1">1</span><span class="pl-c1">+</span>(<span class="pl-s1">b1</span> <span class="pl-s1">eq</span> <span class="pl-c1">0</span>)<span class="pl-c1">*</span>(<span class="pl-c1">-</span><span class="pl-c1">1</span>)</pre></div>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/aebd53a0705715417c3192992f12df8e065deccf2bb0343dfd03ce5115acaf3d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393137332e706e67"><img src="https://camo.githubusercontent.com/aebd53a0705715417c3192992f12df8e065deccf2bb0343dfd03ce5115acaf3d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393137332e706e67" alt="image-20241018104521339" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019173.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a1b6c39bd943c8bfeb0bbf2952dd0743f5eb62326e1d8ee6acec641b04891395/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393537382e706e67"><img src="https://camo.githubusercontent.com/a1b6c39bd943c8bfeb0bbf2952dd0743f5eb62326e1d8ee6acec641b04891395/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393537382e706e67" alt="image-20241017145509802" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019578.png" style="max-width: 100%;"></a></p>
+<p>再进一步右键图层，选择【View Metadata】中的【Edit Metadata】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/643bc5521a2c8f5ea50df79006644b38338f869f5bffe7f2cf47f2d6c973501b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393133342e706e67"><img src="https://camo.githubusercontent.com/643bc5521a2c8f5ea50df79006644b38338f869f5bffe7f2cf47f2d6c973501b/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393133342e706e67" alt="image-20250101152737289" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019134.png" style="max-width: 100%;"></a></p>
+<p>点击左上角的【Add...】，找到【Data Ignore Value】，点击【OK】进行添加，并将其设置为“-1”。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a158043be2a39f7a98f8d224d14f0fc3ba6c1c0ed7ac5c140c938c67a503c9e6/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393830392e706e67"><img src="https://camo.githubusercontent.com/a158043be2a39f7a98f8d224d14f0fc3ba6c1c0ed7ac5c140c938c67a503c9e6/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393830392e706e67" alt="image-20250101153031643" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019809.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a9adb482d999751d08220742d091d5ff9c5ae3c549d3b75d6ccab81494a7fd09/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393135362e706e67"><img src="https://camo.githubusercontent.com/a9adb482d999751d08220742d091d5ff9c5ae3c549d3b75d6ccab81494a7fd09/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393135362e706e67" alt="image-20250101153142993" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019156.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/93c60a40d7a969a4210ae9e28ad5395be78fa7b39c86e4ec9d620ec05cb5cc1c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393736322e706e67"><img src="https://camo.githubusercontent.com/93c60a40d7a969a4210ae9e28ad5395be78fa7b39c86e4ec9d620ec05cb5cc1c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313031393736322e706e67" alt="image-20250101161031879" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271019762.png" style="max-width: 100%;"></a></p>
+<h3>去云</h3>
+<p>自己去手动查看并下载的影像云占比都很少，一般情况下不需要去云，可以跳过此步。</p>
+<p>如果有特殊需要去云的话，则需要自行创建掩膜，将云层部分设置为Nodata，不参与后续运算。</p>
+<p>这个部分的实现可以通过QA_PIXEL波段、观察确定经验阈值、云检测指数、云检测算法等多种方式。</p>
+<p>右键图层，选择【New Raster Color Slice】，选择其中的蓝波段之后，创建密度分割波段。</p>
+<p>先点击【Clear Color Slices】，将所有的分割层级删除，再点击【Add Color Slice】添加新的颜色分割，自行设置阈值。如下图，虽然官方有对应的QA_PIXEL质量评估波段，但是其在某些方面标记的不太准确，比较适合在宏观尺度上使用。例如下图中红色的部分为QA_PIXEL波段中的22280，为高置信度云，但是实际上为城区和水体。如果研究关注的是山区植被，进行计算NDVI等，那就没太大的影响；如果研究关注的是城区建筑，计算NDBI等，那就容易错误掩膜掉所需的信息。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/abd210d69e31a78633b437ab023c3aa1dae81d9d36ec277f330b990561b4755e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303035322e706e67"><img src="https://camo.githubusercontent.com/abd210d69e31a78633b437ab023c3aa1dae81d9d36ec277f330b990561b4755e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303035322e706e67" alt="image-20241017112041848" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020052.png" style="max-width: 100%;"></a></p>
+<p>由于QA_PIXEL波段在本区域效果不好，并且本文只是实验，故采用较为方便的通过观察确定经验阈值的方式（这种方式的缺点就是不同区域的阈值不一定相同）。云层和白色建筑物较难区分，因此主要观察两者在各个波段反射率的差异。通过菜单栏中的【Cursor Value】，以此查看云层的反射率（主要观察云层与周围地物交界的反射率）。通过观察（前者为云，后者为地物），推断出云层的红绿蓝波段反射率都要略微低于白色建筑物。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4a351d847715bf362ce85ae2d47c1e388ed15d90276c1ea9d0920378511cff49/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303031332e706e67"><img src="https://camo.githubusercontent.com/4a351d847715bf362ce85ae2d47c1e388ed15d90276c1ea9d0920378511cff49/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303031332e706e67" alt="image-20241017151854830" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020013.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a89cd00016f826fc9f454ac1b9348630c53c8cebc731042c13268f6aebcc01b7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303539372e706e67"><img src="https://camo.githubusercontent.com/a89cd00016f826fc9f454ac1b9348630c53c8cebc731042c13268f6aebcc01b7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303539372e706e67" alt="image-20241017152028031" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020597.png" style="max-width: 100%;"></a></p>
+<p>右键图层，选择【New Raster Color Slice】，选择其中的蓝波段之后，创建密度分割波段。</p>
+<p>先点击【Clear Color Slices】，将所有的分割层级删除，再点击【Add Color Slice】添加新的颜色分割，自行设置阈值。经过不断调整，确定阈值为0.25，大于0.25为云层，小于0.25为其他地物，基本上可以区分云层和白色建筑物。因此，将新的颜色分割设置为最小值至0.25，即创建一个不包括云层的密度分割图层。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f99c2fc1ece2c44ba94d2ceaa1c7f91b4111ef0dedff67617f8971a4979af91a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303837332e706e67"><img src="https://camo.githubusercontent.com/f99c2fc1ece2c44ba94d2ceaa1c7f91b4111ef0dedff67617f8971a4979af91a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303837332e706e67" alt="image-20241017154159305" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020873.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a794a99b6565b4c3bc355c73559cfa5f93309541031cfc2235099562e4abb7f3/68747470733a2f2f692d626c6f672e6373646e696d672e636e2f696d675f636f6e766572742f31643762333933643030386161636535336335353137366463353130663236642e706e67"><img src="https://camo.githubusercontent.com/a794a99b6565b4c3bc355c73559cfa5f93309541031cfc2235099562e4abb7f3/68747470733a2f2f692d626c6f672e6373646e696d672e636e2f696d675f636f6e766572742f31643762333933643030386161636535336335353137366463353130663236642e706e67" alt="image-20241017154637823" data-canonical-src="https://i-blog.csdnimg.cn/img_convert/1d7b393d008aace53c55176dc510f26d.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4d735a2cbbe3c380d85dc42e579d7fb740a85af0885a98876d1a1731b8b861f9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303536302e706e67"><img src="https://camo.githubusercontent.com/4d735a2cbbe3c380d85dc42e579d7fb740a85af0885a98876d1a1731b8b861f9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303536302e706e67" alt="image-20250101153341637" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020560.png" style="max-width: 100%;"></a></p>
+<p>选中“Slice”，右键选择【Export Color Slices】|【Shapefile】，并选择输出路径，点击【OK】。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d907be1a8e6c266c10d20ccfc091403be52b69f0a224395b17d0b440594041f5/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303932302e706e67"><img src="https://camo.githubusercontent.com/d907be1a8e6c266c10d20ccfc091403be52b69f0a224395b17d0b440594041f5/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303932302e706e67" alt="image-20241017162534234" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020920.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/25f17da4cb63c57d3fa34d96b519c8ddf76130d5448628d74085ad4b0ef481ec/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303335322e706e67"><img src="https://camo.githubusercontent.com/25f17da4cb63c57d3fa34d96b519c8ddf76130d5448628d74085ad4b0ef481ec/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303335322e706e67" alt="image-20250101153641290" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020352.png" style="max-width: 100%;"></a></p>
+<p>在右侧工具箱中的【Raster Management】|【Masking】|【Build Mask】，选择转换像元值后的影像，在【Options】中选择【Import EVFs】，选择准备好的云层矢量，点击【OK】，在弹出的面板中，再次选择转换像元值后的影像，点击【OK】。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8d536347193cd95d6d3ccacb31a68b5dc090f28b1b212645ee4c2c43dc8fa75a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303834332e706e67"><img src="https://camo.githubusercontent.com/8d536347193cd95d6d3ccacb31a68b5dc090f28b1b212645ee4c2c43dc8fa75a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303834332e706e67" alt="image-20241017160406006" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020843.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/bab89105d3989cfef0434c5ea41de909490e03abe35d19d6ba15a90f927f31cd/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303031362e706e67"><img src="https://camo.githubusercontent.com/bab89105d3989cfef0434c5ea41de909490e03abe35d19d6ba15a90f927f31cd/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303031362e706e67" alt="image-20241017160443942" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020016.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5c95191fe37a65b3110c26254c50d00ec5fcd159d6a5f88e3acb304b3c7086eb/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303337392e706e67"><img src="https://camo.githubusercontent.com/5c95191fe37a65b3110c26254c50d00ec5fcd159d6a5f88e3acb304b3c7086eb/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303337392e706e67" alt="image-20241017160558616" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020379.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/450674f72add86faeeff15c0ffecfaa23a3da9173ba37b05026f0b0d1045689a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303038322e706e67"><img src="https://camo.githubusercontent.com/450674f72add86faeeff15c0ffecfaa23a3da9173ba37b05026f0b0d1045689a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303038322e706e67" alt="image-20250101155022072" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020082.png" style="max-width: 100%;"></a></p>
+<p>此时返回最初的界面，选择好输出文件的路径之后，再点击【OK】即可。创建的掩膜如下所示，掩膜中云层部分对应的值为0。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8ff3137f347e099d7c7c51035638e4432276b3c7c8e62ea54140f9582ad6e75d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303934392e706e67"><img src="https://camo.githubusercontent.com/8ff3137f347e099d7c7c51035638e4432276b3c7c8e62ea54140f9582ad6e75d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303934392e706e67" alt="image-20250101154951310" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020949.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fd92ad25a496e630b952668611a82e98229aba350d02f648797856c9886c86b7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303733302e706e67"><img src="https://camo.githubusercontent.com/fd92ad25a496e630b952668611a82e98229aba350d02f648797856c9886c86b7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303733302e706e67" alt="image-20250101160228824" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020730.png" style="max-width: 100%;"></a></p>
+<p>在右侧工具箱中的【Raster Management】|【Masking】|【Apply Mask】，在主面板中选择之前转换像元值之后的影像，然后在下方的【Select Mask Band】中，选择刚刚生成的掩膜栅格，点击【OK】。在之后面板中选择需要掩膜的值，设置为“-1”，即上一步中的波段计算设置的背景值，再文件输出路径，再次点击【OK】。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9c6cc4784843f66d62f324ba9dec25ad3865081d88ef1ed8505002f3ee67c8ed/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303730302e706e67"><img src="https://camo.githubusercontent.com/9c6cc4784843f66d62f324ba9dec25ad3865081d88ef1ed8505002f3ee67c8ed/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303730302e706e67" alt="image-20250101155337276" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020700.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1285045f7458e71f84399ce945b4428c2f702434f5ae5b3fb0bcc7d6c9cd4da4/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303831302e706e67"><img src="https://camo.githubusercontent.com/1285045f7458e71f84399ce945b4428c2f702434f5ae5b3fb0bcc7d6c9cd4da4/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303831302e706e67" alt="image-20250101155724150" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020810.png" style="max-width: 100%;"></a></p>
+<p>可以看到，掩膜之后的影像中云层部分的各个波段值均为nodata。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4f3df2e92d14405c9244535b65f7336ed5c5d2606742ed5be3a778af4c0e28f2/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303634372e706e67"><img src="https://camo.githubusercontent.com/4f3df2e92d14405c9244535b65f7336ed5c5d2606742ed5be3a778af4c0e28f2/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303634372e706e67" alt="image-20250101155808505" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020647.png" style="max-width: 100%;"></a></p>
+<h3>导出为TIF</h3>
+<p>通过菜单栏中的【File】|【Save As】，将这个数据导出为TIFF格式。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3884ecc55b00276ef33b0049a49be0d00065e409b5b10fe0285194ed149a491c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303536332e706e67"><img src="https://camo.githubusercontent.com/3884ecc55b00276ef33b0049a49be0d00065e409b5b10fe0285194ed149a491c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032303536332e706e67" alt="image-20250101160326479" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271020563.png" style="max-width: 100%;"></a></p>
+<h2>注意点（必读）</h2>
+<p>1、在ENVI 5.3中处理这个级别的数据，一定要对数据进行检查，因此有的时候软件可能读取不到数据的空间参考信息，这个时候如果进行操作会导致后面的操作失败，因此如果软件没有读取到坐标系的空间参考信息的话，就需要自己先进行投影。</p>
+<p>可以右键【View MetaData】，如果在【Map Info】中可以看到每个波段的【Type】为“Arbitrary”说明未进行投影，之后还得自行通过ENVI工具箱中的【Reproject Raster】进行投影；如果【Type】为“Projected”就说明已经投影过了或者成功读取到空间参考信息了。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ae5e6ed750c0e2d72d0a0ef5788760bc34affa983b9827738ddf0df66569cec6/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032313230302e706e67"><img src="https://camo.githubusercontent.com/ae5e6ed750c0e2d72d0a0ef5788760bc34affa983b9827738ddf0df66569cec6/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032313230302e706e67" alt="image-20240514222419810" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271021200.png" style="max-width: 100%;"></a></p>
+<p>2、Landsat8 C2L2级别的数据官方为了方便存储，通过整型数据存储，但是并不是像Collection1直接放大一万倍，需要按照特定的公式进行处理。</p>
+<p>3、Landsat8 C2L2级别的数据在预处理的过程做过大气校正了，但是这个大气校正的结果可能会在部分指数计算的时候导致奇怪的值，就是这个也可以用，但是与C2L1级别的产品结合ENVI的FLAASH大气校正出来的结果肯定是有一定差别的，有时间的话可以下载C2L1级别的数据进行大气校正。</p>
+<p>4、如果操作过程中，涉及到了影像的坐标系转换，建议使用ENVI的【Reproject Raster】工具进行重投影；通过【Edit  Metadata】直接修改影像的坐标系可能会导致影像的偏移。</p>
+<p>5、原始数据最好备份一份，避免操作失误。</p>
+<p>6、每一个步骤处理完后建议查看一下影像的处理结果是否符合预期，如果与预期相差较大，那么就可能是参数设置错误。</p>
+<p>7、如果处理过程中发现某个盘爆满或者空间变小很多，可以在以下区域进行更改。在菜单栏【File】中选择【Preference】，找到【Temporary Directory】，对该路径进行修改，切换到其他路径，之后重启软件或电脑；或者也可以对这个路径的缓存文件进行删除即可。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7d470cf10ae295657a518a78524dc22a4b434baaf06deae801a1757e2d57a602/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032313331332e706e67"><img src="https://camo.githubusercontent.com/7d470cf10ae295657a518a78524dc22a4b434baaf06deae801a1757e2d57a602/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237313032313331332e706e67" alt="image-20240923174915951" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506271021313.png" style="max-width: 100%;"></a></p>
+<h2>参考</h2>
+<p><a href="https://envi.geoscene.cn/help/Subsystems/envi/Content/" rel="nofollow">envi.geoscene.cn - /help/Subsystems/envi/Content/</a></p>
+<pre class="notranslate"><code class="notranslate">https://envi.geoscene.cn/help/Subsystems/envi/Content/
+</code></pre></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请标明出处，谢谢！</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zbhgis.github.io">zbhgis</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("06/25/2025"!=""){
+    var startSite=new Date("06/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zbhgis/zbhgis.github.io");
+    script.setAttribute("issue-term","title");
+    
+    script.setAttribute("theme","github-light");
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekArticleTOC.js'><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekLightbox.js'></script><script>document.querySelectorAll('a').forEach(anchor => {const img = anchor.querySelector('img');if (img && img.hasAttribute('data-canonical-src')) {const canonicalSrc = img.getAttribute('data-canonical-src');anchor.setAttribute('href', canonicalSrc);img.setAttribute('src', canonicalSrc);img.removeAttribute('data-canonical-src');}});</script>
+
+</html>

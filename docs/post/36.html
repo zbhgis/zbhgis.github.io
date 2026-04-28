@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="github-light" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
+    <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<meta name="description" content="# ENVI 5.3/6.0打开Landsat 8/9 C2L2级别数据（带有Metadata）
+
+@[toc]
+## 前言
+
+这篇文章主要介绍在ENVI不同版本如何通过Metadata打开Landsat 8/9 C2L2级别的数据。">
+<meta property="og:title" content="ENVI 5.3/6.0打开Landsat 8/9 C2L2级别数据（带有Metadata）">
+<meta property="og:description" content="# ENVI 5.3/6.0打开Landsat 8/9 C2L2级别数据（带有Metadata）
+
+@[toc]
+## 前言
+
+这篇文章主要介绍在ENVI不同版本如何通过Metadata打开Landsat 8/9 C2L2级别的数据。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zbhgis.github.io/post/36.html">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
+<title>ENVI 5.3/6.0打开Landsat 8/9 C2L2级别数据（带有Metadata）</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">ENVI 5.3/6.0打开Landsat 8/9 C2L2级别数据（带有Metadata）</h1>
+<div class="title-right">
+    <a href="https://zbhgis.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/zbhgis/zbhgis.github.io/issues/36" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题"style="display:none;">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>ENVI 5.3/6.0打开Landsat 8/9 C2L2级别数据（带有Metadata）</h1>
+<p>@[toc]</p>
+<h2>前言</h2>
+<p>这篇文章主要介绍在ENVI不同版本如何通过Metadata打开Landsat 8/9 C2L2级别的数据。由于涉及到数据的修改，因此在开始操作前，记得先备份数据，以防万一。</p>
+<p>在这里先放一张USGS网站提供的波段介绍，对后续的检查数据等比较有帮助。Landsat 8/9 C2L2产品还有很多使用注意点，详细可以见官网或者看我之前的文章。下载方式我在之前的文章也有介绍。</p>
+<p><a href="https://zbhgis.blog.csdn.net/article/details/139023038" rel="nofollow">Landsat 8/9 C2L2级别数据下载、使用、处理的个人经验以及注意事项汇总（查找用）-CSDN博客</a></p>
+<pre class="notranslate"><code class="notranslate">https://zbhgis.blog.csdn.net/article/details/139023038
+</code></pre>
+<p>根据本文打开数据之后就可以进行预处理了，预处理的具体步骤见这篇文章<br>
+<a href="https://zbhgis.blog.csdn.net/article/details/145453793" rel="nofollow">ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）</a></p>
+<pre class="notranslate"><code class="notranslate">https://zbhgis.blog.csdn.net/article/details/145453793
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/47d73d7bd8657000316f21b8985f9f4292f68c563781c5121c669e54ccbe268a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932313834322e706e67"><img src="https://camo.githubusercontent.com/47d73d7bd8657000316f21b8985f9f4292f68c563781c5121c669e54ccbe268a/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932313834322e706e67" alt="image-20240530001438327" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270921842.png" style="max-width: 100%;"></a></p>
+<h2>数据下载</h2>
+<p>USGS网站上具体的数据下载过程我之前已经介绍过了，就不再重复讲。这次我用的是Landsat 8和Landsat 9的C2L2级别数据产品，下载的一整个压缩包，具体的产品ID如下。</p>
+<pre class="notranslate"><code class="notranslate">LC08_L2SP_119042_20220712_20220722_02_T1
+LC09_L2SP_119038_20220720_20230406_02_T1
+</code></pre>
+<h2>ENVI 5.3打开Landsat 8 C2L2级别数据</h2>
+<p>1、打开ENVI 5.3之后，点击【File】|【Open As】，先尝试直接打开Metadata数据，找到LC08_L2SP_119042_20220712_20220722_02_T1_MTL.txt</p>
+<p>然后打开，会发现报错显示无法识别</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/0bf19bf7816104e5f4a4ccbf3439ecb80b53a41432c62a51853bb9be9fef7147/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932313738352e706e67"><img src="https://camo.githubusercontent.com/0bf19bf7816104e5f4a4ccbf3439ecb80b53a41432c62a51853bb9be9fef7147/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932313738352e706e67" alt="image-20240529225808545" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270921785.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/dc7a952c58475ce67f111262df229acc9f1f44c4b855222648860c6ca888c2ba/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323135362e706e67"><img src="https://camo.githubusercontent.com/dc7a952c58475ce67f111262df229acc9f1f44c4b855222648860c6ca888c2ba/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323135362e706e67" alt="image-20240529225946013" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922156.png" style="max-width: 100%;"></a></p>
+<p>2、这个时候，就需要修改文件内容。找到文件中的第一行</p>
+<pre class="notranslate"><code class="notranslate">GROUP = LANDSAT_METADATA_FILE
+</code></pre>
+<p>将这行改为</p>
+<pre class="notranslate"><code class="notranslate">GROUP = L1_METADATA_FILE
+</code></pre>
+<p>修改后如下，然后保存。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/65afcd9d4a250b363bdb7e776ca58b7c67665bb6e9286e2481c87d33776f8463/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323734352e706e67"><img src="https://camo.githubusercontent.com/65afcd9d4a250b363bdb7e776ca58b7c67665bb6e9286e2481c87d33776f8463/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323734352e706e67" alt="image-20240529230226666" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922745.png" style="max-width: 100%;"></a></p>
+<p>3、接着Ctrl+F，找到LEVEL1相关的内容</p>
+<pre class="notranslate"><code class="notranslate">LEVEL1
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c2bf79619841385dc86bae0a1aa702292b80d285734553773437b3c9f8b029d7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323935362e706e67"><img src="https://camo.githubusercontent.com/c2bf79619841385dc86bae0a1aa702292b80d285734553773437b3c9f8b029d7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323935362e706e67" alt="image-20240529231032818" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922956.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e7de8d9ea8590606073ff4a88387d203da435ec33ac46374e9d3c7a86aa79c63/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323438342e706e67"><img src="https://camo.githubusercontent.com/e7de8d9ea8590606073ff4a88387d203da435ec33ac46374e9d3c7a86aa79c63/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323438342e706e67" alt="image-20240529231148826" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922484.png" style="max-width: 100%;"></a></p>
+<p>把LEVEL1之间的文本都删除，在这个产品中就是183行到354行及其之间的文本都删除</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/973cb47e6b9507e63a26b0091afe5a14aee43d43bdceb40eddb43ec7cb1a0df6/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323130372e706e67"><img src="https://camo.githubusercontent.com/973cb47e6b9507e63a26b0091afe5a14aee43d43bdceb40eddb43ec7cb1a0df6/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323130372e706e67" alt="image-20240529231236727" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922107.png" style="max-width: 100%;"></a></p>
+<p>删除后如下，然后保存。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8d11dec4560195779bb745a30c98b4622fbec768596482be4f72c3266ffc377f/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323835392e706e67"><img src="https://camo.githubusercontent.com/8d11dec4560195779bb745a30c98b4622fbec768596482be4f72c3266ffc377f/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323835392e706e67" alt="image-20240529231427613" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922859.png" style="max-width: 100%;"></a></p>
+<p>4、接着在ENVI 5.3中像第一步一样打开Landsat 8的Metadata数据，打开结果如下所示。说明多光谱数据，即地表反射率产品已经导入</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1cff177f1ca8c05ab3de7569b7276be32255ef0bac36a97ded686236f1f81e37/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323132392e706e67"><img src="https://camo.githubusercontent.com/1cff177f1ca8c05ab3de7569b7276be32255ef0bac36a97ded686236f1f81e37/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323132392e706e67" alt="image-20240529231731368" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922129.png" style="max-width: 100%;"></a></p>
+<p>5、检查数据。右键图层选择【View Metadata】，检查信息是否导入成功。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/140d685abb6c270c74c90803d0af2c98da9c9ab74bb74db2b298ccea08e2ce01/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323534362e706e67"><img src="https://camo.githubusercontent.com/140d685abb6c270c74c90803d0af2c98da9c9ab74bb74db2b298ccea08e2ce01/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323534362e706e67" alt="image-20240529231825480" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922546.png" style="max-width: 100%;"></a></p>
+<p>依次选择以下的信息大致看一遍过去，我这边传感器类型、投影、波谱信息等都导入没问题。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/98ba0d0fa1c05b1af39eed86eda81d358863e8ef0af999e014afcdd09fbf4dd4/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323937392e706e67"><img src="https://camo.githubusercontent.com/98ba0d0fa1c05b1af39eed86eda81d358863e8ef0af999e014afcdd09fbf4dd4/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323937392e706e67" alt="image-20240529231947851" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922979.png" style="max-width: 100%;"></a></p>
+<p>也可以选择右下角的【Edit Metadata】，查看更多信息。比如云量，忽略值等等。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8e84ded7760dab986b7fd8393df47b69a901c58e0795a80499be21ffe387c7e4/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323033342e706e67"><img src="https://camo.githubusercontent.com/8e84ded7760dab986b7fd8393df47b69a901c58e0795a80499be21ffe387c7e4/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323033342e706e67" alt="image-20240529232532935" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922034.png" style="max-width: 100%;"></a></p>
+<p>6、查看像元值范围。右键图层，选择【Quic Stats】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a35d043c74965af0411fb7a176cac08350eeba5149b83cc1a5fa6f72e7f06110/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323233382e706e67"><img src="https://camo.githubusercontent.com/a35d043c74965af0411fb7a176cac08350eeba5149b83cc1a5fa6f72e7f06110/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323233382e706e67" alt="image-20240529232700924" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922238.png" style="max-width: 100%;"></a></p>
+<p>点击【Select Plot】的【All Histograms】，结果如下，可以看到像元值并没有自动自行转换，需要自行按照官方的公式进行像元值转换，之后再抽空单独写一篇讲预处理。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/49e62bec49d4a73ac2f99dbba7912534ef5b0819d7719902f315da5aace58407/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323932342e706e67"><img src="https://camo.githubusercontent.com/49e62bec49d4a73ac2f99dbba7912534ef5b0819d7719902f315da5aace58407/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323932342e706e67" alt="image-20240529233059648" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922924.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e6ab4a4dd1cb2f74d99f9d8e048c58cce0863d964bcfbbdac00eb67694d2f1c8/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323535392e706e67"><img src="https://camo.githubusercontent.com/e6ab4a4dd1cb2f74d99f9d8e048c58cce0863d964bcfbbdac00eb67694d2f1c8/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323535392e706e67" alt="image-20240529233040978" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922559.png" style="max-width: 100%;"></a></p>
+<h2>ENVI 5.3打开Landsat 9 C2L2级别数据</h2>
+<p>1、对应Metadata文件的修改如Landsat 8所示，就不再演示。先试着能不能打开，我这边是打不开，会报错。（如果这个时候可以打开，就万事大吉）</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1970c987d17b8421002739b6091d1fe5667ffe854ee6e93b4df1e41f6442e85e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323139352e706e67"><img src="https://camo.githubusercontent.com/1970c987d17b8421002739b6091d1fe5667ffe854ee6e93b4df1e41f6442e85e/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323139352e706e67" alt="image-20240529233814599" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922195.png" style="max-width: 100%;"></a></p>
+<p>2、不能打开的话，在上述Landsat8修改的基础上，继续修改。Ctrl+F，找到Landsat_9，</p>
+<pre class="notranslate"><code class="notranslate">LANDSAT_9
+</code></pre>
+<p>修改为Landsat_8</p>
+<pre class="notranslate"><code class="notranslate">LANDSAT_8
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ada6105ff007a5f2939597f554eb3842190ad5d1e1212a4644b9db1d6a5f8d0f/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323636342e706e67"><img src="https://camo.githubusercontent.com/ada6105ff007a5f2939597f554eb3842190ad5d1e1212a4644b9db1d6a5f8d0f/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323636342e706e67" alt="image-20240529235556630" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922664.png" style="max-width: 100%;"></a></p>
+<p>修改后如下所示，然后保存。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3b114147e2f3fca94d8a19cf3bbb37d8a19ba9aee19016f1e3a6aa4e5fd0ba4d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323238362e706e67"><img src="https://camo.githubusercontent.com/3b114147e2f3fca94d8a19cf3bbb37d8a19ba9aee19016f1e3a6aa4e5fd0ba4d/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932323238362e706e67" alt="image-20240529235745232" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270922286.png" style="max-width: 100%;"></a></p>
+<p>3、在ENVI 5.3中通过如下方法，重新打开</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3c65ecb7a49c698c242d494d6b21743a40ea0ff6aedfba1edd19ff6068835792/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333238382e706e67"><img src="https://camo.githubusercontent.com/3c65ecb7a49c698c242d494d6b21743a40ea0ff6aedfba1edd19ff6068835792/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333238382e706e67" alt="image-20240529225808545" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923288.png" style="max-width: 100%;"></a></p>
+<p>结果如下</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/26038fc7f8015d43925f29f411fda3ea3cb0d08ab72f9416145788fe0f41b824/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333734392e706e67"><img src="https://camo.githubusercontent.com/26038fc7f8015d43925f29f411fda3ea3cb0d08ab72f9416145788fe0f41b824/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333734392e706e67" alt="image-20240530000145712" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923749.png" style="max-width: 100%;"></a></p>
+<p>4、检查数据。检查数据的步骤和类型一样，我这检查之后，发现也是像元值没有按照公式进行转换，在后续处理需要注意。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e3ce06355a955bd40eb4983db3284a503211e1458322ec15d6d17935e515467c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333336382e706e67"><img src="https://camo.githubusercontent.com/e3ce06355a955bd40eb4983db3284a503211e1458322ec15d6d17935e515467c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333336382e706e67" alt="image-20240530010552369" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923368.png" style="max-width: 100%;"></a></p>
+<h2>ENVI 6.0打开Landsat 8/9 C2L2级别数据</h2>
+<p>1、ENVI 6.0现在大家可以免费用到的就是试用版，已经支持直接打开Landsat 8/9的C2L2级别数据。我之前的文章有详细介绍ENVI 6.0试用版的安装。</p>
+<p><a href="https://zbhgis.blog.csdn.net/article/details/139159672" rel="nofollow">ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题-CSDN博客</a></p>
+<pre class="notranslate"><code class="notranslate">https://zbhgis.blog.csdn.net/article/details/139159672
+</code></pre>
+<p>至于网络上流传的ENVI 5.6学习版，貌似因为IDL功能不完全，很多功能使用不了，所以就没有测试。我之前的文章也有提及。</p>
+<p><a href="https://zbhgis.blog.csdn.net/article/details/138293186" rel="nofollow">ENVI不同版本个人使用对比-CSDN博客</a></p>
+<pre class="notranslate"><code class="notranslate">https://zbhgis.blog.csdn.net/article/details/138293186
+</code></pre>
+<p>2、打开数据。在ENVI 6.0中可以直接通过【File】|【Open】打开Landsat 8的C2L2级别的MTL.txt数据（Landsat 9同理，这里的数据使用的没有修改的Landsat 8/9 C2L2级别数据的Metadata）。打开结果如下，包括了地表反射率、地表温度、质量评估三种产品。默认显示地表反射率产品。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/072d822e7daf9b4d74c99756ea614e7968abf869a4e4c01e3527a6ef6e33c0fa/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333536312e706e67"><img src="https://camo.githubusercontent.com/072d822e7daf9b4d74c99756ea614e7968abf869a4e4c01e3527a6ef6e33c0fa/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333536312e706e67" alt="image-20240530011127276" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923561.png" style="max-width: 100%;"></a></p>
+<p>3、检查数据。右键图层选择【View Metadata】，检查信息是否导入成功。我这发现坐标系并未导入，显示为“Arbitrary”。（如果显示为“Project”，说明导入成功，可以继续检查其他部分）</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ba39b9108a81c13e35a7a0ce3ecb4af96a58637d1359fb0afb5a8ac6a59e7090/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333539382e706e67"><img src="https://camo.githubusercontent.com/ba39b9108a81c13e35a7a0ce3ecb4af96a58637d1359fb0afb5a8ac6a59e7090/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333539382e706e67" alt="image-20240530011419324" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923598.png" style="max-width: 100%;"></a></p>
+<p>4、添加空间参考方法一。点击右下角的【Edit Metadata】，在【Spatial】切换参考类型为【Coordinate System】。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fd767d98ea45c8844d6c049fd2403ff5fdc01ef8b90da340d0e285334cffe53c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333036362e706e67"><img src="https://camo.githubusercontent.com/fd767d98ea45c8844d6c049fd2403ff5fdc01ef8b90da340d0e285334cffe53c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333036362e706e67" alt="image-20240530011750166" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923066.png" style="max-width: 100%;"></a></p>
+<p>点击浏览按钮，以如下关键词搜索，找到对应区域的坐标系之后，点击【OK】</p>
+<pre class="notranslate"><code class="notranslate">WGS 1984 UTM
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/dce3b8ee9c69ea0b4012b78244094500fabe1e7600fa50dd159668f267ab1e96/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333337372e706e67"><img src="https://camo.githubusercontent.com/dce3b8ee9c69ea0b4012b78244094500fabe1e7600fa50dd159668f267ab1e96/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333337372e706e67" alt="image-20240530012236044" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923377.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/61e1c0bf77ca64b2395eafe1a29317ca2b888221d9454045fe9ab92dbbadbe6f/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333536342e706e67"><img src="https://camo.githubusercontent.com/61e1c0bf77ca64b2395eafe1a29317ca2b888221d9454045fe9ab92dbbadbe6f/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333536342e706e67" alt="image-20240530012521861" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923564.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/16811359249ca3bd261031ef05328bdf266eb24c3f0e9068cf864fffcd2e2bcb/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333831322e706e67"><img src="https://camo.githubusercontent.com/16811359249ca3bd261031ef05328bdf266eb24c3f0e9068cf864fffcd2e2bcb/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333831322e706e67" alt="image-20240530012718213" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923812.png" style="max-width: 100%;"></a></p>
+<p>如果报错如下，尝试方法二。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/23b81ce65c4b942ef45d361024b852867e3683a42c80d68c299592b6e855db77/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333339392e706e67"><img src="https://camo.githubusercontent.com/23b81ce65c4b942ef45d361024b852867e3683a42c80d68c299592b6e855db77/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333339392e706e67" alt="image-20240530013215299" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923399.png" style="max-width: 100%;"></a></p>
+<p>添加空间参考方法二。在APP Store中下载好【Reproject Raster Batch】插件后，重启ENVI。</p>
+<p>APP Store或者一些可获取拓展的渠道可以参考这篇文章。</p>
+<p><a href="https://zbhgis.blog.csdn.net/article/details/138582220" rel="nofollow">ENVI拓展工具资源去哪里找-CSDN博客</a></p>
+<pre class="notranslate"><code class="notranslate">https://zbhgis.blog.csdn.net/article/details/138582220
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a0cad1251a6c4a86c12b8fd524e0146dc2ab0b5207a52121fd79132564666cc9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333239362e706e67"><img src="https://camo.githubusercontent.com/a0cad1251a6c4a86c12b8fd524e0146dc2ab0b5207a52121fd79132564666cc9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333239362e706e67" alt="image-20240530013419729" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923296.png" style="max-width: 100%;"></a></p>
+<p>打开插件，选择好输入栅格和输出坐标系、输出目录后，其余保持默认，点击【OK】</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b8abce0183a3064fe1c0da2551d1dba69a0216c0082acdd2537dea820479a96c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333335322e706e67"><img src="https://camo.githubusercontent.com/b8abce0183a3064fe1c0da2551d1dba69a0216c0082acdd2537dea820479a96c/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333335322e706e67" alt="image-20240530013901669" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923352.png" style="max-width: 100%;"></a></p>
+<p>花费1分钟左右，之后默认输出灰度图像，可以自行在管理器中选择加载真彩色图像。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5925e673bf495cea36d9488ff38f384267e262a9e563f8fd3fdc7d52d1460311/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333137382e706e67"><img src="https://camo.githubusercontent.com/5925e673bf495cea36d9488ff38f384267e262a9e563f8fd3fdc7d52d1460311/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333137382e706e67" alt="image-20240530015210419" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923178.png" style="max-width: 100%;"></a></p>
+<p>5、再次检查数据，可以看到已经投影成功，显示“Projected”。（如果发现其他错误，也可以自行修正）</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/97e1b790b0a3db0652cf7313263c84d0ec4c93766ac0199a921a830211b0c309/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333233302e706e67"><img src="https://camo.githubusercontent.com/97e1b790b0a3db0652cf7313263c84d0ec4c93766ac0199a921a830211b0c309/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932333233302e706e67" alt="在这里插入图片描述" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270923230.png" style="max-width: 100%;"></a></p>
+<p>通过右键图层，选择【Quick Stats】，可以看到像元值已经经过初步转换，后续根据需要选择是否处理【Valid Range】之外的值。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f1617d4597fda56170e41ed98e4d2ea7e0a19c5956c187d137d81ad42250dba6/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932343239372e706e67"><img src="https://camo.githubusercontent.com/f1617d4597fda56170e41ed98e4d2ea7e0a19c5956c187d137d81ad42250dba6/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932343239372e706e67" alt="image-20240530015636601" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270924297.png" style="max-width: 100%;"></a></p>
+<h2>总结（注意点与问题）</h2>
+<p>1、在ENVI 5.3打开Landsat 8/9的C2L2级别数据（带有Metadata）的时候，像元值没有转换，使用前需要做好预处理；而在ENVI 6.0打开Landsat 8/9的C2L2级别数据（带有Metadata）的时候，像元值虽然已经转换，但是还有Valid Range之外的值没有处理，这个根据需要选择是否处理。</p>
+<p>2、在ENVI 5.3打开Landsat 8/9的C2L2级别数据（带有Metadata）的时候，ENVI 5.3仅仅只会识别并读取地表反射率数据产品（SR），对于地表温度（ST）和质量评估（QA）产品通过Metadata无法读取；而在ENVI 6.0打开Landsat 8/9的C2L2级别数据（带有Metadata）的时候，打开的数据包括了上述三种产品。</p>
+<p>3、在ENVI 5.3打开数据时，需要修改Metadata，其中Landsat 8需要修改两处，Landsat 9需要修改三处。</p>
+<p>4、在ENVI 5.3计算【Quick Stats】有时候会卡住，多试几次或者重启ENVI。如果还是卡住，在电脑的以下路径中，找到preferences5_3，把其中的文件都删除后，再尝试重启并计算。</p>
+<pre class="notranslate"><code class="notranslate">C:\Users\你的用户名\.idl\envi\preferences5_3
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/6fe9fe31cb005b7e799820d7a121d8e54fba295cb3582076eb0f5cdf00a49f34/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932343135362e706e67"><img src="https://camo.githubusercontent.com/6fe9fe31cb005b7e799820d7a121d8e54fba295cb3582076eb0f5cdf00a49f34/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932343135362e706e67" alt="image-20240530010426994" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270924156.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/bd69d375fa640ebd75583f5fd39f00c96dd95ab0f5f8efa8cdc426290ce35188/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932343632382e706e67"><img src="https://camo.githubusercontent.com/bd69d375fa640ebd75583f5fd39f00c96dd95ab0f5f8efa8cdc426290ce35188/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f7a62686769732f426c6f67496d67406d61696e2f626c6f672f3230323530363237303932343632382e706e67" alt="image-20240530010504149" data-canonical-src="https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270924628.png" style="max-width: 100%;"></a></p>
+<p>5、在ENVI 6.0打开Landsat 8/9的C2L2级别数据（带有Metadata）的时候，有时候会缺失投影信息，对后续的处理可能会有影响，建议自行加上空间参考信息。</p>
+<p>6、这篇仅仅是针对Landsat 8/9 C2L2级别数据的实验，其他卫星或级别的数据可能有所不同。</p>
+<h2>参考</h2>
+<p><a href="https://www.usgs.gov/faqs/what-are-band-designations-landsat-satellites" rel="nofollow">What are the band designations for the Landsat satellites? | U.S. Geological Survey (usgs.gov)</a></p>
+<pre class="notranslate"><code class="notranslate">https://www.usgs.gov/faqs/what-are-band-designations-landsat-satellites
+</code></pre></div>
+<div style="font-size:small;margin-top:8px;float:right;">转载请标明出处，谢谢！</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zbhgis.github.io">zbhgis</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("06/25/2025"!=""){
+    var startSite=new Date("06/25/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","zbhgis/zbhgis.github.io");
+    script.setAttribute("issue-term","title");
+    
+    script.setAttribute("theme","github-light");
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekArticleTOC.js'><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekLightbox.js'></script><script>document.querySelectorAll('a').forEach(anchor => {const img = anchor.querySelector('img');if (img && img.hasAttribute('data-canonical-src')) {const canonicalSrc = img.getAttribute('data-canonical-src');anchor.setAttribute('href', canonicalSrc);img.setAttribute('src', canonicalSrc);img.removeAttribute('data-canonical-src');}});</script>
+
+</html>
