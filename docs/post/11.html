@@ -108,7 +108,7 @@ B5 <span class="pl-k">=</span> single(<span class="pl-smi">B5</span>);</pre></di
 <p>使用两层循环遍历波段数据的每一个像素位置（<code class="notranslate">i</code>为行索引，<code class="notranslate">j</code>为列索引）。在计算NDVI时，检查<code class="notranslate">B4</code>和<code class="notranslate">B5</code>是否为零，避免除以零。</p>
 <h2>获取参考图像信息并写入GeoTIFF文件</h2>
 <div class="highlight highlight-source-matlab"><pre class="notranslate">info <span class="pl-k">=</span> geotiffinfo(<span class="pl-s"><span class="pl-pds">'</span>G:\data-2022<span class="pl-cce">\r</span>esult_2_Red.tif<span class="pl-pds">'</span></span>);
-geotiffwrite(<span class="pl-s"><span class="pl-pds">'</span>G:\data-2022<span class="pl-cce">\r</span>esult_NDVI.tif<span class="pl-pds">'</span></span>, <span class="pl-smi">NDVI</span>, <span class="pl-smi">R</span>, <span class="pl-s"><span class="pl-pds">'</span>GeoKeyDirectoryTag<span class="pl-pds">'</span></span>, <span class="pl-smi">info</span>.<span class="pl-smi">GeoTIFFTags</span>.<span class="pl-smi">GeoKeyDirectoryTag</span>);</pre></div>
+geotiffwrite(<span class="pl-s"><span class="pl-pds">'</span>G:\data-2022<span class="pl-cce">\r</span>esult_NDVI.tif<span class="pl-pds">'</span></span>, <span class="pl-smi">NDVI</span>, <span class="pl-smi">R</span>, <span class="pl-s"><span class="pl-pds">'</span>GeoKeyDirectoryTag<span class="pl-pds">'</span></span>, <span class="pl-smi">info</span>.GeoTIFFTags.GeoKeyDirectoryTag);</pre></div>
 <p>使用<code class="notranslate">geotiffinfo</code>函数读取<code class="notranslate">result_2_Red.tif</code>的元数据信息，并将其存储在结构体变量<code class="notranslate">info</code>中。然后，使用<code class="notranslate">geotiffwrite</code>函数将计算得到的NDVI矩阵写入新的GeoTIFF文件。</p>
 <h2>完整代码如下</h2>
 <div class="highlight highlight-source-matlab"><pre class="notranslate">[<span class="pl-smi">B4</span>,<span class="pl-smi">R</span>] <span class="pl-k">=</span> geotiffread(<span class="pl-s"><span class="pl-pds">'</span>G:\data-2022<span class="pl-cce">\r</span>esult_2_Red.tif<span class="pl-pds">'</span></span>);
@@ -125,7 +125,7 @@ B5 <span class="pl-k">=</span> single(<span class="pl-smi">B5</span>);
     <span class="pl-k">end</span>
 <span class="pl-k">end</span>
 info <span class="pl-k">=</span> geotiffinfo(<span class="pl-s"><span class="pl-pds">'</span>G:\data-2022<span class="pl-cce">\r</span>esult_2_Red.tif<span class="pl-pds">'</span></span>);
-geotiffwrite(<span class="pl-s"><span class="pl-pds">'</span>G:\data-2022<span class="pl-cce">\r</span>esult_NDVI.tif<span class="pl-pds">'</span></span>,<span class="pl-smi">NDVI</span>,<span class="pl-smi">R</span>,<span class="pl-s"><span class="pl-pds">'</span>GeoKeyDirectoryTag<span class="pl-pds">'</span></span>,<span class="pl-smi">info</span>.<span class="pl-smi">GeoTIFFTags</span>.<span class="pl-smi">GeoKeyDirectoryTag</span>);
+geotiffwrite(<span class="pl-s"><span class="pl-pds">'</span>G:\data-2022<span class="pl-cce">\r</span>esult_NDVI.tif<span class="pl-pds">'</span></span>,<span class="pl-smi">NDVI</span>,<span class="pl-smi">R</span>,<span class="pl-s"><span class="pl-pds">'</span>GeoKeyDirectoryTag<span class="pl-pds">'</span></span>,<span class="pl-smi">info</span>.GeoTIFFTags.GeoKeyDirectoryTag);
 </pre></div>
 <h1>参考</h1>
 <p><a href="https://www.cainiaojc.com/matlab/matlab-syntax.html" rel="nofollow">Matlab语法</a></p></div>
