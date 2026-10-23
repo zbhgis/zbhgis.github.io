@@ -1,0 +1,80 @@
+# 浩瀚地学（旧站归档 · zbgis.github.io）
+
+> 本站是「浩瀚地学」2023–2026 年历史文章的归档副本，已停止更新。
+> 全部正文已迁移至 https://www.zbhgis.com 并持续修订，引用或推荐时请优先使用新站版本。
+
+## 站点说明
+
+- 本站 66 篇文章中，65 篇带 `<link rel="canonical">` 指向新站对应页面，权重与信号以新站为准。
+- 本站仅作归档与跳转，不再新增或修订内容。
+- 唯一没有新站对应版本的文章：`/post/55.html`（顶刊NCC带自定义标记的散点图复现）。
+- 新站的 AI 索引入口：https://www.zbhgis.com/llms.txt
+
+## 文章映射（旧站 URL → 新站 URL）
+
+- [Typora+picgo+gitee配置过程中存在问题](https://zbhgis.github.io/post/2.html) → https://www.zbhgis.com/note/note-20231007-1
+- [在USGS上批量下载Landsat系列影像](https://zbhgis.github.io/post/3.html) → https://www.zbhgis.com/blog/blog-20231008-1
+- [ENVI使用深度学习存在问题及解决](https://zbhgis.github.io/post/4.html) → https://www.zbhgis.com/blog/blog-20231010-1
+- [哥白尼网站下载Sentinel-1/2/3/5P遥感数据（筛选、单波段/批量下载），附常见问题](https://zbhgis.github.io/post/5.html) → https://www.zbhgis.com/blog/blog-20231011-1
+- [福建省标准地图矢量下载、使用和对比](https://zbhgis.github.io/post/6.html) → https://www.zbhgis.com/blog/blog-20240428-1
+- [GEE批量下载Sentinel2数据](https://zbhgis.github.io/post/7.html) → https://www.zbhgis.com/blog/blog-20231024-1
+- [SNAP软件对Sentinel-2数据进行重采样存在问题](https://zbhgis.github.io/post/8.html) → https://www.zbhgis.com/blog/blog-20240419-1
+- [【Arcpy】入门学习笔记（一）-前期准备](https://zbhgis.github.io/post/9.html) → https://www.zbhgis.com/note/note-20240415-1
+- [【Arcpy】入门学习笔记（二）-脚本工具](https://zbhgis.github.io/post/10.html) → https://www.zbhgis.com/note/note-20240416-1
+- [MATLAB 2016计算NDVI](https://zbhgis.github.io/post/11.html) → https://www.zbhgis.com/blog/blog-20240423-2
+- [Landsat 8/9 C2L2使用注意点（简略版）](https://zbhgis.github.io/post/12.html) → https://www.zbhgis.com/blog/blog-20240423-1
+- [Python实现线性拟合及绘图](https://zbhgis.github.io/post/13.html) → https://www.zbhgis.com/blog/blog-20240425-2
+- [Python多元非线性回归及绘图](https://zbhgis.github.io/post/14.html) → https://www.zbhgis.com/blog/blog-20240425-1
+- [【Arcpy】入门学习笔记（三）-数据属性的获取](https://zbhgis.github.io/post/15.html) → https://www.zbhgis.com/note/note-20240417-1
+- [地学研究相关工具推荐0426](https://zbhgis.github.io/post/16.html) → https://www.zbhgis.com/blog/blog-20240426-1
+- [地学研究相关工具推荐0427](https://zbhgis.github.io/post/17.html) → https://www.zbhgis.com/blog/blog-20240427-1
+- [Vrml运行环境安装](https://zbhgis.github.io/post/18.html) → https://www.zbhgis.com/note/note-20240428-1
+- [ENVI不同版本个人使用对比](https://zbhgis.github.io/post/19.html) → https://www.zbhgis.com/blog/blog-20250602-1
+- [pyqt5报错解决](https://zbhgis.github.io/post/20.html) → https://www.zbhgis.com/note/note-20240427-1
+- [Conda环境安装的pyproj包报错](https://zbhgis.github.io/post/21.html) → https://www.zbhgis.com/note/note-20240503-1
+- [【Arcpy】批量克里金插值报错](https://zbhgis.github.io/post/22.html) → https://www.zbhgis.com/note/note-20240503-2
+- [Conda中Richdem包遇到问题](https://zbhgis.github.io/post/23.html) → https://www.zbhgis.com/note/note-20240507-1
+- [Conda安装rasterio报错](https://zbhgis.github.io/post/24.html) → https://www.zbhgis.com/note/note-20240507-3
+- [Conda安装opencv后显示找不到指定的模块](https://zbhgis.github.io/post/25.html) → https://www.zbhgis.com/note/note-20240507-2
+- [ENVI拓展工具资源去哪里找？](https://zbhgis.github.io/post/26.html) → https://www.zbhgis.com/blog/blog-20240508-1
+- [Landsat 8/9 C2L2级别数据表面反射率产品使用注意点](https://zbhgis.github.io/post/27.html) → https://www.zbhgis.com/blog/blog-20240518-2
+- [Landsat 8/9 C2L2级别数据地表温度产品使用注意点](https://zbhgis.github.io/post/28.html) → https://www.zbhgis.com/blog/blog-20240517-1
+- [Landsat 8/9 C2L2级别数据质量评估产品使用注意点](https://zbhgis.github.io/post/29.html) → https://www.zbhgis.com/blog/blog-20240518-3
+- [Conda常用命令](https://zbhgis.github.io/post/30.html) → https://www.zbhgis.com/note/note-20240521-1
+- [Mysql命令行客户端常用命令](https://zbhgis.github.io/post/31.html) → https://www.zbhgis.com/note/note-20240521-2
+- [Flask调试模式（debug mode）开启不了，显示Debug mode: off](https://zbhgis.github.io/post/32.html) → https://www.zbhgis.com/note/note-20240519-1
+- [ENVI通过DEM数据提取山峰、洼地等地形特征](https://zbhgis.github.io/post/33.html) → https://www.zbhgis.com/blog/blog-20250602-2
+- [ENVI通过DEM数据计算坡度、坡向等地形特征](https://zbhgis.github.io/post/34.html) → https://www.zbhgis.com/blog/blog-20240521-1
+- [USGS网站下载Landsat 5/7/8/9数据最新详细教程（注册、筛选、单波段、批量下载等），附常见问题](https://zbhgis.github.io/post/35.html) → https://www.zbhgis.com/blog/blog-20240608-1
+- [ENVI 5.3/6.0打开Landsat 8/9 C2L2级别数据（带有Metadata）](https://zbhgis.github.io/post/36.html) → https://www.zbhgis.com/blog/blog-20240603-1
+- [ENVI6.0试用版（180天）详细安装教程，附安装包链接和一些常见问题](https://zbhgis.github.io/post/37.html) → https://www.zbhgis.com/blog/blog-20240527-1
+- [ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）](https://zbhgis.github.io/post/38.html) → https://www.zbhgis.com/blog/blog-20250205-1
+- [SNAP软件的下载、安装、更新、卸载与遇到的一些问题](https://zbhgis.github.io/post/39.html) → https://www.zbhgis.com/blog/blog-20250205-2
+- [Landsat 8/9 C2L2级别数据下载、使用、处理的个人经验以及注意事项汇总（查找用）](https://zbhgis.github.io/post/40.html) → https://www.zbhgis.com/blog/blog-20240518-1
+- [【图表复现】顶刊NCC多子图热力图复现（Python）](https://zbhgis.github.io/post/43.html) → https://www.zbhgis.com/blog/blog-20260322-1
+- [【Java】方法](https://zbhgis.github.io/post/44.html) → https://www.zbhgis.com/note/note-20250802-1
+- [【Java】数组](https://zbhgis.github.io/post/45.html) → https://www.zbhgis.com/note/note-20250804-1
+- [【Java】ArrayList](https://zbhgis.github.io/post/46.html) → https://www.zbhgis.com/note/note-20250805-1
+- [【Java】String](https://zbhgis.github.io/post/47.html) → https://www.zbhgis.com/note/note-20250805-2
+- [【Java】面向对象基础](https://zbhgis.github.io/post/48.html) → https://www.zbhgis.com/note/note-20250804-2
+- [【Java】面向对象进阶-static](https://zbhgis.github.io/post/49.html) → https://www.zbhgis.com/note/note-20250808-1
+- [【Arcpy】入门学习笔记（四）-栅格数据](https://zbhgis.github.io/post/50.html) → https://www.zbhgis.com/note/note-20240418-1
+- [【Arcpy】入门学习笔记（五）-矢量数据](https://zbhgis.github.io/post/51.html) → https://www.zbhgis.com/note/note-20240419-1
+- [【Java】面向对象进阶-继承](https://zbhgis.github.io/post/52.html) → https://www.zbhgis.com/note/note-20250808-2
+- [【Java】面向对象进阶-多态](https://zbhgis.github.io/post/53.html) → https://www.zbhgis.com/note/note-20250810-2
+- [顶刊Nature多子图柱状图复现（Python）](https://zbhgis.github.io/post/54.html) → https://www.zbhgis.com/blog/blog-20260321-1
+- [顶刊NCC带自定义标记的散点图复现（Python）](https://zbhgis.github.io/post/55.html) → （归档保留，无新站对应版本）
+- [【Java】面向对象进阶-final，抽象类](https://zbhgis.github.io/post/56.html) → https://www.zbhgis.com/note/note-20250810-1
+- [【Java】面向对象进阶-接口](https://zbhgis.github.io/post/57.html) → https://www.zbhgis.com/note/note-20250815-1
+- [【Java】面向对象进阶-枚举，泛型](https://zbhgis.github.io/post/58.html) → https://www.zbhgis.com/note/note-20250816-2
+- [【Java】面向对象进阶-内部类](https://zbhgis.github.io/post/59.html) → https://www.zbhgis.com/note/note-20250816-1
+- [【Java】常用API（一）](https://zbhgis.github.io/post/60.html) → https://www.zbhgis.com/note/note-20250903-1
+- [【Java】常用API（二）](https://zbhgis.github.io/post/61.html) → https://www.zbhgis.com/note/note-20250903-3
+- [【Java】异常](https://zbhgis.github.io/post/62.html) → https://www.zbhgis.com/note/note-20250909-1
+- [【Java】常用API（三）](https://zbhgis.github.io/post/63.html) → https://www.zbhgis.com/note/note-20250903-2
+- [【Java】集合-Collection](https://zbhgis.github.io/post/64.html) → https://www.zbhgis.com/note/note-20250912-2
+- [【Java】集合-Set](https://zbhgis.github.io/post/65.html) → https://www.zbhgis.com/note/note-20250912-4
+- [【Java】集合-List](https://zbhgis.github.io/post/66.html) → https://www.zbhgis.com/note/note-20250912-3
+- [【Java】Collection的其他知识](https://zbhgis.github.io/post/67.html) → https://www.zbhgis.com/note/note-20250912-1
+- [【Java】Map](https://zbhgis.github.io/post/68.html) → https://www.zbhgis.com/note/note-20250916-1
+- [【Java】JDK8的一些新特性](https://zbhgis.github.io/post/69.html) → https://www.zbhgis.com/note/note-20250917-1

@@ -7,97 +7,9 @@
     <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
-<meta name="description" content="# SNAP软件对Sentinel-2数据进行重采样存在问题
-
-**1.问题：重采样出现了Message：dataType out of range!的提示**
-
-解决：以记事本格式打开并编辑以下文件
-
-```
-C:\Users\用户名\.snap\etc\s2tbx.properties
-```
-
-在最后添加以下信息并保存
-
-```
-user.openjp2.jna=true
-```
-
-重启SNAP后软件即可执行重采样
-
-![image-20231221194253165](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262248789.png)
-
-
-
-**2.问题：处理完数据之后C盘和D盘爆满**
-
-解决：C盘中是由于以下文件位置会有缓存，处理完后可以直接删除
-
-```
-C:\Users\用户名\.snap\var\cache\s2tbx\l2a-reader
-```
-
-![image-20231221192915397](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262243288.png)
-
-D盘中是由于以下文件位置会有临时文件，通过电脑的清理垃圾功能会清除掉，或者在以下的D盘的temp文件中找到以下缓存文件手动清楚
-
-```
-D:\temp\snap-用户名
-```
-
-![image-20231221193221629](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262243624.png)
-
-
-
-**3.问题：SNAP中重采样的速度慢**
-
-在SANP中对某一幅影像所有波段，按照B2分辨率进行重采样之后的数据在16G左右，因此重采样之前加上一个BandSelect步骤，选择需要的波段进行重采样即可加快速度，尽量不要全部重采样。">
+<meta name="description" content="1.问题：重采样出现了Message：dataType out of range!的提示 解决：以记事本格式打开并编辑以下文件 重启SNAP后软件即可执行重采样 2.问题：处理完数据之后C盘和D盘爆满 解决：C盘中是由于以下文件位置会有缓存…">
 <meta property="og:title" content="SNAP软件对Sentinel-2数据进行重采样存在问题">
-<meta property="og:description" content="# SNAP软件对Sentinel-2数据进行重采样存在问题
-
-**1.问题：重采样出现了Message：dataType out of range!的提示**
-
-解决：以记事本格式打开并编辑以下文件
-
-```
-C:\Users\用户名\.snap\etc\s2tbx.properties
-```
-
-在最后添加以下信息并保存
-
-```
-user.openjp2.jna=true
-```
-
-重启SNAP后软件即可执行重采样
-
-![image-20231221194253165](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262248789.png)
-
-
-
-**2.问题：处理完数据之后C盘和D盘爆满**
-
-解决：C盘中是由于以下文件位置会有缓存，处理完后可以直接删除
-
-```
-C:\Users\用户名\.snap\var\cache\s2tbx\l2a-reader
-```
-
-![image-20231221192915397](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262243288.png)
-
-D盘中是由于以下文件位置会有临时文件，通过电脑的清理垃圾功能会清除掉，或者在以下的D盘的temp文件中找到以下缓存文件手动清楚
-
-```
-D:\temp\snap-用户名
-```
-
-![image-20231221193221629](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262243624.png)
-
-
-
-**3.问题：SNAP中重采样的速度慢**
-
-在SANP中对某一幅影像所有波段，按照B2分辨率进行重采样之后的数据在16G左右，因此重采样之前加上一个BandSelect步骤，选择需要的波段进行重采样即可加快速度，尽量不要全部重采样。">
+<meta property="og:description" content="1.问题：重采样出现了Message：dataType out of range!的提示 解决：以记事本格式打开并编辑以下文件 重启SNAP后软件即可执行重采样 2.问题：处理完数据之后C盘和D盘爆满 解决：C盘中是由于以下文件位置会有缓存…">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://zbhgis.github.io/post/8.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
@@ -121,6 +33,7 @@ D:\temp\snap-用户名
 .zbm-ext{display:inline-block;margin-left:4px;opacity:.45;font-size:12px;}
 @media (max-width:600px){.zbm-bar{display:block;}.zbm-bar .zbm-tag{display:inline-block;margin:0 6px 0 0;}.zbm-bar .zbm-txt{display:inline;}.zbm-bar .zbm-go{display:block;margin-top:6px;}.zbm-cta{padding:14px;}}
 </style>
+<link rel="alternate" type="text/plain" href="https://zbhgis.github.io/llms.txt" title="llms.txt">
 </head>
 <style>
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}

@@ -7,27 +7,9 @@
     <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
-<meta name="description" content="# ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）
-
-@[toc]
-## 前言（必读）
-
-不同的下载方式以及不同级别的数据产品在ENVI的不同版本中有不同的处理方式，以本文为例，演示在USGS网站下载Landsat 8/9 C2L2级别的地表反射率（SR）产品在ENVI 5.3版本中的预处理流程
-
-！！！建议所有数据在进行以下操作之前进行备份，避免操作失误等问题需要去网站上重新下载数据！！！
-
-在进行预处理之前，最好对这个级别的数据有一定的了解。">
+<meta name="description" content="不同的下载方式以及不同级别的数据产品在ENVI的不同版本中有不同的处理方式，以本文为例，演示在USGS网站下载Landsat 8/9 C2L2级别的地表反射率（SR）产品在ENVI 5.3版本中的预处理流程 ！！！建议所有数据在进行以下操作之前进行备份，避免操作失误等问题需要去网站上重新下载数据！！">
 <meta property="og:title" content="ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）">
-<meta property="og:description" content="# ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）
-
-@[toc]
-## 前言（必读）
-
-不同的下载方式以及不同级别的数据产品在ENVI的不同版本中有不同的处理方式，以本文为例，演示在USGS网站下载Landsat 8/9 C2L2级别的地表反射率（SR）产品在ENVI 5.3版本中的预处理流程
-
-！！！建议所有数据在进行以下操作之前进行备份，避免操作失误等问题需要去网站上重新下载数据！！！
-
-在进行预处理之前，最好对这个级别的数据有一定的了解。">
+<meta property="og:description" content="不同的下载方式以及不同级别的数据产品在ENVI的不同版本中有不同的处理方式，以本文为例，演示在USGS网站下载Landsat 8/9 C2L2级别的地表反射率（SR）产品在ENVI 5.3版本中的预处理流程 ！！！建议所有数据在进行以下操作之前进行备份，避免操作失误等问题需要去网站上重新下载数据！！">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://zbhgis.github.io/post/38.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
@@ -51,6 +33,7 @@
 .zbm-ext{display:inline-block;margin-left:4px;opacity:.45;font-size:12px;}
 @media (max-width:600px){.zbm-bar{display:block;}.zbm-bar .zbm-tag{display:inline-block;margin:0 6px 0 0;}.zbm-bar .zbm-txt{display:inline;}.zbm-bar .zbm-go{display:block;margin-top:6px;}.zbm-cta{padding:14px;}}
 </style>
+<link rel="alternate" type="text/plain" href="https://zbhgis.github.io/llms.txt" title="llms.txt">
 </head>
 <style>
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}

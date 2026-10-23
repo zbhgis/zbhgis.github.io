@@ -7,17 +7,9 @@
     <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
-<meta name="description" content="# Python实现线性拟合及绘图
-
-[TOC]
-
-当时的数字地形实验，使用`matplotlib`库绘制了一张图表表示不同地形类别在不同分辨率下的RMSE值，并分别拟合了一条趋势线。">
+<meta name="description" content="当时的数字地形实验，使用 matplotlib 库绘制了一张图表表示不同地形类别在不同分辨率下的RMSE值，并分别拟合了一条趋势线。现在来看不足就是地形较多时，需要使用循环更好一点，不然太冗余了。">
 <meta property="og:title" content="Python实现线性拟合及绘图">
-<meta property="og:description" content="# Python实现线性拟合及绘图
-
-[TOC]
-
-当时的数字地形实验，使用`matplotlib`库绘制了一张图表表示不同地形类别在不同分辨率下的RMSE值，并分别拟合了一条趋势线。">
+<meta property="og:description" content="当时的数字地形实验，使用 matplotlib 库绘制了一张图表表示不同地形类别在不同分辨率下的RMSE值，并分别拟合了一条趋势线。现在来看不足就是地形较多时，需要使用循环更好一点，不然太冗余了。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://zbhgis.github.io/post/13.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
@@ -41,6 +33,7 @@
 .zbm-ext{display:inline-block;margin-left:4px;opacity:.45;font-size:12px;}
 @media (max-width:600px){.zbm-bar{display:block;}.zbm-bar .zbm-tag{display:inline-block;margin:0 6px 0 0;}.zbm-bar .zbm-txt{display:inline;}.zbm-bar .zbm-go{display:block;margin-top:6px;}.zbm-cta{padding:14px;}}
 </style>
+<link rel="alternate" type="text/plain" href="https://zbhgis.github.io/llms.txt" title="llms.txt">
 </head>
 <style>
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}

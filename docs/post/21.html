@@ -7,121 +7,9 @@
     <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
-<meta name="description" content="# Conda环境安装的pyproj包报错
-
-[TOC]
-
-
-
-## 问题
-
-在conda创建的Python3.9虚拟环境中安装pyproj包3.6在运行时出现以下报错
-
-```
-UserWarning: pyproj unable to set database path. _pyproj_global_context_initialize()
-```
-
-## 解决
-
-先激活并进入创建的环境
-
-```
-conda activate sa_test
-```
-
-先尝试卸载后重装
-
-```
-conda remove --force pyproj
-```
-
-```
-conda install pyproj
-```
-
-如果不行的话，就直接通过pip重新安装
-
-```
-conda remove --force pyproj
-```
-
-```
-pip install pyproj
-```
-
-重装之后就不会报错了
-
-![image-20240503173223902](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270014947.png)
-
-
-
-## 参考
-
-[python - On fresh Conda installation of PyProj: pyproj unable to set database path. _pyproj_global_context_initialize() - Stack Overflow](https://stackoverflow.com/questions/69630630/on-fresh-conda-installation-of-pyproj-pyproj-unable-to-set-database-path-pypr)
-
-```
-https://stackoverflow.com/questions/69630630/on-fresh-conda-installation-of-pyproj-pyproj-unable-to-set-database-path-pypr
-```
-
-。">
+<meta name="description" content="在conda创建的Python3.9虚拟环境中安装pyproj包3.6在运行时出现以下报错 如果不行的话，就直接通过pip重新安装 python - On fresh Conda installation of PyProj: pyproj…">
 <meta property="og:title" content="Conda环境安装的pyproj包报错">
-<meta property="og:description" content="# Conda环境安装的pyproj包报错
-
-[TOC]
-
-
-
-## 问题
-
-在conda创建的Python3.9虚拟环境中安装pyproj包3.6在运行时出现以下报错
-
-```
-UserWarning: pyproj unable to set database path. _pyproj_global_context_initialize()
-```
-
-## 解决
-
-先激活并进入创建的环境
-
-```
-conda activate sa_test
-```
-
-先尝试卸载后重装
-
-```
-conda remove --force pyproj
-```
-
-```
-conda install pyproj
-```
-
-如果不行的话，就直接通过pip重新安装
-
-```
-conda remove --force pyproj
-```
-
-```
-pip install pyproj
-```
-
-重装之后就不会报错了
-
-![image-20240503173223902](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270014947.png)
-
-
-
-## 参考
-
-[python - On fresh Conda installation of PyProj: pyproj unable to set database path. _pyproj_global_context_initialize() - Stack Overflow](https://stackoverflow.com/questions/69630630/on-fresh-conda-installation-of-pyproj-pyproj-unable-to-set-database-path-pypr)
-
-```
-https://stackoverflow.com/questions/69630630/on-fresh-conda-installation-of-pyproj-pyproj-unable-to-set-database-path-pypr
-```
-
-。">
+<meta property="og:description" content="在conda创建的Python3.9虚拟环境中安装pyproj包3.6在运行时出现以下报错 如果不行的话，就直接通过pip重新安装 python - On fresh Conda installation of PyProj: pyproj…">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://zbhgis.github.io/post/21.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
@@ -145,6 +33,7 @@ https://stackoverflow.com/questions/69630630/on-fresh-conda-installation-of-pypr
 .zbm-ext{display:inline-block;margin-left:4px;opacity:.45;font-size:12px;}
 @media (max-width:600px){.zbm-bar{display:block;}.zbm-bar .zbm-tag{display:inline-block;margin:0 6px 0 0;}.zbm-bar .zbm-txt{display:inline;}.zbm-bar .zbm-go{display:block;margin-top:6px;}.zbm-cta{padding:14px;}}
 </style>
+<link rel="alternate" type="text/plain" href="https://zbhgis.github.io/llms.txt" title="llms.txt">
 </head>
 <style>
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}

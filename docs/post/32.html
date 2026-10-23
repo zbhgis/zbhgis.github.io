@@ -7,87 +7,9 @@
     <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
-<meta name="description" content="# Flask调试模式（debug mode）开启不了，显示Debug mode: off
-
-## 环境
-
-Python 3.9 
-
-Flask 2.2.3
-
-Pycharm 2022
-
-## 问题
-
-在run中加上了`debug=True`之后（如下）
-
-```python
-if __name__ == '__main__':
-    app.run(debug=True)
-```
-
-但在实际运行的时候调试模式（debug mode）仍然没有生效，在控制台显示以下信息
-
-```
- * Debug mode: off
-```
-
-![image-20240519161419066](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902013.png)
-
-## 解决
-
-在项目配置处的三角标，点击打开【编辑配置】
-
-![image-20240519161739671](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902719.png)
-
-找到FLASK_DEBUG，点击勾选，之后点击【确定】即可
-
-![image-20240519161816279](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902480.png)
-
-重启项目调试模式即可生效，在控制台显示如下信息
-
-![image-20240519162033698](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902628.png)。">
+<meta name="description" content="在run中加上了 debug=True 之后（如下） 但在实际运行的时候调试模式（debug mode）仍然没有生效，在控制台显示以下信息 在项目配置处的三角标，点击打开【编辑配置】 找到FLASK_DEBUG，点击勾选，之后点击【确定】即可 重启项目调试模式即可生效，在控制台显示如下信息">
 <meta property="og:title" content="Flask调试模式（debug mode）开启不了，显示Debug mode: off">
-<meta property="og:description" content="# Flask调试模式（debug mode）开启不了，显示Debug mode: off
-
-## 环境
-
-Python 3.9 
-
-Flask 2.2.3
-
-Pycharm 2022
-
-## 问题
-
-在run中加上了`debug=True`之后（如下）
-
-```python
-if __name__ == '__main__':
-    app.run(debug=True)
-```
-
-但在实际运行的时候调试模式（debug mode）仍然没有生效，在控制台显示以下信息
-
-```
- * Debug mode: off
-```
-
-![image-20240519161419066](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902013.png)
-
-## 解决
-
-在项目配置处的三角标，点击打开【编辑配置】
-
-![image-20240519161739671](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902719.png)
-
-找到FLASK_DEBUG，点击勾选，之后点击【确定】即可
-
-![image-20240519161816279](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902480.png)
-
-重启项目调试模式即可生效，在控制台显示如下信息
-
-![image-20240519162033698](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506270902628.png)。">
+<meta property="og:description" content="在run中加上了 debug=True 之后（如下） 但在实际运行的时候调试模式（debug mode）仍然没有生效，在控制台显示以下信息 在项目配置处的三角标，点击打开【编辑配置】 找到FLASK_DEBUG，点击勾选，之后点击【确定】即可 重启项目调试模式即可生效，在控制台显示如下信息">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://zbhgis.github.io/post/32.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
@@ -111,6 +33,7 @@ if __name__ == '__main__':
 .zbm-ext{display:inline-block;margin-left:4px;opacity:.45;font-size:12px;}
 @media (max-width:600px){.zbm-bar{display:block;}.zbm-bar .zbm-tag{display:inline-block;margin:0 6px 0 0;}.zbm-bar .zbm-txt{display:inline;}.zbm-bar .zbm-go{display:block;margin-top:6px;}.zbm-cta{padding:14px;}}
 </style>
+<link rel="alternate" type="text/plain" href="https://zbhgis.github.io/llms.txt" title="llms.txt">
 </head>
 <style>
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}

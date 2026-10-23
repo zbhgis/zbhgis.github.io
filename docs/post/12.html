@@ -7,55 +7,9 @@
     <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
-<meta name="description" content="# Landsat 8/9 C2L2使用注意点（简略版）
-
-## 详细版（更新中）
-
-[Landsat 8/9 C2L2级别数据表面反射率产品使用注意点-CSDN博客](https://zbhgis.blog.csdn.net/article/details/139023038)
-
-```
-https://zbhgis.blog.csdn.net/article/details/139023038
-```
-
-
-
-## 像元值转化
-
-表面反射率产品时和表面温度时，即对应的SR和ST波段的遥感数据时，需要进行像元值的转换，其转换公式与Collection1不一样（Collection1已经弃用了，但在地理空间数据云应该还可以下载），在使用时最好先进行转换
-
-| 科学产品              | 缩放因子   | 偏移量 | 填充值 | 数据类型       |   有效范围   |
-| --------------------- | ---------- | ------ | ------ | -------------- | :----------: |
-| Collection2地表反射率 | 0.0000275  | -0.2   | 0      | 无符号16位整数 | 7273 - 43636 |
-| Collection2地表温度   | 0.00341802 | 149    | 0      | 无符号16位整数 | 293 - 65535  |
-
-即在影像像元值中剔除无效像元值之后，使用Digital Number (DN) * scale_factor + offset计算，即缩放因子*像元值+偏移量
-
-表面反射率：Landsat Collection 2 表面反射率的比例因子为 0.0000275，每个像素的额外偏移为 -0.2。">
+<meta name="description" content="Landsat 8/9 C2L2级别数据表面反射率产品使用注意点-CSDN博客 表面反射率产品时和表面温度时，即对应的SR和ST波段的遥感数据时，需要进行像元值的转换，其转换公式与Collection1不一样（Collection1已经弃用…">
 <meta property="og:title" content="Landsat 8/9 C2L2使用注意点（简略版）">
-<meta property="og:description" content="# Landsat 8/9 C2L2使用注意点（简略版）
-
-## 详细版（更新中）
-
-[Landsat 8/9 C2L2级别数据表面反射率产品使用注意点-CSDN博客](https://zbhgis.blog.csdn.net/article/details/139023038)
-
-```
-https://zbhgis.blog.csdn.net/article/details/139023038
-```
-
-
-
-## 像元值转化
-
-表面反射率产品时和表面温度时，即对应的SR和ST波段的遥感数据时，需要进行像元值的转换，其转换公式与Collection1不一样（Collection1已经弃用了，但在地理空间数据云应该还可以下载），在使用时最好先进行转换
-
-| 科学产品              | 缩放因子   | 偏移量 | 填充值 | 数据类型       |   有效范围   |
-| --------------------- | ---------- | ------ | ------ | -------------- | :----------: |
-| Collection2地表反射率 | 0.0000275  | -0.2   | 0      | 无符号16位整数 | 7273 - 43636 |
-| Collection2地表温度   | 0.00341802 | 149    | 0      | 无符号16位整数 | 293 - 65535  |
-
-即在影像像元值中剔除无效像元值之后，使用Digital Number (DN) * scale_factor + offset计算，即缩放因子*像元值+偏移量
-
-表面反射率：Landsat Collection 2 表面反射率的比例因子为 0.0000275，每个像素的额外偏移为 -0.2。">
+<meta property="og:description" content="Landsat 8/9 C2L2级别数据表面反射率产品使用注意点-CSDN博客 表面反射率产品时和表面温度时，即对应的SR和ST波段的遥感数据时，需要进行像元值的转换，其转换公式与Collection1不一样（Collection1已经弃用…">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://zbhgis.github.io/post/12.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
@@ -79,6 +33,7 @@ https://zbhgis.blog.csdn.net/article/details/139023038
 .zbm-ext{display:inline-block;margin-left:4px;opacity:.45;font-size:12px;}
 @media (max-width:600px){.zbm-bar{display:block;}.zbm-bar .zbm-tag{display:inline-block;margin:0 6px 0 0;}.zbm-bar .zbm-txt{display:inline;}.zbm-bar .zbm-go{display:block;margin-top:6px;}.zbm-cta{padding:14px;}}
 </style>
+<link rel="alternate" type="text/plain" href="https://zbhgis.github.io/llms.txt" title="llms.txt">
 </head>
 <style>
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}

@@ -7,53 +7,9 @@
     <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
-<meta name="description" content="# GEE批量下载Sentinel2数据
-
-Google Earth Engine[https://earthengine.google.com/](https://earthengine.google.com/)网站批量下载数据，需要有谷歌账号和科学上网
-
-## 界面功能
-
-![image-20230712015903828](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240185.png)
-
-
-
-## 导入研究区边界
-
-1.学会导入roi的矢量文件，在【Assets】下选择【New】，导入shp文件
-
-![image-20230712012523506](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240166.png)
-
-![image-20230712012700256](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240953.png)
-
-2.在弹出的界面可以选择自己的文件进行上传，除了在gee上的新建的数据集文件名需要修改之外，其他保持默认即可，最后点击【Upload】上传
-
-![image-20230712013340325](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240411.png)
-
-3.创建好之后就可以去copy别人的代码进行批量下载了，有两个数据可以需要自己手动导入，网上的教程有时没讲这部分，通过【Import】导入roi文件和数据集。">
+<meta name="description" content="Google Earth Engine https://earthengine.google.com/ 网站批量下载数据，需要有谷歌账号和科学上网 1.学会导入roi的矢量文件，在【Assets】下选择【New】，导入shp文件 2.在弹出…">
 <meta property="og:title" content="GEE批量下载Sentinel2数据">
-<meta property="og:description" content="# GEE批量下载Sentinel2数据
-
-Google Earth Engine[https://earthengine.google.com/](https://earthengine.google.com/)网站批量下载数据，需要有谷歌账号和科学上网
-
-## 界面功能
-
-![image-20230712015903828](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240185.png)
-
-
-
-## 导入研究区边界
-
-1.学会导入roi的矢量文件，在【Assets】下选择【New】，导入shp文件
-
-![image-20230712012523506](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240166.png)
-
-![image-20230712012700256](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240953.png)
-
-2.在弹出的界面可以选择自己的文件进行上传，除了在gee上的新建的数据集文件名需要修改之外，其他保持默认即可，最后点击【Upload】上传
-
-![image-20230712013340325](https://cdn.jsdelivr.net/gh/zbhgis/BlogImg@main/blog/202506262240411.png)
-
-3.创建好之后就可以去copy别人的代码进行批量下载了，有两个数据可以需要自己手动导入，网上的教程有时没讲这部分，通过【Import】导入roi文件和数据集。">
+<meta property="og:description" content="Google Earth Engine https://earthengine.google.com/ 网站批量下载数据，需要有谷歌账号和科学上网 1.学会导入roi的矢量文件，在【Assets】下选择【New】，导入shp文件 2.在弹出…">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://zbhgis.github.io/post/7.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
@@ -77,6 +33,7 @@ Google Earth Engine[https://earthengine.google.com/](https://earthengine.google.
 .zbm-ext{display:inline-block;margin-left:4px;opacity:.45;font-size:12px;}
 @media (max-width:600px){.zbm-bar{display:block;}.zbm-bar .zbm-tag{display:inline-block;margin:0 6px 0 0;}.zbm-bar .zbm-txt{display:inline;}.zbm-bar .zbm-go{display:block;margin-top:6px;}.zbm-cta{padding:14px;}}
 </style>
+<link rel="alternate" type="text/plain" href="https://zbhgis.github.io/llms.txt" title="llms.txt">
 </head>
 <style>
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
