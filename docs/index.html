@@ -98,26 +98,6 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="title-left">
     <img src="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4" class="avatar circle" id="avatarImg" alt="avatar"><a class="blogTitle">zbhgis</a></div>
 <div class="title-right">
-    <a href="https://zbhgis.github.io/tag.html" id="buttonSearch" class="btn btn-invisible circle" title="搜索">
-        <svg class="octicon" width="16" height="16" >
-            <path id="pathSearch" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    
-    <a href="https://zbhgis.github.io/link.html" class="btn btn-invisible circle" title="链接">
-        <svg class="octicon" width="16" height="16" >
-            <path id="链接" fill-rule="evenodd"></path>
-        </svg>
-    </a><a href="https://zbhgis.github.io/about.html" class="btn btn-invisible circle" title="关于我">
-        <svg class="octicon" width="16" height="16" >
-            <path id="关于我" fill-rule="evenodd"></path>
-        </svg>
-    </a>
-    <a href="https://zbhgis.github.io/rss.xml" target="_blank" id="buttonRSS" class="btn btn-invisible circle" title="RSS">
-        <svg class="octicon" width="16" height="16" >
-            <path id="pathRSS" fill-rule="evenodd"></path>
-        </svg>
-    </a>
     <a class="btn btn-invisible circle" onclick="modeSwitch()" title="切换主题"style="display:none;">
         <svg class="octicon" width="16" height="16" >
             <path id="themeSwitch" fill-rule="evenodd"></path>
@@ -284,8 +264,6 @@ console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 
 </script>
 
 <script>
-document.getElementById("pathSearch").setAttribute("d",IconList["search"]);
-document.getElementById("pathRSS").setAttribute("d",IconList["rss"]);
 iconTOP=document.getElementsByClassName("svgTop1");
 iconPost=document.getElementsByClassName("svgTop0");
 for(var i=0;i<iconTOP.length;i++){
@@ -298,7 +276,7 @@ for(var i=0;i<iconPost.length;i++){
 
 
 
-document.getElementById("链接").setAttribute("d",value=IconList["link"]);document.getElementById("关于我").setAttribute("d",value=IconList["about"]);
+
 </script>
 
 
