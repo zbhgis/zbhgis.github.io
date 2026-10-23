@@ -7,14 +7,57 @@
     <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/GmeekVercount.js'></script><script src='https://cdn.jsdelivr.net/gh/zbhgis/BlogTheme@0.0.2/static/plugins/RonanTheme.js'></script>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
-<meta name="description" content="Focus on GIS, RS, Ecology">
-<meta property="og:title" content="zbhgis">
+<meta name="description" content="浩瀚地学（zbhgis）：GIS、遥感与生态方向的数据处理方法、论文图表复现与代码实践笔记。站点已迁移至 zbgis.com，本页为归档入口。">
+<meta property="og:title" content="浩瀚地学 zbhgis｜GIS 遥感 生态 方法与笔记">
 <meta property="og:description" content="Focus on GIS, RS, Ecology">
 <meta property="og:type" content="blog">
 <meta property="og:url" content="https://zbhgis.github.io">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4">
-<title>zbhgis</title>
+<title>浩瀚地学 zbhgis｜GIS 遥感 生态 方法与笔记</title>
 
+<style id="zbh-style">
+.zbh{display:flex;gap:20px;align-items:flex-start;border:1px solid #d0d7de;border-radius:6px;padding:22px;margin:0 0 18px;background:#fff;}
+.zbh-av{width:72px;height:72px;border-radius:6px;object-fit:cover;flex:none;transition:transform .8s;}
+.zbh-av:hover{transform:rotate(360deg);}
+.zbh-main{min-width:0;}
+.zbh h1{font-size:22px;line-height:1.3;margin:0 0 6px;color:#1f2328;font-weight:600;}
+.zbh-sub{font-size:13px;color:#57606a;margin:0 0 10px;letter-spacing:.2px;}
+.zbh-desc{font-size:14px;line-height:1.75;color:#424a53;margin:0 0 16px;}
+.zbh-acts{display:flex;flex-wrap:wrap;gap:8px;}
+.zbh-b1{display:inline-block;background:#1f2328;color:#fff;text-decoration:none;border-radius:6px;padding:8px 16px;font-size:13px;font-weight:500;border:1px solid #1f2328;}
+.zbh-b1:hover{background:#0969da;border-color:#0969da;color:#fff;text-decoration:none;}
+.zbh-b2{display:inline-block;background:#f6f8fa;color:#24292f;text-decoration:none;border-radius:6px;padding:8px 16px;font-size:13px;border:1px solid #d0d7de;}
+.zbh-b2:hover{background:#eaeef2;color:#24292f;text-decoration:none;}
+.zbh-note{font-size:12px;color:#8c959f;margin:12px 0 0;border-top:1px solid #eaeef2;padding-top:10px;}
+.zbh-sec{display:flex;align-items:baseline;gap:8px;margin:4px 0 10px;}
+.zbh-sec b{font-size:14px;color:#1f2328;font-weight:600;}
+.zbh-sec i{font-size:12px;color:#8c959f;font-style:normal;}
+@media (max-width:600px){.zbh-b1,.zbh-b2{padding:7px 12px;font-size:12.5px;}.zbh{flex-direction:column;gap:14px;padding:18px;}.zbh-av{width:56px;height:56px;}.zbh h1{font-size:19px;}}
+</style>
+<style id="zbm-style">
+.zbm-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#f6f8fa;border:1px solid #d0d7de;border-radius:6px;padding:9px 12px;margin:0 0 16px;font-size:13px;line-height:1.5;color:#57606a;}
+.zbm-bar .zbm-tag{flex:none;background:#eaeef2;color:#57606a;border:1px solid #d0d7de;border-radius:4px;padding:0 6px;font-size:12px;}
+.zbm-bar .zbm-txt{flex:1;min-width:180px;}
+.zbm-bar .zbm-go{flex:none;color:#0969da;text-decoration:none;font-weight:500;white-space:nowrap;}
+.zbm-bar .zbm-go:hover{text-decoration:underline;}
+.zbm-cta{border:1px solid #d0d7de;border-radius:6px;padding:16px 18px;margin:26px 0 10px;background:#f6f8fa;}
+.zbm-cta-t{font-weight:600;font-size:14px;color:#1f2328;margin-bottom:6px;}
+.zbm-cta-d{font-size:13px;color:#57606a;line-height:1.65;margin-bottom:12px;}
+.zbm-cta-b{display:inline-block;background:#1f2328;color:#fff;text-decoration:none;border-radius:6px;padding:7px 14px;font-size:13px;font-weight:500;}
+.zbm-cta-b:hover{background:#0969da;color:#fff;text-decoration:none;}
+.zbm-note{font-size:12px;color:#8c959f;margin-top:8px;}
+.zbm-ext{display:inline-block;margin-left:4px;opacity:.45;font-size:12px;}
+@media (max-width:600px){.zbm-bar{display:block;}.zbm-bar .zbm-tag{display:inline-block;margin:0 6px 0 0;}.zbm-bar .zbm-txt{display:inline;}.zbm-bar .zbm-go{display:block;margin-top:6px;}.zbm-cta{padding:14px;}}
+</style>
+<style id="zbm-more-style">
+.zb-more{border:1px solid #d0d7de;border-radius:6px;padding:18px;margin:16px 0 0;background:#f6f8fa;text-align:center;}
+.zb-more-t{font-size:13px;color:#57606a;margin:0 0 12px;}
+.zb-more-a{display:inline-block;background:#1f2328;color:#fff;text-decoration:none;border-radius:6px;padding:8px 20px;font-size:13px;font-weight:500;}
+.zb-more-a:hover{background:#0969da;color:#fff;text-decoration:none;}
+@media (max-width:600px){
+  body .listTitle{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:clip;line-height:1.45;}
+}
+</style>
 </head>
 <style>
 body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
@@ -83,233 +126,138 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div style="margin-bottom: 16px;">Focus on GIS, RS, Ecology</div>
+<section class="zbh">
+  <img class="zbh-av" src="https://avatars.githubusercontent.com/u/116264372?s=400&u=0c4073b50ae732450cd91f380769ba6710d6ce53&v=4" alt="zbhgis">
+  <div class="zbh-main">
+    <h1>浩瀚地学 · zbhgis</h1>
+    <p class="zbh-sub">GIS · 遥感 · 生态 —— 数据处理方法、论文图表复现与代码实践</p>
+    <p class="zbh-desc">长期记录遥感数据处理（Landsat / Sentinel / ENVI / SNAP）、空间分析与科研图表复现的实操笔记。本站已停止更新，全部内容迁移至新站并持续修订，本页保留作为归档入口。</p>
+    <div class="zbh-acts">
+      <a class="zbh-b1" href="https://www.zbhgis.com" target="_blank" rel="noopener">进入新站 zbgis.com</a>
+      <a class="zbh-b2" href="https://www.zbhgis.com/blog" target="_blank" rel="noopener">博客</a>
+      <a class="zbh-b2" href="https://www.zbhgis.com/note" target="_blank" rel="noopener">笔记</a>
+      <a class="zbh-b2" href="https://www.zbhgis.com/about" target="_blank" rel="noopener">关于</a>
+    </div>
+    <p class="zbh-note">旧站 2023–2026 年的 66 篇历史文章已全部迁移至新站；下方精选 10 篇篇幅最完整的文章，点击标题直接前往新站对应页面。</p>
+  </div>
+</section>
+<div class="zbh-sec"><b>精选 10 篇</b><i>按篇幅排序 · 点击标题前往新站</i></div>
+
 <nav class="SideNav border">
-<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/69.html">
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="https://www.zbhgis.com/blog/blog-20250205-1" target="_blank" rel="noopener">
     <div class="d-flex flex-items-center">
         <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
         </svg>
-        <span class="listTitle">【Java】JDK8的一些新特性</span>
+        <span class="listTitle">ENVI 5.3对USGS网站下载的Landsat 8/9 C2L2地表反射率数据进行预处理（波段合成、裁剪、镶嵌、定标、去云）<span class="zbm-ext">↗</span></span>
     </div>
     <div class="listLabels">
-        
+        <span class="Label LabelName" style="background-color:#008672"><object><a style="color:#fff" href="tag.html#ENVI">ENVI</a></object></span>
+        <span class="Label LabelTime" style="background-color:#0969da">2025-06-27</span>
+    </div>
+</a>
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="https://www.zbhgis.com/blog/blog-20240608-1" target="_blank" rel="noopener">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">USGS网站下载Landsat 5/7/8/9数据最新详细教程（注册、筛选、单波段、批量下载等），附常见问题<span class="zbm-ext">↗</span></span>
+    </div>
+    <div class="listLabels">
+        <span class="Label LabelName" style="background-color:#cfd3d7"><object><a style="color:#fff" href="tag.html#Data">Data</a></object></span>
+        <span class="Label LabelTime" style="background-color:#0969da">2025-06-27</span>
+    </div>
+</a>
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="https://www.zbhgis.com/blog/blog-20240603-1" target="_blank" rel="noopener">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">ENVI 5.3/6.0打开Landsat 8/9 C2L2级别数据（带有Metadata）<span class="zbm-ext">↗</span></span>
+    </div>
+    <div class="listLabels">
+        <span class="Label LabelName" style="background-color:#008672"><object><a style="color:#fff" href="tag.html#ENVI">ENVI</a></object></span>
+        <span class="Label LabelTime" style="background-color:#0969da">2025-06-27</span>
+    </div>
+</a>
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="https://www.zbhgis.com/blog/blog-20240426-1" target="_blank" rel="noopener">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">地学研究相关工具推荐0426<span class="zbm-ext">↗</span></span>
+    </div>
+    <div class="listLabels">
+        <span class="Label LabelName" style="background-color:#d876e3"><object><a style="color:#fff" href="tag.html#Tools">Tools</a></object></span>
+        <span class="Label LabelTime" style="background-color:#0969da">2025-06-26</span>
+    </div>
+</a>
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="https://www.zbhgis.com/note/note-20250808-1" target="_blank" rel="noopener">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">【Java】面向对象进阶-static<span class="zbm-ext">↗</span></span>
+    </div>
+    <div class="listLabels">
         <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-19</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/68.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】Map</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-19</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/67.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】Collection的其他知识</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-19</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/66.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】集合-List</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-19</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/65.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】集合-Set</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-19</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/64.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】集合-Collection</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-19</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/63.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】常用API（三）</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-19</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/62.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】异常</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-12</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/61.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】常用API（二）</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-12</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/60.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】常用API（一）</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-12</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/59.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】面向对象进阶-内部类</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-12</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/58.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】面向对象进阶-枚举，泛型</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-12</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/57.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】面向对象进阶-接口</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-12</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/56.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】面向对象进阶-final，抽象类</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#1f883d">2026-01-12</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/55.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">顶刊NCC带自定义标记的散点图复现（Python）</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#0075ca"><object><a style="color:#fff" href="tag.html#Python">Python</a></object></span>
-        <span class="Label LabelTime" style="background-color:#0969da">2025-12-15</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/54.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">顶刊Nature多子图柱状图复现（Python）</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#0075ca"><object><a style="color:#fff" href="tag.html#Python">Python</a></object></span>
-        <span class="Label LabelTime" style="background-color:#0969da">2025-12-15</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/53.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】面向对象进阶-多态</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#0969da">2025-12-15</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/52.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Java】面向对象进阶-继承</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
-        <span class="Label LabelTime" style="background-color:#0969da">2025-12-15</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/51.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Arcpy】入门学习笔记（五）-矢量数据</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#e4e669"><object><a style="color:#fff" href="tag.html#Arcpy">Arcpy</a></object></span>
-        <span class="Label LabelTime" style="background-color:#0969da">2025-12-15</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/50.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">【Arcpy】入门学习笔记（四）-栅格数据</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#e4e669"><object><a style="color:#fff" href="tag.html#Arcpy">Arcpy</a></object></span>
         <span class="Label LabelTime" style="background-color:#0969da">2025-12-15</span>
     </div>
 </a>
-</nav><nav class="paginate-container" aria-label="Pagination">
-    <div class="pagination"><span class="previous_page" aria-disabled="true">上一页</span>
-        <a class="next_page" rel="next" href="https://zbhgis.github.io/page2.html" aria-label="Next Page">下一页</a></div>
-</nav>
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="https://www.zbhgis.com/blog/blog-20240427-1" target="_blank" rel="noopener">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">地学研究相关工具推荐0427<span class="zbm-ext">↗</span></span>
+    </div>
+    <div class="listLabels">
+        <span class="Label LabelName" style="background-color:#d876e3"><object><a style="color:#fff" href="tag.html#Tools">Tools</a></object></span>
+        <span class="Label LabelTime" style="background-color:#0969da">2025-06-26</span>
+    </div>
+</a>
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="https://www.zbhgis.com/note/note-20240417-1" target="_blank" rel="noopener">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">【Arcpy】入门学习笔记（三）-数据属性的获取<span class="zbm-ext">↗</span></span>
+    </div>
+    <div class="listLabels">
+        <span class="Label LabelName" style="background-color:#e4e669"><object><a style="color:#fff" href="tag.html#Arcpy">Arcpy</a></object></span>
+        <span class="Label LabelTime" style="background-color:#0969da">2025-06-26</span>
+    </div>
+</a>
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="https://www.zbhgis.com/note/note-20250804-2" target="_blank" rel="noopener">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">【Java】面向对象基础<span class="zbm-ext">↗</span></span>
+    </div>
+    <div class="listLabels">
+        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
+        <span class="Label LabelTime" style="background-color:#0969da">2025-12-07</span>
+    </div>
+</a>
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="https://www.zbhgis.com/blog/blog-20231011-1" target="_blank" rel="noopener">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">哥白尼网站下载Sentinel-1/2/3/5P遥感数据（筛选、单波段/批量下载），附常见问题<span class="zbm-ext">↗</span></span>
+    </div>
+    <div class="listLabels">
+        <span class="Label LabelName" style="background-color:#cfd3d7"><object><a style="color:#fff" href="tag.html#Data">Data</a></object></span>
+        <span class="Label LabelTime" style="background-color:#0969da">2025-06-25</span>
+    </div>
+</a>
+<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="https://www.zbhgis.com/note/note-20250805-2" target="_blank" rel="noopener">
+    <div class="d-flex flex-items-center">
+        <svg class="SideNav-icon octicon" style="width:16px;height:16px"><path class="svgTop0" d=""></path>
+        </svg>
+        <span class="listTitle">【Java】String<span class="zbm-ext">↗</span></span>
+    </div>
+    <div class="listLabels">
+        <span class="Label LabelName" style="background-color:#387044"><object><a style="color:#fff" href="tag.html#Java">Java</a></object></span>
+        <span class="Label LabelTime" style="background-color:#0969da">2025-12-05</span>
+    </div>
+</a>
+</nav><div class="zb-more">
+  <p class="zb-more-t">已归档 66 篇文章，此处仅展示精选 10 篇；全部文章与后续更新均在新站</p>
+  <a class="zb-more-a" href="https://www.zbhgis.com" target="_blank" rel="noopener">查看更多 →</a>
+</div>
 </div>
     <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://zbhgis.github.io">zbhgis</a></div>
 <div id="footer2">

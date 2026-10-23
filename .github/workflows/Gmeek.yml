@@ -1,11 +1,9 @@
 name: build Gmeek
 
 on:
+  # 站点已转为介绍站 + 旧文归档，停止自动构建，避免覆盖手工维护的 docs/
+  # 如需重新生成，手动触发 workflow_dispatch 即可（会覆盖 docs/ 中的自定义改动）
   workflow_dispatch:
-  issues:
-    types: [opened, edited]
-  schedule:
-    - cron: "0 16 * * *"
     
 jobs:
   build:
